@@ -11,6 +11,8 @@
 
 
 :root {
+
+  /* colors */
   --clr-black: #000000;
   --clr-gray: #929292;
   --clr-silver: #E9E9E9;
@@ -19,6 +21,17 @@
   --clr-mint: #DFECC6;
   --clr-olive: #8E9B77;
   --clr-forest: #485C11;
+
+  /* texts */
+
+  --fs-title: 2em;
+
+
+  /* thickness */
+
+  --fw-title: 700;
+
+
 }
 
 
@@ -71,22 +84,43 @@ header {
   }
 }
 
+/* #region home */
 
+#home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
 
+  .title-home {
+    & ul {
+      & li {
+        & p {
+          font-size: var(--fs-title);
+          font-weight: var(--fw-title);
+        }
+      }
+    }
+  }
 
+  .imgs-home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    place-items: center;
+  
+    .left {
+      display: grid;
+    }
+  
+    .right {
+      display: grid;
+      gap: 1em;
+    }
+  }
+  
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* #endregion */
