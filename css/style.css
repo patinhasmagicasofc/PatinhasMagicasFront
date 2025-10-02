@@ -25,6 +25,7 @@
   /* texts */
 
   --fs-title: 2em;
+  --fs-sub-title: 1.5em;
 
 
   /* thickness */
@@ -69,10 +70,17 @@ header {
       & ul {
         display: flex;
         gap: 1.5em;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
 
         & li {
+
           & a {
             color: var(--clr-black);
+            text-decoration: none;
           }
 
           :hover {
@@ -90,14 +98,17 @@ header {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 2em;
   justify-content: center;
   align-items: center;
+  text-align: center;
+
+
 
   .title-home {
     & ul {
       & li {
         & p {
+          padding-bottom: 2em;
           font-size: var(--fs-title);
           font-weight: var(--fw-title);
         }
@@ -105,22 +116,109 @@ header {
     }
   }
 
-  .imgs-home {
+
+  .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
+
     gap: 1em;
-    place-items: center;
-  
-    .left {
-      display: grid;
+    max-width: 1300px;
+    margin: auto;
+    align-items: stretch;
+
+    .left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.6em;
+
+
     }
-  
+
     .right {
       display: grid;
+      grid-template-rows: 1fr 1fr;
       gap: 1em;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.6em;
+      }
+    }
+
+
+  }
+
+}
+
+/* #endregion */
+
+
+/* #region information*/
+
+#information {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  .title-text {
+    background-color: var(--clr-olive);
+    text-align: center;
+    padding: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & ul {
+      & li {
+        display: flex;
+        flex-direction: column;
+        max-width: 1300px;
+        margin: 0 auto;
+
+        .title-information {
+          font-size: var(--fs-title);
+          font-weight: var(--fw-title);
+          color: var(--clr-white);
+        }
+
+        .text-information {
+          color: var(--clr-white);
+        }
+      }
     }
   }
-  
+
+  .card-information {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+
+    .card {
+      border: none;
+
+      & img {
+        height: 400px;
+        width: 100%;
+        border-radius: 0.5em 0.5em 0 0;
+      }
+
+      .card-body {
+        background-color: var(--clr-mint);
+        border-radius: 0 0 0.5em 0.5em;
+
+        .card-title {
+          font-size: var(--fs-sub-title);
+        }
+      }
+    }
+
+  }
 }
 
 /* #endregion */
