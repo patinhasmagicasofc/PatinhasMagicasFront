@@ -7,8 +7,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./css/lista_pedidos.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/lista_pedidos.css">
+
 
 
   <title>Patinhas Mágicas</title>
@@ -36,40 +37,153 @@
     </nav>
   </header>
 
-
-
   <main>
-    <table class="order-table">
-      <tr>
-        <th>ID do Pedido</th>
-        <th>Nome do Cliente</th>
-        <th>Data do Pedido</th>
-        <th>Status</th>
-        <th>Total</th>
-      </tr>
-      <tr>
-        <td>001</td>
-        <td>João Silva</td>
-        <td>2024-06-01</td>
-        <td>Em Processamento</td>
-        <td>R$ 150,00</td>
-      </tr>
-      <tr>
-        <td>002</td>
-        <td>Maria Oliveira</td>
-        <td>2024-06-02</td>
-        <td>Enviado</td>
-        <td>R$ 200,00</td>
-      </tr>
-      <tr>
-        <td>003</td>
-        <td>Carlos Souza</td>
-        <td>2024-06-03</td>
-        <td>Entregue</td>
-        <td>R$ 300,00</td>
-      </tr>
-    </table>
+
+    <section id="pedidos">
+      <h1>Lista de Pedidos</h1>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Valor</th>
+            <th>👁 Ver</th>
+            <th>✏️ Editar status</th>
+            <th>🗑 Cancelar</th>
+          </tr>
+        </thead>
+        <tbody class="tbPedidos">
+        </tbody>
+      </table>
+    </section>
+
   </main>
+
+    <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li>Pedidos</li>
+    </ol>
+  </nav>
+
+  <header>
+    <h1>Pedidos</h1>
+  </header>
+
+  <!-- Filtros -->
+  <section class="filters">
+    <form>
+      <input type="text" placeholder="Buscar por ID, cliente...">
+      
+      <select name="status">
+        <option value="">Status</option>
+        <option value="pendente">Pendente</option>
+        <option value="pago">Pago</option>
+        <option value="enviado">Enviado</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+      
+      <input type="date" name="dataInicio">
+      <input type="date" name="dataFim">
+
+      <button type="submit">Aplicar filtros</button>
+      <button type="reset">Limpar</button>
+    </form>
+  </section>
+
+  <!-- Resumo -->
+  <section class="summary">
+    <div class="card">
+      <p>Total de pedidos hoje</p>
+      <strong>10</strong>
+    </div>
+    <div class="card">
+      <p>Total de vendas hoje</p>
+      <strong>R$ 3.500,00</strong>
+    </div>
+    <div class="card">
+      <p>Pedidos pendentes</p>
+      <strong>2</strong>
+    </div>
+    <div class="card">
+      <p>Pedidos cancelados</p>
+      <strong>1</strong>
+    </div>
+  </section>
+
+  <!-- Lista de pedidos -->
+  <section class="orders">
+    <table>
+      <thead>
+        <tr>
+          <th>#ID Pedido</th>
+          <th>Cliente</th>
+          <th>Data do pedido</th>
+          <th>Valor total</th>
+          <th>Forma de pagamento</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <!-- <tbody> -->
+      <tbody class="tbPedidos">
+        <tr>
+          <td>1234</td>
+          <td>Robert Pato <br><small>robert@email.com</small></td>
+          <td>12/11/2020</td>
+          <td>R$ 100,00</td>
+          <td>Pix</td>
+          <td><span class="status pago">Pago</span></td>
+          <td>
+            <button title="Ver">👁</button>
+            <button title="Editar">✏️</button>
+            <button title="Excluir">🗑</button>
+          </td>
+        </tr>
+        <tr>
+          <td>1233</td>
+          <td>Luam Santo</td>
+          <td>12/11/2020</td>
+          <td>R$ 100,00</td>
+          <td>Cartão</td>
+          <td><span class="status pendente">Pendente</span></td>
+          <td>
+            <button title="Ver">👁</button>
+            <button title="Editar">✏️</button>
+            <button title="Excluir">🗑</button>
+          </td>
+        </tr>
+        <tr>
+          <td>1232</td>
+          <td>Danya Iarzo</td>
+          <td>12/11/2020</td>
+          <td>R$ 150,00</td>
+          <td>Cartão</td>
+          <td><span class="status cancelado">Cancelado</span></td>
+          <td>
+            <button title="Ver">👁</button>
+            <button title="Editar">✏️</button>
+            <button title="Excluir">🗑</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Paginação -->
+  <nav class="pagination">
+    <button>&lt;</button>
+    <span>1</span>
+    <button>&gt;</button>
+    <select>
+      <option>10</option>
+      <option>25</option>
+      <option>50</option>
+    </select>
+  </nav>
 
 
   <footer>
@@ -77,6 +191,8 @@
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="./js/lista_pedidos.js"></script>
+
 </body>
 
 </html>

@@ -1,0 +1,174 @@
+/* ===== Reset simples ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f5f6fa;
+  color: #333;
+  padding: 20px;
+}
+
+/* ===== Breadcrumb ===== */
+nav[aria-label="breadcrumb"] ol {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+nav[aria-label="breadcrumb"] a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+header h1 {
+  margin: 10px 0 20px;
+}
+
+/* ===== Filtros ===== */
+.filters {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.filters form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filters input, 
+.filters select, 
+.filters button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filters button {
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.filters button:hover {
+  background: #0056b3;
+}
+
+/* ===== Cards de resumo ===== */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.summary .card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.summary .card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.summary .card strong {
+  display: block;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* ===== Tabela de pedidos ===== */
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.orders th, .orders td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 14px;
+}
+
+.orders th {
+  background: #f0f2f5;
+  font-weight: bold;
+}
+
+.orders tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* ===== Status ===== */
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.status.pago { background: #28a745; }
+.status.pendente { background: #ffc107; color: #000; }
+.status.enviado { background: #17a2b8; }
+.status.cancelado { background: #dc3545; }
+
+/* ===== Ações ===== */
+.orders button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 4px;
+}
+
+.orders button:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Paginação ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.pagination button:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.pagination select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}

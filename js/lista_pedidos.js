@@ -1,26 +1,47 @@
-//urlBase da API
-const urlBase = "http://localhost:5112/api"
+const urlBase = "http://localhost:5260/api";
 
 $.ajax({
-    url: urlBase + "/Pedido", //Endpoint
+    url: urlBase + "/Pedido",
     type: "GET",
     contentType: "application/json",
-    //se der sucesso (200) cai aqui nesse bloco
     success: function (dados) {
+        console.log(dados); // Confirma que é um array
 
-        //selecionar a div dos generos
-        const listaPedidos = $('.order-table');
-        listaPedidos.empty();
+
+        const tabelaPedidos = $('.tbPedidos');
+        tabelaPedidos.empty();
 
         dados.forEach(pedido => {
 
-            const item = `<tr><th class="dropdown-item" href="produtos.html">${pedido.id}</th></tr>`;
+            const data = new Date(pedido.dataPedido);
+            console.log(data.toLocaleString("pt-BR")); // → "02/10/2025 02:04"
+            const dataFormatada = data.toLocaleString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false // usa formato 24h (sem AM/PM)
+            });
 
-            listaPedidos.append(item);
+            const linha = `
+                <tr>
+                    <td>${pedido.id}</td>
+                    <td>${pedido.nomeCliente}</td>
+                    <td>${dataFormatada}</td>
+                    <td>${pedido.status}</td>
+                    <td>R$ ${pedido.valorTotal}</td>
+                    <td>
+                        <button title="Ver">👁</button>
+                        <button title="Editar">✏️</button>
+                        <button title="Excluir">🗑</button>
+                    </td>
+                </tr>
+            `;
+            tabelaPedidos.append(linha);
         });
-
     },
     error: function (erro) {
-        console.log('Deu erro!');
+        console.log('Deu erro!', erro);
     }
 });
