@@ -1,0 +1,142 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #5cb85c; /* Verde Pet */
+    --secondary-color: #f7e6a7; /* Amarelo Patinha */
+    --text-color: #333;
+    --error-color: #e74c3c;
+    --bg-color: #f4f4f9;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-container, .painel {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 25px;
+    color: var(--primary-color);
+}
+
+.header i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.header h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.input-group i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.btn-login, .btn-logout {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-login {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #4a9f4a;
+}
+
+.erro {
+    color: var(--error-color);
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+/* Estilos do Painel Restrito */
+.painel {
+    max-width: 800px;
+    text-align: left;
+}
+
+.painel h1 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.painel h3 {
+    color: var(--text-color);
+    margin-top: 30px;
+}
+
+.btn-logout {
+    background-color: var(--error-color);
+    color: white;
+    width: auto;
+    padding: 10px 20px;
+    float: right;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+}
+
+.dados-api {
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    overflow-x: auto;
+}
