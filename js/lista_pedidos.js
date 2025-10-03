@@ -32,7 +32,7 @@ $.ajax({
                     <td>${pedido.status}</td>
                     <td>R$ ${pedido.valorTotal}</td>
                     <td>
-                        <button title="Ver">👁</button>
+                        <button title="Ver"><a href="detalhespedidos.html?idPedido=${pedido.id}" title="Ver">👁</a></button>
                         <button title="Editar">✏️</button>
                         <button title="Excluir">🗑</button>
                     </td>
