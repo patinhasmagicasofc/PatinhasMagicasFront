@@ -1,11 +1,12 @@
 $(document).ready(function () {
 
+    document.getElementById('btn-print').addEventListener('click', () => window.print());
+
     let params = new URLSearchParams(document.location.search);
     let idPedido = params.get("idPedido");
 
     const urlBase = "http://localhost:5260/api";
     const toBRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    console.log("ID do pedido:", idPedido);
     let valorTotalProduto = 0;
 
     $.ajax({
@@ -21,7 +22,7 @@ $(document).ready(function () {
             const linha = `<p><strong>ID</strong><br><span id="order-id">#${dados.id}</span></p>
                            <p><strong>Data</strong><br><span id="order-date">${dados.dataPedido}</span></p>
                            <p><strong>Pagamento</strong><br><span id="order-payment" class="small">Pix</span></p>
-                           <p><strong>Status</strong><br><span id="order-status" class="badge pago">Pago</span></p>`;
+                           <p><strong>Status</strong><br><span id="order-status" class="badge ${dados.statusPagamento}">${dados.statusPagamento}</span></p>`;
             tabelaPedidos.append(linha);
 
             const cardCliente = $('#info-cliente');
@@ -38,10 +39,6 @@ $(document).ready(function () {
             tbody.empty();
 
             dados.itemPedidoOutputDTOs.forEach(itemPedido => {
-                console.log(itemPedido.produto)
-                console.log("teste");
-                console.log(itemPedido);
-
                 const item = `
                             <tr>
                                 <td style="display:flex;align-items:center;gap:10px;">
@@ -75,7 +72,7 @@ $(document).ready(function () {
             delivery.append(endereco);
 
             const boxTotal = $("#box-total");
-            delivery.empty();
+            boxTotal.empty();
             const boxValorTotal= `<b id="box-total">${toBRL(valorTotalProduto)}</b>`;
             boxTotal.append(boxValorTotal);
 
@@ -83,10 +80,6 @@ $(document).ready(function () {
             boxSubTotal.empty();
             const boxValorSubTotal = `<b id="box-subtotal">${toBRL(valorTotalProduto)}</b>`
             boxSubTotal.append(boxValorSubTotal);
-
-
-
-
         },
         error: function (erro) {
             console.log('Deu erro!', erro);

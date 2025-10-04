@@ -5,7 +5,7 @@ $.ajax({
     type: "GET",
     contentType: "application/json",
     success: function (dados) {
-        console.log(dados); // Confirma que é um array
+        //console.log(dados); // Confirma que é um array
 
 
         const tabelaPedidos = $('.tbPedidos');
