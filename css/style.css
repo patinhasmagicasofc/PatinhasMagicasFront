@@ -1277,7 +1277,7 @@ footer {
 
   .social-media {
     display: flex;
-
+    gap: 1em;
     .facebook,
     .x,
     .instagram {
