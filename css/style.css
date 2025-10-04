@@ -43,6 +43,8 @@ body::before {
   height: 5em;
 }
 
+/* #region header */
+
 header {
   & nav {
     display: flex;
@@ -58,7 +60,7 @@ header {
 
     .menu {
       background: var(--clr-white-one);
-      backdrop-filter: blur(em);
+      backdrop-filter: blur(1em);
       padding: 1em 2em;
       border-radius: 2em;
 
@@ -114,6 +116,8 @@ header {
     }
   }
 }
+
+/* #endregion */
 
 /* #region home */
 
@@ -487,6 +491,10 @@ header {
   height: 100vh;
 }
 
+
+
+/* #region contact*/
+
 #contact {
   height: 100vh;
   display: flex;
@@ -547,28 +555,28 @@ header {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
-            width: 300px;
+            width: 400px;
           }
 
           .email {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
-            width: 300px;
+            width: 400px;
           }
 
           .phone {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
-            width: 300px;
+            width: 400px;
           }
 
           .message {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
-            width: 300px;
+            width: 400px;
           }
 
           & label {
@@ -664,3 +672,114 @@ header {
     }
   }
 }
+
+/* #endregion */
+
+/* #region footer */
+
+footer {
+  background: var(--clr-mint);
+  display: flex;
+  padding: 2em;
+  justify-content: space-evenly;
+
+  .logo {}
+
+  .footer-nav {
+    nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .tips-warnings {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1em;
+
+        & ul {
+          & li {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .title-tips-warnings {
+              & p {
+                font-weight: var(--fw-title);
+              }
+            }
+
+            .links-tw {
+              display: flex;
+              flex-direction: column;
+              gap: 0.8em;
+
+              & a {
+                text-decoration: none;
+                color: var(--clr-forest-one);
+
+              }
+            }
+          }
+        }
+      }
+
+      .our-products {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1em;
+
+        & ul {
+          & li {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .title-our-products {
+              & p {
+                font-weight: var(--fw-title);
+              }
+            }
+
+            .links-op {
+              display: flex;
+              flex-direction: column;
+              gap: 0.8em;
+
+              & a {
+                list-style: none;
+                text-decoration: none;
+                color: var(--clr-forest-one);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .social-media {
+    display: flex;
+
+    .facebook,
+    .x,
+    .instagram {
+      & ul {
+        & li {
+          & a {
+            & img {
+              width: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+/* #endregion */
