@@ -32,6 +32,13 @@
   --fw-title: 700;
 }
 
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 body {
   margin: 0;
   font-family: "Lexend", sans-serif;
@@ -56,7 +63,8 @@ header {
     width: 100%;
     z-index: 1000;
 
-    .logo {}
+    .logo {
+    }
 
     .menu {
       background: var(--clr-white-one);
@@ -284,7 +292,8 @@ header {
           font-weight: var(--fw-title);
         }
 
-        .text-product {}
+        .text-product {
+        }
       }
     }
   }
@@ -368,7 +377,7 @@ header {
 /* #region service */
 
 #service {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -404,30 +413,39 @@ header {
   }
 
   .container-service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3em;
     .title-container {
       & ul {
         & li {
           & p {
             font-size: var(--fs-sub-title);
             font-weight: var(--fw-title);
+            padding: 2em;
           }
         }
       }
     }
 
     .grid-service {
-
-      .banho-tosa {
-        display: flex;
-        background: var(--clr-mint);
-        padding: 2em;
-        justify-content: center;
-        border-radius: 1em;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      max-width: 1300px;
+      margin: auto;
+      .service-card-container-one {
+        gap: 2em;
 
         .card-banho-tosa {
+          background: var(--clr-mint);
+          border-radius: 1em;
           display: flex;
           flex-direction: column;
+          justify-content: space-between;
           gap: 1em;
+          padding: 1em;
           align-items: center;
 
           .title-banho-tosa {
@@ -440,34 +458,126 @@ header {
               }
             }
           }
-
-          .img-text-one,
-          .img-text-two {
-            display: grid;
+          .container-banho-tosa {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
             align-items: center;
-            grid-template-columns: auto 1fr;
-            gap: 0.8em;
+            width: 500px;
 
-            .img-one,
-            .img-two {
-              & img {
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-                object-fit: cover;
+            .img-text-one,
+            .img-text-two {
+              display: grid;
+              align-items: center;
+              grid-template-columns: auto 1fr;
+              gap: 0.8em;
+
+              .img-one,
+              .img-two {
+                & img {
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                }
+              }
+
+              .text-one,
+              .text-two {
+                & ul {
+                  margin-bottom: 0;
+                  & li {
+                    & p {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
               }
             }
 
-            .text-one,
-            .text-two {
-              max-width: 320px;
+            .text-grid {
+              display: flex;
+              padding-top: 2em;
             }
           }
+          .btn-card {
+            margin: 2em 0 1em;
 
-          .text-grid {
+            & ul {
+              & li {
+                & a {
+                  background: var(--clr-olive);
+                  transition: all 0.3s ease;
+                  padding: 0.8em 1.5em;
+                  border-radius: 1em;
+                  text-decoration: none;
+                  color: var(--clr-forest-one);
+
+                  &:hover {
+                    background: var(--clr-forest-one);
+                    color: var(--clr-white);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .card-adestramento-comportamento {
+          background: var(--clr-mint);
+          border-radius: 1em;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 1em;
+          align-items: center;
+          padding: 1em;
+          .title-adestramento-comportamento {
+            & ul {
+              & li {
+                & p {
+                  font-size: var(--fs-sub-title);
+                  font-weight: var(--fw-title);
+                }
+              }
+            }
+          }
+          .container-adestramento-comportamento {
             display: flex;
-            max-width: 430px;
-            padding-top: 2em;
+            flex-direction: column;
+            gap: 1em;
+            .img-text-one,
+            .img-text-two {
+              display: grid;
+              align-items: center;
+              grid-template-columns: auto 1fr;
+              gap: 0.8em;
+
+              .img-one,
+              .img-two {
+                & img {
+                  width: 280px;
+                  height: 160px;
+                  border-radius: 0.8em;
+                  object-fit: cover;
+                }
+              }
+
+              .text-one,
+              .text-two {
+                & ul {
+                  & li {
+                    & p {
+                    }
+                  }
+                }
+              }
+            }
+
+            .text-grid {
+              display: flex;
+              padding-top: 2em;
+            }
           }
 
           .btn-card {
@@ -493,18 +603,413 @@ header {
           }
         }
       }
-      
+
+      .service-card-container-two {
+        display: flex;
+        justify-content: space-between;
+        gap: 2em;
+
+        .card-atendimento-vet {
+          background: var(--clr-mint);
+          border-radius: 1em;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 1em;
+          align-items: center;
+          padding: 1em;
+          width: 400px;
+          .container-atendimento-vet {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            .img-text-one,
+            .img-text-two,
+            .img-text-three {
+              display: grid;
+              align-items: center;
+              grid-template-columns: auto 1fr;
+              gap: 1em;
+              .img-one,
+              .img-two,
+              .img-three {
+                & img {
+                  width: 160px;
+                  height: 110px;
+                  border-radius: 0.8em;
+                  object-fit: cover;
+                }
+              }
+
+              .text-one,
+              .text-two,
+              .text-three {
+                max-width: 320px;
+                & ul {
+                  margin-bottom: 0;
+                  & li {
+                    & p {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+
+            .text-grid {
+              display: flex;
+            }
+          }
+          .title-atendimento-vet {
+            & ul {
+              & li {
+                & p {
+                  font-size: var(--fs-sub-title);
+                  font-weight: var(--fw-title);
+                }
+              }
+            }
+          }
+
+          .btn-card {
+            margin-top: auto;
+            margin: 2em 0 1em;
+
+            & ul {
+              & li {
+                & a {
+                  background: var(--clr-olive);
+                  transition: all 0.3s ease;
+                  padding: 0.8em 1.5em;
+                  border-radius: 1em;
+                  text-decoration: none;
+                  color: var(--clr-forest-one);
+
+                  &:hover {
+                    background: var(--clr-forest-one);
+                    color: var(--clr-white);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .card-hospedagem-creche {
+          background: var(--clr-mint);
+          border-radius: 1em;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 1em;
+          align-items: center;
+          padding: 1em;
+          width: 400px;
+
+          .title-hospedagem-creche {
+            & ul {
+              & li {
+                & p {
+                  font-size: var(--fs-sub-title);
+                  font-weight: var(--fw-title);
+                }
+              }
+            }
+          }
+
+          .container-hospedagem-pet {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+
+            .img-text-one,
+            .img-text-two,
+            .img-text-three {
+              display: grid;
+              align-items: center;
+              grid-template-columns: auto 1fr;
+              gap: 1em;
+
+              .img-one,
+              .img-two,
+              .img-three {
+                & img {
+                  width: 160px;
+                  height: 110px;
+                  border-radius: 0.8em;
+                  object-fit: cover;
+                }
+              }
+
+              .text-one,
+              .text-two,
+              .text-three {
+                max-width: 320px;
+                & ul {
+                  margin-bottom: 0;
+                  & li {
+                    & p {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+
+            .text-grid {
+              display: flex;
+            }
+          }
+
+          .btn-card {
+            margin-top: auto;
+            margin: 2em 0 1em;
+
+            & ul {
+              & li {
+                & a {
+                  background: var(--clr-olive);
+                  transition: all 0.3s ease;
+                  padding: 0.8em 1.5em;
+                  border-radius: 1em;
+                  text-decoration: none;
+                  color: var(--clr-forest-one);
+
+                  &:hover {
+                    background: var(--clr-forest-one);
+                    color: var(--clr-white);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .card-transporte-pet {
+          background: var(--clr-mint);
+          border-radius: 1em;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 1em;
+          align-items: center;
+          padding: 1em;
+          width: 400px;
+
+          .title-transporte-pet {
+            & ul {
+              & li {
+                & p {
+                  font-size: var(--fs-sub-title);
+                  font-weight: var(--fw-title);
+                }
+              }
+            }
+          }
+
+          .container-transporte-pet {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+
+            .img-text-one {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              .text-one {
+                & ul {
+                  & li {
+                    & p {
+                      display: flex;
+                    }
+                  }
+                }
+              }
+
+              .img-one {
+                & img {
+                  width: 350px;
+                  height: 180px;
+                  border-radius: 0.8em;
+                  object-fit: cover;
+                }
+              }
+            }
+
+            .img-text-two {
+              display: flex;
+              align-items: center;
+              gap: 1em;
+
+              .text-two {
+                & ul {
+                  & li {
+                    & p {
+                      display: flex;
+                    }
+                  }
+                }
+              }
+
+              .img-two {
+                & img {
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 0.8em;
+                  object-fit: cover;
+                }
+              }
+            }
+
+            .text-grid {
+            }
+          }
+
+          .btn-card {
+            margin-top: auto;
+            margin: 2em 0 1em;
+
+            & ul {
+              & li {
+                & a {
+                  background: var(--clr-olive);
+                  transition: all 0.3s ease;
+                  padding: 0.8em 1.5em;
+                  border-radius: 1em;
+                  text-decoration: none;
+                  color: var(--clr-forest-one);
+
+                  &:hover {
+                    background: var(--clr-forest-one);
+                    color: var(--clr-white);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .service-card-container-one,
+      .service-card-container-two {
+        display: flex;
+        gap: 2rem;
+        width: 100%;
+        flex: 1;
+        .banho-tosa,
+        .adestramento-comportamento,
+        .atendimento-vet,
+        .hospedagem-creche,
+        .transporte-pet {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+/* #endregion */
+
+/* #region adoption */
+
+#adoption {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .title-text-adoption {
+    background-color: var(--clr-mint);
+    text-align: center;
+    padding: 1.5em;
+    align-self: stretch;
+
+    & ul {
+      padding-top: 4em;
+      display: flex;
+      flex-direction: column;
+      max-width: 1300px;
+      margin: 0 auto;
+
+      & li {
+        .title-adoption {
+          font-size: var(--fs-title);
+          font-weight: var(--fw-title);
+        }
+
+        .text-adoption {
+        }
+      }
+    }
+  }
+
+  .adopt-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    flex-direction: column;
+    flex: 1;
+
+    .why-adopt,
+    .how-adopt {
+      max-width: 1300px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      .section-title {
+        background: var(--clr-mint);
+        padding: 1.5em;
+        text-align: center;
+        border-radius: 0.3em;
+        font-weight: var(--fw-title);
+      }
+
+      & ul {
+        list-style: none;
+        padding: 0;
+        margin: 1em 0 0 0;
+        display: flex;
+        justify-content: space-around;
+        gap: 1em;
+
+        .section-title-card {
+          display: flex;
+          justify-content: center;
+          margin-right: 2em;
+        }
+
+        & li {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          text-align: center;
+          background: var(--clr-mint);
+          padding: 0.5em;
+          border-radius: 0.6em;
+          flex: 1 1 150px;
+          & p {
+            margin-bottom: 0;
+            margin-top: 1em;
+            max-width: 150px;
+          }
+
+          & img {
+            width: 150px;
+            height: 180px;
+            border-radius: 0.3em;
+            object-fit: cover;
+            margin-bottom: 0.5em;
+          }
+        }
+      }
     }
   }
 }
 
 /* #endregion */
-
-#adoption {
-  height: 100vh;
-}
-
-
 
 /* #region contact*/
 
@@ -655,7 +1160,6 @@ header {
       .endereco {
         & ul {
           & li {
-
             display: flex;
             flex-direction: column;
 
@@ -681,7 +1185,6 @@ header {
           }
         }
       }
-
     }
   }
 }
@@ -696,7 +1199,8 @@ footer {
   padding: 2em;
   justify-content: space-evenly;
 
-  .logo {}
+  .logo {
+  }
 
   .footer-nav {
     nav {
@@ -730,7 +1234,6 @@ footer {
               & a {
                 text-decoration: none;
                 color: var(--clr-forest-one);
-
               }
             }
           }
@@ -790,9 +1293,5 @@ footer {
     }
   }
 }
-
-
-
-
 
 /* #endregion */
