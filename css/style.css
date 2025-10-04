@@ -416,6 +416,7 @@ header {
     }
 
     .grid-service {
+
       .banho-tosa {
         display: flex;
         background: var(--clr-mint);
@@ -428,6 +429,17 @@ header {
           flex-direction: column;
           gap: 1em;
           align-items: center;
+
+          .title-banho-tosa {
+            & ul {
+              & li {
+                & p {
+                  font-size: var(--fs-sub-title);
+                  font-weight: var(--fw-title);
+                }
+              }
+            }
+          }
 
           .img-text-one,
           .img-text-two {
@@ -481,6 +493,7 @@ header {
           }
         }
       }
+      
     }
   }
 }
