@@ -4,254 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/detalhespedidos.css">
   <title>Detalhes do Pedido</title>
-
-  <style>
-    /* ===== Reset & base ===== */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      background: #f5f6fa;
-      color: #222;
-      padding: 28px;
-    }
-
-    /* ===== Container ===== */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    /* ===== Breadcrumb + title ===== */
-    .breadcrumb {
-      font-size: 14px;
-      color: #6b7280;
-    }
-
-    .title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    h1 {
-      font-size: 32px;
-      margin: 6px 0 0;
-    }
-
-    /* ===== Card wrapper ===== */
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 18px;
-      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-      border: 1px solid rgba(15, 23, 42, 0.04);
-    }
-
-    /* ===== Order header card ===== */
-    .order-top {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .order-meta p {
-      margin-bottom: 10px;
-      font-size: 15px;
-      color: #374151;
-    }
-
-    .order-meta p small {
-      display: block;
-      color: #6b7280;
-      font-size: 13px;
-      margin-top: 4px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 13px;
-    }
-
-    .badge.pago {
-      background: #d1fae5;
-      color: #065f46;
-    }
-
-    .badge.pendente {
-      background: #fff7ed;
-      color: #92400e;
-    }
-
-    .badge.cancelado {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .badge.enviado {
-      background: #e6fffa;
-      color: #065f46;
-    }
-
-    /* ===== Delivery box ===== */
-    .delivery {
-      border-left: 1px solid #eef2f6;
-      padding-left: 16px;
-    }
-
-    .delivery h4 {
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .delivery p {
-      font-size: 14px;
-      color: #374151;
-      margin-bottom: 6px;
-    }
-
-    /* ===== Client info ===== */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-
-    @media(min-width:880px) {
-      .two-col {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .section-title {
-      font-size: 16px;
-      margin-bottom: 10px;
-      color: #111827;
-    }
-
-    /* ===== Items table ===== */
-    .items-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    .items-table thead th {
-      text-align: left;
-      padding: 12px 10px;
-      font-weight: 700;
-      color: #374151;
-      background: #fafafa;
-      border-bottom: 1px solid #eee;
-    }
-
-    .items-table tbody td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #f0f2f5;
-      color: #374151;
-      vertical-align: middle;
-    }
-
-    .product-row img {
-      width: 56px;
-      height: 56px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 10px;
-    }
-
-    .right {
-      text-align: right;
-    }
-
-    /* ===== Summary area ===== */
-    .summary-row {
-      display: flex;
-      gap: 12px;
-      justify-content: flex-end;
-      margin-top: 10px;
-      align-items: center;
-    }
-
-    .summary-box {
-      background: #fff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #eef2f6;
-      min-width: 160px;
-      text-align: right;
-    }
-
-    .summary-box b {
-      display: block;
-      font-size: 16px;
-      color: #111827;
-    }
-
-    /* ===== Actions ===== */
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .btn {
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .btn.secondary {
-      background: #fff;
-      border-color: #e6e6e6;
-      color: #374151;
-    }
-
-    .btn.primary {
-      background: #0b5fff;
-      color: #fff;
-      border-color: #0b5fff;
-    }
-
-    .btn.negative {
-      background: #fff;
-      color: #b91c1c;
-      border: 1px solid rgba(185, 28, 28, 0.1);
-    }
-
-    /* ===== Small helpers ===== */
-    .muted {
-      color: #6b7280;
-      font-size: 13px;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #4b5563;
-    }
-
-    .line {
-      height: 1px;
-      background: #eef2f6;
-      margin: 12px 0;
-    }
-  </style>
 </head>
 
 <body>
@@ -280,7 +34,7 @@
         <p><strong>Status</strong><br><span id="order-status" class="badge pago">Pago</span></p>
       </div>
 
-      <div class="delivery">
+      <div id="endereco-delivery" class="delivery">
         <h4>Endereço de Entrega</h4>
         <p id="delivery-name"><strong>Nome:</strong> João da Silva</p>
         <p id="delivery-street"><strong>Rua:</strong> Av. Exemplo, 123</p>
@@ -301,11 +55,11 @@
 
       <div class="card">
         <div class="section-title">Resumo do Pagamento</div>
-        <p class="small"><strong>Subtotal:</strong> <span id="summary-subtotal">R$ 0,00</span></p>
-        <p class="small"><strong>Frete:</strong> <span id="summary-shipping">R$ 0,00</span></p>
-        <p class="small"><strong>Desconto:</strong> <span id="summary-discount">R$ 0,00</span></p>
+        <p class="small"><strong>Subtotal:</strong> <span id="summary-subtotal">R$ 1,00</span></p>
+        <p class="small"><strong>Frete:</strong> <span id="summary-shipping">R$ 2,00</span></p>
+        <p class="small"><strong>Desconto:</strong> <span id="summary-discount">R$ 3,00</span></p>
         <div class="line"></div>
-        <p><strong>Total:</strong> <span id="summary-total" style="font-size:18px;">R$ 0,00</span></p>
+        <p><strong>Total:</strong> <span id="summary-total" style="font-size:18px;">R$ 4,00</span></p>
       </div>
     </div>
 
@@ -329,7 +83,7 @@
       <div class="summary-row">
         <div class="summary-box">
           <div class="small">Subtotal</div>
-          <b id="box-subtotal">R$ 0,00</b>
+          <b id="box-subtotal"></b>
         </div>
         <div class="summary-box">
           <div class="small">Frete</div>
@@ -337,7 +91,7 @@
         </div>
         <div class="summary-box">
           <div class="small">Total</div>
-          <b id="box-total">R$ 0,00</b>
+          <b id="box-total"></b>
         </div>
       </div>
     </div>
@@ -362,87 +116,32 @@
       date: "2025-10-01T14:23:00Z",
       paymentMethod: "Cartão de Crédito",
       status: "Pago", // pago | pendente | enviado | cancelado
-      client: { name: "João da Silva", email: "joao@email.com", phone: "(11) 9 9999-9999" },
-      delivery: {
-        name: "João da Silva",
-        street: "Av. Exemplo, 123",
-        city: "São Paulo - SP",
-        zip: "01234-567",
-        phone: "(11) 9 9999-9999"
-      },
-      items: [
-        { id: 1, title: "Camiseta Algodão - P", price: 79.9, qty: 2, img: "" },
-        { id: 2, title: "Caneca Estampada", price: 39.5, qty: 1, img: "" }
-      ],
       shipping: 15.0,
       discount: 0.0
     };
 
     // ===== Helpers =====
-    const toBRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  
     const el = id => document.getElementById(id);
 
     // ===== Render =====
     function renderOrder(order) {
-      el('breadcrumb-id').textContent = `#${order.id}`;
-      el('order-id').textContent = `#${order.id}`;
-      el('order-date').textContent = new Date(order.date).toLocaleString('pt-BR');
-      el('order-payment').textContent = order.paymentMethod;
-
       // status badge
       const statusEl = el('order-status');
       statusEl.textContent = order.status;
       statusEl.className = 'badge ' + order.status.toLowerCase();
 
-      // delivery
-      el('delivery-name').innerHTML = `<strong>Nome:</strong> ${order.delivery.name}`;
-      el('delivery-street').innerHTML = `<strong>Rua:</strong> ${order.delivery.street}`;
-      el('delivery-city').innerHTML = `<strong>Cidade:</strong> ${order.delivery.city}`;
-      el('delivery-zip').innerHTML = `<strong>CEP:</strong> ${order.delivery.zip}`;
-      el('delivery-phone').innerHTML = `<strong>Tel:</strong> ${order.delivery.phone}`;
-
-      // client
-      el('client-name').textContent = order.client.name;
-      el('client-email').textContent = order.client.email;
-      el('client-phone').textContent = order.client.phone;
-
-      // items
-      const tbody = el('items-body');
-      tbody.innerHTML = '';
-      let subtotal = 0;
-      order.items.forEach(it => {
-        const lineSubtotal = it.price * it.qty;
-        subtotal += lineSubtotal;
-
-        const tr = document.createElement('tr');
-        tr.className = 'product-row';
-        tr.innerHTML = `
-        <td style="display:flex;align-items:center;gap:10px;">
-          ${it.img ? `<img src="${it.img}" alt="${it.title}">` : `<div style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;"></div>`}
-          <div>
-            <div style="font-weight:600">${it.title}</div>
-            <div class="muted" style="margin-top:6px;">SKU: ${it.id}</div>
-          </div>
-        </td>
-        <td>${toBRL(it.price)}</td>
-        <td>${it.qty}</td>
-        <td class="right">${toBRL(lineSubtotal)}</td>
-      `;
-        tbody.appendChild(tr);
-      });
-
-      const total = subtotal + order.shipping - (order.discount || 0);
-
+      // const total = subtotal + order.shipping - (order.discount || 0);
       // resumo
-      el('summary-subtotal').textContent = toBRL(subtotal);
-      el('summary-shipping').textContent = toBRL(order.shipping);
-      el('summary-discount').textContent = toBRL(order.discount || 0);
-      el('summary-total').textContent = toBRL(total);
+      // el('summary-subtotal').textContent = toBRL(subtotal);
+      // el('summary-shipping').textContent = toBRL(order.shipping);
+      // el('summary-discount').textContent = toBRL(order.discount || 0);
+      // el('summary-total').textContent = toBRL(total);
 
-      // boxes
-      el('box-subtotal').textContent = toBRL(subtotal);
-      el('box-shipping').textContent = toBRL(order.shipping);
-      el('box-total').textContent = toBRL(total);
+      // // boxes
+      // el('box-subtotal').textContent = toBRL(subtotal);
+      // el('box-shipping').textContent = toBRL(order.shipping);
+      // el('box-total').textContent = toBRL(total);
     }
 
     // Render inicial
