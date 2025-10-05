@@ -20,19 +20,22 @@
   <header>
     <nav>
       <div class="logo">
-        <img src="" alt="">
+        <img src="" alt="" />
       </div>
 
       <div class="menu">
-
         <ul>
-          <li><a href="home">Início</a></li>
-          <li><a href="product">Produtos</a></li>
-          <li><a href="service">Serviços</a></li>
-          <li><a href="adoption">Adoção</a></li>
-          <li><a href="contact">Contato</a></li>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#product">Produtos</a></li>
+          <li><a href="#service">Serviços</a></li>
+          <li><a href="#adoption">Adoção</a></li>
+          <li><a href="/index.html#contact">Contato</a></li>
         </ul>
-
+      </div>
+      <div class="login">
+        <ul>
+          <li><a href="listapedidos.html">Login</a></li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -55,12 +58,12 @@
     <form>
       <input type="text" placeholder="Buscar por ID, cliente...">
 
-      <select name="status">
+      <select id="status-pedidos" name="status">
         <option value="">Status</option>
-        <option value="pendente">Pendente</option>
+        <!-- <option value="pendente">Pendente</option>
         <option value="pago">Pago</option>
         <option value="enviado">Enviado</option>
-        <option value="cancelado">Cancelado</option>
+        <option value="cancelado">Cancelado</option> -->
       </select>
 
       <input type="date" name="dataInicio">
@@ -81,13 +84,13 @@
       <p>Total de vendas hoje</p>
       <strong>R$ 3.500,00</strong>
     </div>
-    <div class="card">
-      <p>Pedidos pendentes</p>
-      <strong>2</strong>
+    <div id="pedidosPendentes" class="card">
+      <!-- <p>Pedidos pendentes</p>
+      <strong>2</strong> -->
     </div>
-    <div class="card">
-      <p>Pedidos cancelados</p>
-      <strong>1</strong>
+    <div id="pedidosCancelados" class="card">
+      <!-- <p>Pedidos cancelados</p>
+      <strong>1</strong> -->
     </div>
   </section>
 
@@ -107,7 +110,7 @@
       </thead>
       <!-- <tbody> -->
       <tbody class="tbPedidos">
-        <tr>
+        <!-- <tr>
           <td>1234</td>
           <td>Robert Pato <br><small>robert@email.com</small></td>
           <td>12/11/2020</td>
@@ -115,60 +118,104 @@
           <td>Pix</td>
           <td><span class="status pago">Pago</span></td>
           <td>
-            <button title="Ver" href="detalhespedidos.html">👁</button>
+            <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a></button>
             <button title="Editar">✏️</button>
             <button title="Excluir">🗑</button>
           </td>
-        </tr>
-        <tr>
-          <td>1233</td>
-          <td>Luam Santo</td>
-          <td>12/11/2020</td>
-          <td>R$ 100,00</td>
-          <td>Cartão</td>
-          <td><span class="status pendente">Pendente</span></td>
-          <td>
-            <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a>👁</button>
-            <button title="Editar">✏️</button>
-            <button title="Excluir">🗑</button>
-          </td>
-        </tr>
-        <tr>
-          <td>1232</td>
-          <td>Danya Iarzo</td>
-          <td>12/11/2020</td>
-          <td>R$ 150,00</td>
-          <td>Cartão</td>
-          <td><span class="status cancelado">Cancelado</span></td>
-          <td>
-            <button title="Ver">👁</button>
-            <button title="Editar">✏️</button>
-            <button title="Excluir">🗑</button>
-          </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </section>
 
   <!-- Paginação -->
   <nav class="pagination">
-    <button>&lt;</button>
-    <span>1</span>
+    <!-- <button>&lt;</button>
+    <span id="totalPages">1</span>
     <button>&gt;</button>
     <select>
       <option>10</option>
       <option>25</option>
       <option>50</option>
-    </select>
+    </select> -->
   </nav>
 
 
-  <footer>
-  </footer>
+      <footer>
+      <div class="logo">
+        <img src="" alt="" />
+      </div>
+
+      <div class="footer-nav">
+        <nav>
+          <div class="our-products">
+            <ul>
+              <li>
+                <div class="title-our-products">
+                  <p>Nossos produtos</p>
+                </div>
+                <div class="links-op">
+                  <a href="">Ração Seca</a>
+                  <a href="">Lata</a>
+                  <a href="">Cuidado oral</a>
+                  <a href="">Snack</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tips-warnings">
+            <ul>
+              <li>
+                <div class="title-tips-warnings">
+                  <p>Dicas e Avisos</p>
+                </div>
+                <div class="links-tw">
+                  <a href="">Adoção</a>
+                  <a href="">Cuidados</a>
+                  <a href="">Alimentação</a>
+                  <a href="">Comportamento</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="social-media">
+        <div class="facebook">
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/profile.php?id=61581684003314">
+                <img src="./img/img-footer/facebook.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="x">
+          <ul>
+            <li>
+              <a href="https://x.com/patinhasmgsofc">
+                <img src="./img/img-footer/x.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="instagram">
+          <ul>
+            <li>
+              <a href="https://www.instagram.com/patinhasmagicasofc/">
+                <img src="./img/img-footer/instagram.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="./js/lista_pedidos.js"></script>
+  <script src="./js/listapedidos.js"></script>
 
 </body>
 
