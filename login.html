@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patinhas Mágicas - Login</title>
+    <link rel="stylesheet" href="css/fullStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <i class="fas fa-paw"></i>
+            <h2>Patinhas Mágicas - Acesso</h2>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
+                <input type="email" id="email" placeholder="Digite seu e-mail" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="senha"><i class="fas fa-lock"></i> Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Entrar</button>
+            
+            <button 
+    type="button" 
+    class="btn-cadastro" 
+    onclick="window.location.href='cadastro.html'">Criar conta</button>
+            <p id="mensagemErro" class="erro"></p>
+        </form>
+    </div>
+    <script src="js/loginScript.js"></script>
+</body>
+</html>
