@@ -2,10 +2,15 @@ const urlBase = "http://localhost:5260/api";
 
 let currentPage = 1;
 let pageSize = 10;
+const hoje = new Date().toISOString().split('T')[0]; // "yyyy-MM-dd"
+let dataInicio = document.getElementById('dataInicio').value = hoje;
+let datafim = document.getElementById('dataFim').value = hoje;
+console.log(dataInicio);
+
 
 function loadPage(page = 1, pageSize = 5) {
     $.ajax({
-        url: `${urlBase}/Pedido/paged?page=${page}&pageSize=${pageSize}`,
+        url: `${urlBase}/Pedido/paged?page=${page}&pageSize=${pageSize}&dataInicio=${dataInicio}&dataFim=${dataFim}`,
         type: "GET",
         contentType: "application/json",
         success: function (data) {
