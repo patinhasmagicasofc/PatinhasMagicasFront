@@ -36,7 +36,7 @@ header h1 {
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .filters form {
@@ -45,8 +45,8 @@ header h1 {
   gap: 10px;
 }
 
-.filters input, 
-.filters select, 
+.filters input,
+.filters select,
 .filters button {
   padding: 8px 12px;
   border: 1px solid #ddd;
@@ -78,7 +78,7 @@ header h1 {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -100,10 +100,11 @@ header h1 {
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.orders th, .orders td {
+.orders th,
+.orders td {
   padding: 12px 15px;
   border-bottom: 1px solid #eee;
   text-align: left;
@@ -128,10 +129,22 @@ header h1 {
   color: #fff;
 }
 
-.status.pago { background: #28a745; }
-.status.pendente { background: #ffc107; color: #000; }
-.status.enviado { background: #17a2b8; }
-.status.cancelado { background: #dc3545; }
+.status.pago {
+  background: #28a745;
+}
+
+.status.pendente {
+  background: #ffc107;
+  color: #000;
+}
+
+.status.enviado {
+  background: #17a2b8;
+}
+
+.status.cancelado {
+  background: #dc3545;
+}
 
 /* ===== Ações ===== */
 .orders button {
@@ -171,4 +184,42 @@ header h1 {
   padding: 6px;
   border-radius: 6px;
   border: 1px solid #ddd;
+}
+
+* {
+  list-style: none;
+  text-decoration: none;
+}
+
+header {
+  nav {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+    background: cadetblue;
+    padding: 2em 0 2em 1%;
+
+    .btn-expandir {
+      width: 100%;
+      padding-left: 0.8em;
+
+
+    }
+
+    & ul {
+      & li {
+        & a {
+          .material-icons {
+            color: white;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+main {
+  min-height: 100vh;
 }
