@@ -7,8 +7,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+  <!-- <link rel="stylesheet" href="./css/style.css"> -->
   <link rel="stylesheet" href="./css/listapedidos.css">
+  <link rel="stylesheet" <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <title>Patinhas Mágicas</title>
 </head>
@@ -16,31 +17,45 @@
 <body>
 
   <header>
-    <nav>
-      <div class="logo">
-        <img src="" alt="" />
+    <nav class="menu-lateral">
+      <div class="btn-expandir">
+        <i id="btn-exp" class="material-icons">list</i>
       </div>
 
-      <div class="menu">
-        <ul>
-          <li><a href="#home">Início</a></li>
-          <li><a href="#product">Produtos</a></li>
-          <li><a href="#service">Serviços</a></li>
-          <li><a href="#adoption">Adoção</a></li>
-          <li><a href="/index.html#contact">Contato</a></li>
-        </ul>
-      </div>
-      <div class="login">
-        <ul>
-          <li><a href="listapedidos.html">Login</a></li>
-        </ul>
-      </div>
+
+
+      <ul>
+        <li class="item-menu ativo">
+          <a href="#">
+            <span class="icon"><i class="material-icons">assignment</i></span>
+            <span class="txt-link">Pedidos</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="material-icons">local_mall</i></span>
+            <span class="txt-link">Produtos</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="material-icons">settings</i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="material-icons">person</i></span>
+            <span class="txt-link">Usuários</span>
+          </a>
+        </li>
+      </ul>
     </nav>
   </header>
 
 
   <!-- Breadcrumb -->
-  <nav aria-label="breadcrumb">
+  <!-- <nav aria-label="breadcrumb">
     <ol>
       <li><a href="/">Home</a></li>
       <li>Pedidos</li>
@@ -49,81 +64,81 @@
 
   <header>
     <h1>Pedidos</h1>
-  </header>
+  </header> -->
 
-  <!-- Filtros -->
-  <section class="filters">
-    <form>
-      <input id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
+  <main>
+    <section class="filters">
+      <form>
+        <input id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
 
-      <select id="status-pedidos" name="status">
-        <option value="">Status</option>
-        <!-- <option value="pendente">Pendente</option>
-        <option value="pago">Pago</option>
-        <option value="enviado">Enviado</option>
-        <option value="cancelado">Cancelado</option> -->
-      </select>
+        <select id="status-pedidos" name="status">
+          <option value="">Status</option>
+          <option value="pendente">Pendente</option>
+          <option value="pago">Pago</option>
+          <option value="enviado">Enviado</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
 
-      <input type="date" name="dataInicio" id="dataInicio">
-      <input type="date" name="dataFim" id="dataFim">
+        <input type="date" name="dataInicio">
+        <input type="date" name="dataFim">
 
-      <button id="btnFiltrar">Aplicar filtros</button>
-      <button type="reset">Limpar</button>
-    </form>
-  </section>
+        <button type="submit">Aplicar filtros</button>
+        <button type="reset">Limpar</button>
+      </form>
+    </section>
 
-  <!-- Resumo -->
-  <section class="summary">
-    <div id="totalVendas" class="card">
-      <p>Total de pedidos hoje</p>
-      <!-- <strong>10</strong> -->
-    </div>
-    <div id="valorTotalVendas" class="card">
-      <p>Total de vendas hoje</p>
-      <!-- <strong>R$ 3.500,00</strong> -->
-    </div>
-    <div id="pedidosPendentes" class="card">
-      <!-- <p>Pedidos pendentes</p>
-      <strong>2</strong> -->
-    </div>
-    <div id="pedidosCancelados" class="card">
-      <!-- <p>Pedidos cancelados</p>
-      <strong>1</strong> -->
-    </div>
-  </section>
+    <!-- Resumo -->
+    <section class="summary">
+      <div id="totalVendas" class="card">
+        <p>Total de pedidos hoje</p>
+        <!-- <strong>10</strong> -->
+      </div>
+      <div id="valorTotalVendas" class="card">
+        <p>Total de vendas hoje</p>
+        <!-- <strong>R$ 3.500,00</strong> -->
+      </div>
+      <div id="pedidosPendentes" class="card">
+        <p>Pedidos pendentes</p>
+        <strong>2</strong>
+      </div>
+      <div id="pedidosCancelados" class="card">
+        <p>Pedidos cancelados</p>
+        <strong>1</strong>
+      </div>
+    </section>
 
-  <!-- Lista de pedidos -->
-  <section class="orders">
-    <table>
-      <thead>
-        <tr>
-          <th>#ID Pedido</th>
-          <th>Cliente</th>
-          <th>Data do pedido</th>
-          <th>Valor total</th>
-          <th>Forma de pagamento</th>
-          <th>Status</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <!-- <tbody> -->
-      <tbody class="tbPedidos">
-        <!-- <tr>
-          <td>1234</td>
-          <td>Robert Pato <br><small>robert@email.com</small></td>
-          <td>12/11/2020</td>
-          <td>R$ 100,00</td>
-          <td>Pix</td>
-          <td><span class="status pago">Pago</span></td>
-          <td>
-            <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a></button>
-            <button title="Editar">✏️</button>
-            <button title="Excluir">🗑</button>
-          </td>
-        </tr> -->
-      </tbody>
-    </table>
-  </section>
+    <!-- Lista de pedidos -->
+    <section class="orders">
+      <table>
+        <thead>
+          <tr>
+            <th>#ID Pedido</th>
+            <th>Cliente</th>
+            <th>Data do pedido</th>
+            <th>Valor total</th>
+            <th>Forma de pagamento</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <!-- <tbody> -->
+        <tbody class="tbPedidos">
+          <tr>
+            <td>1234</td>
+            <td>Robert Pato <br><small>robert@email.com</small></td>
+            <td>12/11/2020</td>
+            <td>R$ 100,00</td>
+            <td>Pix</td>
+            <td><span class="status pago">Pago</span></td>
+            <td>
+              <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a></button>
+              <button title="Editar">✏️</button>
+              <button title="Excluir">🗑</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
   <!-- Paginação -->
   <nav class="pagination">
@@ -138,77 +153,77 @@
   </nav>
 
 
-      <footer>
-      <div class="logo">
-        <img src="" alt="" />
-      </div>
+  <!-- <footer>
+    <div class="logo">
+      <img src="" alt="" />
+    </div>
 
-      <div class="footer-nav">
-        <nav>
-          <div class="our-products">
-            <ul>
-              <li>
-                <div class="title-our-products">
-                  <p>Nossos produtos</p>
-                </div>
-                <div class="links-op">
-                  <a href="">Ração Seca</a>
-                  <a href="">Lata</a>
-                  <a href="">Cuidado oral</a>
-                  <a href="">Snack</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="tips-warnings">
-            <ul>
-              <li>
-                <div class="title-tips-warnings">
-                  <p>Dicas e Avisos</p>
-                </div>
-                <div class="links-tw">
-                  <a href="">Adoção</a>
-                  <a href="">Cuidados</a>
-                  <a href="">Alimentação</a>
-                  <a href="">Comportamento</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-
-      <div class="social-media">
-        <div class="facebook">
+    <div class="footer-nav">
+      <nav>
+        <div class="our-products">
           <ul>
             <li>
-              <a href="https://www.facebook.com/profile.php?id=61581684003314">
-                <img src="./img/img-footer/facebook.png" alt="" />
-              </a>
+              <div class="title-our-products">
+                <p>Nossos produtos</p>
+              </div>
+              <div class="links-op">
+                <a href="">Ração Seca</a>
+                <a href="">Lata</a>
+                <a href="">Cuidado oral</a>
+                <a href="">Snack</a>
+              </div>
             </li>
           </ul>
         </div>
-        <div class="x">
+
+        <div class="tips-warnings">
           <ul>
             <li>
-              <a href="https://x.com/patinhasmgsofc">
-                <img src="./img/img-footer/x.png" alt="" />
-              </a>
+              <div class="title-tips-warnings">
+                <p>Dicas e Avisos</p>
+              </div>
+              <div class="links-tw">
+                <a href="">Adoção</a>
+                <a href="">Cuidados</a>
+                <a href="">Alimentação</a>
+                <a href="">Comportamento</a>
+              </div>
             </li>
           </ul>
         </div>
-        <div class="instagram">
-          <ul>
-            <li>
-              <a href="https://www.instagram.com/patinhasmagicasofc/">
-                <img src="./img/img-footer/instagram.png" alt="" />
-              </a>
-            </li>
-          </ul>
-        </div>
+      </nav>
+    </div>
+
+    <div class="social-media">
+      <div class="facebook">
+        <ul>
+          <li>
+            <a href="https://www.facebook.com/profile.php?id=61581684003314">
+              <img src="./img/img-footer/facebook.png" alt="" />
+            </a>
+          </li>
+        </ul>
       </div>
-    </footer>
+      <div class="x">
+        <ul>
+          <li>
+            <a href="https://x.com/patinhasmgsofc">
+              <img src="./img/img-footer/x.png" alt="" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="instagram">
+        <ul>
+          <li>
+            <a href="https://www.instagram.com/patinhasmagicasofc/">
+              <img src="./img/img-footer/instagram.png" alt="" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer> -->
 
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"

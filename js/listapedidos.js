@@ -165,3 +165,25 @@ $(document).ready(function () {
         loadPage(); // carrega os pedidos com os filtros
     });
 });
+
+
+//função header
+
+const menuItem = document.querySelectorAll('.item-menu')
+function selectLink() {
+    menuItem.forEach((item) => item.classList.remove('ativo'))
+    this.classList.add('ativo')
+};
+
+menuItem.forEach((item) => item.addEventListener('click', selectLink)
+);
+
+
+const btnExpandir = document.querySelector('#btn-exp');
+const nav = document.querySelector('.menu-lateral');
+const header = document.querySelector('header');
+
+btnExpandir.addEventListener('click', () => {
+    nav.classList.toggle('expandir');
+    header.classList.toggle('expandir');
+});
