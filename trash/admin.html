@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel - Administrador</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/fullStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="painel">
+        <button onclick="logout()" class="btn-logout">Sair</button>
+        <h1>Painel de Administração <i class="fas fa-user-tie"></i></h1>
+        
+        <p>Esta área é exclusiva para o perfil Administrador e requer um Token JWT válido.</p>
+
+        <h3>Dados Restritos (Listagem de Usuários)</h3>
+        <div id="dadosAdmin" class="dados-api">Carregando dados da API...</div>
+    </div>
+
+    <script src="js/areaRestrita.js"></script>
+    <script>
+
+        if (verificarAcesso('administrador')) {
+
+            consumirAPIAutenticada('/Usuario/all') 
+                .then(dados => {
+                    const elemento = document.getElementById('dadosAdmin');
+                    if (dados) {
+                        elemento.textContent = JSON.stringify(dados, null, 2);
+                    } else {
+                        elemento.textContent = 'Falha ao carregar dados. Verifique a API C#.';
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

@@ -56,7 +56,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         // 2. Redireciona para a página correta com base no perfil
         switch (perfil) {
             case 'administrador':
-                window.location.href = 'admin.html';
+                window.location.href = 'listapedidos.html';
                 break;
             case 'cliente':
                 window.location.href = 'cliente.html';
