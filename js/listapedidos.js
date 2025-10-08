@@ -23,6 +23,7 @@ $(document).ready(function () {
         // também pode incluir paginação
         params.append('page', page);
         params.append('pageSize', pageSize);
+        console.log(params.toString());
 
         $.ajax({
             url: `${urlBase}/Pedido/paged?${params.toString()}`,
