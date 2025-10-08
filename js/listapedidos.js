@@ -5,38 +5,51 @@ $(document).ready(function () {
     let currentPage = 1;
     let pageSize = 10;
 
-    const hoje = new Date();
-    const localDate = new Date(hoje.getTime() - hoje.getTimezoneOffset() * 60000)
-        .toISOString()
-        .split('T')[0];
-
-
     function loadPage(page = 1, pageSize = 5) {
+        // pega os valores dos inputs
+        const status = $('#status-pedidos').val();
+        const dataInicio = $('#dataInicio').val();
+        const dataFim = $('#dataFim').val();
+        const nome = $('#nome').val();
+
+        // monta a query string dinamicamente
+        const params = new URLSearchParams();
+
+        if (nome) params.append('nome', nome);
+        if (status) params.append('status', status);
+        if (dataInicio) params.append('dataInicio', dataInicio);
+        if (dataFim) params.append('dataFim', dataFim);
+
+        // também pode incluir paginação
+        params.append('page', page);
+        params.append('pageSize', pageSize);
+
         $.ajax({
-            url: `${urlBase}/Pedido/paged?page=${page}&pageSize=${pageSize}&dataInicio=${dataInicio}&dataFim=${dataFim}`,
+            url: `${urlBase}/Pedido/paged?${params.toString()}`,
             type: "GET",
             contentType: "application/json",
             success: function (data) {
-                const totalPages = Math.ceil(data.total / pageSize);
+                console.log(data);
+                const totalPages = Math.ceil(data.qTotalVendas / pageSize);
                 $('#totalPages').text(`Página ${page} de ${totalPages}`);
 
-                renderTable(data.pedidosDTO);
+                renderTable(data.pedidoOutputDTO);
 
                 let totalPedidosPendentes = 0;
                 let totalPedidosCancelados = 0;
-                data.pedidosDTO.forEach(pedido => {
+                data.pedidoOutputDTO.forEach(pedido => {
                     if (pedido.statusPedido === "Pendente") totalPedidosPendentes++;
                     if (pedido.statusPedido === "Cancelado") totalPedidosCancelados++;
 
                     const cardTotalVendas = $('#totalVendas');
                     const linhaTotalVendas = `<p>Total de pedidos hoje</p>
-                                            <strong>${pedido.totalVendas}</strong>`;
+                                            <strong>${data.qTotalVendas}</strong>`;
 
                     cardTotalVendas.html(linhaTotalVendas);
 
                     const cardvalorTotalVendas = $('#valorTotalVendas');
                     const linhacardvalorTotalVendas = `<p>Total de vendas hoje</p>
-                                            <strong>${pedido.valorTotalVendas}</strong>`;
+                                            <strong>${data.valorTotalVendas}</strong>`;
                     cardvalorTotalVendas.html(linhacardvalorTotalVendas);
                 });
 
@@ -53,8 +66,8 @@ $(document).ready(function () {
 
                 $('#btnPrev').prop('disabled', page <= 1);
                 $('#btnNext').prop('disabled', page >= totalPages);
-                
-                window.history.replaceState({}, document.title, window.location.pathname);
+
+                //window.history.replaceState({}, document.title, window.location.pathname);
             },
             error: function (erro) {
                 console.log('Deu erro!', erro);
@@ -143,5 +156,12 @@ $(document).ready(function () {
         error: function (erro) {
             console.log('Deu erro!', erro);
         }
+    });
+
+
+    // Captura o clique no botão de filtro
+    $('#btnFiltrar').on('click', function (event) {
+        event.preventDefault(); // evita reload da página
+        loadPage(); // carrega os pedidos com os filtros
     });
 });
