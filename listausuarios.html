@@ -7,8 +7,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-  <!-- <link rel="stylesheet" href="./css/style.css"> -->
-  <link rel="stylesheet" href="./css/listapedidos.css">
+  <link rel="stylesheet" href="./css/listausuarios.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <title>Patinhas Mágicas</title>
@@ -22,13 +21,11 @@
         <i id="btn-exp" class="material-icons">list</i>
       </div>
 
-
-
       <ul>
         <li class="item-menu ativo">
           <a href="#">
             <span class="icon"><i class="material-icons">assignment</i></span>
-            <span class="txt-link">Pedidos</span>
+            <span class="txt-link">usuarios</span>
           </a>
         </li>
         <li class="item-menu">
@@ -44,7 +41,7 @@
           </a>
         </li>
         <li class="item-menu">
-          <a href="/listausuarios.html">
+          <a href="#listausuarios.html">
             <span class="icon"><i class="material-icons">person</i></span>
             <span class="txt-link">Usuários</span>
           </a>
@@ -53,25 +50,12 @@
     </nav>
   </header>
 
-
-  <!-- Breadcrumb -->
-  <!-- <nav aria-label="breadcrumb">
-    <ol>
-      <li><a href="/">Home</a></li>
-      <li>Pedidos</li>
-    </ol>
-  </nav>
-
-  <header>
-    <h1>Pedidos</h1>
-  </header> -->
-
   <main>
     <section class="filters">
       <form>
         <input id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
 
-        <select id="status-pedidos" name="status">
+        <select id="status-usuarios" name="status">
           <option value="">Status</option>
           <option value="pendente">Pendente</option>
           <option value="pago">Pago</option>
@@ -90,39 +74,39 @@
     <!-- Resumo -->
     <section class="summary">
       <div id="totalVendas" class="card">
-        <p>Total de pedidos hoje</p>
+        <p>Total de usuarios hoje</p>
         <!-- <strong>10</strong> -->
       </div>
       <div id="valorTotalVendas" class="card">
         <p>Total de vendas hoje</p>
         <!-- <strong>R$ 3.500,00</strong> -->
       </div>
-      <div id="pedidosPendentes" class="card">
-        <p>Pedidos pendentes</p>
+      <div id="usuariosPendentes" class="card">
+        <p>usuarios pendentes</p>
         <strong>2</strong>
       </div>
-      <div id="pedidosCancelados" class="card">
-        <p>Pedidos cancelados</p>
+      <div id="usuariosCancelados" class="card">
+        <p>usuarios cancelados</p>
         <strong>1</strong>
       </div>
     </section>
 
-    <!-- Lista de pedidos -->
-    <section class="orders">
+    <!-- Lista de usuarios -->
+    <section class="usuarios">
       <table>
         <thead>
           <tr>
-            <th>#ID Pedido</th>
-            <th>Cliente</th>
-            <th>Data do pedido</th>
-            <th>Valor total</th>
-            <th>Forma de pagamento</th>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
             <th>Status</th>
             <th>Ações</th>
           </tr>
         </thead>
         <!-- <tbody> -->
-        <tbody class="tbPedidos">
+        <tbody class="tbusuarios">
           <tr>
             <td>1234</td>
             <td>Robert Pato <br><small>robert@email.com</small></td>
@@ -131,7 +115,7 @@
             <td>Pix</td>
             <td><span class="status pago">Pago</span></td>
             <td>
-              <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a></button>
+              <button title="Ver"><a href="detalhesusuarios.html" title="Ver">👁</a></button>
               <button title="Editar">✏️</button>
               <button title="Excluir">🗑</button>
             </td>
@@ -140,9 +124,9 @@
       </table>
     </section>
 
-  <!-- Paginação -->
-  <nav class="pagination">
-    <!-- <button>&lt;</button>
+    <!-- Paginação -->
+    <nav class="pagination">
+      <!-- <button>&lt;</button>
     <span id="totalPages">1</span>
     <button>&gt;</button>
     <select>
@@ -150,85 +134,12 @@
       <option>25</option>
       <option>50</option>
     </select> -->
-  </nav>
+    </nav>
 
-
-  <!-- <footer>
-    <div class="logo">
-      <img src="" alt="" />
-    </div>
-
-    <div class="footer-nav">
-      <nav>
-        <div class="our-products">
-          <ul>
-            <li>
-              <div class="title-our-products">
-                <p>Nossos produtos</p>
-              </div>
-              <div class="links-op">
-                <a href="">Ração Seca</a>
-                <a href="">Lata</a>
-                <a href="">Cuidado oral</a>
-                <a href="">Snack</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="tips-warnings">
-          <ul>
-            <li>
-              <div class="title-tips-warnings">
-                <p>Dicas e Avisos</p>
-              </div>
-              <div class="links-tw">
-                <a href="">Adoção</a>
-                <a href="">Cuidados</a>
-                <a href="">Alimentação</a>
-                <a href="">Comportamento</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-
-    <div class="social-media">
-      <div class="facebook">
-        <ul>
-          <li>
-            <a href="https://www.facebook.com/profile.php?id=61581684003314">
-              <img src="./img/img-footer/facebook.png" alt="" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="x">
-        <ul>
-          <li>
-            <a href="https://x.com/patinhasmgsofc">
-              <img src="./img/img-footer/x.png" alt="" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="instagram">
-        <ul>
-          <li>
-            <a href="https://www.instagram.com/patinhasmagicasofc/">
-              <img src="./img/img-footer/instagram.png" alt="" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </footer> -->
-
-  <!-- JQUERY -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="./js/listapedidos.js"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/listausuarios.js"></script>
 
 </body>
 
