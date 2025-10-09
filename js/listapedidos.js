@@ -169,21 +169,53 @@ $(document).ready(function () {
 
 //função header
 
-const menuItem = document.querySelectorAll('.item-menu')
+const menuItem = document.querySelectorAll('.item-menu');
+
 function selectLink() {
-    menuItem.forEach((item) => item.classList.remove('ativo'))
-    this.classList.add('ativo')
-};
+  menuItem.forEach((item) => item.classList.remove('ativo'));
+  this.classList.add('ativo');
+}
 
-menuItem.forEach((item) => item.addEventListener('click', selectLink)
-);
-
+menuItem.forEach((item) => item.addEventListener('click', selectLink));
 
 const btnExpandir = document.querySelector('#btn-exp');
 const nav = document.querySelector('.menu-lateral');
 const header = document.querySelector('header');
 
-btnExpandir.addEventListener('click', () => {
-    nav.classList.toggle('expandir');
-    header.classList.toggle('expandir');
+// Abrir/fechar menu
+btnExpandir.addEventListener('click', (e) => {
+  e.stopPropagation()
+  nav.classList.toggle('expandir');
+  header.classList.toggle('expandir');
 });
+
+// Fechar menu ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
+    nav.classList.remove('expandir');
+    header.classList.remove('expandir');
+  }
+});
+
+//função filters
+const btnFilterExpandir = document.getElementById('btn-filters-expandir');
+const filtersExp = document.getElementById('filter-exp');
+const main = document.querySelector('main');
+
+// Abrir/fechar painel
+btnFilterExpandir.addEventListener('click', (e) => {
+  e.stopPropagation();
+  filtersExp.classList.toggle('open');
+  main.classList.toggle('shifted');
+});
+
+// Fechar painel ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!filtersExp.contains(e.target) && filtersExp.classList.contains('open')) {
+    filtersExp.classList.remove('open');
+    main.classList.remove('shifted');
+  }
+});
+
+
+

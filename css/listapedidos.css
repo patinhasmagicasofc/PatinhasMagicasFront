@@ -1,37 +1,27 @@
 /* ===== Reset simples ===== */
 * {
+  font-family: "ABeeZee", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: lighter;
+  padding-left: 0;
 }
 
 body {
   background: #f5f6fa;
   color: #333;
-  padding: 20px;
 }
 
 /* ===== Breadcrumb ===== */
-nav[aria-label="breadcrumb"] ol {
-  list-style: none;
-  display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
 
-nav[aria-label="breadcrumb"] a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-header h1 {
-  margin: 10px 0 20px;
-}
 
 /* ===== Filtros ===== */
-.filters {
+
+/* .filters {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
@@ -64,7 +54,7 @@ header h1 {
 
 .filters button:hover {
   background: #0056b3;
-}
+} */
 
 /* ===== Cards de resumo ===== */
 .summary {
@@ -186,15 +176,9 @@ header h1 {
   border: 1px solid #ddd;
 }
 
-* {
-  list-style: none;
-  text-decoration: none;
-}
-
-
 
 :root {
-  /* colors */
+  /* ===== colors ===== */
   --clr-black: #000000;
   --clr-gray: #929292;
   --clr-silver: #e9e9e9;
@@ -205,23 +189,30 @@ header h1 {
   --clr-forest: #485c11;
   --clr-forest-one: #343d1b;
 
-  /* texts */
-
+  /* ===== texts ===== */
   --fs-title: 2em;
   --fs-sub-title: 1.5em;
 
-  /* thickness */
-
+  /* ===== thickness ===== */
   --fw-title: 700;
 }
 
+main {
+  margin-left: 54px;
+  padding: 3em 3em;
+  transition: margin-left 0.4s ease;
+}
 
+header.expandir~main {
+  margin-left: 250px;
+}
 
+/* #region header */
 
 header {
   nav.menu-lateral {
     width: 54px;
-    height: 100vh;                /* use 100vh para garantir altura total */
+    height: 100vh;
     background: var(--clr-white-one);
     backdrop-filter: blur(1em);
     box-shadow: 3px 0 0 black;
@@ -234,11 +225,15 @@ header {
 
     .btn-expandir {
       margin: 1em 0 2em 1em;
-      width: 100%;
+      padding-right: 1em;
       display: flex;
       cursor: pointer;
+      justify-content: end;
 
-      .material-icons { font-size: 1.5em; color: var(--clr-forest-one); }
+      .material-icons {
+        font-size: 1.5em;
+        color: var(--clr-forest-one);
+      }
     }
 
     ul {
@@ -254,7 +249,10 @@ header {
           padding: 1em 1em 1em 0.8em;
           transition: background 0.2s;
 
-          .material-icons { color: var(--clr-black); font-size: 1.5em; }
+          .material-icons {
+            color: var(--clr-black);
+            font-size: 1.5em;
+          }
 
           .txt-link {
             color: var(--clr-black);
@@ -264,13 +262,18 @@ header {
           }
         }
 
-        a:hover { background: var(--clr-silver); }
-        &.ativo { background: var(--clr-gray); }
+        a:hover {
+          background: var(--clr-silver);
+        }
+
+        &.ativo {
+          background: var(--clr-gray);
+        }
       }
     }
   }
 
-  /* quando o header estiver expandido, ajuste nav interno */
+
   &.expandir {
     nav.menu-lateral {
       width: 250px;
@@ -283,15 +286,91 @@ header {
   }
 }
 
+/* #endregion */
 
-main {
-  margin-left: 54px;
-  padding: 2em;
-  transition: margin-left 0.4s ease;
+/* #region filter */
+
+.filters-exp {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.4s ease;
+  z-index: 999;
+  background: var(--clr-white);
+  /* box-shadow: -4px 0 15px rgba(0,0,0,0.2); */
+
+  &.open {
+    width: 400px;
+  }
+
+  .filters {
+    margin-top: 54px;
+    padding: 1em;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+
+    .filters-exp.open & {
+      opacity: 1;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      margin: 0 2em 0 1em;
+
+
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 1em;
+        box-sizing: border-box;
+        background: var(--clr-white);
+        border: 1px solid var(--clr-gray);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+      }
+
+      input:focus,
+      select:focus,
+      button:focus {
+        border: 2px solid var(--clr-gray);
+        outline: none;
+      }
+
+      .status-pedido {
+        option {
+          background: var(--clr-white);
+          margin: 1em;
+        }
+      }
+    }
+  }
+}
+
+#btn-filters-expandir {
+  position: fixed;
+  top: 0.5em;
+  right: 0;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 
-header.expandir ~ main{
-  margin-left: 250px;
-}
+/* #endregion */
 
+
+/* #region summary-orders*/
+
+.summary-orders {}
+
+/* #endregion */

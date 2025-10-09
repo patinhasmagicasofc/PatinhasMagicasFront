@@ -10,6 +10,10 @@
   <!-- <link rel="stylesheet" href="./css/style.css"> -->
   <link rel="stylesheet" href="./css/listapedidos.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
 
   <title>Patinhas Mágicas</title>
 </head>
@@ -66,8 +70,40 @@
     <h1>Pedidos</h1>
   </header> -->
 
+
+
+
+
   <main>
-    <section class="filters">
+    <section id="filter-exp" class="filters-exp">
+      <div id="btn-filters-expandir">
+        <span class="material-symbols-outlined">tune</span>
+      </div>
+
+      <div class="filters">
+        <form>
+          <input class="busca-id filters-item" id="nome" name="Nome" type="text"
+            placeholder="Buscar por ID, cliente...">
+
+          <select id="status-pedidos filters-item" name="status" class="status-pedido">
+            <option class="one" value="">Status</option>
+            <option value="pendente">Pendente</option>
+            <option value="pago">Pago</option>
+            <option value="enviado">Enviado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+
+          <input class="date filters-item" type="date" name="dataInicio">
+          <input class="date filters-item" type="date" name="dataFim">
+
+          <button class="filters-item" type="submit">Aplicar filtros</button>
+          <button class="filters-item" type="reset">Limpar</button>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- <section class="filters">
       <form>
         <input id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
 
@@ -85,64 +121,67 @@
         <button type="submit">Aplicar filtros</button>
         <button type="reset">Limpar</button>
       </form>
-    </section>
+    </section> -->
+    <section class="summary-orders">
+      <div class="summary">
 
+        <div id="totalVendas" class="card">
+          <p>Total de pedidos hoje</p>
+          <!-- <strong>10</strong> -->
+        </div>
+        <div id="valorTotalVendas" class="card">
+          <p>Total de vendas hoje</p>
+          <!-- <strong>R$ 3.500,00</strong> -->
+        </div>
+        <div id="pedidosPendentes" class="card">
+          <p>Pedidos pendentes</p>
+          <strong>2</strong>
+        </div>
+        <div id="pedidosCancelados" class="card">
+          <p>Pedidos cancelados</p>
+          <strong>1</strong>
+        </div>
+      </div>
+
+      <!-- Lista de pedidos -->
+      <div class="orders">
+        <table>
+          <thead>
+            <tr>
+              <th>#ID Pedido</th>
+              <th>Cliente</th>
+              <th>Data do pedido</th>
+              <th>Valor total</th>
+              <th>Forma de pagamento</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <!-- <tbody> -->
+          <tbody class="tbPedidos">
+            <tr>
+              <td>1234</td>
+              <td>Robert Pato <br><small>robert@email.com</small></td>
+              <td>12/11/2020</td>
+              <td>R$ 100,00</td>
+              <td>Pix</td>
+              <td><span class="status pago">Pago</span></td>
+              <td>
+                <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a></button>
+                <button title="Editar">✏️</button>
+                <button title="Excluir">🗑</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <!-- Resumo -->
-    <section class="summary">
-      <div id="totalVendas" class="card">
-        <p>Total de pedidos hoje</p>
-        <!-- <strong>10</strong> -->
-      </div>
-      <div id="valorTotalVendas" class="card">
-        <p>Total de vendas hoje</p>
-        <!-- <strong>R$ 3.500,00</strong> -->
-      </div>
-      <div id="pedidosPendentes" class="card">
-        <p>Pedidos pendentes</p>
-        <strong>2</strong>
-      </div>
-      <div id="pedidosCancelados" class="card">
-        <p>Pedidos cancelados</p>
-        <strong>1</strong>
-      </div>
-    </section>
 
-    <!-- Lista de pedidos -->
-    <section class="orders">
-      <table>
-        <thead>
-          <tr>
-            <th>#ID Pedido</th>
-            <th>Cliente</th>
-            <th>Data do pedido</th>
-            <th>Valor total</th>
-            <th>Forma de pagamento</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <!-- <tbody> -->
-        <tbody class="tbPedidos">
-          <tr>
-            <td>1234</td>
-            <td>Robert Pato <br><small>robert@email.com</small></td>
-            <td>12/11/2020</td>
-            <td>R$ 100,00</td>
-            <td>Pix</td>
-            <td><span class="status pago">Pago</span></td>
-            <td>
-              <button title="Ver"><a href="detalhespedidos.html" title="Ver">👁</a></button>
-              <button title="Editar">✏️</button>
-              <button title="Excluir">🗑</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
 
-  <!-- Paginação -->
-  <nav class="pagination">
-    <!-- <button>&lt;</button>
+    <!-- Paginação -->
+    <nav class="pagination">
+      <!-- <button>&lt;</button>
     <span id="totalPages">1</span>
     <button>&gt;</button>
     <select>
@@ -150,10 +189,10 @@
       <option>25</option>
       <option>50</option>
     </select> -->
-  </nav>
+    </nav>
 
 
-  <!-- <footer>
+    <!-- <footer>
     <div class="logo">
       <img src="" alt="" />
     </div>
@@ -223,7 +262,8 @@
         </ul>
       </div>
     </div>
-  </footer> -->
+   </footer> -->
+  </main>
 
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
