@@ -1,4 +1,11 @@
+
+if (!verificarAcesso('administrador')) {
+    window.location.href = 'login.html';
+}
+
 $(document).ready(function () {
+
+
 
     const urlBase = "http://localhost:5260/api";
 
