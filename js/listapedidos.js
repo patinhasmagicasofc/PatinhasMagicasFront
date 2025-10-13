@@ -1,197 +1,131 @@
+let currentPage = 1;
+let pageSize = 5;
 
-if (!verificarAcesso('administrador')) {
-    window.location.href = 'login.html';
-}
+$(document).ready(async function () {
 
-$(document).ready(function () {
-
-
-
-    const urlBase = "http://localhost:5260/api";
-
-    let currentPage = 1;
-    let pageSize = 10;
-
-    function loadPage(page = 1, pageSize = 5) {
-        // pega os valores dos inputs
-        const status = $('#status-pedidos').val();
-        const dataInicio = $('#dataInicio').val();
-        const dataFim = $('#dataFim').val();
-        const nome = $('#nome').val();
-
-        // monta a query string dinamicamente
-        const params = new URLSearchParams();
-
-        if (nome) params.append('nome', nome);
-        if (status) params.append('status', status);
-        if (dataInicio) params.append('dataInicio', dataInicio);
-        if (dataFim) params.append('dataFim', dataFim);
-
-        // também pode incluir paginação
-        params.append('page', page);
-        params.append('pageSize', pageSize);
-        console.log(params.toString());
-
-        $.ajax({
-            url: `${urlBase}/Pedido/paged?${params.toString()}`,
-            type: "GET",
-            contentType: "application/json",
-            success: function (data) {
-                console.log(data);
-                const totalPages = Math.ceil(data.qTotalVendas / pageSize);
-                $('#totalPages').text(`Página ${page} de ${totalPages}`);
-
-                renderTable(data.pedidoOutputDTO);
-
-                let totalPedidosPendentes = 0;
-                let totalPedidosCancelados = 0;
-                data.pedidoOutputDTO.forEach(pedido => {
-                    if (pedido.statusPedido === "Pendente") totalPedidosPendentes++;
-                    if (pedido.statusPedido === "Cancelado") totalPedidosCancelados++;
-
-                    const cardTotalVendas = $('#totalVendas');
-                    const linhaTotalVendas = `<p>Total de pedidos hoje</p>
-                                            <strong>${data.qTotalVendas}</strong>`;
-
-                    cardTotalVendas.html(linhaTotalVendas);
-
-                    const cardvalorTotalVendas = $('#valorTotalVendas');
-                    const linhacardvalorTotalVendas = `<p>Total de vendas hoje</p>
-                                            <strong>${data.valorTotalVendas}</strong>`;
-                    cardvalorTotalVendas.html(linhacardvalorTotalVendas);
-                });
-
-                const cardPedidosPendentes = $('#pedidosPendentes');
-                const linhaPedidosPendentes = `<p>Pedidos pendentes</p>
-                                            <strong>${totalPedidosPendentes}</strong>`;
-
-                cardPedidosPendentes.html(linhaPedidosPendentes);
-
-                const cardPedidosCancelados = $('#pedidosCancelados');
-                const linhaPedidosCancelados = `<p>Pedidos cancelados</p>
-                                            <strong>${totalPedidosCancelados}</strong>`;
-                cardPedidosCancelados.html(linhaPedidosCancelados);
-
-                $('#btnPrev').prop('disabled', page <= 1);
-                $('#btnNext').prop('disabled', page >= totalPages);
-
-                //window.history.replaceState({}, document.title, window.location.pathname);
-            },
-            error: function (erro) {
-                console.log('Deu erro!', erro);
-            }
-        });
+    if (!verificarAcesso('administrador')) {
+        window.location.href = 'login.html';
+        return;
     }
 
-    function renderTable(pedidos) {
-        const tabelaPedidos = $('.tbPedidos');
-        tabelaPedidos.empty();
+    await carregarStatusPedidos();
+    await loadPage(currentPage, pageSize);
 
-        pedidos.forEach(pedido => {
-            const data = new Date(pedido.dataPedido);
-            const dataFormatada = data.toLocaleString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false
-            });
-
-            const linha = `
-            <tr>
-                <td>${pedido.id}</td>
-                <td>${pedido.nomeCliente}</td>
-                <td>${dataFormatada}</td>
-                <td>R$${pedido.valorPedido}</td>
-                <td>${pedido.formaPagamento}</td>
-                <td><span class="status ${pedido.statusPedido.toLowerCase()}">${pedido.statusPedido}</span></td>
-                <td>
-                    <button title="Ver"><a href="detalhespedidos.html?idPedido=${pedido.id}" title="Ver">👁</a></button>
-                    <button title="Editar">✏️</button>
-                    <button title="Excluir">🗑</button>
-                </td>
-            </tr>
-        `;
-            tabelaPedidos.append(linha);
-        });
-    }
-
-    const pagination = $('.pagination');
-    const navPagination = `
-    <button id="btnPrev">&lt;</button>
-    <span id="totalPages"></span>
-    <button id="btnNext">&gt;</button>
-    <select id="pageSizeSelect">
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-    </select>
-`;
-    pagination.append(navPagination);
-
-
+    // Eventos
     $('#btnPrev').on('click', () => {
         if (currentPage > 1) {
             currentPage--;
             loadPage(currentPage, pageSize);
         }
     });
+
     $('#btnNext').on('click', () => {
         currentPage++;
         loadPage(currentPage, pageSize);
     });
 
-    $('#pageSizeSelect').on('change', function () {
-        pageSize = parseInt($(this).val());
+    $('#btnFiltrar').on('click', () => {
         currentPage = 1;
         loadPage(currentPage, pageSize);
     });
-
-    loadPage(currentPage, pageSize);
-
-    $.ajax({
-        url: urlBase + "/StatusPedido",
-        type: "GET",
-        contentType: "application/json",
-        success: function (dados) {
-            const statusPedido = $('#status-pedidos');
-            dados.forEach(status => {
-                const option = `<option value="${status.nome}">${status.nome}</option>`;
-                statusPedido.append(option);
-            });
-        },
-        error: function (erro) {
-            console.log('Deu erro!', erro);
-        }
-    });
-
-
-    // Captura o clique no botão de filtro
-    $('#btnFiltrar').on('click', function (event) {
-        event.preventDefault(); // evita reload da página
-        loadPage(); // carrega os pedidos com os filtros
-    });
 });
 
+async function loadPage(page = 1, pageSize = 5) {
+    const status = $('#status-pedidos').val();
+    const dataInicio = $('#dataInicio').val();
+    const dataFim = $('#dataFim').val();
+    const nome = $('#nome').val();
 
-//função header
+    const params = new URLSearchParams();
+    if (nome) params.append('nome', nome);
+    if (status) params.append('status', status);
+    if (dataInicio) params.append('dataInicio', dataInicio);
+    if (dataFim) params.append('dataFim', dataFim);
+    params.append('page', page);
+    params.append('pageSize', pageSize);
 
-const menuItem = document.querySelectorAll('.item-menu')
-function selectLink() {
-    menuItem.forEach((item) => item.classList.remove('ativo'))
-    this.classList.add('ativo')
-};
+    const endpoint = `/Pedido/paged?${params.toString()}`;
 
-menuItem.forEach((item) => item.addEventListener('click', selectLink)
-);
+    const data = await consumirAPIAutenticada(endpoint, 'GET');
+
+    if (!data) {
+        console.warn('Não foi possível carregar os pedidos.');
+        return;
+    }
+
+    renderTable(data.pedidoOutputDTO);
+
+    const totalPages = Math.ceil(data.qTotalVendas / pageSize);
+    $('#totalPages').text(`Página ${page} de ${totalPages}`);
+
+    $('#btnPrev').prop('disabled', page <= 1);
+    $('#btnNext').prop('disabled', page >= totalPages);
+
+    atualizarResumoPedidos(data);
+}
 
 
-const btnExpandir = document.querySelector('#btn-exp');
-const nav = document.querySelector('.menu-lateral');
-const header = document.querySelector('header');
+function atualizarResumoPedidos(data) {
+    let totalPendentes = 0;
+    let totalCancelados = 0;
 
-btnExpandir.addEventListener('click', () => {
-    nav.classList.toggle('expandir');
-    header.classList.toggle('expandir');
-});
+    data.pedidoOutputDTO.forEach(p => {
+        if (p.statusPedido === 'Pendente') totalPendentes++;
+        if (p.statusPedido === 'Cancelado') totalCancelados++;
+    });
+
+    $('#totalVendas').html(`<p>Total de pedidos hoje</p><strong>${data.qTotalVendas}</strong>`);
+    $('#valorTotalVendas').html(`<p>Total de vendas hoje</p><strong>${data.valorTotalVendas}</strong>`);
+    $('#pedidosPendentes').html(`<p>Pedidos pendentes</p><strong>${totalPendentes}</strong>`);
+    $('#pedidosCancelados').html(`<p>Pedidos cancelados</p><strong>${totalCancelados}</strong>`);
+}
+
+function renderTable(pedidos) {
+    const tabela = $('#tabela-pedidos tbody');
+    tabela.empty();
+
+    if (!pedidos || pedidos.length === 0) {
+        tabela.append('<tr><td colspan="6" class="text-center">Nenhum pedido encontrado</td></tr>');
+        return;
+    }
+
+    pedidos.forEach(p => {
+        tabela.append(`
+            <tr>
+                <td>${p.id}</td>
+                <td>${p.nomeCliente}</td>
+                <td>${p.dataPedido}</td>
+                <td>${p.statusPedido}</td>
+                <td>${p.valorTotal}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" onclick="verDetalhes(${p.id})">Ver</button>
+                </td>
+            </tr>
+        `);
+    });
+}
+
+async function carregarStatusPedidos() {
+    const dados = await consumirAPIAutenticada('/StatusPedido', 'GET');
+
+    const select = $('#status-pedidos');
+    select.empty();
+    select.append('<option value="">Todos</option>');
+
+    if (dados) {
+        dados.forEach(s => {
+            select.append(`<option value="${s.nome}">${s.nome}</option>`);
+        });
+    }
+}
+
+async function verDetalhes(id) {
+    const pedido = await consumirAPIAutenticada(`/Pedido/${id}`, 'GET');
+    if (!pedido) {
+        alert('Erro ao carregar detalhes do pedido.');
+        return;
+    }
+
+    console.log('Detalhes do pedido:', pedido);
+    alert(`Pedido #${pedido.id}\nCliente: ${pedido.nomeCliente}\nStatus: ${pedido.statusPedido}`);
+}

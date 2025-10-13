@@ -30,12 +30,14 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         const { token, perfil, id } = data.data;
 
         localStorage.setItem('authToken', token);
-        localStorage.setItem('userProfile', perfil);
+        localStorage.setItem('userProfile', perfil.toLowerCase());
         localStorage.setItem('idUsuario', id.toString());
 
         switch (perfil.toLowerCase()) {
             case 'administrador':
-                window.location.href = 'listapedidos.html';
+                setTimeout(() => {
+                    window.location.href = 'listapedidos.html';
+                }, 100);
                 break;
             case 'cliente':
             default:
