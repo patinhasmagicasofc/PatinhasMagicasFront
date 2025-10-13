@@ -1,87 +1,74 @@
-// areaRestrita.js - Lógica de Controle de Acesso e Consumo de API
-// OTIMIZAÇÃO: Padroniza a URL base para a porta do projeto (5260)
-const API_BASE_URL = 'http://localhost:5260/api'; 
+// areaRestrita.js - Versão AJAX com suporte a JWT e CORS
+// Define a URL base da API
+// const API_BASE_URL = 'http://localhost:5260/api';
 
+/**
+ * Faz logout limpando o armazenamento local e redirecionando o usuário.
+ */
 function logout() {
-    // Limpa todas as chaves (token, perfil, ID do usuário)
     localStorage.clear();
-    // Redireciona para a página inicial/login
     window.location.href = 'index.html';
 }
 
 /**
- * Verifica se o usuário tem um token válido e o perfil necessário.
- * @param {string} perfilEsperado - O perfil necessário ('administrador', 'cliente', etc.).
- * @returns {boolean} True se o acesso for concedido.
+ * Verifica se o usuário tem o perfil esperado e um token válido.
+ * @param {string} perfilEsperado - Ex: 'administrador', 'cliente', etc.
+ * @returns {boolean} - True se o usuário tiver acesso autorizado.
  */
 function verificarAcesso(perfilEsperado) {
     const token = localStorage.getItem('authToken');
     const perfilUsuario = localStorage.getItem('userProfile');
 
     if (!token || perfilUsuario !== perfilEsperado) {
-        // Se falhar, redireciona o usuário
         alert('Seu acesso a esta área é restrito ou sua sessão expirou.');
         logout();
         return false;
     }
-    
-    return true; 
+
+    return true;
 }
 
 /**
- * Consome um endpoint da API enviando o Token JWT no cabeçalho.
- * @param {string} endpoint - O caminho da API (ex: '/Usuario/meu-perfil').
- * @param {string} method - O método HTTP (GET, POST, PUT, DELETE). Padrão é 'GET'.
- * @param {object} [bodyData=null] - Dados a serem enviados no corpo da requisição (para POST/PUT).
- * @returns {Promise<object|null>} Os dados da resposta ou null em caso de falha.
+ * Consome um endpoint protegido da API usando AJAX e JWT no cabeçalho.
+ * @param {string} endpoint - Caminho da API, ex: '/Usuario/meu-perfil'
+ * @param {string} [method='GET'] - Método HTTP (GET, POST, PUT, DELETE)
+ * @param {object|null} [bodyData=null] - Corpo da requisição (para POST/PUT)
+ * @param {function} [onSuccess=null] - Callback para sucesso
+ * @param {function} [onError=null] - Callback para erro
  */
-async function consumirAPIAutenticada(endpoint, method = 'GET', bodyData = null) {
+function consumirAPIAutenticada(endpoint, method = 'GET', bodyData = null, onSuccess = null, onError = null) {
     const token = localStorage.getItem('authToken');
 
-    // Monta o objeto de cabeçalhos
-    const headers = {
-        'Content-Type': 'application/json',
-        // Envio do Token JWT
-        'Authorization': `Bearer ${token}` 
-    };
-
-    // Configuração base da requisição
-    const config = {
+    // Configuração do AJAX
+    $.ajax({
+        url: `${API_BASE_URL}${endpoint}`,
         method: method,
-        headers: headers
-    };
+        contentType: 'application/json; charset=utf-8',
+        data: bodyData ? JSON.stringify(bodyData) : null,
+        crossDomain: true,
+        xhrFields: { withCredentials: true }, // permite cookies se forem usados no futuro
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
 
-    // Adiciona o corpo (body) se o método for POST ou PUT e houver dados
-    if (bodyData && (method === 'POST' || method === 'PUT')) {
-        config.body = JSON.stringify(bodyData);
-    }
+        success: function (data, textStatus, xhr) {
+            if (onSuccess) onSuccess(data, xhr);
+        },
 
-    try {
-        const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+        error: function (xhr, textStatus, errorThrown) {
+            if (xhr.status === 401 || xhr.status === 403) {
+                alert('Sessão expirada ou acesso negado. Faça login novamente.');
+                logout();
+                return;
+            }
 
-        if (response.status === 401 || response.status === 403) {
-            // Token inválido/expirado (401) ou Role incorreto (403)
-            alert('Sessão expirada ou acesso negado. Faça login novamente.');
-            logout();
-            return null;
+            console.error(`Erro na API: ${xhr.status} - ${xhr.responseText}`);
+
+            if (onError) {
+                onError(xhr, textStatus, errorThrown);
+            } else {
+                alert('Ocorreu um erro ao acessar a API. Verifique o console para mais detalhes.');
+            }
         }
-
-        if (!response.ok) {
-            // Tenta obter uma mensagem de erro JSON da API
-            const errorText = await response.text();
-            throw new Error(`Erro na API: ${response.status} - ${errorText}`);
-        }
-
-        // Se a resposta for 204 No Content (como em um PUT bem-sucedido), retorna a própria resposta
-        if (response.status === 204) {
-            return response;
-        }
-
-        // Retorna o corpo JSON para todos os outros status OK (200, 201)
-        return response.json();
-
-    } catch (error) {
-        console.error('Erro ao consumir API:', error);
-        return null;
-    }
+    });
 }

@@ -1,73 +1,72 @@
-// loginScript.js
+// loginScript.js — Versão AJAX com compatibilidade CORS e JWT
+// const API_BASE_URL = 'http://localhost:5260/api';
+const LOGIN_ENDPOINT = `${API_BASE_URL}/Login/login`;
 
-// ** IMPORTANTE: Configure a URL da sua API C# **
-const API_BASE_URL = 'http://localhost:5260/api'; 
-const LOGIN_ENDPOINT = `${API_BASE_URL}/Login/login`; 
+$(document).ready(function () {
+    $('#loginForm').on('submit', function (event) {
+        event.preventDefault();
 
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
+        const email = $('#email').val();
+        const senha = $('#senha').val();
+        const erroDisplay = $('#mensagemErro');
 
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    const erroDisplay = document.getElementById('mensagemErro');
-    
-    erroDisplay.textContent = ''; // Limpa mensagens
+        erroDisplay.text(''); // limpa mensagens anteriores
 
-    try {
-        const response = await fetch(LOGIN_ENDPOINT, {
+        // Requisição AJAX para o endpoint de login
+        $.ajax({
+            url: LOGIN_ENDPOINT,
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
+            contentType: 'application/json; charset=utf-8',
+            crossDomain: true,
+            xhrFields: { withCredentials: true }, // compatível com AllowCredentials() da API
+            data: JSON.stringify({ email, senha }),
+
+            success: function (data) {
+                // Espera receber: { token, perfil, idUsuario }
+                const token = data.token;
+                const perfil = data.perfil ? data.perfil.toLowerCase() : '';
+                const userId = data.idUsuario || data.Id || data.id;
+
+                if (!token || !userId) {
+                    console.error("Erro: A API não retornou o token ou o ID do usuário.", data);
+                    erroDisplay.text("Erro de servidor: informações de login incompletas.");
+                    return;
+                }
+
+                // Armazena informações no localStorage
+                localStorage.setItem('authToken', token);
+                localStorage.setItem('userProfile', perfil);
+                localStorage.setItem('idUsuario', userId);
+                localStorage.setItem('senhaUsuario', senha); // salva senha temporariamente
+
+                // Redireciona conforme o perfil
+                switch (perfil) {
+                    case 'administrador':
+                        window.location.href = 'admin.html';
+                        break;
+                    case 'cliente':
+                        window.location.href = 'cliente.html';
+                        break;
+                    default:
+                        window.location.href = 'cliente.html';
+                        break;
+                }
             },
-            body: JSON.stringify({ email, senha })
-        });
 
-        if (!response.ok) {
-            let errorMessage = 'Falha no login. Credenciais inválidas.';
-            try {
-                const errorData = await response.json();
-                errorMessage = errorData.Message || errorMessage;
-            } catch {
-                // Se a resposta não for JSON
+            error: function (xhr) {
+                let mensagemErro = 'Falha no login. Credenciais inválidas.';
+
+                if (xhr.responseJSON && xhr.responseJSON.Message) {
+                    mensagemErro = xhr.responseJSON.Message;
+                } else if (xhr.status === 0) {
+                    mensagemErro = 'Erro de conexão com o servidor. Verifique se a API está em execução.';
+                } else if (xhr.status === 500) {
+                    mensagemErro = 'Erro interno no servidor.';
+                }
+
+                erroDisplay.text(mensagemErro);
+                console.error('Erro de login:', xhr);
             }
-            erroDisplay.textContent = errorMessage;
-            return;
-        }
-
-        const data = await response.json();
-        const token = data.token;
-        const perfil = data.perfil.toLowerCase(); 
-        
-        // CORREÇÃO FINAL: Tenta as chaves mais comuns para capturar o ID
-        // Isso resolve o problema de a API retornar o ID com um nome diferente.
-        const userId = data.idUsuario || data.Id || data.id; 
-        
-        if (!userId) {
-            console.error("Erro: A API não retornou o ID do usuário.", data);
-            erroDisplay.textContent = "Erro de servidor: O ID do usuário não foi fornecido. Consulte o administrador.";
-            return; 
-        }
-
-        // 1. Armazena o Token, Perfil E O ID no navegador (localStorage)
-        localStorage.setItem('authToken', token);
-        localStorage.setItem('userProfile', perfil);
-        localStorage.setItem('userId', userId); // ID do usuário salvo para a área restrita
-        
-        // 2. Redireciona para a página correta com base no perfil
-        switch (perfil) {
-            case 'administrador':
-                window.location.href = 'listapedidos.html';
-                break;
-            case 'cliente':
-                window.location.href = 'cliente.html';
-                break;
-            default:
-                // Caso o perfil seja desconhecido
-                window.location.href = 'cliente.html';
-        }
-
-    } catch (error) {
-        erroDisplay.textContent = 'Erro de conexão com o servidor. Verifique a API.';
-        console.error('Erro de login:', error);
-    }
+        });
+    });
 });
