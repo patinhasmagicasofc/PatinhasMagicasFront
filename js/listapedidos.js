@@ -168,7 +168,6 @@ $(document).ready(function () {
 
 
 //função header
-
 const menuItem = document.querySelectorAll('.item-menu');
 
 function selectLink() {
@@ -197,6 +196,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
+
 //função filters
 const btnFilters = document.querySelector('#btn-filters-expandir');
 const sidebar = document.querySelector('.filters-exp');
@@ -211,16 +211,16 @@ btnFilters.addEventListener('click', (e) => {
 
 // Fechar painel ao clicar fora
 document.addEventListener('click', (e) => {
-    if (!filtersExp.contains(e.target) && filtersExp.classList.contains('open')) {
-        filtersExp.classList.remove('open');
-        main.classList.remove('shifted');
+    if (!sidebar.contains(e.target) && !btnFilters.contains(e.target)) {
+      sidebar.classList.remove('open');
+      main.classList.remove('shifted');
     }
-});
+  });
 
 
 
 
-//
+//menu-options
 document.addEventListener("click", (e) => {
     const menus = document.querySelectorAll(".menu-container");
   
