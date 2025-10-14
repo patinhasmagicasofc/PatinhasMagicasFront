@@ -3,6 +3,8 @@
 let userId = null;
 let idEndereco = null;
 
+
+
 // --- ---
 const nomeInput = document.getElementById('nome');
 const cpfInput = document.getElementById('cpf');
@@ -200,29 +202,63 @@ async function handleUpdatePessoal(event) {
         senha: localStorage.getItem('senhaUsuario') || '123456',
         ddd: dddInput.value ? parseInt(dddInput.value) : null,
         telefone: telefoneInput.value.trim(),
-        tipoUsuarioId: 2
+        tipoUsuarioId: 1
     };
 
+
+    
     try {
         // Validação rápida no frontend via API
-        const emailCheck = await consumirAPIAutenticada(`Usuario/verificarEmail/${updateDto.email}`, 'GET');
-        if (emailCheck.exists && emailCheck.idUsuario != userId) {
-            if (msgPessoal) {
-                msgPessoal.textContent = 'E-mail já cadastrado para outro usuário.';
-                msgPessoal.className = 'erro';
-            }
-            return;
-        }
+        // const dados = await consumirAPIAutenticada('/StatusPedido', 'GET');
+        // const emailCheck = await consumirAPIAutenticada(`Usuario/${updateDto}`, 'PUT');
+        // if (emailCheck.exists && emailCheck.idUsuario != userId) {
+        //     if (msgPessoal) {
+        //         msgPessoal.textContent = 'E-mail já cadastrado para outro usuário.';
+        //         msgPessoal.className = 'erro';
+        //     }
+        //     return;
+        // }
 
-        const cpfCheck = await consumirAPIAutenticada(`Usuario/verificarCPF/${updateDto.cpf}`, 'GET');
-        if (cpfCheck.exists && cpfCheck.idUsuario != userId) {
-            if (msgPessoal) {
-                msgPessoal.textContent = 'CPF já cadastrado para outro usuário.';
-                msgPessoal.className = 'erro';
-            }
-            return;
-        }
+        // const cpfCheck = await consumirAPIAutenticada(`Usuario/${updateDto.idUsuario}`, 'PUT');
+        // if (cpfCheck.exists && cpfCheck.idUsuario != userId) {
+        //     if (msgPessoal) {
+        //         msgPessoal.textContent = 'CPF já cadastrado para outro usuário.';
+        //         msgPessoal.className = 'erro';
+        //     }
+        //     return;
+        // }
 
+        //         const response = await fetch(`Usuario/${userId}`, {
+        //         method: 'PUT',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(updateDto)
+        //     });
+        const UPDATE_ENDPOINT = `${API_BASE_URL}/Usuario/${userId}`;
+        try {
+            const response = await fetch(UPDATE_ENDPOINT, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updateDto)
+            });
+    
+            const data = await response.json();
+            console.log(data)
+    
+            if (!response.ok) {
+                const errorMessage = data.message || 'Falha no cadastro. Verifique os dados.';
+                msgPessoal.textContent = errorMessage; msgPessoal.className = 'erro';
+                
+                return;
+            }
+            msgPessoal.textContent = data.message || 'Dados pessoais atualizados com sucesso!';
+            msgPessoal.textContent = errorMessage; msgPessoal.className = 'sucesso';
+            // sucessoDisplay.textContent = data.message || 'Cadastro realizado com sucesso!';
+            // setTimeout(() => window.location.href = 'login.html', 3000);
+    
+        } catch (error) {
+            msgPessoal.textContent = 'Erro de conexão com o servidor.';
+            console.error('Erro na requisição:', error);
+        }
         // Envia atualização
         const response = await consumirAPIAutenticada(`Usuario/${userId}`, 'PUT', updateDto);
 
@@ -234,7 +270,7 @@ async function handleUpdatePessoal(event) {
         if (document.getElementById('nomeUsuario'))
             document.getElementById('nomeUsuario').textContent = updateDto.nome || 'Cliente';
 
-        habilitarEdicaoPessoal(false);
+        // habilitarEdicaoPessoal(false);
 
     } catch (error) {
         console.error("Erro ao salvar dados pessoais:", error);
