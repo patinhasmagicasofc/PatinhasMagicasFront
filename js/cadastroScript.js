@@ -37,10 +37,9 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
         ddd: parseInt(ddd), // O Model espera um INT para DDD
         telefone: telefone,
         senha: senha,
-
-        // Campo obrigatório para definir o usuário como Cliente
-        tipoUsuarioId: 2
     };
+
+    console.log('Dados para cadastro:', dadosCadastro);
 
     try {
         const response = await fetch(CADASTRO_ENDPOINT, {

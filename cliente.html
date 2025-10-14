@@ -11,7 +11,7 @@
     <div class="painel">
         <button onclick="logout()" class="btn-logout">Sair</button>
         <h1>Meu Perfil <i class="fas fa-paw"></i></h1>
-        <p>Olá, <strong id="nomeUsuario">Cliente</strong>. Aqui você pode gerenciar seus dados e pedidos.</p>
+        <p>Olá, <strong id="nomeUsuario">Cliente</strong>. Aqui você pode gerenciar seus dados pessoais.</p>
 
         <h2 class="section-header"><i class="fas fa-user"></i> Dados Pessoais</h2>
         <form id="formDadosPessoais" class="form-section">
@@ -104,12 +104,8 @@
             </div>
             <p id="msgEndereco" class="erro"></p>
         </form>
-
-        <h2 class="section-header"><i class="fas fa-clipboard-list"></i> Meus Pedidos</h2>
-        <div id="dadosPedidos" class="dados-api-pedidos">Carregando histórico de pedidos...</div>
     </div>
-
-    <script src="js/areaRestrita.js"></script>
+    <script src="js/verificarAcesso.js"></script>
     <script src="js/clienteScript.js"></script>
 </body>
 </html>

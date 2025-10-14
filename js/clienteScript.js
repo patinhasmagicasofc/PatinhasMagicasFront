@@ -28,7 +28,7 @@ const btnSalvarEndereco = document.getElementById('btnSalvarEndereco');
 
 // --- Funções de habilitação de edição ---
 function habilitarEdicaoPessoal(habilitar) {
-    
+
 
     if (nomeInput) nomeInput.disabled = !habilitar;
     if (emailInput) emailInput.disabled = !habilitar;
@@ -40,7 +40,7 @@ function habilitarEdicaoPessoal(habilitar) {
     if (btnEditarPessoal) btnEditarPessoal.style.display = habilitar ? 'none' : 'block';
     if (btnSalvarPessoal) btnSalvarPessoal.style.display = habilitar ? 'block' : 'none';
     if (msgPessoal) {
-        msgPessoal.textContent = habilitar ? 'Modo de edição ativo. Clique em Salvar ao terminar.' : '';
+        //msgPessoal.textContent = habilitar ? 'Modo de edição ativo. Clique em Salvar ao terminar.' : '';
         msgPessoal.className = 'info';
     }
     if (btnSalvarPessoal) btnSalvarPessoal.disabled = !habilitar;
@@ -70,16 +70,9 @@ function habilitarEdicaoEndereco(habilitar) {
 
 // --- Carregar dados do cliente ---
 async function carregarDadosCliente() {
-    const currentUserId = localStorage.getItem('idUsuario');
+    if (!validarLogin()) return;
 
-    if (!currentUserId || currentUserId === 'undefined' || currentUserId === 'null') {
-        if (document.getElementById('nomeUsuario')) document.getElementById('nomeUsuario').textContent = 'Erro';
-        if (msgPessoal) msgPessoal.textContent = 'ID do usuário não encontrado no navegador. Faça login novamente.';
-        console.error('idUsuario ausente no localStorage');
-        return;
-    }
-
-    userId = currentUserId;
+    const userId = getUserIdFromToken();
 
     try {
         const userData = await consumirAPIAutenticada(`Usuario/${userId}`, 'GET', null);
@@ -115,153 +108,102 @@ async function carregarDadosCliente() {
         habilitarEdicaoPessoal(false);
         habilitarEdicaoEndereco(false);
     }
-
-    carregarPedidos(userId);
-}
-
-async function carregarPedidos(id) {
-    const pedidosElement = document.getElementById('dadosPedidos');
-    if (pedidosElement) pedidosElement.textContent = 'Buscando pedidos...';
-
-    try {
-        const pedidosData = await consumirAPIAutenticada(`Pedido/cliente/${id}`, 'GET', null);
-
-        if (pedidosData && pedidosData.length > 0) {
-            pedidosElement.textContent = JSON.stringify(pedidosData, null, 2);
-        } else {
-            pedidosElement.textContent = 'Nenhum pedido encontrado.';
-        }
-    } catch (error) {
-        pedidosElement.textContent = 'Erro ao carregar histórico de pedidos.';
-        console.error("Erro ao carregar pedidos:", error);
-    }
-}
-
-// --- Buscar CEP (usa a função consumirAPIAutenticada e fallback para ViaCEP) ---
-async function buscarCep() {
-    const cep = (cepInput && cepInput.value) ? cepInput.value.replace(/\D/g, '') : '';
-    if (cep.length !== 8) return;
-
-    if (msgEndereco) { msgEndereco.textContent = 'Buscando CEP...'; msgEndereco.className = 'info'; }
-    if (logradouroInput) logradouroInput.value = '';
-
-    try {
-        // Tenta a rota do backend primeiro (se existir)
-        let dadosCep = null;
-        try {
-            dadosCep = await consumirAPIAutenticada(`Cep/buscar/${cep}`, 'GET', null);
-        } catch (e) {
-            console.warn('Erro ao buscar CEP via backend, tentarei ViaCEP. Erro:', e);
-            dadosCep = null;
-        }
-
-        if (!dadosCep) {
-            // fallback para ViaCEP público
-            const viaResp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-            if (viaResp.ok) {
-                const viaData = await viaResp.json();
-                if (!viaData.erro) dadosCep = viaData;
-            }
-        }
-
-        if (dadosCep && !dadosCep.erro) {
-            if (logradouroInput) logradouroInput.value = dadosCep.logradouro || '';
-            if (bairroInput) bairroInput.value = dadosCep.bairro || '';
-            if (cidadeInput) cidadeInput.value = dadosCep.localidade || dadosCep.localidade || dadosCep.cidade || '';
-            if (estadoInput) estadoInput.value = dadosCep.uf || '';
-
-            if (numeroInput) numeroInput.focus();
-            if (msgEndereco) { msgEndereco.textContent = 'CEP encontrado!'; msgEndereco.className = 'sucesso'; }
-        } else {
-            if (logradouroInput) { logradouroInput.value = ''; logradouroInput.disabled = false; }
-            if (msgEndereco) { msgEndereco.textContent = 'CEP não encontrado. Preencha o endereço manualmente.'; msgEndereco.className = 'erro'; }
-        }
-    } catch (error) {
-        if (msgEndereco) { msgEndereco.textContent = 'Erro de conexão ao buscar CEP.'; msgEndereco.className = 'erro'; }
-        console.error('Erro buscarCep:', error);
-    }
 }
 
 // --- Salvar dados pessoais ---
 async function handleUpdatePessoal(event) {
     event.preventDefault();
+
+    if (!validarLogin()) return;
+
     if (msgPessoal) msgPessoal.textContent = '';
 
-    if (!userId) {
-        if (msgPessoal) msgPessoal.textContent = 'Erro de sessão. Faça login novamente.';
-        return;
-    }
-
     const updateDto = {
-        idUsuario: parseInt(userId),
         nome: nomeInput.value.trim(),
         email: emailInput.value.trim(),
         cpf: cpfInput.value.trim(),
-        senha: localStorage.getItem('senhaUsuario') || '123456',
         ddd: dddInput.value ? parseInt(dddInput.value) : null,
         telefone: telefoneInput.value.trim(),
-        tipoUsuarioId: 2
+        tipoUsuarioId: 1
     };
 
+    const userId = getUserIdFromToken();
+    const UPDATE_ENDPOINT = `/Usuario/${userId}`;
+
     try {
-        // Validação rápida no frontend via API
-        const emailCheck = await consumirAPIAutenticada(`Usuario/verificarEmail/${updateDto.email}`, 'GET');
-        if (emailCheck.exists && emailCheck.idUsuario != userId) {
-            if (msgPessoal) {
-                msgPessoal.textContent = 'E-mail já cadastrado para outro usuário.';
-                msgPessoal.className = 'erro';
-            }
+        const data = await consumirAPIAutenticada(UPDATE_ENDPOINT, 'PUT', updateDto);
+
+        if (!data) {
+            msgPessoal.textContent = 'Falha ao atualizar dados. Tente novamente.';
+            msgPessoal.className = 'erro';
             return;
         }
 
-        const cpfCheck = await consumirAPIAutenticada(`Usuario/verificarCPF/${updateDto.cpf}`, 'GET');
-        if (cpfCheck.exists && cpfCheck.idUsuario != userId) {
-            if (msgPessoal) {
-                msgPessoal.textContent = 'CPF já cadastrado para outro usuário.';
-                msgPessoal.className = 'erro';
-            }
-            return;
-        }
-
-        // Envia atualização
-        const response = await consumirAPIAutenticada(`Usuario/${userId}`, 'PUT', updateDto);
-
-        if (msgPessoal) {
-            msgPessoal.textContent = 'Dados pessoais atualizados com sucesso!';
-            msgPessoal.className = 'sucesso';
-        }
-
-        if (document.getElementById('nomeUsuario'))
-            document.getElementById('nomeUsuario').textContent = updateDto.nome || 'Cliente';
-
-        habilitarEdicaoPessoal(false);
+        msgPessoal.textContent = data.message || 'Dados pessoais atualizados com sucesso!';
+        msgPessoal.className = 'info';
 
     } catch (error) {
-        console.error("Erro ao salvar dados pessoais:", error);
-        if (msgPessoal) {
-            msgPessoal.textContent = 'Erro ao salvar dados. Verifique os campos e tente novamente.';
-            msgPessoal.className = 'erro';
+        msgPessoal.textContent = 'Erro de conexão com o servidor.';
+        msgPessoal.className = 'erro';
+        console.error(error);
+    }
+
+    habilitarEdicaoPessoal(false);
+}
+
+// --- Buscar CEP (usa a função consumirAPIAutenticada e fallback para ViaCEP) ---
+async function buscarCep() {
+    if (!validarLogin()) return;
+
+    const cep = cepInput.value.replace(/\D/g, '');
+    if (cep.length !== 8) return;
+
+    msgEndereco.textContent = 'Buscando CEP...';
+    msgEndereco.className = 'info';
+
+    logradouroInput.value = '';
+    bairroInput.value = '';
+    cidadeInput.value = '';
+    estadoInput.value = '';
+
+    try {
+        const dadosCep = await consumirAPIAutenticada(`Cep/buscar/${cep}`, 'GET');
+
+        if (dadosCep) {
+            logradouroInput.value = dadosCep.logradouro || '';
+            bairroInput.value = dadosCep.bairro || '';
+            cidadeInput.value = dadosCep.localidade || '';
+            estadoInput.value = dadosCep.uf || '';
+
+            numeroInput.focus();
+            msgEndereco.textContent = 'CEP encontrado!';
+            msgEndereco.className = 'sucesso';
+        } else {
+            msgEndereco.textContent = 'CEP não encontrado. Preencha manualmente.';
+            msgEndereco.className = 'erro';
+            logradouroInput.disabled = false;
         }
+    } catch (error) {
+        msgEndereco.textContent = 'Erro de conexão ao buscar CEP.';
+        msgEndereco.className = 'erro';
+        console.error('Erro buscarCep:', error);
     }
 }
 
+// Dispara a busca quando o CEP perde o foco
+cepInput.addEventListener('blur', buscarCep);
 
-
-
-// --- Salvar endereço (POST ou PUT) ---
 
 async function handleUpdateEndereco(event) {
     event.preventDefault();
+
+    if (!validarLogin()) return;
+
     if (msgEndereco) msgEndereco.textContent = '';
 
-    if (!userId) {
-        if (msgEndereco) msgEndereco.textContent = 'Erro de sessão. Faça login novamente.';
-        return;
-    }
 
-    // Se logradouro ainda estiver vazio, tenta buscar pelo CEP
     if (!logradouroInput.value.trim() && cepInput.value.trim()) {
-        await buscarCep(); // aguarda a resposta do ViaCEP/backend
+        await buscarCep();
     }
 
     // Validação final
@@ -283,7 +225,7 @@ async function handleUpdateEndereco(event) {
         bairro: bairroInput.value.trim(),
         cidade: cidadeInput.value.trim(),
         estado: estadoInput.value.trim(),
-        usuarioId: parseInt(userId) 
+        usuarioId: parseInt(userId)
     };
 
     const url = idEndereco ? `Endereco/${idEndereco}` : `Endereco`;
@@ -311,7 +253,6 @@ async function handleUpdateEndereco(event) {
         }
     }
 }
-
 
 
 // --- Inicialização: verifica acesso e adiciona listeners apenas se os elementos existirem ---
