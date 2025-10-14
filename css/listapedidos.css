@@ -47,11 +47,12 @@ main {
   padding: 3em 3em;
   transition: margin-left 0.4s ease, margin-right 0.4s ease;
   margin-right: 0;
-   &.shifted {
+
+  &.shifted {
     margin-right: 400px;
   }
 
-  header.expandir ~ & {
+  header.expandir~& {
     margin-left: 250px;
   }
 }
@@ -153,7 +154,7 @@ header {
   transition: width 0.4s ease;
   z-index: 999;
   background: var(--clr-white);
-  
+
 
   &.open {
     width: 400px;
@@ -236,6 +237,7 @@ header {
   cursor: pointer;
   z-index: 1000;
 }
+
 .main-content {
   transition: margin-right 0.4s ease;
   margin-right: 0;
@@ -287,12 +289,13 @@ header {
     background: var(--clr-white);
     border-radius: 0.6em;
     padding: 1em;
-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
     table {
       display: flex;
       flex-direction: column;
       width: 100%;
-      
+
       thead {
         tr {
           display: flex;
@@ -353,6 +356,7 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
                   align-items: center;
                   justify-content: center;
                   color: inherit;
+                  gap: 0.6em;
                 }
               }
 
@@ -506,6 +510,3 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* #endregion */
-
-
-
