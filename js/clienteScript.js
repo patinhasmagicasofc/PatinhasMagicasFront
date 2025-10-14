@@ -233,32 +233,32 @@ async function handleUpdatePessoal(event) {
         //         headers: { 'Content-Type': 'application/json' },
         //         body: JSON.stringify(updateDto)
         //     });
-        const UPDATE_ENDPOINT = `${API_BASE_URL}/Usuario/${userId}`;
-        try {
-            const response = await fetch(UPDATE_ENDPOINT, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updateDto)
-            });
+        // const UPDATE_ENDPOINT = `${API_BASE_URL}/Usuario/${userId}`;
+        // try {
+        //     const response = await fetch(UPDATE_ENDPOINT, {
+        //         method: 'PUT',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(updateDto)
+        //     });
     
-            const data = await response.json();
-            console.log(data)
+        //     const data = await response.json();
+        //     console.log(data)
     
-            if (!response.ok) {
-                const errorMessage = data.message || 'Falha no cadastro. Verifique os dados.';
-                msgPessoal.textContent = errorMessage; msgPessoal.className = 'erro';
+        //     if (!response.ok) {
+        //         const errorMessage = data.message || 'Falha no cadastro. Verifique os dados.';
+        //         msgPessoal.textContent = errorMessage; msgPessoal.className = 'erro';
                 
-                return;
-            }
-            msgPessoal.textContent = data.message || 'Dados pessoais atualizados com sucesso!';
-            msgPessoal.textContent = errorMessage; msgPessoal.className = 'sucesso';
-            // sucessoDisplay.textContent = data.message || 'Cadastro realizado com sucesso!';
-            // setTimeout(() => window.location.href = 'login.html', 3000);
+        //         return;
+        //     }
+        //     msgPessoal.textContent = data.message || 'Dados pessoais atualizados com sucesso!';
+        //     msgPessoal.textContent = errorMessage; msgPessoal.className = 'sucesso';
+        //     // sucessoDisplay.textContent = data.message || 'Cadastro realizado com sucesso!';
+        //     // setTimeout(() => window.location.href = 'login.html', 3000);
     
-        } catch (error) {
-            msgPessoal.textContent = 'Erro de conexão com o servidor.';
-            console.error('Erro na requisição:', error);
-        }
+        // } catch (error) {
+        //     msgPessoal.textContent = 'Erro de conexão com o servidor.';
+        //     console.error('Erro na requisição:', error);
+        // }
         // Envia atualização
         const response = await consumirAPIAutenticada(`Usuario/${userId}`, 'PUT', updateDto);
 

@@ -1,4 +1,7 @@
 // loginScript.js
+
+
+
 const API_BASE_URL = 'http://localhost:5260/api';
 const LOGIN_ENDPOINT = `${API_BASE_URL}/Login/login`;
 
@@ -49,3 +52,4 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         console.error('Erro de login:', error);
     }
 });
+

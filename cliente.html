@@ -15,7 +15,6 @@
 
         <h2 class="section-header"><i class="fas fa-user"></i> Dados Pessoais</h2>
         <form id="formDadosPessoais" class="form-section">
-            
             <div class="input-group">
                 <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
                 <input type="text" id="nome" required disabled>
@@ -34,11 +33,11 @@
             <div class="input-group input-inline">
                 <div id="ddd-input-group">
                     <label for="ddd"><i class="fas fa-phone-alt"></i> DDD</label>
-                    <input type="number" id="ddd" required min="11" max="99" disabled>
+                    <input type="text" id="ddd" required disabled maxlength="2">
                 </div>
                 <div id="telefone-input-group">
                     <label for="telefone">Telefone</label>
-                    <input type="text" id="telefone" required minlength="8" maxlength="10" disabled>
+                    <input type="text" id="telefone" required disabled>
                 </div>
             </div>
 
@@ -47,7 +46,6 @@
                     <i class="fas fa-edit"></i> Editar Dados
                 </button>
                 <button type="submit" id="btnSalvarPessoal" class="btn-login" style="display: none;">
-
                     <i class="fas fa-save"></i> Salvar Alterações
                 </button>
             </div>
@@ -89,7 +87,7 @@
             </div>
             
             <div class="input-group">
-                <label for="complemento">Complemento (Opci.)</label>
+                <label for="complemento">Complemento (Opcional)</label>
                 <input type="text" id="complemento" disabled>
             </div>
             
@@ -98,7 +96,6 @@
                     <i class="fas fa-edit"></i> Editar Endereço
                 </button>
                 <button type="submit" id="btnSalvarEndereco" class="btn-login" style="display: none;">
-
                     <i class="fas fa-save"></i> Salvar Endereço
                 </button>
             </div>
@@ -109,6 +106,14 @@
         <div id="dadosPedidos" class="dados-api-pedidos">Carregando histórico de pedidos...</div>
     </div>
 
+    <!-- Carregue o jQuery primeiro -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Plugin de Máscara -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script src="js/validacoesCampos.js"></script>
     <script src="js/verificarAcesso.js"></script>
     <script src="js/clienteScript.js"></script>
 </body>

@@ -34,11 +34,11 @@
             <div class="input-group" style="display: flex; gap: 10px;">
                 <div style="flex: 1;">
                     <label for="ddd"><i class="fas fa-phone-alt"></i> DDD</label>
-                    <input type="number" id="ddd" placeholder="Ex: 11" required min="11" max="99">
+                    <input type="text" id="ddd" placeholder="Ex: 11" required maxlength="2">
                 </div>
                 <div style="flex: 2;">
                     <label for="telefone">Telefone</label>
-                    <input type="text" id="telefone" placeholder="Seu telefone" required minlength="8" maxlength="10">
+                    <input type="text" id="telefone" placeholder="Seu telefone" required>
                 </div>
             </div>
 
@@ -60,6 +60,15 @@
             <p id="mensagemSucesso" class="erro" style="color: var(--primary-color);"></p>
         </form>
     </div>
+
+    <!-- 🧩 jQuery deve vir antes de qualquer script que o use -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Plugin de máscara -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- Scripts locais -->
+    <script src="js/validacoesCampos.js"></script>
     <script src="js/cadastroScript.js"></script>
 </body>
 </html>

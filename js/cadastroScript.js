@@ -39,7 +39,7 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
         senha: senha,
 
         // Campo obrigatório para definir o usuário como Cliente
-        tipoUsuarioId: 2
+        tipoUsuarioId: 1
     };
 
     try {
