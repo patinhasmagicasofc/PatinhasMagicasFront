@@ -172,8 +172,8 @@ $(document).ready(function () {
 const menuItem = document.querySelectorAll('.item-menu');
 
 function selectLink() {
-  menuItem.forEach((item) => item.classList.remove('ativo'));
-  this.classList.add('ativo');
+    menuItem.forEach((item) => item.classList.remove('ativo'));
+    this.classList.add('ativo');
 }
 
 menuItem.forEach((item) => item.addEventListener('click', selectLink));
@@ -184,38 +184,58 @@ const header = document.querySelector('header');
 
 // Abrir/fechar menu
 btnExpandir.addEventListener('click', (e) => {
-  e.stopPropagation()
-  nav.classList.toggle('expandir');
-  header.classList.toggle('expandir');
+    e.stopPropagation()
+    nav.classList.toggle('expandir');
+    header.classList.toggle('expandir');
 });
 
 // Fechar menu ao clicar fora
 document.addEventListener('click', (e) => {
-  if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
-    nav.classList.remove('expandir');
-    header.classList.remove('expandir');
-  }
+    if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
+        nav.classList.remove('expandir');
+        header.classList.remove('expandir');
+    }
 });
 
 //função filters
-const btnFilterExpandir = document.getElementById('btn-filters-expandir');
-const filtersExp = document.getElementById('filter-exp');
+const btnFilters = document.querySelector('#btn-filters-expandir');
+const sidebar = document.querySelector('.filters-exp');
 const main = document.querySelector('main');
 
-// Abrir/fechar painel
-btnFilterExpandir.addEventListener('click', (e) => {
+btnFilters.addEventListener('click', (e) => {
   e.stopPropagation();
-  filtersExp.classList.toggle('open');
-  main.classList.toggle('shifted');
+  sidebar.classList.toggle('open');
+  main.classList.toggle('shifted'); 
 });
+
 
 // Fechar painel ao clicar fora
 document.addEventListener('click', (e) => {
-  if (!filtersExp.contains(e.target) && filtersExp.classList.contains('open')) {
-    filtersExp.classList.remove('open');
-    main.classList.remove('shifted');
-  }
+    if (!filtersExp.contains(e.target) && filtersExp.classList.contains('open')) {
+        filtersExp.classList.remove('open');
+        main.classList.remove('shifted');
+    }
 });
 
+
+
+
+//
+document.addEventListener("click", (e) => {
+    const menus = document.querySelectorAll(".menu-container");
+  
+    menus.forEach(menu => {
+      if (!menu.contains(e.target)) {
+        menu.classList.remove("open");
+      }
+    });
+  
+
+    if (e.target.closest(".menu-btn")) {
+      const btn = e.target.closest(".menu-container");
+      btn.classList.toggle("open");
+    }
+  });
+  
 
 
