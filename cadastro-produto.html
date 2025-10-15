@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+  <!-- <link rel="stylesheet" href="./css/style.css"> -->
+  <link rel="stylesheet" href="./css/cadastro-produto.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+
+  <header>
+    <nav class="menu-lateral">
+      <div class="btn-expandir">
+        <i id="btn-exp" class="material-icons">list</i>
+      </div>
+
+      <ul>
+        <li class="item-menu ativo">
+          <a href="#">
+            <span class="icon"><i class="material-icons">assignment</i></span>
+            <span class="txt-link">Pedidos</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="material-icons">local_mall</i></span>
+            <span class="txt-link">Produtos</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="material-icons">settings</i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="material-icons">person</i></span>
+            <span class="txt-link">Usuários</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main>
+    <section id="product-service">
+      <div class="container-product-service">
+        <div class="title-product-service">
+          <ul>
+            <li>
+              <p>CADASTRO DE PRODUTO OU SERVIÇO</p>
+            </li>
+          </ul>
+        </div>
+
+        <div id="register-product">
+          <div class="container-product-information-basic">
+            <form class="basic">
+
+              <label>Nome do produto</label>
+              <input type="text">
+
+
+              <select name="categoria" id="categoria-product">
+                <option value="categoria1">categoria1</option>
+                <option value="categoria2">categoria2</option>
+                <option value="categoria3">categoria3</option>
+              </select>
+
+
+              <label>Espécie</label>
+              <input type="text">
+              <label>Fabricante</label>
+              <input type="text">
+              <label>Descrição</label>
+              <input type="text">
+
+            </form>
+          </div>
+        </div>
+
+        <div id="register-service">
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+
+  <script src="./js/cadastro-produto.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="js/verificarAcesso.js"></script> -->
+</body>
+
+</html>
