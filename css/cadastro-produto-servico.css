@@ -11,11 +11,11 @@
   padding-left: 0;
 }
 
-
 /* ===== Root ===== */
 :root {
   /* ===== colors ===== */
   --clr-black: #000000;
+  --clr-black-gray: #252525;
   --clr-gray: #929292;
   --clr-gray-one: #b4b4b4;
   --clr-gray-two: #dddddd;
@@ -36,7 +36,6 @@
   --fw-title: 700;
 }
 
-
 /* ===== Main ===== */
 main {
   margin-left: 54px;
@@ -44,7 +43,7 @@ main {
   transition: margin-left 0.4s ease, margin-right 0.4s ease;
   margin-right: 0;
 
-  header.expandir~& {
+  header.expandir ~ & {
     margin-left: 250px;
   }
 }
@@ -115,7 +114,6 @@ header {
     }
   }
 
-
   &.expandir {
     nav.menu-lateral {
       width: 250px;
@@ -133,20 +131,252 @@ header {
 /* #region */
 
 #product-service {
-  height: 100vh;
+  height: 100%;
   .container-product-service {
     background: var(--clr-gray-two);
     padding: 1em;
-    .title-product-service {}
-
-    #register-product {
-      .container-product-information-basic{
-        .basic{
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .title-product-service {
+      & ul {
+        & li {
+          & p {
+            font-size: var(--fs-sub-title);
+            padding: 0 0.5em 0 1.2em;
+          }
         }
       }
     }
 
-    #register-service {}
+    #register-product {
+      width: 100%;
+
+      .container-basic-product-info {
+        width: 100%;
+        background: var(--clr-white);
+        padding: 2em;
+        border-radius: 0.6em;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+        .product-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2em;
+
+          p {
+            font-size: 1.4em;
+            color: var(--clr-black-gray);
+            margin-bottom: 0.5em;
+          }
+
+          label {
+            margin-bottom: 0.3em;
+            color: var(--clr-black-gray);
+            display: block;
+          }
+
+          input,
+          select,
+          textarea {
+            width: 100%;
+            padding: 0.7em;
+            border: 1px solid var(--clr-gray-one);
+            border-radius: 0.4em;
+            font-size: 0.9em;
+            outline: none;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+              border-color: var(--clr-black-gray);
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 80px;
+          }
+
+          .form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            margin-top: 1em;
+
+            > div {
+              flex: 1;
+              min-width: 160px;
+              display: flex;
+              flex-direction: column;
+            }
+          }
+
+          .form-group {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .image-preview {
+            margin-top: 0.8em;
+            text-align: center;
+
+            img {
+              width: 100px;
+              border-radius: 0.4em;
+              border: 1px solid #ddd;
+            }
+          }
+
+          .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1em;
+            margin-top: 1em;
+
+            button {
+              padding: 0.7em 1.5em;
+              border: none;
+              border-radius: 0.4em;
+              cursor: pointer;
+              transition: background-color 0.2s ease;
+            }
+
+            .btn-cancel {
+              background: var(--clr-gray-two);
+
+              &:hover {
+                background: var(--clr-gray-one);
+              }
+            }
+
+            .btn-save {
+              background: var(--clr-olive);
+              color: var(--clr-black);
+
+              &:hover {
+                background: var(--clr-forest);
+                color: var(--clr-white);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #register-service {
+      width: 100%;
+
+      .container-basic-service-info {
+        width: 100%;
+        background: var(--clr-white);
+        padding: 2em;
+        border-radius: 0.6em;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+        .service-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2em;
+
+          p {
+            font-size: 1.4em;
+            color: var(--clr-black-gray);
+            margin-bottom: 0.5em;
+          }
+
+          label {
+            margin-bottom: 0.3em;
+            color: var(--clr-black-gray);
+            display: block;
+          }
+
+          input,
+          select,
+          textarea {
+            width: 100%;
+            padding: 0.7em;
+            border: 1px solid var(--clr-gray-one);
+            border-radius: 0.4em;
+            font-size: 0.9em;
+            outline: none;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+              border-color: var(--clr-black-gray);
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 80px;
+          }
+
+          .form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            margin-top: 1em;
+
+            > div {
+              flex: 1;
+              min-width: 160px;
+              display: flex;
+              flex-direction: column;
+            }
+          }
+
+          .form-group {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .image-preview {
+            margin-top: 0.8em;
+            text-align: center;
+
+            img {
+              width: 100px;
+              border-radius: 0.4em;
+              border: 1px solid #ddd;
+            }
+          }
+
+          .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1em;
+            margin-top: 1em;
+
+            button {
+              padding: 0.7em 1.5em;
+              border: none;
+              border-radius: 0.4em;
+              cursor: pointer;
+              transition: background-color 0.2s ease;
+            }
+
+            .btn-cancel {
+              background: var(--clr-gray-two);
+
+              &:hover {
+                background: var(--clr-gray-one);
+              }
+            }
+
+            .btn-save {
+              background: var(--clr-olive);
+              color: var(--clr-black);
+
+              &:hover {
+                background: var(--clr-forest);
+                color: var(--clr-white);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
