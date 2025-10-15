@@ -194,8 +194,9 @@ header {
           }
 
           textarea {
-            resize: vertical;
+            overflow-y: auto;
             min-height: 80px;
+             resize: none;
           }
 
           .form {
@@ -308,8 +309,9 @@ header {
           }
 
           textarea {
-            resize: vertical;
+            overflow-y: auto;
             min-height: 80px;
+             resize: none;
           }
 
           .form {
