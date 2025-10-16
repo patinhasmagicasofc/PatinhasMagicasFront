@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <!-- <link rel="stylesheet" href="./css/style.css"> -->
-    <link rel="stylesheet" href="./css/cadastro-produto-servico.css" />
+    <link rel="stylesheet" href="./css/cadastro-produto.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -30,8 +30,8 @@
         </div>
 
         <ul>
-          <li class="item-menu ativo">
-            <a href="#">
+          <li class="item-menu">
+            <a href="listapedidos.html">
               <span class="icon"><i class="material-icons">assignment</i></span>
               <span class="txt-link">Pedidos</span>
             </a>
@@ -54,17 +54,29 @@
               <span class="txt-link">Usuários</span>
             </a>
           </li>
+          <li class="item-menu ativo">
+            <a href="cadastro-produto.html">
+              <span class="icon"><i class="material-icons">add_box</i></span>
+              <span class="txt-link">Cadastro de Produto</span>
+            </a>
+          </li>
+          <li class="item-menu">
+            <a href="cadastro-servico.html">
+              <span class="icon"><i class="material-icons">add_circle</i></span>
+              <span class="txt-link">Cadastro de Servico</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <section id="product-service">
-        <div class="container-product-service">
-          <div class="title-product-service">
+      <section id="product">
+        <div class="container-product">
+          <div class="title-product">
             <ul>
               <li>
-                <p>PRODUTO E SERVIÇO</p>
+                <p>PRODUTO</p>
               </li>
             </ul>
           </div>
@@ -176,71 +188,11 @@
               </form>
             </div>
           </div>
-
-          <div id="register-service">
-            <div class="container-basic-service-info">
-              <form class="service-form">
-                <p>Cadastro de Serviço</p>
-
-                <div class="service-category">
-                  <label>Categoria do Serviço</label>
-                  <select>
-                    <option>Banho e Tosa</option>
-                    <option>Consulta Veterinária</option>
-                    <option>Adestramento</option>
-                    <option>Vacinação</option>
-                  </select>
-                </div>
-
-                <div class="service-description-short">
-                  <label>Descrição curta</label>
-                  <input
-                    type="text"
-                    placeholder="Banho completo para cães de porte médio"
-                  />
-                </div>
-
-                <div class="service-description-long">
-                  <label>Descrição detalhada</label>
-                  <textarea
-                    placeholder="Inclui banho, secagem, tosa higiênica e hidratação da pelagem."
-                  ></textarea>
-                </div>
-
-                <div class="form">
-                  <div class="service-price">
-                    <label>Preço do Serviço</label>
-                    <input type="text" placeholder="R$ 120,00" />
-                  </div>
-                  <div class="service-duration">
-                    <label>Duração estimada</label>
-                    <input type="text" placeholder="1h 30min" />
-                  </div>
-                </div>
-
-                <div class="form">
-                  <div class="service-provider">
-                    <label>Responsável / Prestador</label>
-                    <input type="text" placeholder="João Silva" />
-                  </div>
-                  <div class="service-date">
-                    <label>Data disponível</label>
-                    <input type="date" />
-                  </div>
-                </div>
-
-                <div class="actions">
-                  <button type="button" class="btn-cancel">Cancelar</button>
-                  <button type="submit" class="btn-save">Salvar</button>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
       </section>
     </main>
 
-    <script src="./js/cadastro-produto-servico.js"></script>
+    <script src="./js/cadastro-produto.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="js/verificarAcesso.js"></script> -->

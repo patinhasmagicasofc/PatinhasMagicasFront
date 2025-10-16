@@ -26,15 +26,3 @@ document.addEventListener('click', (e) => {
         header.classList.remove('expandir');
     }
 });
-
-
-//função filters
-const btnFilters = document.querySelector('#btn-filters-expandir');
-const sidebar = document.querySelector('.filters-exp');
-const main = document.querySelector('main');
-
-btnFilters.addEventListener('click', (e) => {
-  e.stopPropagation();
-  sidebar.classList.toggle('open');
-  main.classList.toggle('shifted'); 
-});

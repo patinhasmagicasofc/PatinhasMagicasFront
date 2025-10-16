@@ -3,10 +3,10 @@ let pageSize = 5;
 
 $(document).ready(async function () {
 
-    if (!verificarAcesso('administrador')) {
-        window.location.href = 'login.html';
-        return;
-    }
+    // if (!verificarAcesso('administrador')) {
+    //     window.location.href = 'login.html';
+    //     return;
+    // }
 
     await carregarStatusPedidos();
     await loadPage(currentPage, pageSize);
