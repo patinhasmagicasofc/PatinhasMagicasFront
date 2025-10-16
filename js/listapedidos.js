@@ -86,6 +86,7 @@ async function loadPage(page = 1, pageSize = 10) {
     }
 
     const pedidos = data.pedidoOutputDTO || data.pedidos || [];
+    console.log('Pedidos recebidos:', pedidos);
     const tabela = document.querySelector('.tbPedidos');
     if (!tabela) return;
 
@@ -95,23 +96,16 @@ async function loadPage(page = 1, pageSize = 10) {
         renderTable(pedidos);
     }
 
+    console.log('Dados recebidos da API:', data);
+
     // --- Atualiza estatísticas ---
     const totalPages = Math.max(1, Math.ceil((data.qTotalVendas || 0) / pageSize));
     document.getElementById('totalPages').textContent = `Página ${page} de ${totalPages}`;
 
-    const { pendentes, cancelados } = pedidos.reduce(
-        (acc, pedido) => {
-            if (pedido.statusPedido === "Pendente") acc.pendentes++;
-            if (pedido.statusPedido === "Cancelado") acc.cancelados++;
-            return acc;
-        },
-        { pendentes: 0, cancelados: 0 }
-    );
-
-    document.getElementById('totalVendas').innerHTML = `<p>Total de pedidos hoje</p><strong>${data.qTotalVendas || 0}</strong>`;
-    document.getElementById('valorTotalVendas').innerHTML = `<p>Total de vendas hoje</p><strong>${data.valorTotalVendas || 0}</strong>`;
-    document.getElementById('pedidosPendentes').innerHTML = `<p>Pedidos pendentes</p><strong>${pendentes}</strong>`;
-    document.getElementById('pedidosCancelados').innerHTML = `<p>Pedidos cancelados</p><strong>${cancelados}</strong>`;
+    document.getElementById('totalVendas').innerHTML = `<p>Total de pedidos</p><strong>${data.qTotalVendas || 0}</strong>`;
+    document.getElementById('valorTotalVendas').innerHTML = `<p>Total de vendas</p><strong>R$${data.valorTotalVendas || 0}</strong>`;
+    document.getElementById('pedidosPendentes').innerHTML = `<p>Pedidos pendentes</p><strong>${data.qPedidosPendente || 0}</strong>`;
+    document.getElementById('pedidosCancelados').innerHTML = `<p>Pedidos cancelados</p><strong>${data.qPedidosCancelado || 0}</strong>`;
 
     document.getElementById('btnPrev').disabled = page <= 1;
     document.getElementById('btnNext').disabled = page >= totalPages;
@@ -131,7 +125,7 @@ function renderTable(pedidos) {
         const linha = document.createElement('tr');
         linha.innerHTML = `
             <td>${pedido.id}</td>
-            <td>${pedido.nomeCliente}</td>
+            <td><div class="email">${pedido.nomeCliente}</div></td>
             <td>${dataFormatada}</td>
             <td>R$${pedido.valorPedido}</td>
             <td>${pedido.formaPagamento}</td>
@@ -171,8 +165,6 @@ async function carregarStatusPedidos() {
             option.value = status.nome;
             option.textContent = status.nome;
             selectStatus.appendChild(option);
-            // Seleciona o primeiro status automaticamente
-            if (data.length > 0) selectStatus.value = data[0].nome;
         });
     } catch (error) {
         console.error('Erro ao carregar status dos pedidos:', error);
