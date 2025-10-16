@@ -63,11 +63,11 @@
         <select id="status-pedidos" name="status" class="status-pedido">
           <option class="one" value="">Status</option>
         </select>
-        
-        <input class="date" type="date" name="dataInicio">
-        <input class="date" type="date" name="dataFim">
 
-        <button class="filters-item" type="submit">Aplicar filtros</button>
+        <input class="date" type="date" id="dataInicio" name="dataInicio">
+        <input class="date" type="date" id="dataFim" name="dataFim">
+
+        <button class="filters-item" type="button">Aplicar filtros</button>
         <button class="filters-item" type="reset">Limpar</button>
       </form>
     </div>
@@ -126,7 +126,6 @@
               <td><span class="status pago">Pago</span></td>
               <td class="actions">
 
-
                 <div class="menu-container">
                   <button class="menu-btn" title="Mais opções">
                     <span class="material-icons">more_vert</span>
@@ -135,8 +134,8 @@
                   <div class="menu-options">
                     <button class="view-btn" title="Ver">
                       <a href="detalhespedidos.html" title="Ver">
-                        <span class="material-icons">visibility</span> 
-                        <span> Detalhes</span> 
+                        <span class="material-icons">visibility</span>
+                        <span> Detalhes</span>
                       </a>
                     </button>
                     <button title="Editar"><span class="material-icons">edit</span> Editar</button>
@@ -155,22 +154,11 @@
 
     <!-- Paginação -->
     <nav class="pagination">
-      <!-- <button>&lt;</button>
-      <span id="totalPages">1</span>
-      <button>&gt;</button>
-      <select>
-        <option>10</option>
-        <option>25</option>
-        <option>50</option>
-      </select> -->
     </nav>
   </main>
 
-    <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="js/verificarAcesso.js"></script>
-    <script src="/js/listapedidos.js"></script>
+  <script src="js/verificarAcesso.js"></script>
+  <script src="/js/listapedidos.js"></script>
 
 </body>
 

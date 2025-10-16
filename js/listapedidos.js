@@ -1,253 +1,238 @@
 let currentPage = 1;
-let pageSize = 5;
+let pageSize = 10;
 
-$(document).ready(async function () {
+document.addEventListener("DOMContentLoaded", async () => {
     if (!verificarAcesso('administrador')) {
         window.location.href = 'login.html';
         return;
     }
 
+    // --- Carrega status dos pedidos ---
     await carregarStatusPedidos();
+
+    // --- Cria navegação da paginação ---
+    const pagination = document.querySelector('.pagination');
+    if (pagination) {
+        pagination.innerHTML = `
+            <button id="btnPrev">&lt;</button>
+            <span id="totalPages"></span>
+            <button id="btnNext">&gt;</button>
+            <select id="pageSizeSelect">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        `;
+    }
+
+    // --- Chama loadPage após os elementos existirem ---
     await loadPage(currentPage, pageSize);
 
-    // Eventos
-    $('#btnPrev').on('click', () => {
+    // --- Eventos de paginação ---
+    document.getElementById('btnPrev')?.addEventListener('click', async () => {
         if (currentPage > 1) {
             currentPage--;
-            loadPage(currentPage, pageSize);
+            await loadPage(currentPage, pageSize);
         }
     });
 
-    $('#btnNext').on('click', () => {
+    document.getElementById('btnNext')?.addEventListener('click', async () => {
         currentPage++;
-        loadPage(currentPage, pageSize);
+        await loadPage(currentPage, pageSize);
     });
 
-    $('#btnFiltrar').on('click', () => {
+    document.getElementById('pageSizeSelect')?.addEventListener('change', async (e) => {
+        pageSize = parseInt(e.target.value);
         currentPage = 1;
-        loadPage(currentPage, pageSize);
+        await loadPage(currentPage, pageSize);
     });
 
-    loadPage(currentPage, pageSize);
-
-
-    // Captura o clique no botão de filtro
-    $('#btnFiltrar').on('click', function (event) {
-        event.preventDefault(); // evita reload da página
-        //loadPage(); // carrega os pedidos com os filtros
+    document.querySelector('.filters-item[type="button"]')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        currentPage = 1;
+        await loadPage(currentPage, pageSize);
     });
 
+
+    // --- Inicializa menus ---
+    inicializarMenuLateral();
+    inicializarPainelFiltros();
+    inicializarMenuOptions();
 });
 
+async function loadPage(page = 1, pageSize = 10) {
+    if (!validarLogin()) return;
 
-//função header
-const menuItem = document.querySelectorAll('.item-menu');
+    const status = document.getElementById('status-pedidos')?.value || '';
+    const dataInicio = document.getElementById('dataInicio')?.value || '';
+    const dataFim = document.getElementById('dataFim')?.value || '';
+    const nome = document.getElementById('nome')?.value || '';
 
-function selectLink() {
-    menuItem.forEach((item) => item.classList.remove('ativo'));
-    this.classList.add('ativo');
+    const params = new URLSearchParams();
+    if (nome) params.append('nome', nome);
+    if (status) params.append('status', status);
+    if (dataInicio) params.append('dataInicio', dataInicio);
+    if (dataFim) params.append('dataFim', dataFim);
+    params.append('page', page);
+    params.append('pageSize', pageSize);
+
+    const url = `Pedido/paged?${params.toString()}`;
+    const data = await consumirAPIAutenticada(url, 'GET');
+
+    if (!data) {
+        console.error("Sem resposta da API.");
+        return;
+    }
+
+    const pedidos = data.pedidoOutputDTO || data.pedidos || [];
+    const tabela = document.querySelector('.tbPedidos');
+    if (!tabela) return;
+
+    if (pedidos.length === 0) {
+        tabela.innerHTML = `<tr><td colspan="7">Nenhum pedido encontrado.</td></tr>`;
+    } else {
+        renderTable(pedidos);
+    }
+
+    // --- Atualiza estatísticas ---
+    const totalPages = Math.max(1, Math.ceil((data.qTotalVendas || 0) / pageSize));
+    document.getElementById('totalPages').textContent = `Página ${page} de ${totalPages}`;
+
+    const { pendentes, cancelados } = pedidos.reduce(
+        (acc, pedido) => {
+            if (pedido.statusPedido === "Pendente") acc.pendentes++;
+            if (pedido.statusPedido === "Cancelado") acc.cancelados++;
+            return acc;
+        },
+        { pendentes: 0, cancelados: 0 }
+    );
+
+    document.getElementById('totalVendas').innerHTML = `<p>Total de pedidos hoje</p><strong>${data.qTotalVendas || 0}</strong>`;
+    document.getElementById('valorTotalVendas').innerHTML = `<p>Total de vendas hoje</p><strong>${data.valorTotalVendas || 0}</strong>`;
+    document.getElementById('pedidosPendentes').innerHTML = `<p>Pedidos pendentes</p><strong>${pendentes}</strong>`;
+    document.getElementById('pedidosCancelados').innerHTML = `<p>Pedidos cancelados</p><strong>${cancelados}</strong>`;
+
+    document.getElementById('btnPrev').disabled = page <= 1;
+    document.getElementById('btnNext').disabled = page >= totalPages;
 }
 
-menuItem.forEach((item) => item.addEventListener('click', selectLink));
-
-const btnExpandir = document.querySelector('#btn-exp');
-const nav = document.querySelector('.menu-lateral');
-const header = document.querySelector('header');
-
-// Abrir/fechar menu
-btnExpandir.addEventListener('click', (e) => {
-    e.stopPropagation()
-    nav.classList.toggle('expandir');
-    header.classList.toggle('expandir');
-});
-
-// Fechar menu ao clicar fora
-document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
-        nav.classList.remove('expandir');
-        header.classList.remove('expandir');
-    }
-});
-
-
-//função filters
-const btnFilters = document.querySelector('#btn-filters-expandir');
-const sidebar = document.querySelector('.filters-exp');
-const main = document.querySelector('main');
-
-btnFilters.addEventListener('click', (e) => {
-    e.stopPropagation();
-    sidebar.classList.toggle('open');
-    main.classList.toggle('shifted');
-});
-
-
-// Fechar painel ao clicar fora
-document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !btnFilters.contains(e.target)) {
-        sidebar.classList.remove('open');
-        main.classList.remove('shifted');
-    }
-});
-
-//menu-options
-document.addEventListener("click", (e) => {
-    const menus = document.querySelectorAll(".menu-container");
-
-    menus.forEach(menu => {
-        if (!menu.contains(e.target)) {
-            menu.classList.remove("open");
-        }
-    });
-
-
-    if (e.target.closest(".menu-btn")) {
-        const btn = e.target.closest(".menu-container");
-        btn.classList.toggle("open");
-    }
-});
-
-
 function renderTable(pedidos) {
-    const tabelaPedidos = $('.tbPedidos');
-    tabelaPedidos.empty();
+    const tabela = document.querySelector('.tbPedidos');
+    tabela.innerHTML = '';
 
     pedidos.forEach(pedido => {
         const data = new Date(pedido.dataPedido);
         const dataFormatada = data.toLocaleString("pt-BR", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false
+            day: "2-digit", month: "2-digit", year: "numeric",
+            hour: "2-digit", minute: "2-digit", hour12: false
         });
 
-        const linha = `
-        <tr>
+        const linha = document.createElement('tr');
+        linha.innerHTML = `
             <td>${pedido.id}</td>
             <td>${pedido.nomeCliente}</td>
             <td>${dataFormatada}</td>
             <td>R$${pedido.valorPedido}</td>
             <td>${pedido.formaPagamento}</td>
             <td><span class="status ${pedido.statusPedido.toLowerCase()}">${pedido.statusPedido}</span></td>
-            <td>
-                <button title="Ver"><a href="detalhespedidos.html?idPedido=${pedido.id}" title="Ver">👁</a></button>
-                <button title="Editar">✏️</button>
-                <button title="Excluir">🗑</button>
-            </td>
-        </tr>
-    `;
-        tabelaPedidos.append(linha);
+             <td class="actions">
+                <div class="menu-container">
+                  <button class="menu-btn" title="Mais opções">
+                    <span class="material-icons">more_vert</span>
+                  </button>
+
+                  <div class="menu-options">
+                    <button class="view-btn" title="Ver">
+                      <a href="detalhespedidos.html?idPedido=${pedido.id}" title="Ver">
+                        <span class="material-icons">visibility</span>
+                        <span> Detalhes</span>
+                      </a>
+                    </button>
+                    <button title="Editar"><span class="material-icons">edit</span> Editar</button>
+                  </div>
+                </div>
+              </td>
+        `;
+        tabela.appendChild(linha);
     });
 }
 
-const pagination = $('.pagination');
-const navPagination = `
-<button id="btnPrev">&lt;</button>
-<span id="totalPages"></span>
-<button id="btnNext">&gt;</button>
-<select id="pageSizeSelect">
-    <option value="10">10</option>
-    <option value="25">25</option>
-    <option value="50">50</option>
-</select>
-`;
-
-pagination.append(navPagination);
-async function loadPage(page = 1, pageSize = 5) {
-    // pega os valores dos inputs
-    const status = $('#status-pedidos').val();
-    const dataInicio = $('#dataInicio').val();
-    const dataFim = $('#dataFim').val();
-    const nome = $('#nome').val();
-
-    // monta a query string dinamicamente
-    const params = new URLSearchParams();
-
-    if (nome) params.append('nome', nome);
-    if (status) params.append('status', status);
-    if (dataInicio) params.append('dataInicio', dataInicio);
-    if (dataFim) params.append('dataFim', dataFim);
-
-    // também pode incluir paginação
-    params.append('page', page);
-    params.append('pageSize', pageSize);
-
-    try {
-        if (!validarLogin()) return;
-
-        const URL = `Pedido/paged?${params.toString()}`
-        const data = await consumirAPIAutenticada(URL, 'GET');
-
-        const totalPages = Math.ceil(data.qTotalVendas / pageSize);
-        $('#totalPages').text(`Página ${page} de ${totalPages}`);
-
-        renderTable(data.pedidoOutputDTO);
-
-        let totalPedidosPendentes = 0;
-        let totalPedidosCancelados = 0;
-        data.pedidoOutputDTO.forEach(pedido => {
-            if (pedido.statusPedido === "Pendente") totalPedidosPendentes++;
-            if (pedido.statusPedido === "Cancelado") totalPedidosCancelados++;
-
-            const cardTotalVendas = $('#totalVendas');
-            const linhaTotalVendas = `<p>Total de pedidos hoje</p>
-                                    <strong>${data.qTotalVendas}</strong>`;
-
-            cardTotalVendas.html(linhaTotalVendas);
-
-            const cardvalorTotalVendas = $('#valorTotalVendas');
-            const linhacardvalorTotalVendas = `<p>Total de vendas hoje</p>
-                                    <strong>${data.valorTotalVendas}</strong>`;
-            cardvalorTotalVendas.html(linhacardvalorTotalVendas);
-        });
-
-        const cardPedidosPendentes = $('#pedidosPendentes');
-        const linhaPedidosPendentes = `<p>Pedidos pendentes</p>
-                                    <strong>${totalPedidosPendentes}</strong>`;
-
-        cardPedidosPendentes.html(linhaPedidosPendentes);
-
-        const cardPedidosCancelados = $('#pedidosCancelados');
-        const linhaPedidosCancelados = `<p>Pedidos cancelados</p>
-                                    <strong>${totalPedidosCancelados}</strong>`;
-        cardPedidosCancelados.html(linhaPedidosCancelados);
-
-        $('#btnPrev').prop('disabled', page <= 1);
-        $('#btnNext').prop('disabled', page >= totalPages);
-
-        //window.history.replaceState({}, document.title, window.location.pathname);
-
-    } catch (error) {
-        console.error('Erro ao carregar pedidos:', error);
-    }
-}
-
-
-$('#pageSizeSelect').on('change', function () {
-    pageSize = parseInt($(this).val());
-    currentPage = 1;
-    loadPage(currentPage, pageSize);
-});
-
-loadPage(currentPage, pageSize);
-
-
-//Carregar Status Pedidos
 async function carregarStatusPedidos() {
     try {
         if (!validarLogin()) return;
 
         const data = await consumirAPIAutenticada('/StatusPedido', 'GET');
-        const selectStatus = $('#status-pedidos');
+        const selectStatus = document.getElementById('status-pedidos');
+        if (!selectStatus || !data) return;
 
         data.forEach(status => {
-            const option = `<option value="${status.nome}">${status.nome}</option>`;
-            console.log(status.nome)
-            selectStatus.append(option);
+            const option = document.createElement('option');
+            option.value = status.nome;
+            option.textContent = status.nome;
+            selectStatus.appendChild(option);
+            // Seleciona o primeiro status automaticamente
+            if (data.length > 0) selectStatus.value = data[0].nome;
         });
     } catch (error) {
         console.error('Erro ao carregar status dos pedidos:', error);
     }
+}
+
+// --- Inicialização dos menus ---
+function inicializarMenuLateral() {
+    const menuItems = document.querySelectorAll('.item-menu');
+    const btnExpandir = document.getElementById('btn-exp');
+    const nav = document.querySelector('.menu-lateral');
+    const header = document.querySelector('header');
+
+    menuItems.forEach(item => item.addEventListener('click', () => {
+        menuItems.forEach(i => i.classList.remove('ativo'));
+        item.classList.add('ativo');
+    }));
+
+    btnExpandir?.addEventListener('click', e => {
+        e.stopPropagation();
+        nav?.classList.toggle('expandir');
+        header?.classList.toggle('expandir');
+    });
+
+    document.addEventListener('click', e => {
+        if (!nav?.contains(e.target) && nav?.classList.contains('expandir')) {
+            nav.classList.remove('expandir');
+            header?.classList.remove('expandir');
+        }
+    });
+}
+
+function inicializarPainelFiltros() {
+    const btnFilters = document.getElementById('btn-filters-expandir');
+    const sidebar = document.querySelector('.filters-exp');
+    const main = document.querySelector('main');
+
+    btnFilters?.addEventListener('click', e => {
+        e.stopPropagation();
+        sidebar?.classList.toggle('open');
+        main?.classList.toggle('shifted');
+    });
+
+    document.addEventListener('click', e => {
+        if (!sidebar?.contains(e.target) && !btnFilters?.contains(e.target)) {
+            sidebar?.classList.remove('open');
+            main?.classList.remove('shifted');
+        }
+    });
+}
+
+function inicializarMenuOptions() {
+    document.addEventListener("click", e => {
+        document.querySelectorAll(".menu-container").forEach(menu => {
+            if (!menu.contains(e.target)) menu.classList.remove("open");
+        });
+
+        const btn = e.target.closest(".menu-container");
+        if (e.target.closest(".menu-btn") && btn) {
+            btn.classList.toggle("open");
+        }
+    });
 }
