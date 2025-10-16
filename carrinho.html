@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/carrinho.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Produtos</h2>
+    <div id="produtos">
+        <div class="produto" data-id="1" data-nome="Camisa" data-preco="49.90">
+            <p>Camisa</p>
+            <p>R$ 49,90</p>
+            <button class="btn-add">Adicionar</button>
+        </div>
+
+        <div class="produto" data-id="2" data-nome="Tênis" data-preco="199.90">
+            <p>Tênis</p>
+            <p>R$ 199,90</p>
+            <button class="btn-add">Adicionar</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Carrinho</h2>
+    <ul id="lista-carrinho"></ul>
+
+    <p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
+    <button id="limpar-carrinho">🗑️ Limpar carrinho</button>
+
+    <script src="js/carrinho.js"></script>
+</body>
+
+</html>
