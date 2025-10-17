@@ -117,9 +117,10 @@ function renderTable(usuarios) {
 
     usuarios.forEach(usuario => {
         const data = new Date(usuario.dataCadastro);
-        const dataFormatada = data.toLocaleString("pt-BR", {
-            day: "2-digit", month: "2-digit", year: "numeric",
-            hour: "2-digit", minute: "2-digit", hour12: false
+        const dataFormatada = data.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
         });
 
         console.log(usuario);
@@ -132,6 +133,11 @@ function renderTable(usuarios) {
             <td>${usuario.ddd}</td>
             <td>${usuario.telefone}</td>
             <td>${usuario.tipoUsuarioNome}</td>
+            <td>
+                <span style="color:${usuario.ativo ? 'green' : 'red'};">
+                    ${usuario.ativo ? "Ativo" : "Inativo"}
+                </span>
+            </td>
              <td class="actions">
                 <div class="menu-container">
                   <button class="menu-btn" title="Mais opções">
