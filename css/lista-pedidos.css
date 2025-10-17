@@ -75,6 +75,8 @@ header {
     overflow: hidden;
     transition: width 0.4s ease;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
 
     .btn-expandir {
       margin: 1em 0 2em 1em;
@@ -88,40 +90,72 @@ header {
         color: var(--clr-forest-one);
       }
     }
-
-    ul {
+    .menu-informations {
       display: flex;
       flex-direction: column;
-      margin: 0 0 0 0.2em;
-
-      li {
-        a {
+      justify-content: space-between;
+      height: 100%;
+      .informations {
+        ul {
           display: flex;
-          align-items: center;
-          gap: 1em;
-          padding: 1em 1em 1em 0.8em;
-          transition: background 0.2s;
+          flex-direction: column;
+          margin: 0 0 0 0.2em;
 
-          .material-icons {
-            color: var(--clr-black);
-            font-size: 1.5em;
-          }
+          li {
+            a {
+              display: flex;
+              align-items: center;
+              gap: 1em;
+              padding: 1em 1em 1em 0.8em;
+              transition: background 0.2s;
 
-          .txt-link {
-            color: var(--clr-black);
-            margin-left: 3em;
-            transition: opacity 0.2s, margin 0.2s;
-            opacity: 0;
-            min-width: 300px;
+              .material-icons {
+                color: var(--clr-black);
+                font-size: 1.5em;
+              }
+
+              .txt-link {
+                color: var(--clr-black);
+                margin-left: 3em;
+                transition: opacity 0.2s, margin 0.2s;
+                opacity: 0;
+                min-width: 300px;
+              }
+            }
+
+            a:hover {
+              background: var(--clr-silver);
+            }
+
+            &.ativo {
+              background: var(--clr-gray);
+            }
           }
         }
-
-        a:hover {
-          background: var(--clr-silver);
-        }
-
-        &.ativo {
-          background: var(--clr-gray);
+      }
+      .perfil-adm {
+        li.item-menu {
+          a {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            padding: 1em 1em 1em 0.8em;
+            transition: background 0.2s;
+            .img-perfil {
+              img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+              }
+            }
+            .txt-link {
+              color: var(--clr-black);
+              margin-left: 3em;
+              transition: opacity 0.2s, margin 0.2s;
+              opacity: 0;
+              min-width: 300px;
+            }
+          }
         }
       }
     }
@@ -130,10 +164,31 @@ header {
   &.expandir {
     nav.menu-lateral {
       width: 250px;
-
-      ul li a .txt-link {
-        opacity: 1;
-        margin-left: 0;
+      .menu-informations {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .informations {
+          a .txt-link {
+            opacity: 1;
+            margin-left: 0;
+          }
+        }
+        .perfil-adm {
+          li.item-menu {
+            a {
+              .img-perfil {
+                img {
+                  width: 35px;
+                }
+              }
+              .txt-link {
+                margin-left: 0;
+                opacity: 1;
+              }
+            }
+          }
+        }
       }
     }
   }
