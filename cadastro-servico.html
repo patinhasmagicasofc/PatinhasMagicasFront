@@ -25,13 +25,13 @@
 
       <ul>
         <li class="item-menu">
-          <a href="listapedidos.html">
+          <a href="lista-pedidos.html">
             <span class="icon"><i class="material-icons">assignment</i></span>
             <span class="txt-link">Pedidos</span>
           </a>
         </li>
         <li class="item-menu">
-          <a href="#">
+          <a href="lista-produtos.html">
             <span class="icon"><i class="material-icons">local_mall</i></span>
             <span class="txt-link">Produtos</span>
           </a>
@@ -43,7 +43,7 @@
           </a>
         </li>
         <li class="item-menu">
-          <a href="#">
+          <a href="lista-usuarios.html">
             <span class="icon"><i class="material-icons">person</i></span>
             <span class="txt-link">Usuários</span>
           </a>
@@ -78,16 +78,16 @@
 
         <div id="register-service">
           <div class="container-basic-service-info">
-            <form class="service-form">
+            <form id="formServico" class="service-form">
               <p>Cadastro de Serviço</p>
 
               <div class="service-category">
                 <label>Categoria do Serviço</label>
-                <select>
-                  <option>Banho e Tosa</option>
+                <select id="tipos-servicos">
+                  <!-- <option>Banho e Tosa</option>
                   <option>Consulta Veterinária</option>
                   <option>Adestramento</option>
-                  <option>Vacinação</option>
+                  <option>Vacinação</option> -->
                 </select>
               </div>
 
@@ -104,22 +104,22 @@
               <div class="form">
                 <div class="service-price">
                   <label>Preço do Serviço</label>
-                  <input type="text" placeholder="R$ 120,00" />
+                  <input type="text" placeholder="R$ 120,00" disabled="true" />
                 </div>
                 <div class="service-duration">
                   <label>Duração estimada</label>
-                  <input type="text" placeholder="1h 30min" />
+                  <input type="text" placeholder="1h 30min"/>
                 </div>
               </div>
 
               <div class="form">
                 <div class="service-provider">
                   <label>Responsável / Prestador</label>
-                  <input type="text" placeholder="João Silva" />
+                  <input type="text" placeholder="João Silva" disabled="true" />
                 </div>
                 <div class="service-date">
-                  <label>Data disponível</label>
-                  <input type="date" />
+                  <label>Data disponível</label >
+                  <input type="date" disabled="true" />
                 </div>
               </div>
 
@@ -134,11 +134,9 @@
     </section>
   </main>
 
-
+  <div id="toast" class="toast"></div>
+  <script src="js/verificarAcesso.js"></script>
   <script src="./js/cadastro-servico.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="js/verificarAcesso.js"></script> -->
 </body>
 
 </html>
