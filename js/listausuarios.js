@@ -1,191 +1,231 @@
-$(document).ready(function () {
+let currentPage = 1;
+let pageSize = 10;
 
-    const urlBase = "http://localhost:5260/api";
-
-    let currentPage = 1;
-    let pageSize = 10;
-
-    function loadPage(page = 1, pageSize = 5) {
-        // pega os valores dos inputs
-        const status = $('#status-usuarios').val();
-        const dataInicio = $('#dataInicio').val();
-        const dataFim = $('#dataFim').val();
-        const nome = $('#nome').val();
-
-        // monta a query string dinamicamente
-        const params = new URLSearchParams();
-
-        if (nome) params.append('nome', nome);
-        if (status) params.append('status', status);
-        if (dataInicio) params.append('dataInicio', dataInicio);
-        if (dataFim) params.append('dataFim', dataFim);
-
-        // também pode incluir paginação
-        params.append('page', page);
-        params.append('pageSize', pageSize);
-        console.log(params.toString());
-
-        $.ajax({
-           // url: `${urlBase}/usuario/paged?${params.toString()}`,
-            url: `${urlBase}/Usuario/`,
-            type: "GET",
-            contentType: "application/json",
-            success: function (data) {
-                console.log(data);
-                const totalPages = Math.ceil(data.qTotalVendas / pageSize);
-                $('#totalPages').text(`Página ${page} de ${totalPages}`);
-
-                renderTable(data);
-
-                let totalusuariosPendentes = 0;
-                let totalusuariosCancelados = 0;
-                data.forEach(usuario => {
-                    if (usuario.statususuario === "Pendente") totalusuariosPendentes++;
-                    if (usuario.statususuario === "Cancelado") totalusuariosCancelados++;
-
-                    const cardTotalVendas = $('#totalVendas');
-                    const linhaTotalVendas = `<p>Total de usuarios hoje</p>
-                                            <strong>${data.qTotalVendas}</strong>`;
-
-                    cardTotalVendas.html(linhaTotalVendas);
-
-                    const cardvalorTotalVendas = $('#valorTotalVendas');
-                    const linhacardvalorTotalVendas = `<p>Total de vendas hoje</p>
-                                            <strong>${data.valorTotalVendas}</strong>`;
-                    cardvalorTotalVendas.html(linhacardvalorTotalVendas);
-                });
-
-                const cardusuariosPendentes = $('#usuariosPendentes');
-                const linhausuariosPendentes = `<p>usuarios pendentes</p>
-                                            <strong>${totalusuariosPendentes}</strong>`;
-
-                cardusuariosPendentes.html(linhausuariosPendentes);
-
-                const cardusuariosCancelados = $('#usuariosCancelados');
-                const linhausuariosCancelados = `<p>usuarios cancelados</p>
-                                            <strong>${totalusuariosCancelados}</strong>`;
-                cardusuariosCancelados.html(linhausuariosCancelados);
-
-                $('#btnPrev').prop('disabled', page <= 1);
-                $('#btnNext').prop('disabled', page >= totalPages);
-
-                //window.history.replaceState({}, document.title, window.location.pathname);
-            },
-            error: function (erro) {
-                console.log('Deu erro!', erro);
-            }
-        });
+document.addEventListener("DOMContentLoaded", async () => {
+    if (!verificarAcesso('administrador')) {
+        window.location.href = 'login.html';
+        return;
     }
 
-    function renderTable(usuarios) {
-        const tabelausuarios = $('.tbusuarios');
-        tabelausuarios.empty();
+    // --- Carrega tipos dos usuarios ---
+    await carregarTiposUsuario();
 
-        usuarios.forEach(usuario => {
-            const data = new Date(usuario.datausuario);
-            const dataFormatada = data.toLocaleString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false
-            });
-
-            const linha = `
-            <tr>
-                <td>${usuario.id}</td>
-                <td>${usuario.nome}</td>
-                <td>${usuario.cpf}</td>
-                <td>${usuario.email}</td>
-                <td>(${usuario.ddd})${usuario.telefone}</td>
-                <td><span class="status ${usuario.tipoUsuarioNome.toLowerCase()}">${usuario.tipoUsuarioNome}</span></td>
-                <td>
-                    <button title="Ver"><a href="detalhesusuarios.html?idusuario=${usuario.id}" title="Ver">👁</a></button>
-                    <button title="Editar">✏️</button>
-                    <button title="Excluir">🗑</button>
-                </td>
-            </tr>
+    // --- Cria navegação da paginação ---
+    const pagination = document.querySelector('.pagination');
+    if (pagination) {
+        pagination.innerHTML = `
+            <button id="btnPrev">&lt;</button>
+            <span id="totalPages"></span>
+            <button id="btnNext">&gt;</button>
+            <select id="pageSizeSelect">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
         `;
-            tabelausuarios.append(linha);
-        });
     }
 
-    const pagination = $('.pagination');
-    const navPagination = `
-    <button id="btnPrev">&lt;</button>
-    <span id="totalPages"></span>
-    <button id="btnNext">&gt;</button>
-    <select id="pageSizeSelect">
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-    </select>
-`;
-    pagination.append(navPagination);
+    // --- Chama loadPage após os elementos existirem ---
+    await loadPage(currentPage, pageSize);
 
-
-    $('#btnPrev').on('click', () => {
+    // --- Eventos de paginação ---
+    document.getElementById('btnPrev')?.addEventListener('click', async () => {
         if (currentPage > 1) {
             currentPage--;
-            loadPage(currentPage, pageSize);
+            await loadPage(currentPage, pageSize);
         }
     });
-    $('#btnNext').on('click', () => {
+
+    document.getElementById('btnNext')?.addEventListener('click', async () => {
         currentPage++;
-        loadPage(currentPage, pageSize);
+        await loadPage(currentPage, pageSize);
     });
 
-    $('#pageSizeSelect').on('change', function () {
-        pageSize = parseInt($(this).val());
+    document.getElementById('pageSizeSelect')?.addEventListener('change', async (e) => {
+        pageSize = parseInt(e.target.value);
         currentPage = 1;
-        loadPage(currentPage, pageSize);
+        await loadPage(currentPage, pageSize);
     });
 
-    loadPage(currentPage, pageSize);
+    document.querySelector('.filters-item[type="button"]')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        currentPage = 1;
+        await loadPage(currentPage, pageSize);
+    });
 
-    $.ajax({
-        url: urlBase + "/StatusPedido",
-        type: "GET",
-        contentType: "application/json",
-        success: function (dados) {
-            const statususuario = $('#status-usuarios');
-            dados.forEach(status => {
-                const option = `<option value="${status.nome}">${status.nome}</option>`;
-                statususuario.append(option);
-            });
-        },
-        error: function (erro) {
-            console.log('Deu erro!', erro);
+
+    // --- Inicializa menus ---
+    inicializarMenuLateral();
+    inicializarPainelFiltros();
+    inicializarMenuOptions();
+});
+
+async function loadPage(page = 1, pageSize = 10) {
+    if (!validarLogin()) return;
+
+    const tipoUsuario = document.getElementById('tipo-usuario')?.value || '';
+    const dataInicio = document.getElementById('dataInicio')?.value || '';
+    const dataFim = document.getElementById('dataFim')?.value || '';
+    const nome = document.getElementById('nome')?.value || '';
+
+    const params = new URLSearchParams();
+    if (nome) params.append('nome', nome);
+    if (tipoUsuario) params.append('tipoUsuario', tipoUsuario);
+    if (dataInicio) params.append('dataInicio', dataInicio);
+    if (dataFim) params.append('dataFim', dataFim);
+    params.append('page', page);
+    params.append('pageSize', pageSize);
+
+    const url = `Usuario/paged?${params.toString()}`;
+    const data = await consumirAPIAutenticada(url, 'GET');
+
+    if (!data) {
+        console.error("Sem resposta da API.");
+        return;
+    }
+
+    const usuarios = data.usuarioOutputDTOs || data.usuarios || [];
+    console.log('Usuarios recebidos:', usuarios);
+    const tabela = document.querySelector('.tbUsuarios');
+    if (!tabela) return;
+
+    if (usuarios.length === 0) {
+        tabela.innerHTML = `<tr><td colspan="7">Nenhum usuario encontrado.</td></tr>`;
+    } else {
+        renderTable(usuarios);
+    }
+
+    console.log('Dados recebidos da API:', data);
+
+    // --- Atualiza estatísticas ---
+    const totalPages = Math.max(1, Math.ceil((data.qTotalVendas || 0) / pageSize));
+    document.getElementById('totalPages').textContent = `Página ${page} de ${totalPages}`;
+
+    document.getElementById('totalVendas').innerHTML = `<p>Total de usuarios</p><strong>${data.qTotalVendas || 0}</strong>`;
+    document.getElementById('valorTotalVendas').innerHTML = `<p>Total de vendas</p><strong>R$${data.valorTotalVendas || 0}</strong>`;
+    document.getElementById('usuariosPendentes').innerHTML = `<p>Usuarios pendentes</p><strong>${data.qPedidosPendente || 0}</strong>`;
+    document.getElementById('usuariosCancelados').innerHTML = `<p>Usuarios cancelados</p><strong>${data.qPedidosCancelado || 0}</strong>`;
+
+    document.getElementById('btnPrev').disabled = page <= 1;
+    document.getElementById('btnNext').disabled = page >= totalPages;
+}
+
+function renderTable(usuarios) {
+    const tabela = document.querySelector('.tbUsuarios');
+    tabela.innerHTML = '';
+
+    usuarios.forEach(usuario => {
+        const data = new Date(usuario.dataCadastro);
+        const dataFormatada = data.toLocaleString("pt-BR", {
+            day: "2-digit", month: "2-digit", year: "numeric",
+            hour: "2-digit", minute: "2-digit", hour12: false
+        });
+
+        console.log(usuario);
+        const linha = document.createElement('tr');
+        linha.innerHTML = `
+            <td>${usuario.id}</td>
+            <td>${usuario.nome}</td>
+            <td><div class="email">${usuario.email}</div></td>
+            <td>${dataFormatada}</td>
+            <td>${usuario.ddd}</td>
+            <td>${usuario.telefone}</td>
+            <td>${usuario.tipoUsuarioNome}</td>
+             <td class="actions">
+                <div class="menu-container">
+                  <button class="menu-btn" title="Mais opções">
+                    <span class="material-icons">more_vert</span>
+                  </button>
+                  <div class="menu-options">
+                    <button class="view-btn" title="Ver">
+                      <a href="detalhesUsuario.html?idUsuario=${usuario.id}" title="Ver">
+                        <span class="material-icons">visibility</span>
+                        <span> Detalhes</span>
+                      </a>
+                    </button>
+                    <button title="Editar"><span class="material-icons">edit</span> Editar</button>
+                  </div>
+                </div>
+              </td>
+        `;
+        tabela.appendChild(linha);
+    });
+}
+
+async function carregarTiposUsuario() {
+    try {
+        if (!validarLogin()) return;
+
+        const data = await consumirAPIAutenticada('/TipoUsuario', 'GET');
+        const selectTipoUsuario = document.getElementById('tipo-usuario');
+        if (!selectTipoUsuario || !data) return;
+
+        data.forEach(tipoUsuario => {
+            const option = document.createElement('option');
+            option.value = tipoUsuario.descricaoTipoUsuario;
+            option.textContent = tipoUsuario.descricaoTipoUsuario;
+            selectTipoUsuario.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar tipos do usuario:', error);
+    }
+}
+
+// --- Inicialização dos menus ---
+function inicializarMenuLateral() {
+    const menuItems = document.querySelectorAll('.item-menu');
+    const btnExpandir = document.getElementById('btn-exp');
+    const nav = document.querySelector('.menu-lateral');
+    const header = document.querySelector('header');
+
+    menuItems.forEach(item => item.addEventListener('click', () => {
+        menuItems.forEach(i => i.classList.remove('ativo'));
+        item.classList.add('ativo');
+    }));
+
+    btnExpandir?.addEventListener('click', e => {
+        e.stopPropagation();
+        nav?.classList.toggle('expandir');
+        header?.classList.toggle('expandir');
+    });
+
+    document.addEventListener('click', e => {
+        if (!nav?.contains(e.target) && nav?.classList.contains('expandir')) {
+            nav.classList.remove('expandir');
+            header?.classList.remove('expandir');
         }
     });
+}
 
+function inicializarPainelFiltros() {
+    const btnFilters = document.getElementById('btn-filters-expandir');
+    const sidebar = document.querySelector('.filters-exp');
+    const main = document.querySelector('main');
 
-    // Captura o clique no botão de filtro
-    $('#btnFiltrar').on('click', function (event) {
-        event.preventDefault(); // evita reload da página
-        loadPage(); // carrega os usuarios com os filtros
+    btnFilters?.addEventListener('click', e => {
+        e.stopPropagation();
+        sidebar?.classList.toggle('open');
+        main?.classList.toggle('shifted');
     });
-});
 
+    document.addEventListener('click', e => {
+        if (!sidebar?.contains(e.target) && !btnFilters?.contains(e.target)) {
+            sidebar?.classList.remove('open');
+            main?.classList.remove('shifted');
+        }
+    });
+}
 
-//função header
+function inicializarMenuOptions() {
+    document.addEventListener("click", e => {
+        document.querySelectorAll(".menu-container").forEach(menu => {
+            if (!menu.contains(e.target)) menu.classList.remove("open");
+        });
 
-const menuItem = document.querySelectorAll('.item-menu')
-function selectLink() {
-    menuItem.forEach((item) => item.classList.remove('ativo'))
-    this.classList.add('ativo')
-};
-
-menuItem.forEach((item) => item.addEventListener('click', selectLink)
-);
-
-
-const btnExpandir = document.querySelector('#btn-exp');
-const nav = document.querySelector('.menu-lateral');
-const header = document.querySelector('header');
-
-btnExpandir.addEventListener('click', () => {
-    nav.classList.toggle('expandir');
-    header.classList.toggle('expandir');
-});
+        const btn = e.target.closest(".menu-container");
+        if (e.target.closest(".menu-btn") && btn) {
+            btn.classList.toggle("open");
+        }
+    });
+}

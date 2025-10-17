@@ -7,9 +7,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./css/listausuarios.css">
+  <link rel="stylesheet" href="./css/listaUsuarios.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Patinhas Mágicas</title>
 </head>
 
@@ -25,7 +26,7 @@
         <li class="item-menu ativo">
           <a href="#">
             <span class="icon"><i class="material-icons">assignment</i></span>
-            <span class="txt-link">usuarios</span>
+            <span class="txt-link">Pedidos</span>
           </a>
         </li>
         <li class="item-menu">
@@ -41,7 +42,7 @@
           </a>
         </li>
         <li class="item-menu">
-          <a href="#listausuarios.html">
+          <a href="/listausuarios.html">
             <span class="icon"><i class="material-icons">person</i></span>
             <span class="txt-link">Usuários</span>
           </a>
@@ -50,97 +51,82 @@
     </nav>
   </header>
 
-  <main>
-    <section class="filters">
-      <form>
-        <input id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
+  <section id="filter-exp" class="filters-exp">
+    <div id="btn-filters-expandir">
+      <span class="material-symbols-outlined">tune</span>
+    </div>
 
-        <select id="status-usuarios" name="status">
-          <option value="">Status</option>
-          <option value="pendente">Pendente</option>
-          <option value="pago">Pago</option>
-          <option value="enviado">Enviado</option>
-          <option value="cancelado">Cancelado</option>
+    <div class="filters">
+      <form>
+        <input class="busca-id" id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
+        <select id="tipo-usuario" name="status" class="status-usuario">
+          <option class="one" value="">Tipo Usuario</option>
         </select>
 
-        <input type="date" name="dataInicio" id="dataInicio">
-        <input type="date" name="dataFim" id="dataFim">
+        <input class="date" type="date" id="dataInicio" name="dataInicio">
+        <input class="date" type="date" id="dataFim" name="dataFim">
 
-        <button id="btnFiltrar">Aplicar filtros</button>
-        <button type="reset">Limpar</button>
+        <button class="filters-item" type="button">Aplicar filtros</button>
+        <button class="filters-item" type="reset">Limpar</button>
       </form>
-    </section>
+    </div>
 
+  </section>
+
+  <main>
+
+    <section class="summary-orders">
+      <div class="summary">
+
+        <div id="totalVendas" class="card">
+          <p>Total de usuarios</p>
+          <strong>0</strong>
+        </div>
+        <div id="valorTotalVendas" class="card">
+          <p>Total de vendas</p>
+          <strong>R$ 0,00</strong>
+        </div>
+        <div id="usuariosPendentes" class="card">
+          <p>Usuarios pendentes</p>
+          <strong>0</strong>
+        </div>
+        <div id="usuariosCancelados" class="card">
+          <p>Usuarios cancelados</p>
+          <strong>0</strong>
+        </div>
+      </div>
+
+      <!-- Lista de usuarios -->
+      <div class="orders">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Data do Cadastro</th>
+              <th>DDD</th>
+              <th>Telefone</th>
+              <th>Tipo Usuario</th>
+              <th></th>
+            </tr>
+          </thead>
+          <!-- <tbody> -->
+          <tbody class="tbUsuarios">
+            <!-- Linhas da tabela inseridas via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
     <!-- Resumo -->
-    <section class="summary">
-      <div id="totalVendas" class="card">
-        <p>Total de usuarios hoje</p>
-        <!-- <strong>10</strong> -->
-      </div>
-      <div id="valorTotalVendas" class="card">
-        <p>Total de vendas hoje</p>
-        <!-- <strong>R$ 3.500,00</strong> -->
-      </div>
-      <div id="usuariosPendentes" class="card">
-        <p>usuarios pendentes</p>
-        <strong>2</strong>
-      </div>
-      <div id="usuariosCancelados" class="card">
-        <p>usuarios cancelados</p>
-        <strong>1</strong>
-      </div>
-    </section>
-
-    <!-- Lista de usuarios -->
-    <section class="usuarios">
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <!-- <tbody> -->
-        <tbody class="tbusuarios">
-          <tr>
-            <td>1234</td>
-            <td>Robert Pato <br><small>robert@email.com</small></td>
-            <td>12/11/2020</td>
-            <td>R$ 100,00</td>
-            <td>Pix</td>
-            <td><span class="status pago">Pago</span></td>
-            <td>
-              <button title="Ver"><a href="detalhesusuarios.html" title="Ver">👁</a></button>
-              <button title="Editar">✏️</button>
-              <button title="Excluir">🗑</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
 
     <!-- Paginação -->
     <nav class="pagination">
-      <!-- <button>&lt;</button>
-    <span id="totalPages">1</span>
-    <button>&gt;</button>
-    <select>
-      <option>10</option>
-      <option>25</option>
-      <option>50</option>
-    </select> -->
     </nav>
+  </main>
 
-    <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="./js/listausuarios.js"></script>
-
+  <script src="js/verificarAcesso.js"></script>
+  <script src="/js/listaUsuarios.js"></script>
 </body>
 
 </html>
