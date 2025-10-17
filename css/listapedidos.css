@@ -15,6 +15,7 @@
 :root {
   /* ===== colors ===== */
   --clr-black: #000000;
+  --clr-black-gray: #252525;
   --clr-gray: #929292;
   --clr-gray-one: #b4b4b4;
   --clr-gray-two: #dddddd;
@@ -111,6 +112,7 @@ header {
             margin-left: 3em;
             transition: opacity 0.2s, margin 0.2s;
             opacity: 0;
+            min-width: 300px;
           }
         }
 
@@ -124,7 +126,6 @@ header {
       }
     }
   }
-
 
   &.expandir {
     nav.menu-lateral {
@@ -255,11 +256,13 @@ header {
 /* #region summary-orders*/
 
 .summary-orders {
-
   display: flex;
   flex-direction: column;
 
   .summary {
+    background: var(--clr-gray-two);
+    padding: 1em;
+    border-radius: 1em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1em;
@@ -286,12 +289,16 @@ header {
   }
 
   .orders {
-    background: var(--clr-white);
-    border-radius: 0.6em;
+    background: var(--clr-gray-two);
+    padding: 1em;
+    border-radius: 1em;
     padding: 1em;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 
     table {
+      background: var(--clr-white);
+      padding: 1em;
+      border-radius: .6em;
       display: flex;
       flex-direction: column;
       width: 100%;
