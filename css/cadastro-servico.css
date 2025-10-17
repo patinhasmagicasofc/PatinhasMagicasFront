@@ -43,7 +43,7 @@ main {
   transition: margin-left 0.4s ease, margin-right 0.4s ease;
   margin-right: 0;
 
-  header.expandir~& {
+  header.expandir ~ & {
     margin-left: 250px;
   }
 }
@@ -51,7 +51,6 @@ main {
 /* #region header */
 
 header {
-  
   nav.menu-lateral {
     width: 54px;
     height: 100vh;
@@ -64,6 +63,8 @@ header {
     overflow: hidden;
     transition: width 0.4s ease;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
 
     .btn-expandir {
       margin: 1em 0 2em 1em;
@@ -77,93 +78,111 @@ header {
         color: var(--clr-forest-one);
       }
     }
-
     .menu-informations {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      .informations {
+        ul {
+          display: flex;
+          flex-direction: column;
+          margin: 0 0 0 0.2em;
 
-      ul.informations {
-        display: flex;
-        flex-direction: column;
-        margin: 0 0 0 0.2em;
+          li {
+            a {
+              display: flex;
+              align-items: center;
+              gap: 1em;
+              padding: 1em 1em 1em 0.8em;
+              transition: background 0.2s;
 
-        li {
+              .material-icons {
+                color: var(--clr-black);
+                font-size: 1.5em;
+              }
+
+              .txt-link {
+                color: var(--clr-black);
+                margin-left: 3em;
+                transition: opacity 0.2s, margin 0.2s;
+                opacity: 0;
+                min-width: 300px;
+              }
+            }
+
+            a:hover {
+              background: var(--clr-silver);
+            }
+
+            &.ativo {
+              background: var(--clr-gray);
+            }
+          }
+        }
+      }
+      .perfil-adm {
+        li.item-menu {
           a {
             display: flex;
             align-items: center;
             gap: 1em;
             padding: 1em 1em 1em 0.8em;
             transition: background 0.2s;
-
-            .material-icons {
-              color: var(--clr-black);
-              font-size: 1.5em;
-            }
-
-            .txt-link {
-              color: var(--clr-black);
-              margin-left: 3em;
-              transition: opacity 0.2s, margin 0.2s;
-              opacity: 0;
-              min-width: 400px;
-            }
-          }
-
-          a:hover {
-            background: var(--clr-silver);
-          }
-
-          &.ativo {
-            background: var(--clr-gray);
-          }
-        }
-
-      }
-
-      .perfil-adm {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-
-        li {
-          a {
-            display: flex;
-            align-items: center;
-            gap: 1em;
-            padding: 1em 1em 1em 0.6em;
-            transition: background 0.2s;
-
-
-            span {
+            .img-perfil {
               img {
                 width: 35px;
                 height: 35px;
                 border-radius: 50%;
               }
             }
+            .txt-link {
+              color: var(--clr-black);
+              margin-left: 3em;
+              transition: opacity 0.2s, margin 0.2s;
+              opacity: 0;
+              min-width: 300px;
+            }
           }
         }
       }
     }
-
-
-
-
   }
 
   &.expandir {
     nav.menu-lateral {
       width: 250px;
-  
-      li a .txt-link {
-        opacity: 1;
-        margin-left: 0;
+      .menu-informations {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .informations {
+          a .txt-link {
+            opacity: 1;
+            margin-left: 0;
+          }
+        }
+        .perfil-adm {
+          li.item-menu {
+            a {
+              .img-perfil {
+                img {
+                  width: 35px;
+                }
+              }
+              .txt-link {
+                margin-left: 0;
+                opacity: 1;
+              }
+            }
+          }
+        }
       }
     }
   }
-  
 }
 
 /* #endregion */
-
 
 /* #region service */
 
@@ -244,7 +263,7 @@ header {
             gap: 1em;
             margin-top: 1em;
 
-            >div {
+            > div {
               flex: 1;
               min-width: 160px;
               display: flex;
@@ -305,7 +324,5 @@ header {
     }
   }
 }
-
-
 
 /* #endregion */
