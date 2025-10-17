@@ -51,6 +51,7 @@ main {
 /* #region header */
 
 header {
+  
   nav.menu-lateral {
     width: 54px;
     height: 100vh;
@@ -77,54 +78,88 @@ header {
       }
     }
 
-    ul {
-      display: flex;
-      flex-direction: column;
-      margin: 0 0 0 0.2em;
+    .menu-informations {
 
-      li {
-        a {
-          display: flex;
-          align-items: center;
-          gap: 1em;
-          padding: 1em 1em 1em 0.8em;
-          transition: background 0.2s;
+      ul.informations {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 0 0.2em;
 
-          .material-icons {
-            color: var(--clr-black);
-            font-size: 1.5em;
+        li {
+          a {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            padding: 1em 1em 1em 0.8em;
+            transition: background 0.2s;
+
+            .material-icons {
+              color: var(--clr-black);
+              font-size: 1.5em;
+            }
+
+            .txt-link {
+              color: var(--clr-black);
+              margin-left: 3em;
+              transition: opacity 0.2s, margin 0.2s;
+              opacity: 0;
+              min-width: 400px;
+            }
           }
 
-          .txt-link {
-            color: var(--clr-black);
-            margin-left: 3em;
-            transition: opacity 0.2s, margin 0.2s;
-            opacity: 0;
-            min-width: 300px;
+          a:hover {
+            background: var(--clr-silver);
+          }
+
+          &.ativo {
+            background: var(--clr-gray);
           }
         }
 
-        a:hover {
-          background: var(--clr-silver);
-        }
+      }
 
-        &.ativo {
-          background: var(--clr-gray);
+      .perfil-adm {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+        li {
+          a {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            padding: 1em 1em 1em 0.6em;
+            transition: background 0.2s;
+
+
+            span {
+              img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+              }
+            }
+          }
         }
       }
     }
+
+
+
+
   }
 
   &.expandir {
     nav.menu-lateral {
       width: 250px;
-
-      ul li a .txt-link {
+  
+      li a .txt-link {
         opacity: 1;
         margin-left: 0;
       }
     }
   }
+  
 }
 
 /* #endregion */
