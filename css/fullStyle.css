@@ -21,6 +21,8 @@ body {
 
   
 
+
+
 /* ----- ////// -------- */
 .login-container, .painel {
     background: #fff;
@@ -234,4 +236,176 @@ input[type="text"]:focus {
         flex: 0 0 70%; /* Ocupa 70% do espaço */
     }
 
-/**/
+/* Estilo do Painel (container principal) */
+.painel {
+    max-width: 900px;
+    width: 95%; /* Responsividade */
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Título da Seção */
+.section-header {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Container da Lista de Pedidos */
+.dados-api-pedidos {
+    display: grid;
+    /* Layout com duas colunas em telas maiores, ou uma coluna em telas menores */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* Estilo do Card Individual do Pedido */
+.pedido-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid var(--primary-color); /* Destaque lateral */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pedido-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.pedido-card strong {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+/* Badge de Status */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Cores do Badge de Status */
+.status-pendente .status-badge, .status-aguardando .status-badge { 
+    background-color: #ffe0b2; /* Laranja Claro */
+    color: #ff9800; 
+}
+.status-processando .status-badge, .status-confirmado .status-badge { 
+    background-color: #c8e6c9; /* Verde Claro */
+    color: #4caf50; 
+}
+.status-concluido .status-badge, .status-entregue .status-badge { 
+    background-color: #bbdefb; /* Azul Claro */
+    color: #2196f3; 
+}
+.status-cancelado .status-badge { 
+    background-color: #ffcdd2; /* Vermelho Claro */
+    color: var(--error-color); 
+}
+
+/* Valor Total */
+.valor-total {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+/* Lista de Itens do Pedido */
+.itens-list {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.itens-list h4 {
+    margin: 0 0 8px 0;
+    font-size: 1em;
+    color: #666;
+    font-weight: 500;
+}
+
+.itens-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.itens-list li {
+    padding: 3px 0;
+    color: var(--text-color);
+    border-bottom: 1px dotted #f0f0f0;
+}
+
+.itens-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* Layout do cabeçalho da lista de itens */
+.itens-header-grid {
+    display: grid;
+    /* CORREÇÃO: Usar 2fr 1fr para melhor proporção e alinhamento */
+    grid-template-columns: 2fr 1fr; 
+    font-weight: bold;
+    color: #555;
+    padding: 5px 0;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+/* Layout dos itens individuais (Produto e Quantidade) */
+.item-row {
+    display: grid;
+    /* CORREÇÃO: Usar 2fr 1fr para ser idêntico ao cabeçalho */
+    grid-template-columns: 2fr 1fr; 
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+    font-size: 0.9em;
+    align-items: center;
+}
+
+.item-row:last-child {
+    border-bottom: none;
+}
+
+/* Utilitário de alinhamento */
+.align-right {
+    text-align: right;
+}
+
+/* Estilo para alinhar Data e Total ao lado um do outro */
+.pedido-info-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.pedido-info-summary p {
+    margin: 0;
+}
+
+/* ===== */
