@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meu Carrinho</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/carrinho.css">
+
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Meu Pet Shop</a>
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-secondary" href="meus-pedidos.html">Meus Pedidos</a>
+        <a class="btn btn-outline-success" href="servicos-index.html">Serviços</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTEÚDO -->
+  <main class="container">
+    <h2 class="mb-4">🛒 Meu Carrinho</h2>
+    <div id="cartContainer"></div>
+
+    <div class="text-end mt-4">
+      <a href="index.html" class="btn btn-outline-secondary me-2">← Continuar comprando</a>
+      <button id="btnCheckout" class="btn btn-primary">Finalizar compra</button>
+    </div>
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Dados -->
+  <script src="js/dados.js"></script>
+
+  <script>
+
+    function renderCart() {
+      const container = document.getElementById('cartContainer');
+      const cart = getCart();
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="empty-cart">
+            <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" width="100" class="mb-3">
+            <h5>Seu carrinho está vazio.</h5>
+          </div>`;
+        document.getElementById('btnCheckout').disabled = true;
+        return;
+      }
+
+      document.getElementById('btnCheckout').disabled = false;
+      let html = `
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead class="table-light">
+              <tr>
+                <th></th>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+      for (const item of cart) {
+        const produto = produtos.find(p => p.id === item.id);
+        if (!produto) continue;
+
+        const subtotal = produto.preco * item.quantidade;
+        html += `
+          <tr>
+            <td><img src="${produto.imagem}" class="produto-img"></td>
+            <td>${produto.nome}</td>
+            <td>R$ ${produto.preco.toFixed(2)}</td>
+            <td>
+              <input type="number" class="form-control form-control-sm w-75"
+                     value="${item.quantidade}" min="1"
+                     onchange="updateQuantity(${produto.id}, this.value)">
+            </td>
+            <td><strong>R$ ${subtotal.toFixed(2)}</strong></td>
+            <td><button class="btn btn-sm btn-danger" onclick="removeFromCart(${produto.id})">🗑</button></td>
+          </tr>`;
+      }
+
+      const total = calcularTotal(cart);
+      html += `
+            </tbody>
+          </table>
+        </div>
+        <div class="text-end">
+          <h4>Total: <span class="text-success">R$ ${total.toFixed(2)}</span></h4>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+  </script>
+
+  <script src="js/verificarAcesso.js"></script>
+  <script src="js/carrinho.js"></script>
+</body>
+
+</html>

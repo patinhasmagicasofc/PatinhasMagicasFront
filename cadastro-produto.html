@@ -97,40 +97,45 @@
               <div class="form">
                 <div class="category">
                   <label>Categoria</label>
-                  <select>
-                    <option>Ração</option>
+                  <select id="categoria">
+                    <!-- <option>Ração</option>
                     <option>Brinquedo</option>
                     <option>Acessório</option>
                     <option>Higiene</option>
-                    <option>Medicamento</option>
+                    <option>Medicamento</option> -->
                   </select>
                 </div>
 
                 <div class="species">
                   <label>Espécie / Animal</label>
-                  <select>
-                    <option>Cachorro</option>
+                  <select disabled="true">
+                    <!-- <option>Cachorro</option>
                     <option>Gato</option>
                     <option>Pássaro</option>
                     <option>Peixe</option>
-                    <option>Roedor</option>
+                    <option>Roedor</option> -->
                   </select>
                 </div>
               </div>
 
               <div class="brand">
+                <label>Nome</label>
+                <input id="nome" type="text" placeholder="Premier" />
+              </div>
+
+              <div class="brand">
                 <label>Marca / Fabricante</label>
-                <input type="text" placeholder="Premier" />
+                <input id="marca" type="text" placeholder="Premier" />
               </div>
 
               <div class="short-description">
                 <label>Descrição curta</label>
-                <input type="text" placeholder="Ração premium para cães adultos de porte médio" />
+                <input id="descricao" placeholder="Ração premium para cães adultos de porte médio" />
               </div>
 
               <div class="long-description">
                 <label>Descrição detalhada</label>
-                <textarea
+                <textarea id="descricaoDetalhada"
                   placeholder="Fórmula com ingredientes de alta qualidade e enriquecida com vitaminas e minerais essenciais."></textarea>
               </div>
 
@@ -145,7 +150,7 @@
                 </div>
                 <div class="barcode">
                   <label>Código de barras / SKU</label>
-                  <input type="text" placeholder="7898433321015" />
+                  <input id="codigo" type="text" placeholder="7898433321015" />
                 </div>
               </div>
 
@@ -163,7 +168,7 @@
               <div class="form">
                 <div class="expiration-date">
                   <label>Data de validade</label>
-                  <input type="date" />
+                  <input id="validade" type="date" />
                 </div>
                 <div class="stock-location">
                   <label>Localização no estoque</label>
@@ -173,7 +178,7 @@
 
               <div class="form-group">
                 <label>Link da Imagem do produto</label>
-                <input type="text" placeholder="https://static.petz.com.br/fotos/1558637497224.jpg" />
+                <input id="urlImagem" type="text" placeholder="https://static.petz.com.br/fotos/1558637497224.jpg" />
               </div>
 
               <!-- <div class="form-group">

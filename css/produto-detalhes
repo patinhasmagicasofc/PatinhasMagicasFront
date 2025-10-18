@@ -1,0 +1,9 @@
+    .produto-img {
+      max-width: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .descricao {
+      white-space: pre-line;
+    }

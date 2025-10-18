@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             descricaoDetalhada: document.getElementById("descricaoDetalhada").value,
             validade: document.getElementById("validade").value,
             categoriaId: parseInt(document.getElementById("categoria").value),
-            //ativo: document.getElementById("ativo").checked
         };
 
         await atualizarProduto(produto);
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function preencherProduto(produto) {
         document.getElementById('nome').value = produto.nome || '';
-        document.getElementById('especie').value = produto.especie || '';
+        //document.getElementById('especie').value = produto.especie || '';
         document.getElementById('preco').value = produto.preco || '';
         document.getElementById('descricao').value = produto.descricao || '';
         document.getElementById('marca').value = produto.marca || '';
