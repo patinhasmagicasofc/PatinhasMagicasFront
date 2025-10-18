@@ -137,7 +137,7 @@ function renderTable(produtos) {
                   </button>
                   <div class="menu-options">
                     <button class="view-btn" title="Ver">
-                      <a href="detalhesUsuario.html?idUsuario=${produto.id}" title="Ver">
+                      <a href="editar-produto.html?idProduto=${produto.id}" title="Ver">
                         <span class="material-icons">visibility</span>
                         <span> Detalhes</span>
                       </a>
