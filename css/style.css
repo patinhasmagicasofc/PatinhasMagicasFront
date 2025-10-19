@@ -68,7 +68,7 @@ header {
 
     .menu {
       background: var(--clr-white-one);
-      backdrop-filter: blur(1em);
+      backdrop-filter: blur(.5em);
       padding: 1em 2em;
       border-radius: 2em;
 
