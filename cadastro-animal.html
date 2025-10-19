@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Animal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Patinhas Mágicas</a>
+      <a class="btn btn-light" href="index.html">Voltar</a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">Cadastro de Animal</h2>
+
+    <form id="formCadastroAnimal">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome *</label>
+        <input type="text" id="nome" class="form-control" maxlength="100" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="especie" class="form-label">Espécie *</label>
+        <input type="text" id="especie" class="form-control" maxlength="50" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="raca" class="form-label">Raça</label>
+        <input type="text" id="raca" class="form-control" maxlength="100">
+      </div>
+
+      <div class="mb-3">
+        <label for="idade" class="form-label">Idade</label>
+        <input type="number" id="idade" class="form-control" min="0" max="100" placeholder="anos">
+      </div>
+
+      <div class="mb-3">
+        <label for="tamanhoAnimal" class="form-label">Tamanho *</label>
+        <select id="tamanhoAnimal" class="form-select" required>
+          <option value="">Selecione o tamanho</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Cadastrar Animal</button>
+    </form>
+  </div>
+
+  <script src="./js/verificarAcesso.js"></script>
+  <script src="./js/cadastro-animal.js"></script>
+</body>
+</html>
