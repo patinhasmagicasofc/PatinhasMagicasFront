@@ -28,52 +28,7 @@
     </div>
   </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
-    const agendamento = agendamentos.find(a => a.id == id);
-
-    const animais = [
-      { id: 1, nome: "Luna", especie: "Cachorro", tamanho: "Médio" },
-      { id: 2, nome: "Mimi", especie: "Gato", tamanho: "Pequeno" }
-    ];
-
-    const servicos = [
-      { id: 1, nome: "Banho", tipo: "Higiene", duracao: 45, preco: 50.00 },
-      { id: 2, nome: "Tosa Completa", tipo: "Higiene", duracao: 60, preco: 80.00 },
-      { id: 3, nome: "Consulta Veterinária", tipo: "Saúde", duracao: 30, preco: 120.00 }
-    ];
-
-    const div = document.getElementById("detalhesAgendamento");
-
-    if (!agendamento) {
-      div.innerHTML = `<div class="alert alert-danger">Agendamento não encontrado.</div>`;
-    } else {
-      const animal = animais.find(a => a.id == agendamento.idAnimal);
-      const servico = servicos.find(s => s.id == agendamento.idServico);
-
-      const dataFormatada = new Date(agendamento.data).toLocaleString("pt-BR", {
-        dateStyle: "short",
-        timeStyle: "short"
-      });
-
-      div.innerHTML = `
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">${servico.nome}</h5>
-            <p><strong>Animal:</strong> ${animal.nome} (${animal.especie} - ${animal.tamanho})</p>
-            <p><strong>Data e hora:</strong> ${dataFormatada}</p>
-            <p><strong>Forma de pagamento:</strong> ${agendamento.tipoPagamento}</p>
-            <p><strong>Status:</strong> ${agendamento.status}</p>
-            <p><strong>Confirmado em:</strong> ${agendamento.dataConfirmacao}</p>
-            <hr>
-            <h5 class="text-success text-end">Total: R$ ${servico.preco.toFixed(2)}</h5>
-          </div>
-        </div>
-      `;
-    }
-  </script>
+  <script src="/js/verificarAcesso.js"></script>
+  <script src="/js/agendamento-sucesso.js"></script>
 </body>
 </html>

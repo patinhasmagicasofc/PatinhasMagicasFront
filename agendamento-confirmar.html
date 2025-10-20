@@ -1,31 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmar Agendamento</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Ícone da aba -->
+  <link rel="icon" href="img/pet-icon.png">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 15px;
+    }
+    .btn-success {
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 10px;
+    }
+  </style>
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Pet Shop Acadêmico</a>
-      <a class="btn btn-light" href="agendamento-servico.html">Voltar</a>
+      <a class="navbar-brand fw-bold" href="index.html">🐾 Pet Shop Acadêmico</a>
+      <a class="btn btn-light btn-sm" href="agendamento-servico.html">Voltar</a>
     </div>
   </nav>
 
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">Confirmação do Agendamento</h2>
+  <div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4 fw-semibold text-info">Confirmação do Agendamento</h2>
+
+    <!-- Resumo preenchido dinamicamente -->
     <div id="resumoAgendamento" class="mb-4"></div>
 
-    <form id="formFinalizar">
+    <!-- Formulário -->
+    <form id="formFinalizar" class="shadow-sm p-4 bg-white rounded-3">
       <div class="mb-3">
-        <label class="form-label">Forma de Pagamento (simulação)</label>
+        <label class="form-label fw-semibold">Forma de Pagamento</label>
         <select id="tipoPagamento" class="form-select" required>
-          <option value="">Selecione</option>
-          <option value="Pix">Pix</option>
-          <option value="Cartão de Crédito">Cartão de Crédito</option>
-          <option value="Cartão de Débito">Cartão de Débito</option>
+          <option value="">Selecione...</option>
         </select>
       </div>
 
@@ -33,73 +52,8 @@
     </form>
   </div>
 
-  <script>
-    const agendamentoTemp = JSON.parse(localStorage.getItem("agendamentoTemp"));
-
-    const animais = [
-      { id: 1, nome: "Luna", especie: "Cachorro", tamanho: "Médio" },
-      { id: 2, nome: "Mimi", especie: "Gato", tamanho: "Pequeno" }
-    ];
-
-    const servicos = [
-      { id: 1, nome: "Banho", tipo: "Higiene", duracao: 45, preco: 50.00 },
-      { id: 2, nome: "Tosa Completa", tipo: "Higiene", duracao: 60, preco: 80.00 },
-      { id: 3, nome: "Consulta Veterinária", tipo: "Saúde", duracao: 30, preco: 120.00 }
-    ];
-
-    const divResumo = document.getElementById("resumoAgendamento");
-
-    if (!agendamentoTemp) {
-      divResumo.innerHTML = `<div class="alert alert-danger">Nenhum agendamento encontrado.</div>`;
-      document.getElementById("formFinalizar").style.display = "none";
-    } else {
-      const animal = animais.find(a => a.id == agendamentoTemp.idAnimal);
-      const servico = servicos.find(s => s.id == agendamentoTemp.idServico);
-
-      const dataFormatada = new Date(agendamentoTemp.data).toLocaleString("pt-BR", {
-        dateStyle: "short",
-        timeStyle: "short"
-      });
-
-      divResumo.innerHTML = `
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">${servico.nome}</h5>
-            <p><strong>Animal:</strong> ${animal.nome} (${animal.especie} - ${animal.tamanho})</p>
-            <p><strong>Data e hora:</strong> ${dataFormatada}</p>
-            <p><strong>Duração estimada:</strong> ${servico.duracao} min</p>
-            <p><strong>Preço:</strong> R$ ${servico.preco.toFixed(2)}</p>
-          </div>
-        </div>
-      `;
-    }
-
-    // Finalização do agendamento
-    document.getElementById("formFinalizar").addEventListener("submit", e => {
-      e.preventDefault();
-
-      const tipoPagamento = document.getElementById("tipoPagamento").value;
-
-      if (!tipoPagamento) {
-        alert("Selecione uma forma de pagamento!");
-        return;
-      }
-
-      const agendamentoFinal = {
-        ...agendamentoTemp,
-        tipoPagamento,
-        status: "Confirmado",
-        dataConfirmacao: new Date().toLocaleString()
-      };
-
-      const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
-      agendamentos.push(agendamentoFinal);
-      localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
-
-      localStorage.removeItem("agendamentoTemp");
-
-      window.location.href = "agendamento-sucesso.html?id=" + agendamentoFinal.id;
-    });
-  </script>
+  <script src="js/verificarAcesso.js"></script>
+  <script src="js/agendamento-confirmar.js"></script>
 </body>
+
 </html>
