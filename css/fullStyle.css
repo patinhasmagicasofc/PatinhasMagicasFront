@@ -13,67 +13,9 @@
     --bg-color: #f4f4f9;        /* Fundo neutro e suave */
 }
 
-
 [class*="fontawesome-"]:before {
     font-family: 'FontAwesome', sans-serif;
-  }
-  
-  body {
-    background: #ececec;
-    /* overflow: hidden; */
-    user-select: none;
-  }
-  
-  #Button {
-    position: absolute; top: 15px; left: 15px;
-    width: 60px; height: 60px;
-    font-size: 18px; 
-    text-align: center; 
-    line-height: 60px; 
-    background: var(--primary-color);
-    border-radius: 50%;
-    color: #ececec;
-    cursor: pointer;
-    z-index: 1;
-  }
-  
-  .Nav {
-    position: absolute; 
-    margin: auto; 
-    top: 0; right: 0; bottom: 0; left: 0;
-    width: 302px; height: 302px;
-    font-size: 0;
-    transform: scale(0);
-    transition: transform 0.8s;
-    box-shadow: 0px 0px 10px #999;
-    z-index: 1;
-  }
-  
-  a {
-    display: inline-block;
-    width: 150px; height: 150px;
-    font-size: 28px; 
-    text-decoration: none; 
-    line-height: 150px; 
-    text-align: center;
-  /*   text-shadow: 2px 2px 4px #666;  */
-    color: #fff;
-  }
-  
-  a:nth-of-type(odd) { margin-right: 2px; }
-  a:nth-child(1) { margin-bottom: 2px; background: var(--primary-color); }
-  a:nth-child(2) { background: var(--accent-purple) }
-  a:nth-child(3) { background: var(--accent-blue) }
-  a:nth-child(4) { background: var(--accent-orange); }
-  
-  .active {
-    transform: scale(1);
-  }
-  
-  canvas { position: absolute; }
-
-
-
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -83,13 +25,80 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    user-select: none;
 }
 
-  
+/* Botão da Patinha */
+#Button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    z-index: 30; /* sempre no topo */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 
+/* Menu de Navegação */
+.Nav {
+    position: fixed;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 302px;
+    height: 302px;
+    font-size: 0;
+    transform: scale(0);
+    transition: transform 0.8s;
+    box-shadow: 0px 0px 10px #999;
+    z-index: 20;
+    pointer-events: none; /* evita bloquear quando fechado */
+}
 
+.Nav.active {
+    transform: scale(1);
+    pointer-events: auto; /* ativa clique quando aberto */
+}
 
-/* ----- ////// -------- */
+/* Links dentro do menu */
+.Nav a {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    font-size: 28px;
+    text-decoration: none;
+    line-height: 150px;
+    text-align: center;
+    color: #fff;
+}
+
+.Nav a:nth-of-type(odd) { margin-right: 2px; }
+.Nav a:nth-child(1) { margin-bottom: 2px; background: var(--primary-color); }
+.Nav a:nth-child(2) { background: var(--accent-purple); }
+.Nav a:nth-child(3) { background: var(--accent-blue); }
+.Nav a:nth-child(4) { background: var(--accent-orange); }
+
+/* Canvas de fundo (animações de patinhas) */
+canvas { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* permite clicar através */
+}
+
+/* Conteúdo principal */
 .login-container, .painel {
     background: #fff;
     padding: 40px;
@@ -98,8 +107,11 @@ body {
     width: 100%;
     max-width: 420px;
     text-align: center;
+    position: relative;
+    z-index: 5; /* acima do canvas, abaixo do menu */
 }
 
+/* Header */
 .header {
     margin-bottom: 25px;
     color: var(--primary-color);
@@ -115,6 +127,7 @@ body {
     font-weight: 600;
 }
 
+/* Inputs e Formulários */
 .input-group {
     text-align: left;
     margin-bottom: 20px;
@@ -152,6 +165,7 @@ input[type="text"]:focus {
     outline: none;
 }
 
+/* Botões */
 .btn-login, .btn-logout {
     width: 100%;
     padding: 12px;
@@ -173,31 +187,6 @@ input[type="text"]:focus {
     background-color: #4a9f4a;
 }
 
-.erro {
-    color: var(--error-color);
-    margin-top: 15px;
-    font-weight: 600;
-}
-
-
-/* Estilos do Painel Restrito */
-.painel {
-    max-width: 800px;
-    text-align: left;
-}
-
-.painel h1 {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.painel h3 {
-    color: var(--text-color);
-    margin-top: 30px;
-}
-
 .btn-logout {
     background-color: var(--error-color);
     color: white;
@@ -210,132 +199,98 @@ input[type="text"]:focus {
     background-color: #c0392b;
 }
 
-.dados-api {
-    background: var(--bg-color);
-    padding: 15px;
-    border-radius: 6px;
-    white-space: pre-wrap;
-    font-family: monospace;
-    overflow-x: auto;
+.erro {
+    color: var(--error-color);
+    margin-top: 15px;
+    font-weight: 600;
 }
 
-/* loginCadastro*/
-
+/* Botão de Cadastro */
 .btn-cadastro {
     width: 100%;
     padding: 12px;
-    margin-top: 10px; /* Adiciona um espaço menor entre Entrar e Cadastro */
+    margin-top: 10px;
     border: 2px solid var(--primary-color); 
     border-radius: 6px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    
-    /* Cores Invertidas/Secundárias */
-    background-color: transparent; /* Fundo transparente */
-    color: var(--primary-color); /* Texto com a cor principal */
+    background-color: transparent;
+    color: var(--primary-color);
 }
 
 .btn-cadastro:hover {
-    background-color: var(--primary-color); /* Preenche com a cor principal ao passar o mouse */
-    color: white; /* Muda o texto para branco */
-}
-
-/* Ajuste o margin-top do .btn-login para reduzir o espaçamento total, se desejar */
-.btn-login {
-    /* Mantém os estilos existentes */
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px; /* Mantém 20px de espaço acima dele */
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s;
     background-color: var(--primary-color);
     color: white;
 }
 
-/**/
-
-
-/*clienteHTML*/
-
-    /* Estilos específicos para esta página */
-    .painel h2 { margin-bottom: 5px; }
-    .section-header {
-        color: var(--primary-color);
-        margin-top: 30px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 5px;
-        font-size: 1.3em;
-        text-align: left;
-    }
-    .form-section {
-        padding: 20px 0;
-        border-bottom: 1px dashed #eee;
-    }
-    .dados-api-pedidos {
-        background: var(--bg-color);
-        padding: 15px;
-        border-radius: 6px;
-        white-space: pre-wrap;
-        font-family: monospace;
-        overflow-x: auto;
-        margin-top: 15px;
-        max-height: 400px;
-    }
-    .input-inline {
-        display: flex;
-        gap: 10px;
-    }
-    .input-inline > div {
-        flex: 1;
-    }
-    /* Ajuste do campo DDD */
-    #ddd-input-group {
-        flex: 0 0 30%; /* Ocupa 30% do espaço */
-    }
-    #telefone-input-group {
-        flex: 0 0 70%; /* Ocupa 70% do espaço */
-    }
-
-/* Estilo do Painel (container principal) */
+/* Painel Restrito */
 .painel {
     max-width: 900px;
-    width: 95%; /* Responsividade */
+    width: 95%;
     margin: 30px auto;
     padding: 25px;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
-/* Título da Seção */
+.painel h1 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
 .section-header {
     color: var(--primary-color);
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
     margin-top: 30px;
     margin-bottom: 20px;
+    font-size: 1.3em;
 }
 
-/* Container da Lista de Pedidos */
+.form-section {
+    padding: 20px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.input-inline {
+    display: flex;
+    gap: 10px;
+}
+
+.input-inline > div {
+    flex: 1;
+}
+
+#ddd-input-group {
+    flex: 0 0 30%;
+}
+
+#telefone-input-group {
+    flex: 0 0 70%;
+}
+
+/* Pedidos */
 .dados-api-pedidos {
     display: grid;
-    /* Layout com duas colunas em telas maiores, ou uma coluna em telas menores */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 20px;
     padding: 10px 0;
+    background: var(--bg-color);
+    border-radius: 6px;
+    overflow-x: auto;
+    max-height: 400px;
 }
 
-/* Estilo do Card Individual do Pedido */
 .pedido-card {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
-    border-left: 5px solid var(--primary-color); /* Destaque lateral */
+    border-left: 5px solid var(--primary-color);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -356,12 +311,6 @@ input[type="text"]:focus {
     margin-bottom: 15px;
 }
 
-.pedido-card strong {
-    font-size: 1.2em;
-    color: var(--text-color);
-}
-
-/* Badge de Status */
 .status-badge {
     padding: 5px 10px;
     border-radius: 20px;
@@ -370,25 +319,29 @@ input[type="text"]:focus {
     text-transform: uppercase;
 }
 
-/* Cores do Badge de Status */
-.status-pendente .status-badge, .status-aguardando .status-badge { 
-    background-color: #ffe0b2; /* Laranja Claro */
+.status-pendente .status-badge, 
+.status-aguardando .status-badge { 
+    background-color: #ffe0b2;
     color: #ff9800; 
 }
-.status-processando .status-badge, .status-confirmado .status-badge { 
-    background-color: #c8e6c9; /* Verde Claro */
+
+.status-processando .status-badge, 
+.status-confirmado .status-badge { 
+    background-color: #c8e6c9;
     color: #4caf50; 
 }
-.status-concluido .status-badge, .status-entregue .status-badge { 
-    background-color: #bbdefb; /* Azul Claro */
+
+.status-concluido .status-badge, 
+.status-entregue .status-badge { 
+    background-color: #bbdefb;
     color: #2196f3; 
 }
+
 .status-cancelado .status-badge { 
-    background-color: #ffcdd2; /* Vermelho Claro */
+    background-color: #ffcdd2;
     color: var(--error-color); 
 }
 
-/* Valor Total */
 .valor-total {
     font-size: 1.2em;
     color: var(--primary-color);
@@ -396,43 +349,15 @@ input[type="text"]:focus {
     margin: 10px 0;
 }
 
-/* Lista de Itens do Pedido */
 .itens-list {
     margin-top: 15px;
     padding-top: 10px;
     border-top: 1px dashed #e0e0e0;
 }
 
-.itens-list h4 {
-    margin: 0 0 8px 0;
-    font-size: 1em;
-    color: #666;
-    font-weight: 500;
-}
-
-.itens-list ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.9em;
-}
-
-.itens-list li {
-    padding: 3px 0;
-    color: var(--text-color);
-    border-bottom: 1px dotted #f0f0f0;
-}
-
-.itens-list li:last-child {
-    border-bottom: none;
-}
-
-
-/* Layout do cabeçalho da lista de itens */
 .itens-header-grid {
     display: grid;
-    /* CORREÇÃO: Usar 2fr 1fr para melhor proporção e alinhamento */
-    grid-template-columns: 2fr 1fr; 
+    grid-template-columns: 2fr 1fr;
     font-weight: bold;
     color: #555;
     padding: 5px 0;
@@ -441,11 +366,9 @@ input[type="text"]:focus {
     font-size: 0.9em;
 }
 
-/* Layout dos itens individuais (Produto e Quantidade) */
 .item-row {
     display: grid;
-    /* CORREÇÃO: Usar 2fr 1fr para ser idêntico ao cabeçalho */
-    grid-template-columns: 2fr 1fr; 
+    grid-template-columns: 2fr 1fr;
     padding: 8px 0;
     border-bottom: 1px dotted #eee;
     font-size: 0.9em;
@@ -456,12 +379,10 @@ input[type="text"]:focus {
     border-bottom: none;
 }
 
-/* Utilitário de alinhamento */
 .align-right {
     text-align: right;
 }
 
-/* Estilo para alinhar Data e Total ao lado um do outro */
 .pedido-info-summary {
     display: flex;
     justify-content: space-between;
@@ -473,5 +394,3 @@ input[type="text"]:focus {
 .pedido-info-summary p {
     margin: 0;
 }
-
-/* ===== */
