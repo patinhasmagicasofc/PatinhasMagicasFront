@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div id="Button" class="fas fa-paw"></div>
+
+<div class="Nav">
+  <a href="./index.html"><span class="fas fa-home"></span></a>
+  <a href="./index.html#product"><span class="fas fa-box-open"></span></a>
+  <a href="./index.html#service"><span class="fas fa-hand-holding-heart"></span></a>
+  <!-- <a href="#"><span class="fas  fa-paw"></span></a> -->
+  <a href="./index.html#contact"><span class="fas  fa-envelope"></span></a>
+</div>
+
+<canvas></canvas>
+
+
     <div class="painel">
         <button onclick="logout()" class="btn-logout">Sair</button>
         <h1>Meu Perfil <i class="fas fa-paw"></i></h1>
@@ -109,11 +122,13 @@
 
     <!-- Carregue o jQuery primeiro -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
     <!-- Plugin de Máscara -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <!-- Scripts personalizados -->
+    <script src="js/menuScript.js"></script>
     <script src="js/validacoesCampos.js"></script>
     <script src="js/verificarAcesso.js"></script>
     <script src="js/clienteScript.js"></script>

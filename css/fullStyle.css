@@ -2,12 +2,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-    --primary-color: #5cb85c; /* Verde Pet */
-    --secondary-color: #f7e6a7; /* Amarelo Patinha */
-    --text-color: #333;
-    --error-color: #e74c3c;
-    --bg-color: #f4f4f9;
+    --primary-color: #5cb85c;   /* Verde Pet (confiança, natureza) */
+    --secondary-color: #f7e6a7; /* Amarelo Patinha (aconchego e alegria) */
+    --accent-blue: #5dade2;     /* Azul Sereno (tranquilidade) */
+    --accent-purple: #af7ac5;   /* Lilás Amável (carinho) */
+    --accent-orange: #f39c12;   /* Laranja Pêssego (energia) */
+    --accent-pink: #f1948a;     /* Rosa Pata (afeto) */
+    --error-color: #e74c3c;     /* Vermelho Amor (alerta, paixão) */
+    --text-color: #333333;      /* Texto padrão */
+    --bg-color: #f4f4f9;        /* Fundo neutro e suave */
 }
+
+
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+  }
+  
+  body {
+    background: #ececec;
+    /* overflow: hidden; */
+    user-select: none;
+  }
+  
+  #Button {
+    position: absolute; top: 15px; left: 15px;
+    width: 60px; height: 60px;
+    font-size: 18px; 
+    text-align: center; 
+    line-height: 60px; 
+    background: var(--primary-color);
+    border-radius: 50%;
+    color: #ececec;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .Nav {
+    position: absolute; 
+    margin: auto; 
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 302px; height: 302px;
+    font-size: 0;
+    transform: scale(0);
+    transition: transform 0.8s;
+    box-shadow: 0px 0px 10px #999;
+    z-index: 1;
+  }
+  
+  a {
+    display: inline-block;
+    width: 150px; height: 150px;
+    font-size: 28px; 
+    text-decoration: none; 
+    line-height: 150px; 
+    text-align: center;
+  /*   text-shadow: 2px 2px 4px #666;  */
+    color: #fff;
+  }
+  
+  a:nth-of-type(odd) { margin-right: 2px; }
+  a:nth-child(1) { margin-bottom: 2px; background: var(--primary-color); }
+  a:nth-child(2) { background: var(--accent-purple) }
+  a:nth-child(3) { background: var(--accent-blue) }
+  a:nth-child(4) { background: var(--accent-orange); }
+  
+  .active {
+    transform: scale(1);
+  }
+  
+  canvas { position: absolute; }
+
+
+
 
 body {
     font-family: 'Poppins', sans-serif;
