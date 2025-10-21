@@ -332,7 +332,7 @@ header {
                 border: 1px solid var(--clr-transparente);
                 background: var(--clr-gray);
                 transition: all 0.2s ease;
-
+                cursor: pointer;
                 .img {
                   width: 40px;
                   height: 40px;
@@ -471,7 +471,6 @@ header {
     }
   }
 }
-
 
 @keyframes fadeIn {
   from {
