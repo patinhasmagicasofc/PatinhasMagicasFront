@@ -90,33 +90,33 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
         const pedido = {
             usuarioId: getUserIdFromToken(),
             dataPedido: dataPedidoLocal,
-            StatusPedidoId: 1 // Pendente
+            StatusPedidoId: 1
         };
 
-        console.log(pedido)
-        const pedidoCriado = await consumirAPIAutenticada('/Pedido', 'POST', pedido)
+        const responsePedido = await consumirAPIAutenticada('/Pedido', 'POST', pedido);
 
-        // Cria itens do pedido
-        for (const item of carrinho) {
-            await consumirAPIAutenticada('/ItensPedido', 'POST', {
-                IdPedido: pedidoCriado.IdPedido,
-                IdProduto: item.id,
+        //Cria Itens pedido
+        await Promise.all(carrinho.map(item => {
+            const itemPedido = {
+                pedidoId: responsePedido.pedido,
+                produtoId: item.id,
                 quantidade: item.quantidade,
                 precoUnitario: item.preco
-            });
-        }
+            };
+            return consumirAPIAutenticada('/ItemPedido', 'POST', itemPedido);
+        }));
 
         // Cria pagamento
         await consumirAPIAutenticada('/Pagamento', 'POST', {
-            IdPedido: pedidoCriado.IdPedido,
+            IdPedido: responsePedido.pedido,
             valor: carrinho.reduce((t, i) => t + i.preco * i.quantidade, 0),
             IdTipoPagamento: pagamentoId,
             IdStatusPagamento: 1
         });
 
         // Limpa carrinho e redireciona
-        localStorage.removeItem("cart");
-        window.location.href = "confirmacao.html?id=" + pedidoCriado.IdPedido;
+        //localStorage.removeItem("cart");
+        //window.location.href = "confirmacao.html?id=" + pedidoCriado.IdPedido;
 
     } catch (err) {
         console.error(err);
