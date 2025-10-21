@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const menuLogado = document.getElementById("menuLogado");
+  const menuDeslogado = document.getElementById("menuDeslogado");
+
+  if (validarLogin()) {
+    menuLogado.classList.remove("d-none");
+    menuDeslogado.classList.add("d-none");
+  } else {
+    menuDeslogado.classList.remove("d-none");
+    menuLogado.classList.add("d-none");
+  }
+
+  const btnLogout = document.getElementById("btnLogout");
+  if (btnLogout) {
+    btnLogout.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    });
+  }
+
+
   const selectAnimal = document.getElementById("animal");
   const selectServico = document.getElementById("servico");
   const btnProximo = document.getElementById("btnProximo");

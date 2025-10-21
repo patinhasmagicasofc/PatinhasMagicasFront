@@ -135,7 +135,7 @@ function carregarProduto(produto) {
 
           <p><strong>Código:</strong> ${produto.codigo}</p>
           <p><strong>Validade:</strong> ${produto.validade}</p>
-          <a href="index.html" class="btn btn-outline-secondary mt-3">← Voltar ao catálogo</a>
+          <a href="pagina-venda.html" class="btn btn-outline-secondary mt-3">← Voltar ao catálogo</a>
         </div>
       `;
 }

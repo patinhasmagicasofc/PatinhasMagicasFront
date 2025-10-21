@@ -18,9 +18,9 @@
 </head>
 
 <body>
-  <!-- menu sem login -->
-  <!-- <header>
-    <nav>
+  <header>
+    <!-- menu sem login -->
+    <!-- <nav id="menuDeslogado" class="d-none">
       <div class="logo">
         <img src="" alt="" />
       </div>
@@ -28,13 +28,8 @@
       <div class="menu">
         <div class="category-search">
           <div class="category">
-            <select>
+            <select id="categoriaDeslogado">
               <option>Todos</option>
-              <option>Ração</option>
-              <option>Brinquedo</option>
-              <option>Acessório</option>
-              <option>Higiene</option>
-              <option>Medicamento</option>
             </select>
           </div>
         </div>
@@ -54,26 +49,17 @@
           <li><a href="">Cadastrar-se</a></li>
         </ul>
       </div>
-    </nav>
-  </header> -->
+    </nav> -->
 
-  <!-- menu com login -->
-  <header>
-    <nav>
+    <!-- menu com login -->
+    <nav id="menuLogado" class="d-none">
       <div class="perfil">
         <ul>
           <li class="dropdown-perfil">
             <a class="perfil-img" href="#"><img src="./img/img-adoption/adoption-for.png" alt="" /></a>
             <ul class="dropdown-content">
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
+              <li><a href="cadastro-usuario.html">MeuPerfil</a></li>
+              <li><a href="index.html">Sair</a></li>
             </ul>
           </li>
         </ul>
@@ -82,13 +68,13 @@
       <div class="menu">
         <div class="category-search">
           <div class="category">
-            <select>
+            <select id="categoriaLogado">
               <option>Todos</option>
-              <option>Ração</option>
+              <!-- <option>Ração</option>
               <option>Brinquedo</option>
               <option>Acessório</option>
               <option>Higiene</option>
-              <option>Medicamento</option>
+              <option>Medicamento</option> -->
             </select>
           </div>
         </div>
@@ -110,16 +96,25 @@
               <li><a href="#">Adestramento</a></li>
             </ul>
           </li>
-      
+
           <li class="dropdown shopping-cart">
-            <a class="shopping-cart-title" href="#"><i class="material-icons">shopping_cart</i>Carrinho</a>
-            <ul class="dropdown-content">
+            <a href="carrinho.html" class="cart-link">
+              <i class="material-icons position-relative">
+                shopping_cart
+                <span id="cart-count"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  0
+                </span>
+              </i>
+              Carrinho
+            </a>
+            <!-- <ul class="dropdown-content">
               <li><a href="#">Banho e Tosa</a></li>
               <li><a href="#">Veterinário</a></li>
               <li><a href="#">Adestramento</a></li>
-            </ul>
+            </ul> -->
           </li>
-      
+
           <li class="dropdown service">
             <a class="service-title" href="#"><i class="material-icons">handshake</i>Serviços</a>
             <ul class="dropdown-content">
@@ -130,17 +125,14 @@
           </li>
         </ul>
       </div>
-      
+
     </nav>
   </header>
 
-
-
-
   <main class="products-page">
 
-    <section class="highlight-sections">
-      <div class="highlight-section-one">
+    <section id="secctionProdutos" class="highlight-sections">
+      <!-- <div class="highlight-section-one">
         <div class="product-info">
           <p class="product-name">Ração Premier Cães Adultos</p>
         </div>
@@ -173,9 +165,9 @@
           <button class="btn-details">Ver detalhes</button>
           <button class="btn-add">Adicionar</button>
         </div>
-      </div>
+      </div> -->
 
-      <div class="highlight-section">
+      <!-- <div class="highlight-section">
         <div class="title-product">
           <ul>
             <li>
@@ -258,7 +250,7 @@
           </div>
         </div>
         <a href="#" class="see-more">Veja mais</a>
-      </div>
+      </div> -->
     </section>
 
     <section class="best-sellers">
@@ -273,8 +265,8 @@
       <div class="carousel-wrapper">
         <button class="carousel-btn prev">&lt;</button>
 
-        <div class="product-carousel">
-          <div class="product-card">
+        <div id="product-carousel" class="product-carousel">
+          <!-- <div class="product-card">
             <img src="./img/img-product/racao.png" alt="" />
           </div>
           <div class="product-card">
@@ -294,7 +286,7 @@
           </div>
           <div class="product-card">
             <img src="./img/img-product/racao.png" alt="" />
-          </div>
+          </div> -->
         </div>
 
         <button class="carousel-btn next">&gt;</button>
@@ -307,6 +299,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/verificarAcesso.js"></script>
   <script src="./js/pagina-venda.js"></script>
 </body>
 
