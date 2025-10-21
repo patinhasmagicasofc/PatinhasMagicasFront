@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   btnProximo.addEventListener("click", () => {
+    event.preventDefault();  // Impede o envio do formulário
     const idAnimal = selectAnimal.value;
     const idServico = selectServico.value;
     const data = document.getElementById("dataAgendamento").value;
@@ -47,8 +48,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       status: "Pendente"
     };
 
+    console.log(agendamentoTemp)
+
+    console.log("Redirecionando para a página de confirmação...");
     localStorage.setItem("agendamentoTemp", JSON.stringify(agendamentoTemp));
+    console.log("Redirecionando para a página de confirmação...");
     window.location.href = "agendamento-confirmar.html";
+    console.log("Redirecionando para a página de confirmação...");
   });
 
   async function carregarAnimaisUsuario(usuarioId) {

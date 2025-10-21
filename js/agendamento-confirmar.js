@@ -38,36 +38,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             idAnimal: agendamentoTemp.idAnimal,
             idServico: agendamentoTemp.idServico,
             dataAgendamento: agendamentoTemp.data,
+            dataCadastro: agendamentoTemp.data,
             tipoPagamento,
             status: "Confirmado",
             duracao: agendamentoTemp.duracaoServico,
-            preco: agendamentoTemp.precoServico
+            preco: agendamentoTemp.precoServico,
+            idStatusAgendamento: 0
         };
 
-        const pedido = {
-            dataPedido: new Date(),
-            usuarioId: getUserIdFromToken(),
-            statusPedidoId: 1
-
-        }
-
         try {
-            const resultado = await consumirAPIAutenticada('/Pedido', 'POST', pedido);
+            const resultado = await consumirAPIAutenticada('/Agendamento', 'POST', agendamentoParaAPI);
 
             // resultado deve conter resultado.idPedido
             localStorage.removeItem("agendamentoTemp");
-            window.location.href = `agendamento-sucesso.html?id=${resultado.idPedido}`;
-        } catch (err) {
-            console.error(err);
-            alert("Não foi possível confirmar o agendamento.");
-        }
-
-        try {
-            const resultado = await consumirAPIAutenticada('/Agendamento', 'POST', pedido);
-
-            // resultado deve conter resultado.idPedido
-            localStorage.removeItem("agendamentoTemp");
-            window.location.href = `agendamento-sucesso.html?id=${resultado.idPedido}`;
+            //window.location.href = `agendamento-sucesso.html?id=${resultado.idPedido}`;
         } catch (err) {
             console.error(err);
             alert("Não foi possível confirmar o agendamento.");
