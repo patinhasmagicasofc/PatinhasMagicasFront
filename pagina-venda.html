@@ -18,7 +18,8 @@
 </head>
 
 <body>
-  <header>
+  <!-- menu sem login -->
+  <!-- <header>
     <nav>
       <div class="logo">
         <img src="" alt="" />
@@ -27,13 +28,13 @@
       <div class="menu">
         <div class="category-search">
           <div class="category">
-            <select id="categoria">
+            <select>
               <option>Todos</option>
-              <!-- <option>Ração</option>
-                <option>Brinquedo</option>
-                <option>Acessório</option>
-                <option>Higiene</option>
-                <option>Medicamento</option> -->
+              <option>Ração</option>
+              <option>Brinquedo</option>
+              <option>Acessório</option>
+              <option>Higiene</option>
+              <option>Medicamento</option>
             </select>
           </div>
         </div>
@@ -50,67 +51,218 @@
         </ul>
 
         <ul class="cadastro">
-          <li><a href="cadastro-usuario.html">Cadastrar-se</a></li>
+          <li><a href="">Cadastrar-se</a></li>
         </ul>
       </div>
     </nav>
+  </header> -->
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Meu Pet Shop (Simulação)</a>
-        <div class="d-flex gap-2">
-          <a class="btn btn-outline-primary" href="carrinho.html">
-            Carrinho <span id="cartCountBadge" class="badge bg-danger ms-1">0</span>
-          </a>
-          <a class="btn btn-outline-secondary" href="meus-pedidos.html">Meus Pedidos</a>
-          <a class="btn btn-outline-success" href="servicos-index.html">Serviços</a>
+  <!-- menu com login -->
+  <header>
+    <nav>
+      <div class="perfil">
+        <ul>
+          <li class="dropdown-perfil">
+            <a class="perfil-img" href="#"><img src="./img/img-adoption/adoption-for.png" alt="" /></a>
+            <ul class="dropdown-content">
+              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu">
+        <div class="category-search">
+          <div class="category">
+            <select>
+              <option>Todos</option>
+              <option>Ração</option>
+              <option>Brinquedo</option>
+              <option>Acessório</option>
+              <option>Higiene</option>
+              <option>Medicamento</option>
+            </select>
+          </div>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produto..." />
+          <button>
+            <i class="material-icons">search</i>
+          </button>
         </div>
       </div>
+
+      <div class="shopping-cart-order-service">
+        <ul>
+          <li class="dropdown order">
+            <a class="order-title" href="#"><i class="material-icons">local_mall</i>Pedidos</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Banho e Tosa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+            </ul>
+          </li>
+      
+          <li class="dropdown shopping-cart">
+            <a class="shopping-cart-title" href="#"><i class="material-icons">shopping_cart</i>Carrinho</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Banho e Tosa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+            </ul>
+          </li>
+      
+          <li class="dropdown service">
+            <a class="service-title" href="#"><i class="material-icons">handshake</i>Serviços</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Banho e Tosa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      
     </nav>
   </header>
 
+
+
+
   <main class="products-page">
-    <section id="secctionProdutos" class="highlight-sections">
-      <!-- <div class="highlight-section-one">
-          <div class="product-info">
-            <p class="product-name">Ração Premier Cães Adultos</p>
-          </div>
 
-          <div class="main-image-product">
-            <img src="./img/img-product/racao.png" alt="Produto" />
-          </div>
+    <section class="highlight-sections">
+      <div class="highlight-section-one">
+        <div class="product-info">
+          <p class="product-name">Ração Premier Cães Adultos</p>
+        </div>
 
-          <div class="product-price-stock">
-            <div class="category">
-              <ul>
-                <li>
-                  <p class="product-category">Ração para Pet - Alimento</p>
-                </li>
-              </ul>
-            </div>
-            <div class="price-stock">
-              <ul>
-                <li>
-                  <span class="price">R$ 120,00</span>
-                </li>
-                <li>
-                  <span class="stock in-stock">Em estoque</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div class="main-image-product">
+          <img src="./img/img-product/racao.png" alt="Produto" />
+        </div>
 
-          <div class="product-actions">
-            <button class="btn-details">Ver detalhes</button>
-            <button class="btn-add">Adicionar</button>
+        <div class="product-price-stock">
+          <div class="category">
+            <ul>
+              <li>
+                <p class="product-category">Ração para Pet - Alimento</p>
+              </li>
+            </ul>
           </div>
-        </div> -->
+          <div class="price-stock">
+            <ul>
+              <li>
+                <span class="price">R$ 120,00</span>
+              </li>
+              <li>
+                <span class="stock in-stock">Em estoque</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
+        <div class="product-actions">
+          <button class="btn-details">Ver detalhes</button>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+
+      <div class="highlight-section">
+        <div class="title-product">
+          <ul>
+            <li>
+              <p>Ração Prime com frete GRÁTIS</p>
+            </li>
+          </ul>
+        </div>
+        <div class="main-image">
+          <img src="./img/img-product/racao.png" alt="Beleza" />
+        </div>
+        <div class="subcategories">
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+        </div>
+        <a href="#" class="see-more">Veja a loja completa aqui</a>
+      </div>
+
+      <div class="highlight-section">
+        <div class="title-product">
+          <ul>
+            <li>
+              <p>Petisco Prime</p>
+            </li>
+          </ul>
+        </div>
+        <div class="main-image">
+          <img src="./img/img-product/racao.png" alt="" />
+        </div>
+        <div class="subcategories">
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+        </div>
+
+        <a href="#" class="see-more">Veja a loja completa aqui</a>
+      </div>
+
+      <div class="highlight-section">
+        <div class="title-product">
+          <ul>
+            <li>
+              <p>Ofertas em Moda Canina</p>
+            </li>
+          </ul>
+        </div>
+        <div class="main-image">
+          <img src="./img/img-product/racao.png" alt="" />
+        </div>
+        <div class="subcategories">
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+          <div>
+            <img src="./img/img-product/racao.png" alt="" />
+            <span>Patinhas Mágicas</span>
+          </div>
+        </div>
+        <a href="#" class="see-more">Veja mais</a>
+      </div>
     </section>
 
     <section class="best-sellers">
-      <div class="title-product">
+      <div class="title-best-sellers">
         <ul>
           <li>
             <p>Mais Vendidos em Produtos para Higiene</p>
@@ -121,29 +273,30 @@
       <div class="carousel-wrapper">
         <button class="carousel-btn prev">&lt;</button>
 
-        <div id="product-carousel" class="product-carousel">
-          <!-- <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div>
-            <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div>
-            <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div>
-            <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div>
-            <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div>
-            <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div>
-            <div class="product-card">
-              <img src="./img/img-product/racao.png" alt="" />
-            </div> -->
+        <div class="product-carousel">
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
+          <div class="product-card">
+            <img src="./img/img-product/racao.png" alt="" />
+          </div>
         </div>
+
         <button class="carousel-btn next">&gt;</button>
       </div>
     </section>
@@ -154,7 +307,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/verificarAcesso.js"></script>
   <script src="./js/pagina-venda.js"></script>
 </body>
 
