@@ -58,7 +58,7 @@ async function carregarPagamentos() {
         console.log(tiposPagamento)
         pagamentoSelect.innerHTML = `<option value="">Selecione</option>`;
         tiposPagamento.forEach(p => {
-            pagamentoSelect.innerHTML += `<option value="${p.IdTipoPagamento}">${p.nome}</option>`;
+            pagamentoSelect.innerHTML += `<option value="${p.id}">${p.nome}</option>`;
         });
     } catch (err) {
         console.error(err);
@@ -78,27 +78,27 @@ function getUsuarioLogadoId() {
 // Finaliza pedido
 document.getElementById("formCheckout").addEventListener("submit", async (e) => {
     e.preventDefault();
+
     if (!carrinho.length) return alert("Carrinho vazio!");
     const pagamentoId = pagamentoSelect.value;
     if (!pagamentoId) return alert("Selecione uma forma de pagamento");
 
     try {
         // Cria pedido
-        const dataLocal = new Date();
-        const dataPedidoLocal = dataLocal.toISOString().slice(0, 19);
+        const dataPedidoLocal = new Date().toISOString().slice(0, 19);
 
         const pedido = {
             usuarioId: getUserIdFromToken(),
             dataPedido: dataPedidoLocal,
-            StatusPedidoId: 1
+            StatusPedidoId: 1 // Pendente
         };
 
         const responsePedido = await consumirAPIAutenticada('/Pedido', 'POST', pedido);
 
-        //Cria Itens pedido
+        // Cria itens do pedido
         await Promise.all(carrinho.map(item => {
             const itemPedido = {
-                pedidoId: responsePedido.pedido,
+                pedidoId: responsePedido.pedidoId,
                 produtoId: item.id,
                 quantidade: item.quantidade,
                 precoUnitario: item.preco
@@ -107,16 +107,22 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
         }));
 
         // Cria pagamento
-        await consumirAPIAutenticada('/Pagamento', 'POST', {
-            IdPedido: responsePedido.pedido,
-            valor: carrinho.reduce((t, i) => t + i.preco * i.quantidade, 0),
-            IdTipoPagamento: pagamentoId,
-            IdStatusPagamento: 1
-        });
+        const valorTotal = carrinho.reduce((t, i) => t + i.preco * i.quantidade, 0);
 
-        // Limpa carrinho e redireciona
-        //localStorage.removeItem("cart");
-        //window.location.href = "confirmacao.html?id=" + pedidoCriado.IdPedido;
+        const pagamento = {
+            pedidoId: responsePedido.pedidoId,
+            valor: valorTotal,
+            observacao: '',
+            tipoPagamentoId: pagamentoId,
+            statusPagamentoId: 1,
+            dataPagamento: new Date().toISOString().slice(0, 19)
+        };
+
+        await consumirAPIAutenticada('/Pagamento', 'POST', pagamento);
+
+        // Finalização
+        localStorage.removeItem("cart");
+        window.location.href = "confirmacao.html?id=" + responsePedido.pedidoId;
 
     } catch (err) {
         console.error(err);

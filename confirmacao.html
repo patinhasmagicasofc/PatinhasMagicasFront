@@ -25,60 +25,7 @@
     <a href="index.html" class="btn btn-primary mt-4">Voltar à Loja</a>
   </div>
 
-  <script>
-    // Obtém o ID do pedido pela URL
-    const params = new URLSearchParams(window.location.search);
-    const idPedido = params.get("id");
-
-    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-    const pedido = pedidos.find(p => p.id == idPedido);
-
-    const div = document.getElementById("dadosPedido");
-
-    if (!pedido) {
-      div.innerHTML = `<div class="alert alert-danger">Pedido não encontrado.</div>`;
-    } else {
-      let total = pedido.itens.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
-
-      let html = `
-        <h4>Resumo do Pedido #${pedido.id}</h4>
-        <p><strong>Cliente:</strong> ${pedido.cliente.nome}</p>
-        <p><strong>E-mail:</strong> ${pedido.cliente.email}</p>
-        <p><strong>Forma de Pagamento:</strong> ${pedido.pagamento}</p>
-        <p><strong>Status:</strong> ${pedido.status}</p>
-        <p><strong>Data:</strong> ${pedido.data}</p>
-
-        <table class="table table-bordered mt-3">
-          <thead>
-            <tr>
-              <th>Produto</th>
-              <th>Quantidade</th>
-              <th>Preço Unitário</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-
-      pedido.itens.forEach(item => {
-        html += `
-          <tr>
-            <td>${item.nome}</td>
-            <td>${item.quantidade}</td>
-            <td>R$ ${item.preco.toFixed(2)}</td>
-            <td>R$ ${(item.preco * item.quantidade).toFixed(2)}</td>
-          </tr>
-        `;
-      });
-
-      html += `
-          </tbody>
-        </table>
-        <h5 class="text-end text-success">Total: R$ ${total.toFixed(2)}</h5>
-      `;
-
-      div.innerHTML = html;
-    }
-  </script>
+  <script src="js/verificarAcesso.js"></script>
+  <script src="js/confirmacao.js"></script>
 </body>
 </html>
