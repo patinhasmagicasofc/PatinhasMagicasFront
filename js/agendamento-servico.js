@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const agendamentoTemp = {
       idAnimal: animal.id,
       nomeAnimal: animal.nome,
-      especieAnimal: animal.especie,
+      nomeEspecie: animal.nomeEspecie,
       tamanhoAnimal: animal.nomeTamanhoAnimal,
       idServico: servico.id,
       nomeServico: servico.nome,
@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const animais = await consumirAPIAutenticada(`/Animal/usuario/${usuarioId}`, 'GET');
 
+      console.log(animais)
+
       if (!animais || animais.length === 0) {
         selectAnimal.style.display = 'none';
         semAnimaisDiv.style.display = 'block';
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       animais.forEach(a => {
         const option = document.createElement('option');
         option.value = a.id;
-        option.textContent = `${a.nome} (${a.especie} - ${a.nomeTamanhoAnimal})`;
+        option.textContent = `${a.nome} (${a.nomeEspecie} - ${a.nomeTamanhoAnimal})`;
         selectAnimal.appendChild(option);
       });
 

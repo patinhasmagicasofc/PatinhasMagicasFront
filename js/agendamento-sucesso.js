@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title">${agendamento.servico?.nome ?? "Serviço"}</h5>
-          <p><strong>Animal:</strong> ${agendamento.animal?.nome ?? "—"} (${agendamento.animal?.especie ?? "—"} - ${agendamento.animal?.tamanho ?? "—"})</p>
+          <p><strong>Animal:</strong> ${agendamento.animal?.nome ?? "—"} (${agendamento.animal?.nomeEspecie ?? "—"} - ${agendamento.animal?.nomeTamanhoAnimal ?? "—"})</p>
           <p><strong>Data e hora:</strong> ${dataFormatada}</p>
           <p><strong>Forma de pagamento:</strong> ${agendamento.tipoPagamento ?? "—"}</p>
           <p><strong>Status:</strong> ${agendamento.status ?? "Agendado"}</p>

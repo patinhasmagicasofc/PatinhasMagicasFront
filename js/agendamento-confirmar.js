@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="card shadow-sm">
       <div class="card-body">
         <h5 class="card-title">${agendamentoTemp.nomeServico}</h5>
-        <p><strong>Animal:</strong> ${agendamentoTemp.nomeAnimal} (${agendamentoTemp.especieAnimal} - ${agendamentoTemp.tamanhoAnimal})</p>
+        <p><strong>Animal:</strong> ${agendamentoTemp.nomeAnimal} (${agendamentoTemp.nomeEspecie} - ${agendamentoTemp.tamanhoAnimal})</p>
         <p><strong>Data e hora:</strong> ${dataFormatada}</p>
         <p><strong>Duração estimada:</strong> ${agendamentoTemp.duracaoServico} min</p>
         <p><strong>Preço:</strong> R$ ${Number(agendamentoTemp.precoServico).toFixed(2)}</p>
@@ -97,7 +97,7 @@ async function carregarPagamento() {
     data.forEach(tp => {
       const option = document.createElement('option');
       option.value = tp.id;
-      option.textContent = tp.metodo;
+      option.textContent = tp.nome;
       selectTipoPagamento.appendChild(option);
     });
   } catch (err) {
