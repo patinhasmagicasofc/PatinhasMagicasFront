@@ -440,6 +440,10 @@ header {
 
       .shopping-cart {
         a {
+          align-items: flex-end;
+          color: var(--clr-black);
+          gap: 0.2em;
+
           i {
             #cart-count {
               font-size: 0.7rem;
@@ -453,7 +457,8 @@ header {
               justify-content: center;
             }
           }
-          .material-icons{
+
+          .material-icons {
             font-size: 2em;
           }
         }
