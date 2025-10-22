@@ -362,15 +362,21 @@ header {
                       }
 
                       .config {
-                        color: var(--clr-black);
-                        font-size: 14px;
+                        a {
+                          color: var(--clr-black);
+                          font-size: 14px;
+                          padding: 0;
+                          transition: all 0.2s ease;
+
+                          &:hover {
+                            background: var(--clr-transparente);
+                            color: var(--clr-cloud-white);
+                          }
+                        }
+
                       }
                     }
                   }
-                }
-
-                &:hover {
-                  background: var(--clr-gray-one);
                 }
               }
 
@@ -435,7 +441,7 @@ header {
       .shopping-cart {
         a {
           i {
-            #cart-count {  
+            #cart-count {
               font-size: 0.7rem;
               min-width: 18px;
               height: 18px;
@@ -449,7 +455,7 @@ header {
           }
         }
       }
-      
+
 
       ul {
         list-style: none;
@@ -619,13 +625,14 @@ header {
           transition: background 0.2s;
 
           &.btn-details {
-            
+
             background: var(--clr-silver);
 
-            a{
+            a {
               text-decoration: none;
               color: var(--clr-black);
             }
+
             &:hover {
               background: var(--clr-gray-one);
             }
