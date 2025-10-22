@@ -453,6 +453,9 @@ header {
               justify-content: center;
             }
           }
+          .material-icons{
+            font-size: 2em;
+          }
         }
       }
 
