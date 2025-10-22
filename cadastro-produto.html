@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./css/cadastro-produto.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+  <header>
+    <nav class="menu-lateral">
+      <div class="btn-expandir">
+        <i id="btn-exp" class="material-icons">list</i>
+      </div>
+      <div class="menu-informations">
+        <div class="informations">
+          <ul>
+            <li class="item-menu">
+              <a href="lista-pedidos.html">
+                <span class="icon"><i class="material-icons">assignment</i></span>
+                <span class="txt-link">Pedidos</span>
+              </a>
+            </li>
+            <li class="item-menu">
+              <a href="lista-produtos.html">
+                <span class="icon"><i class="material-icons">local_mall</i></span>
+                <span class="txt-link">Produtos</span>
+              </a>
+            </li>
+            <li class="item-menu">
+              <a href="#">
+                <span class="icon"><i class="material-icons">settings</i></span>
+                <span class="txt-link">Configurações</span>
+              </a>
+            </li>
+            <li class="item-menu">
+              <a href="lista-usuarios.html">
+                <span class="icon"><i class="material-icons">person</i></span>
+                <span class="txt-link">Usuários</span>
+              </a>
+            </li>
+            <li class="item-menu">
+              <a href="cadastro-produto.html">
+                <span class="icon"><i class="material-icons">add_box</i></span>
+                <span class="txt-link">Cadastro de Produto</span>
+              </a>
+            </li>
+            <li class="item-menu ativo">
+              <a href="cadastro-servico.html">
+                <span class="icon"><i class="material-icons">add_circle</i></span>
+                <span class="txt-link">Cadastro de Serviço</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="perfil-adm">
+          <ul>
+            <li class="item-menu">
+              <a href="">
+                <!-- imagem exemplo -->
+                <span class="img-perfil"><img src="./img/img-adoption/adoption-for.png" alt=""></span>
+                <span class="txt-link">Perfil</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="product">
+      <div class="container-product">
+        <div class="title-product">
+          <ul>
+            <li>
+              <p>PRODUTO</p>
+            </li>
+          </ul>
+        </div>
+
+        <div id="register-product">
+          <div class="container-basic-product-info">
+            <form id="formProduto" class="product-form">
+              <p>Cadastro de Produto</p>
+
+              <div class="form">
+                <div class="category">
+                  <label>Categoria</label>
+                  <select id="categoria">
+                    <!-- <option>Ração</option>
+                    <option>Brinquedo</option>
+                    <option>Acessório</option>
+                    <option>Higiene</option>
+                    <option>Medicamento</option> -->
+                  </select>
+                </div>
+
+                <div class="species">
+                  <label>Espécie / Animal</label>
+                  <select disabled="true">
+                    <!-- <option>Cachorro</option>
+                    <option>Gato</option>
+                    <option>Pássaro</option>
+                    <option>Peixe</option>
+                    <option>Roedor</option> -->
+                  </select>
+                </div>
+              </div>
+
+              <div class="brand">
+                <label>Nome</label>
+                <input id="nome" type="text" placeholder="Premier" />
+              </div>
+
+              <div class="brand">
+                <label>Marca / Fabricante</label>
+                <input id="marca" type="text" placeholder="Premier" />
+              </div>
+
+              <div class="short-description">
+                <label>Descrição curta</label>
+                <input id="descricao" placeholder="Ração premium para cães adultos de porte médio" />
+              </div>
+
+              <div class="long-description">
+                <label>Descrição detalhada</label>
+                <textarea id="descricaoDetalhada"
+                  placeholder="Fórmula com ingredientes de alta qualidade e enriquecida com vitaminas e minerais essenciais."></textarea>
+              </div>
+
+              <div class="form">
+                <div class="sale-price">
+                  <label>Preço de venda</label>
+                  <input type="text" id="preco" placeholder="R$ 120,00" />
+                </div>
+                <div class="cost-price">
+                  <label>Preço de custo</label>
+                  <input type="text" id="cost-price" placeholder="R$ 70,00" disabled="true" />
+                </div>
+                <div class="barcode">
+                  <label>Código de barras / SKU</label>
+                  <input id="codigo" type="text" placeholder="7898433321015" />
+                </div>
+              </div>
+
+              <div class="form">
+                <div class="supplier">
+                  <label>Fornecedor</label>
+                  <input type="text" placeholder="Petz" disabled="true" />
+                </div>
+                <div class="stock-entry-date">
+                  <label>Data de entrada no estoque</label>
+                  <input type="date" disabled="true" />
+                </div>
+              </div>
+
+              <div class="form">
+                <div class="expiration-date">
+                  <label>Data de validade</label>
+                  <input id="validade" type="date" />
+                </div>
+                <div class="stock-location">
+                  <label>Localização no estoque</label>
+                  <input type="text" placeholder="Prateleira 3 - Setor Rações" disabled="true" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Link da Imagem do produto</label>
+                <input id="urlImagem" type="text" placeholder="https://static.petz.com.br/fotos/1558637497224.jpg" />
+              </div>
+
+              <!-- <div class="form-group">
+                  <label>Imagem do produto</label>
+                  <input type="file" accept="image/*" />
+                  <div class="image-preview">
+                    <img
+                      src="https://static.petz.com.br/fotos/1558637497224.jpg"
+                      alt="Produto exemplo"
+                    />
+                  </div>
+                </div> -->
+
+              <div class="actions">
+                <button type="button" class="btn-cancel">Cancelar</button>
+                <button type="submit" class="btn-save">Salvar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/verificarAcesso.js"></script>
+  <script src="./js/cadastro-produto.js"></script>
+</body>
+
+</html>

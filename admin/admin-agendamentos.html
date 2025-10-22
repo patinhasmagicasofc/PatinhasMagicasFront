@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Agendamentos - Funcionário</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Painel do Funcionário</a>
+      <a href="index.html" class="btn btn-outline-light">Sair</a>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h3>📅 Lista de Agendamentos</h3>
+    <hr>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Pet</th>
+            <th>Serviço</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaAgendamentos"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
+
+    const animais = [
+      { id: 1, nome: "Luna" },
+      { id: 2, nome: "Mimi" }
+    ];
+
+    const servicos = [
+      { id: 1, nome: "Banho" },
+      { id: 2, nome: "Tosa Completa" },
+      { id: 3, nome: "Consulta Veterinária" }
+    ];
+
+    const tabela = document.getElementById("tabelaAgendamentos");
+    tabela.innerHTML = agendamentos.map(a => {
+      const animal = animais.find(an => an.id == a.idAnimal);
+      const servico = servicos.find(s => s.id == a.idServico);
+
+      return `
+        <tr>
+          <td>${a.id}</td>
+          <td>Cliente ${a.idUsuario}</td>
+          <td>${animal ? animal.nome : "—"}</td>
+          <td>${servico ? servico.nome : "—"}</td>
+          <td>${new Date(a.data).toLocaleString("pt-BR")}</td>
+          <td><span class="badge ${a.status === 'Confirmado' ? 'bg-success' : 'bg-warning'}">${a.status}</span></td>
+          <td><a href="admin-agendamento-detalhes.html?id=${a.id}" class="btn btn-sm btn-primary">Ver Detalhes</a></td>
+        </tr>
+      `;
+    }).join("");
+  </script>
+</body>
+</html>
