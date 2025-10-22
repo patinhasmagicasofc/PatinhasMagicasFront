@@ -169,6 +169,38 @@ if (prevBtn && carousel) {
   });
 }
 
+//movimento carrosel
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carousel.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carousel.classList.add('active');
+  startX = e.clientX;
+  scrollLeft = carousel.scrollLeft;
+  e.preventDefault();
+});
+
+carousel.addEventListener('mouseup', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
+
+carousel.addEventListener('mouseleave', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
+
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  const walk = e.clientX - startX;
+  carousel.scrollLeft = scrollLeft - walk;
+});
+
+
+
+
 // ======== Dropdown Menu ========
 const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropdown');
 
@@ -213,3 +245,5 @@ document.addEventListener('click', (e) => {
     dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
   }
 });
+
+

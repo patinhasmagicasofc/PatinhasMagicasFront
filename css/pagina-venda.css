@@ -25,6 +25,7 @@ ul {
   margin: 0;
   list-style: none;
 }
+
 p {
   padding-left: 0;
   padding: 0;
@@ -65,7 +66,7 @@ a {
   --fw-title: 700;
 }
 
-/* menu com login */
+/* menu sem login */
 header {
   nav {
     background: var(--clr-gray-two);
@@ -316,9 +317,11 @@ header {
               margin-top: auto;
               border-top: 1px solid var(--clr-gray-two);
               border-radius: 0.4em;
+
               a {
                 color: var(--clr-red);
               }
+
               &:hover {
                 background: var(--clr-gray-one);
               }
@@ -337,6 +340,7 @@ header {
                 background: var(--clr-gray);
                 transition: all 0.2s ease;
                 cursor: pointer;
+
                 .img {
                   width: 40px;
                   height: 40px;
@@ -356,6 +360,7 @@ header {
                         font-weight: var(--fw-title);
                         color: var(--clr-black);
                       }
+
                       .config {
                         color: var(--clr-black);
                         font-size: 14px;
@@ -427,6 +432,25 @@ header {
         }
       }
 
+      .shopping-cart {
+        a {
+          i {
+            #cart-count {  
+              font-size: 0.7rem;
+              min-width: 18px;
+              height: 18px;
+              text-align: center;
+              color: white;
+              font-weight: bold;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+      
+
       ul {
         list-style: none;
         display: flex;
@@ -497,24 +521,27 @@ header {
   display: flex;
   flex-direction: column;
   gap: 2em;
+  align-items: center;
 
   .highlight-sections {
+    margin-top: 2em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    grid-template-columns: repeat(auto-fill, 300px);
     gap: 1em;
-    margin: 0 auto;
+    justify-content: start;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1264px;
 
     .highlight-section-one {
-      display: flex;
-      flex-direction: column;
       background: var(--clr-white);
       border-radius: 12px;
       box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
       padding: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       gap: 1em;
-      justify-content: space-between;
+      width: 300px;
 
       .product-info {
         .product-name {
@@ -592,8 +619,13 @@ header {
           transition: background 0.2s;
 
           &.btn-details {
+            
             background: var(--clr-silver);
 
+            a{
+              text-decoration: none;
+              color: var(--clr-black);
+            }
             &:hover {
               background: var(--clr-gray-one);
             }
@@ -623,7 +655,7 @@ header {
       }
     }
 
-    .highlight-section {
+    /* .highlight-section {
       background: var(--clr-white);
       border-radius: 12px;
       box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
@@ -632,6 +664,7 @@ header {
       flex-direction: column;
       gap: 1em;
       justify-content: space-between;
+      width: 100%;
 
       .title-product p {
         font-weight: var(--fw-title);
@@ -681,7 +714,7 @@ header {
           text-decoration: underline;
         }
       }
-    }
+    } */
   }
 
   .best-sellers {
@@ -724,6 +757,21 @@ header {
       scroll-behavior: smooth;
       gap: 0.5em;
       padding: 1em 0;
+      cursor: grab;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &.active {
+        cursor: grabbing;
+      }
     }
 
     .product-card {
@@ -749,14 +797,4 @@ footer {
   margin-top: 3rem;
   border-top: 1px solid var(--clr-gray-two);
   color: var(--clr-gray);
-}
-
-#cart-count {
-  font-size: 0.7rem;
-  min-width: 18px;
-  height: 18px;
-  line-height: 18px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
 }
