@@ -14,6 +14,7 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./css/responsiveness.css" />
     <link rel="stylesheet" href="./css/style.css" />
 
     <title>Patinhas Mágicas</title>
@@ -23,10 +24,17 @@
     <header>
       <nav>
         <div class="logo">
-          <img src="" alt="" />
+          <img src="./img/favicon.ico" alt="Logo Patinhas" />
         </div>
-
-        <div class="menu">
+    
+        <!-- Botão Hamburguer -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+    
+        <div class="menu" id="menu">
           <ul>
             <li><a href="#home">Início</a></li>
             <li><a href="#product">Produtos</a></li>
@@ -35,6 +43,7 @@
             <li><a href="#contact">Contato</a></li>
           </ul>
         </div>
+    
         <div class="login">
           <ul>
             <li><a href="login.html">Login</a></li>
@@ -42,6 +51,7 @@
         </div>
       </nav>
     </header>
+    
 
     <main>
       <div id="home">
@@ -629,6 +639,8 @@
         </div>
       </div>
 
+
+      
       <div id="contact">
         <div class="title-text-contact">
           <ul>

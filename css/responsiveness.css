@@ -1,0 +1,534 @@
+/* --- TABLETS (até 1024px) --- */
+@media (max-width: 1024px) {
+  header nav {
+    justify-content: space-between;
+    padding: 1em 2em;
+  }
+
+  .menu ul {
+    gap: 1.5em;
+  }
+
+  /* Reduz o tamanho da fonte dos títulos */
+  .title-information, .title-product, .title-service, .title-adoption, .title-contact {
+    font-size: 1.8em !important;
+  }
+  
+  /* Mantém layout de grade de 2 colunas para tablets */
+  #information .grid-wrapper .card-information,
+  #product .product-container-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+    max-width: 90%;
+  }
+
+  /* Ajuste para a seção Home */
+  #home .container {
+    max-width: 90%;
+    grid-template-columns: 1fr 1fr; 
+  }
+
+  /* Ajuste para a grade de serviços (muda de 5 cards para 2 colunas) */
+  #service .container-service .grid-service {
+    max-width: 90%;
+    gap: 1.5em;
+  }
+
+  #service .service-card-container-one,
+  #service .service-card-container-two {
+    flex-direction: column; 
+    gap: 1.5em;
+  }
+  
+  /* Permite que os cards de serviço se ajustem à largura do contêiner */
+  #service .card-banho-tosa,
+  #service .card-adestramento-comportamento,
+  #service .card-atendimento-vet,
+  #service .card-hospedagem-creche,
+  #service .card-transporte-pet {
+    width: 100%;
+    max-width: 600px; 
+    margin: 0 auto;
+  }
+  
+  /* Ajusta o contêiner interno dos cards de serviço para flex-direction: column */
+  #service .card-banho-tosa .container-banho-tosa,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento {
+    width: 100%;
+    padding: 0 1em;
+  }
+  
+  /* Contato - Reduz a largura do formulário e mapa */
+  #contact .container-contact-form-address {
+    padding: 0 2em;
+  }
+
+  #contact .container-contact .form form .name,
+  #contact .container-contact .form form .email,
+  #contact .container-contact .form form .phone,
+  #contact .container-contact .form form .message {
+    width: 350px;
+  }
+
+  #contact .container-address .maps-container .maps iframe {
+    width: 400px;
+    height: 200px;
+  }
+}
+
+/* --- CELULARES (até 768px) --- */
+@media (max-width: 768px) {
+  /* Reaplicação e ajustes do menu */
+  header nav {
+    padding: 1em;
+    flex-wrap: nowrap; 
+  }
+  
+  /* Tamanho menor do logo do header */
+  header nav .logo img {
+    width: 68px !important;
+  }
+
+  /* Hamburger Menu - Animação Otimizada */
+  .hamburger {
+    display: flex;
+    z-index: 2001; 
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* Menu lateral */
+  .menu {
+    right: -100%;
+    width: 70%;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 3000; 
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
+  .login {
+    display: none;
+  }
+
+  /* --- HOME --- */
+  #home {
+    height: auto; 
+    padding: 6em 1em 2em;
+  }
+
+  #home .title-home ul li p {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+  }
+
+  #home .container {
+    grid-template-columns: 1fr; 
+    max-width: 90%;
+  }
+
+  /* --- INFORMATION (Rolagem horizontal) --- */
+  #information {
+    height: auto;
+    padding-bottom: 2em;
+  }
+
+  #information .title-text-information {
+    padding: 1em;
+  }
+
+  #information .grid-wrapper {
+    overflow-x: auto; 
+    width: 100%;
+    max-width: 100%;
+    padding: 2em 1em;
+  }
+
+  #information .card-information {
+    display: flex; 
+    flex-wrap: nowrap; 
+    gap: 1.5em;
+    min-width: 650px; 
+    padding-bottom: 1em; 
+    justify-content: flex-start; 
+    margin: 0;
+  }
+
+  #information .card-information .card {
+    flex: 0 0 250px; 
+    max-width: 250px;
+  }
+
+  /* --- PRODUCT (Rolagem horizontal) --- */
+  #product {
+    height: auto;
+    padding-bottom: 2em;
+  }
+  
+  #product .title-text-product {
+    padding: 1em;
+  }
+
+  #product .product-container {
+    overflow-x: auto; 
+    width: 100%;
+    padding: 2em 1em 0;
+    justify-content: flex-start;
+  }
+  
+  #product .product-container-grid {
+    display: flex; 
+    flex-wrap: nowrap; 
+    gap: 1.2em;
+    min-width: 600px; 
+    padding-bottom: 1em; 
+    justify-content: flex-start;
+    margin: 0;
+  }
+  
+  #product .product-container-grid .card {
+    flex: 0 0 280px; 
+    flex-direction: column;
+    max-width: 320px;
+    padding: 1em;
+    box-sizing: border-box;
+  }
+  
+  #product .product-container-grid .card img {
+    width: 60%;
+    margin: 0 auto;
+    order: -1; 
+  }
+
+  /* --- SERVICE (Rolagem horizontal nos containers internos) --- */
+  #service {
+    min-height: auto;
+    padding-bottom: 2em;
+  }
+  
+  #service .title-text-service {
+    padding: 1em;
+  }
+
+  #service .container-service .title-container ul li p {
+    padding: 1em;
+    font-size: 1.2em;
+  }
+
+  #service .container-service .grid-service {
+    display: flex;
+    flex-direction: column; 
+    gap: 2em;
+    max-width: 100%; 
+    padding: 0 1em;
+  }
+  
+  /* Container ONE (Banho e Tosa / Adestramento) */
+  #service .service-card-container-one {
+    /* Container pai se torna a área de rolagem */
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Habilita rolagem */
+    width: 100%;
+    padding-bottom: 1em;
+    gap: 1.5em; /* Espaçamento entre os cards */
+    margin: 0;
+    justify-content: flex-start;
+    align-items: stretch; /* Garante que todos cards tenham a mesma altura */
+  }
+  
+  #service .card-banho-tosa,
+  #service .card-adestramento-comportamento {
+    /* Define largura fixa e impede redução */
+    flex: 0 0 320px; 
+    max-width: 350px;
+    height: 100%; /* Ocupa a altura total do container (ajustado por align-items: stretch) */
+  }
+
+
+  /* Container TWO (Vet / Hospedagem / Transporte) */
+  #service .service-card-container-two {
+    /* Container pai se torna a área de rolagem */
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Habilita rolagem */
+    width: 100%;
+    padding-bottom: 1em;
+    gap: 1.5em; /* Espaçamento entre os cards */
+    margin: 0;
+    justify-content: flex-start;
+    align-items: stretch; /* Garante que todos cards tenham a mesma altura */
+  }
+  
+  #service .card-atendimento-vet,
+  #service .card-hospedagem-creche,
+  #service .card-transporte-pet {
+    /* Define largura fixa e impede redução */
+    flex: 0 0 320px; 
+    max-width: 350px;
+    padding: 1em;
+    height: 100%; /* Ocupa a altura total do container */
+  }
+  
+  /* Reset de layout interno para mobile (volta para empilhamento vertical dentro do card) */
+  #service .card-banho-tosa .container-banho-tosa .img-text-one,
+  #service .card-banho-tosa .container-banho-tosa .img-text-two,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento .img-text-one,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento .img-text-two,
+  #service .card-atendimento-vet .container-atendimento-vet .img-text-one,
+  #service .card-atendimento-vet .container-atendimento-vet .img-text-two,
+  #service .card-atendimento-vet .container-atendimento-vet .img-text-three,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-text-one,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-text-two,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-text-three {
+    grid-template-columns: 1fr; 
+    text-align: center;
+  }
+  
+  /* Centraliza imagens nos cards de serviço */
+  #service .card-banho-tosa .container-banho-tosa .img-one,
+  #service .card-banho-tosa .container-banho-tosa .img-two,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento .img-one,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento .img-two,
+  #service .card-atendimento-vet .container-atendimento-vet .img-one,
+  #service .card-atendimento-vet .container-atendimento-vet .img-two,
+  #service .card-atendimento-vet .container-atendimento-vet .img-three,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-one,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-two,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-three,
+  #service .card-transporte-pet .container-transporte-pet .img-text-one .img-one,
+  #service .card-transporte-pet .container-transporte-pet .img-text-two .img-two {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.5em;
+  }
+  
+  /* Centraliza textos nos cards de serviço */
+  #service .card-banho-tosa .container-banho-tosa .img-text-one .text-one,
+  #service .card-banho-tosa .container-banho-tosa .img-text-two .text-two,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento .img-text-one .text-one,
+  #service .card-adestramento-comportamento .container-adestramento-comportamento .img-text-two .text-two,
+  #service .card-atendimento-vet .container-atendimento-vet .img-text-one .text-one,
+  #service .card-atendimento-vet .container-atendimento-vet .img-text-two .text-two,
+  #service .card-atendimento-vet .container-atendimento-vet .img-text-three .text-three,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-text-one .text-one,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-text-two .text-two,
+  #service .card-hospedagem-creche .container-hospedagem-pet .img-text-three .text-three,
+  #service .card-transporte-pet .container-transporte-pet .img-text-one .text-one,
+  #service .card-transporte-pet .container-transporte-pet .img-text-two .text-two {
+      text-align: center;
+      max-width: none;
+  }
+  
+  #service .card-transporte-pet .container-transporte-pet .img-text-two {
+      flex-direction: column; 
+  }
+
+
+  /* --- ADOPTION (Rolagem horizontal) --- */
+  #adoption {
+    height: auto;
+    padding-bottom: 2em;
+  }
+
+  #adoption .title-text-adoption {
+    padding: 1em;
+  }
+
+  #adoption .adopt-container {
+    padding: 2em 1em;
+  }
+  
+  #adoption .why-adopt,
+  #adoption .how-adopt {
+      width: 100%;
+      max-width: 100%;
+  }
+
+  #adoption .why-adopt ul,
+  #adoption .how-adopt ul {
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1.5em;
+    justify-content: flex-start;
+    padding: 0 1em 1em; 
+    margin: 1em auto;
+    width: fit-content; /* Permite que o conteúdo defina a largura mínima */
+  }
+
+  #adoption .why-adopt ul li,
+  #adoption .how-adopt ul li {
+    flex: 0 0 150px; 
+  }
+
+  #adoption .why-adopt ul .section-title-card,
+  #adoption .how-adopt ul .section-title-card {
+      margin-right: 0;
+      flex: 0 0 auto;
+      max-width: 150px;
+  }
+  
+  /* --- CONTACT --- */
+  #contact {
+    height: auto;
+    padding-bottom: 2em;
+  }
+  
+  #contact .title-text-contact {
+    padding: 1em;
+  }
+
+  #contact .container-contact-form-address {
+    flex-direction: column; 
+    gap: 2em;
+    align-items: center;
+    padding: 2em 1em;
+  }
+  
+  #contact .container-contact .form form {
+      max-width: 100%;
+  }
+
+  #contact .container-contact .form form .name,
+  #contact .container-contact .form form .email,
+  #contact .container-contact .form form .phone,
+  #contact .container-contact .form form .message {
+    width: 100%;
+    max-width: 400px; 
+  }
+  
+  #contact .container-address {
+      width: 100%;
+      max-width: 400px;
+  }
+  
+  #contact .container-address .clinica li {
+    grid-template-columns: 1fr; 
+  }
+
+  #contact .container-address .maps-container {
+    width: 100%;
+  }
+  
+  #contact .container-address .maps-container .maps iframe {
+    width: 100%;
+    height: 220px;
+  }
+
+
+  /* --- FOOTER --- */
+  footer {
+    flex-direction: column; 
+    align-items: center;
+    gap: 2em;
+    padding: 2em 1em;
+    text-align: center;
+  }
+  
+  footer .footer-nav {
+      width: 100%;
+  }
+
+  footer .footer-nav nav {
+    flex-direction: column; 
+    gap: 1.5em;
+  }
+  
+  footer .social-media {
+      padding-top: 1em;
+  }
+  
+  footer .footer-nav nav .our-products,
+  footer .footer-nav nav .tips-warnings {
+    width: 100%;
+    padding: 0;
+  }
+  
+  footer .footer-nav nav .our-products ul li .links-op,
+  footer .footer-nav nav .tips-warnings ul li .links-tw {
+      align-items: center; 
+  }
+}
+
+/* --- CELULARES PEQUENOS (até 480px) --- */
+@media (max-width: 480px) {
+  /* Reduz o padding geral */
+  section {
+    padding: 3em 1em;
+  }
+  
+  body::before {
+    height: 4.5em; 
+  }
+
+  /* Ajuste no texto da Home */
+  #home .title-home ul li p {
+    font-size: 1.2em;
+  }
+  
+  /* Ajuste geral dos títulos */
+  .title-information, .title-product, .title-service, .title-adoption, .title-contact {
+    font-size: 1.5em !important;
+  }
+  
+  /* Reduz o tamanho da imagem da Home para telas muito pequenas */
+  #home .container .left img, 
+  #home .container .right img {
+      height: auto;
+      max-height: 250px;
+  }
+
+  /* Ajuste no tamanho dos cards de informações para a rolagem horizontal */
+  #information .card-information .card {
+    flex: 0 0 200px; 
+    max-width: 220px;
+  }
+
+  /* Reduz o tamanho dos cards de produtos para a rolagem horizontal */
+  #product .product-container-grid .card {
+    flex: 0 0 250px; 
+  }
+
+  /* Ajuste no tamanho dos cards de serviço para a rolagem horizontal */
+  #service .card-banho-tosa,
+  #service .card-adestramento-comportamento,
+  #service .card-atendimento-vet,
+  #service .card-hospedagem-creche,
+  #service .card-transporte-pet {
+    flex: 0 0 280px; 
+    max-width: 300px;
+  }
+  
+  /* Ajuste nos títulos e textos */
+  .title-information, .title-product, .title-service, .title-adoption, .title-contact {
+    font-size: 1.4em;
+  }
+  
+  .text-information, .text-product, .text-service, .text-adoption, .text-contact {
+      font-size: 0.9em;
+  }
+  
+  /* Ajuste para o título dentro do service */
+  #service .container-service .title-container ul li p {
+      font-size: 1.1em;
+  }
+
+  /* Ajuste nos botões */
+  .btn-card ul li a {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
+  }
+}
