@@ -124,12 +124,7 @@ function renderTable(produtos) {
             <td>${produto.marca}</td>
             <td>R$${produto.preco}</td>
             <td>${dataFormatada}</td>
-            <td>${produto.especie}</td>
-            <td>
-                <span style="color:${produto.ativo ? 'green' : 'red'};">
-                    ${produto.ativo ? "Ativo" : "Inativo"}
-                </span>
-            </td>
+            <td>${produto.categoriaNome}</td>
              <td class="actions">
                 <div class="menu-container">
                   <button class="menu-btn" title="Mais opções">

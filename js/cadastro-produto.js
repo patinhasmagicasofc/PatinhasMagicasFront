@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("formProduto");
 
     await carregarCategoria();
+    await carregarEspecies();
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const produto = {
             nome: document.getElementById("nome").value,
             preco: parseFloat(document.getElementById("preco").value),
-            //especie: document.getElementById("especie").value,
+            especieId: parseInt(document.getElementById("especie").value),
             marca: document.getElementById("marca").value,
             urlImagem: document.getElementById("urlImagem").value || "https://placehold.co/400x300?text=Produto",
             codigo: document.getElementById("codigo").value,
@@ -65,6 +66,27 @@ document.addEventListener("DOMContentLoaded", async () => {
                 option.value = categoria.id;
                 option.textContent = categoria.nome;
                 selectCategoria.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Erro ao carregar tipos do usuario:', error);
+        }
+    }
+
+    async function carregarEspecies() {
+        try {
+            if (!validarLogin()) return;
+
+            const data = await consumirAPIAutenticada('/Especie', 'GET');
+            const selectEspecie = document.getElementById('especie');
+            if (!selectEspecie || !data) return;
+
+            console.log('Especies carregadas:', data);
+
+            data.forEach(especie => {
+                const option = document.createElement('option');
+                option.value = especie.id;
+                option.textContent = especie.nome;
+                selectEspecie.appendChild(option);
             });
         } catch (error) {
             console.error('Erro ao carregar tipos do usuario:', error);
