@@ -224,78 +224,79 @@
     padding: 1em;
   }
 
-  #information .grid-wrapper {
-    overflow-x: auto; 
-    width: 100%;
-    max-width: 100%;
-    padding: 2em 1em;
+  @media (max-width: 1024px) {
+    #product .product-container-grid {
+      gap: 1.5em;
+    }
   }
+  
 
-  #information .card-information {
-    display: flex; 
-    flex-wrap: nowrap; 
-    gap: 1.5em;
-    min-width: 650px; 
-    padding-bottom: 1em; 
-    justify-content: flex-start; 
-    margin: 0;
-  }
 
-  #information .card-information .card {
-    flex: 0 0 250px; 
-    max-width: 250px;
-  }
-
-  /* Tablets e notebooks menores */
-@media (max-width: 1024px) {
-  #product .product-container-grid {
-    gap: 1.5em;
-  }
-}
-
-/* Celulares — rolagem horizontal */
+/* Para telas até 769px */
 @media (max-width: 769px) {
+  /* Esconde os botões do carrossel */
   .carousel-btn {
     display: none;
   }
 
+  /* Contêiner do carrossel */
   .product-carousel {
     display: flex;
     gap: 1em;
     padding: 1em 0.5em;
     overflow-x: auto; /* Permite scroll horizontal */
+    scroll-behavior: smooth; /* Rolagem suave */
   }
 
+  /* Cada card */
   .product-carousel .card {
     flex: 0 0 auto;      /* Não cresce nem encolhe */
-    width: 45%;           /* Ocupa 45% do container, se ajusta automaticamente */
-    min-width: 120px;     /* Limite mínimo de tamanho */
-    max-width: 200px;     /* Limite máximo de tamanho */
+    width: 45%;          /* Ocupa 45% do container */
+    min-width: 150px;    /* Limite mínimo de tamanho */
+    max-width: 220px;    /* Limite máximo de tamanho */
+    box-sizing: border-box;
   }
-  
+
+  /* Ajusta o artigo dentro do carrossel */
   .carousel > article {
-   /* width: 75vw;  Ocupa 85% da largura da viewport */
-    flex: 0 0 75vw; /* Garante que o flex-basis use 85% da viewport */
-    /* Você pode precisar definir a altura máxima também */
-    /* max-height: 400px; */ 
+    flex: 0 0 75vw;      /* Ocupa 75% da viewport */
   }
-  
-  /* Ajusta o contêiner do carrossel para usar a largura máxima */
+
+  /* Contêiner do carrossel centralizado */
   .carousel {
-    --carousel-width: 100%; 
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    margin: 0 auto;
   }
-}
 
-
-@media (max-width: 600px) {
-  #product .more-products a {
-    width: 60%;
+  /* Ajuste de texto dentro do título e descrição */
+  .title-text-product p {
     font-size: 0.9rem;
-    padding: 0.7em 1.5em;
+    line-height: 1.3rem;
   }
 }
+
+/* Para telas bem pequenas até 600px */
+@media (max-width: 600px) {
+  /* Botão "Ver todos os produtos" */
+  #product .more-products a {
+    width: 80%;
+    font-size: 0.85rem;
+    padding: 0.6em 1em;
+  }
+
+  /* Cards ficam menores */
+  .product-carousel .card {
+    width: 70%;
+    min-width: 140px;
+  }
+
+  /* Ajuste do título e descrição */
+  .title-text-product p {
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+  }
+}
+
 
 
   /* --- SERVICE (Rolagem horizontal nos containers internos) --- */
@@ -320,52 +321,21 @@
     max-width: 100%; 
     padding: 0 1em;
   }
-  
-  /* Container ONE (Banho e Tosa / Adestramento) */
-  #service .service-card-container-one {
-    /* Container pai se torna a área de rolagem */
-    flex-direction: row; 
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Habilita rolagem */
-    width: 100%;
-    padding-bottom: 1em;
-    gap: 1.5em; /* Espaçamento entre os cards */
-    margin: 0;
-    justify-content: flex-start;
-    align-items: stretch; /* Garante que todos cards tenham a mesma altura */
-  }
-  
+
+
   #service .card-banho-tosa,
   #service .card-adestramento-comportamento {
-    /* Define largura fixa e impede redução */
-    flex: 0 0 320px; 
     max-width: 350px;
-    height: 100%; /* Ocupa a altura total do container (ajustado por align-items: stretch) */
+    height: 100%; 
   }
 
-
-  /* Container TWO (Vet / Hospedagem / Transporte) */
-  #service .service-card-container-two {
-    /* Container pai se torna a área de rolagem */
-    flex-direction: row; 
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Habilita rolagem */
-    width: 100%;
-    padding-bottom: 1em;
-    gap: 1.5em; /* Espaçamento entre os cards */
-    margin: 0;
-    justify-content: flex-start;
-    align-items: stretch; /* Garante que todos cards tenham a mesma altura */
-  }
   
-  #service .card-atendimento-vet,
+#service .card-atendimento-vet,
   #service .card-hospedagem-creche,
   #service .card-transporte-pet {
-    /* Define largura fixa e impede redução */
-    flex: 0 0 320px; 
     max-width: 350px;
     padding: 1em;
-    height: 100%; /* Ocupa a altura total do container */
+    height: 100%; 
   }
   
   /* Reset de layout interno para mobile (volta para empilhamento vertical dentro do card) */
