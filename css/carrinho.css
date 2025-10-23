@@ -510,6 +510,9 @@ body {
           color: #444;
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
           border-radius: 0.4em;
+            li{
+              margin: 0 1em;
+            }
         }
 
         &.item {
@@ -517,10 +520,14 @@ body {
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
           background: var(--clr-white);
           border-radius: 0.4em;
-
+          .img-produto{
+              display: flex;
+              gap: 1.5em;
+          }
           li {
             display: flex;
             gap: 0;
+            margin: 0 1em;
 
             .btn-quantidade {
               border: 1px solid var(--clr-gray-two);
@@ -616,6 +623,7 @@ body {
     }
 
     .text-end {
+      margin: 1em;
       ul {
         li {
           p {
@@ -624,6 +632,11 @@ body {
             }
           }
         }
+      }
+    }
+
+    .btn-end{
+      button{
       }
     }
   }
