@@ -59,6 +59,36 @@
   }
   
   /* Contato - Reduz a largura do formulário e mapa */
+  @media (max-width: 900px) {
+          #contact .container-contact-form-address {
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+      }
+    
+      #contact .container-contact .form form > div {
+        width: 100%;
+        max-width: 90vw;
+      }
+    
+      #contact .container-address .maps iframe {
+        width: 90vw;
+        height: 250px;
+      }
+    
+  
+    #contact .container-contact .form form > div {
+      width: 100%;
+      max-width: 90vw;
+    }
+  
+    #contact .container-address .maps iframe {
+      width: 90vw;
+      height: 250px;
+    }
+  }
+  
+
   #contact .container-contact-form-address {
     padding: 0 2em;
   }
@@ -90,14 +120,11 @@
   }
 
   /* Hamburger Menu - Animação Otimizada */
-  .hamburger {
-    display: flex;
-    z-index: 2001; 
-  }
 
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translateY(8px);
-  }
+.hamburger {
+  display: flex;
+}
+
 
   .hamburger.active span:nth-child(2) {
     opacity: 0;
@@ -171,46 +198,57 @@
     max-width: 250px;
   }
 
-  /* --- PRODUCT (Rolagem horizontal) --- */
-  #product {
-    height: auto;
-    padding-bottom: 2em;
+  /* Tablets e notebooks menores */
+@media (max-width: 1024px) {
+  #product .product-container-grid {
+    gap: 1.5em;
   }
-  
-  #product .title-text-product {
-    padding: 1em;
+}
+
+/* Celulares — rolagem horizontal */
+@media (max-width: 769px) {
+  .carousel-btn {
+    display: none;
   }
 
-  #product .product-container {
-    overflow-x: auto; 
-    width: 100%;
-    padding: 2em 1em 0;
-    justify-content: flex-start;
+  .product-carousel {
+    display: flex;
+    gap: 1em;
+    padding: 1em 0.5em;
+    overflow-x: auto; /* Permite scroll horizontal */
+  }
+
+  .product-carousel .card {
+    flex: 0 0 auto;      /* Não cresce nem encolhe */
+    width: 45%;           /* Ocupa 45% do container, se ajusta automaticamente */
+    min-width: 120px;     /* Limite mínimo de tamanho */
+    max-width: 200px;     /* Limite máximo de tamanho */
   }
   
-  #product .product-container-grid {
-    display: flex; 
-    flex-wrap: nowrap; 
-    gap: 1.2em;
-    min-width: 600px; 
-    padding-bottom: 1em; 
-    justify-content: flex-start;
-    margin: 0;
+  .carousel > article {
+   /* width: 75vw;  Ocupa 85% da largura da viewport */
+    flex: 0 0 75vw; /* Garante que o flex-basis use 85% da viewport */
+    /* Você pode precisar definir a altura máxima também */
+    /* max-height: 400px; */ 
   }
   
-  #product .product-container-grid .card {
-    flex: 0 0 280px; 
-    flex-direction: column;
-    max-width: 320px;
-    padding: 1em;
-    box-sizing: border-box;
+  /* Ajusta o contêiner do carrossel para usar a largura máxima */
+  .carousel {
+    --carousel-width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  #product .product-container-grid .card img {
+}
+
+
+@media (max-width: 600px) {
+  #product .more-products a {
     width: 60%;
-    margin: 0 auto;
-    order: -1; 
+    font-size: 0.9rem;
+    padding: 0.7em 1.5em;
   }
+}
+
 
   /* --- SERVICE (Rolagem horizontal nos containers internos) --- */
   #service {
@@ -530,5 +568,33 @@
   .btn-card ul li a {
     padding: 0.6em 1em;
     font-size: 0.9em;
+  }
+}
+
+/* Ajustes gerais de responsividade */
+@media (max-width: 768px) {
+  #home .container {
+    grid-template-columns: 1fr;
+  }
+
+  #information .card-information {
+    grid-template-columns: 1fr;
+  }
+
+  #product .product-container-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #service .service-card-container-two,
+  #service .service-card-container-one {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2em;
   }
 }

@@ -15,19 +15,18 @@ elements.forEach(el => observer.observe(el));
 const hamburger = document.getElementById("hamburger");
 const menu = document.getElementById("menu");
 
-// Abrir/fechar menu ao clicar no hamburger
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   menu.classList.toggle("active");
 });
 
-// Fecha o menu ao clicar em um link
 document.querySelectorAll(".menu a").forEach(link => {
   link.addEventListener("click", () => {
     hamburger.classList.remove("active");
     menu.classList.remove("active");
   });
 });
+
 
 // Fecha o menu ao clicar fora dele
 document.addEventListener("click", (e) => {
@@ -37,4 +36,22 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
+
+// === CARROSSEL DE PRODUTOS ===
+const productCarousel = document.querySelector(".product-carousel");
+const nextBtn = document.querySelector(".carousel-btn.next");
+const prevBtn = document.querySelector(".carousel-btn.prev");
+
+if (productCarousel && nextBtn && prevBtn) {
+  const scrollAmount = 300; // distância do scroll por clique
+
+  nextBtn.addEventListener("click", () => {
+    productCarousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    productCarousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+}
 
