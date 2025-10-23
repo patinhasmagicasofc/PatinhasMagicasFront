@@ -154,3 +154,35 @@ document.addEventListener('click', (e) => {
     dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
   }
 });
+
+
+document.querySelectorAll('.item').forEach(item => {
+  const minus = item.querySelector('.btn-minus');
+  const plus = item.querySelector('.btn-plus');
+  const input = item.querySelector('.quantidade');
+
+  if (!input) return;
+
+  // garante valor mínimo correto
+  const min = parseInt(input.getAttribute('min') || '1', 10);
+
+  minus.addEventListener('click', () => {
+    const current = parseInt(input.value || '0', 10);
+    if (current > min) input.value = current - 1;
+    input.dispatchEvent(new Event('change'));
+  });
+
+  plus.addEventListener('click', () => {
+    const current = parseInt(input.value || '0', 10);
+    input.value = current + 1;
+    input.dispatchEvent(new Event('change'));
+  });
+
+  // valida entrada manual
+  input.addEventListener('input', () => {
+    // mantém só números inteiros positivos
+    let val = input.value.replace(/[^\d]/g, '');
+    if (val === '') val = String(min);
+    input.value = Math.max(min, parseInt(val, 10));
+  });
+});

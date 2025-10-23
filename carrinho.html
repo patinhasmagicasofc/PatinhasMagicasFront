@@ -23,7 +23,7 @@
   <!-- NAVBAR -->
   <header>
     <nav id="menuLogado">
-      
+
       <div class="perfil">
         <ul>
           <li class="dropdown-perfil">
@@ -137,7 +137,10 @@
 
         <div class="lista-produtos">
           <ul class="cabecalho">
-            <li></li>
+            <li> <label class="checkbox-container">
+                <input class="remover" type="checkbox" id="selecao" name="selecao">
+                <span class="checkmark"></span>
+              </label></li>
             <li>Produto</li>
             <li>Preço</li>
             <li>Quantidade</li>
@@ -160,8 +163,11 @@
             <li>R$ 22,00</li>
 
             <li>
-              <input type="number" class="quantidade" value="1" min="1">
+              <button class="btn-quantidade">-</button>
+              <input class="quantidade" type="text" pattern="[0-9]*" role="spinbutton" aria-valuenow="1" value="1">
+              <button class="btn-quantidade">+</button>
             </li>
+
             <li><strong>R$ 25,00</strong></li>
 
           </ul>
