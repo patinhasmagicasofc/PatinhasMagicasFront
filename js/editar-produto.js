@@ -11,8 +11,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         mostrarLoading(true);
 
-        const produto = await consultarProduto();
+        // Primeiro carregamos categorias e espécies
         await carregarCategoria();
+        await carregarEspecies();
+
+        // Depois buscamos o produto
+        const produto = await consultarProduto();
         console.log("Produto a ser atualizado:", produto);
 
         if (produto) {
@@ -29,8 +33,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const produto = {
             nome: document.getElementById("nome").value,
-            preco: parseFloat(document.getElementById("preco").value),
-            //especie: document.getElementById("especie").value,
+            preco: parseFloat(document.getElementById("preco").value.replace(/\./g, '').replace(',', '.')),
+            especieId: parseInt(document.getElementById("especie").value),
             marca: document.getElementById("marca").value,
             urlImagem: document.getElementById("urlImagem").value,
             codigo: document.getElementById("codigo").value,
@@ -49,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function preencherProduto(produto) {
         document.getElementById('nome').value = produto.nome || '';
-        //document.getElementById('especie').value = produto.especie || '';
         document.getElementById('preco').value = produto.preco || '';
         document.getElementById('descricao').value = produto.descricao || '';
         document.getElementById('marca').value = produto.marca || '';
@@ -57,7 +60,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById('codigo').value = produto.codigo || '';
         document.getElementById('descricaoDetalhada').value = produto.descricaoDetalhada || '';
         document.getElementById('validade').value = produto.validade?.split('T')[0] || '';
-        document.getElementById('categoria').value = produto.categoriaId || '';
+
+        // Categoria
+        const categoriaSelect = document.getElementById('categoria');
+        categoriaSelect.value = produto.categoriaId || '';
+
+        // Espécie
+        const especieSelect = document.getElementById('especie');
+        especieSelect.value = produto.especieId || '';
     }
 
     async function consultarProduto() {
@@ -116,6 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             console.log('Categorias carregadas:', data);
 
+            selectCategoria.innerHTML = ''; // limpa opções antes de adicionar
             data.forEach(categoria => {
                 const option = document.createElement('option');
                 option.value = categoria.id;
@@ -123,13 +134,34 @@ document.addEventListener("DOMContentLoaded", async () => {
                 selectCategoria.appendChild(option);
             });
         } catch (error) {
-            console.error('Erro ao carregar tipos do usuario:', error);
+            console.error('Erro ao carregar categorias:', error);
+        }
+    }
+
+    async function carregarEspecies() {
+        try {
+            if (!validarLogin()) return;
+
+            const data = await consumirAPIAutenticada('/Especie', 'GET');
+            const selectEspecie = document.getElementById('especie');
+            if (!selectEspecie || !data) return;
+
+            console.log('Especies carregadas:', data);
+
+            selectEspecie.innerHTML = ''; // limpa opções antes de adicionar
+            data.forEach(especie => {
+                const option = document.createElement('option');
+                option.value = especie.id;
+                option.textContent = especie.nome;
+                selectEspecie.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Erro ao carregar espécies:', error);
         }
     }
 });
 
-
-//função header
+// --- Funções do menu lateral ---
 const menuItem = document.querySelectorAll('.item-menu');
 
 function selectLink() {
@@ -143,14 +175,12 @@ const btnExpandir = document.querySelector('#btn-exp');
 const nav = document.querySelector('.menu-lateral');
 const header = document.querySelector('header');
 
-// Abrir/fechar menu
 btnExpandir.addEventListener('click', (e) => {
     e.stopPropagation()
     nav.classList.toggle('expandir');
     header.classList.toggle('expandir');
 });
 
-// Fechar menu ao clicar fora
 document.addEventListener('click', (e) => {
     if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
         nav.classList.remove('expandir');
@@ -158,7 +188,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Máscara de preço
+// --- Máscara de preço ---
 const precoInput = document.getElementById('preco');
 precoInput.addEventListener('input', function (e) {
     let valor = e.target.value;
@@ -179,16 +209,17 @@ costPrecoInput.addEventListener('input', function (e) {
     e.target.value = valor;
 });
 
+// --- Toast ---
 function mostrarToast(mensagem, tipo = "sucesso") {
     const toast = document.getElementById("toast");
     toast.textContent = mensagem;
 
     if (tipo === "erro") {
-        toast.style.backgroundColor = "#d9534f"; // vermelho
+        toast.style.backgroundColor = "#d9534f";
     } else if (tipo === "aviso") {
-        toast.style.backgroundColor = "#f0ad4e"; // amarelo
+        toast.style.backgroundColor = "#f0ad4e";
     } else {
-        toast.style.backgroundColor = "#5cb85c"; // verde sucesso
+        toast.style.backgroundColor = "#5cb85c";
     }
 
     toast.className = "toast show";
