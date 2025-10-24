@@ -128,6 +128,24 @@ function renderCart() {
       removeFromCart(id);
     });
   });
+
+  // --- Checkbox Geral ---
+  const checkboxGeral = container.querySelector('#selecao-geral');
+  const checkboxesItens = container.querySelectorAll('.lista-produtos .item .remover');
+
+  if (checkboxGeral) {
+    // Selecionar/deselecionar todos
+    checkboxGeral.addEventListener('change', () => {
+      checkboxesItens.forEach(item => item.checked = checkboxGeral.checked);
+    });
+
+    // Atualizar checkbox geral se algum item for desmarcado
+    checkboxesItens.forEach(item => {
+      item.addEventListener('change', () => {
+        checkboxGeral.checked = Array.from(checkboxesItens).every(i => i.checked);
+      });
+    });
+  }
 }
 
 // --- Checkout ---
