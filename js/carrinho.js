@@ -23,25 +23,22 @@ function updateQuantity(id, quantidade) {
 }
 
 function calcularTotal(cart) {
-  let total = 0;
-  for (const item of cart) {
-    const produto = produtos.find(p => p.id === item.id);
-    if (!produto) continue;
-    total += produto.preco * item.quantidade;
-  }
-  return total;
+  return cart.reduce((total, produto) => total + produto.preco * produto.quantidade, 0);
 }
 
+// --- Renderização ---
 function renderCart() {
   const container = document.getElementById('cartContainer');
   const cart = getCart();
 
+  if (!container) return;
+
   if (cart.length === 0) {
     container.innerHTML = `
-          <div class="empty-cart text-center my-5">
-            <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" width="100" class="mb-3">
-            <h5>Seu carrinho está vazio.</h5>
-          </div>`;
+      <div class="empty-cart text-center my-5">
+        <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" width="100" class="mb-3">
+        <ul><li><p>Seu carrinho está vazio.</p></li></ul>
+      </div>`;
     document.getElementById('btnCheckout').disabled = true;
     return;
   }
@@ -49,140 +46,98 @@ function renderCart() {
   document.getElementById('btnCheckout').disabled = false;
 
   let html = `
-        <div class="table-responsive">
-          <table class="table align-middle">
-            <thead class="table-light">
-              <tr>
-                <th></th>
-                <th>Produto</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>Subtotal</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>`;
+    <div class="lista-produtos">
+      <ul class="cabecalho">
+        <li><label class="checkbox-container">
+            <input type="checkbox" id="selecao-geral">
+            <span class="checkmark"></span>
+        </label></li>
+        <li>Produto</li>
+        <li>Preço</li>
+        <li>Quantidade</li>
+        <li>Subtotal</li>
+        <li></li>
+      </ul>`;
 
-  for (const item of cart) {
-    const produto = produtos.find(p => p.id === item.id);
-    if (!produto) continue;
+  for (const produto of cart) {
+    const subtotal = produto.preco * produto.quantidade;
 
-    const subtotal = produto.preco * item.quantidade;
     html += `
-          <tr>
-            <td><img src="${produto.urlImage}" class="produto-img"></td>
-            <td>${produto.nome}</td>
-            <td>R$ ${produto.preco.toFixed(2)}</td>
-            <td>
-              <input type="number" class="form-control form-control-sm w-75"
-                     value="${item.quantidade}" min="1"
-                     onchange="updateQuantity(${produto.id}, this.value)">
-            </td>
-            <td><strong>R$ ${subtotal.toFixed(2)}</strong></td>
-            <td><button class="btn btn-sm btn-danger" onclick="removeFromCart(${produto.id})">🗑</button></td>
-          </tr>`;
+      <ul class="item" data-id="${produto.id}">
+        <li>
+          <label class="checkbox-container">
+            <input class="remover" type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="img-produto">
+          <img src="${produto.urlImagem || './img/img-adoption/adoption-for.png'}" alt="Produto" class="produto-img">
+          ${produto.nome}
+        </li>
+        <li>R$ ${produto.preco.toFixed(2)}</li>
+        <li>
+          <button class="btn-quantidade" data-action="menos">-</button>
+          <input class="quantidade" type="text" value="${produto.quantidade}" />
+          <button class="btn-quantidade" data-action="mais">+</button>
+        </li>
+        <li><strong>R$ ${subtotal.toFixed(2)}</strong></li>
+        <li><button class="btn btn-sm btn-danger btn-remover">🗑</button></li>
+      </ul>`;
   }
 
   const total = calcularTotal(cart);
 
   html += `
-            </tbody>
-          </table>
-        </div>
-        <div class="text-end my-3">
-          <h4>Total: <span class="text-success">R$ ${total.toFixed(2)}</span></h4>
-        </div>`;
+    </div>
+    <div class="text-end my-3">
+      <ul><li><p>Total: <span class="text-success">R$ ${total.toFixed(2)}</span></p></li></ul>
+    </div>`;
 
   container.innerHTML = html;
+
+  // === Eventos dinâmicos ===
+
+  // Botões + e -
+  container.querySelectorAll('.btn-quantidade').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const itemEl = btn.closest('.item');
+      const id = Number(itemEl.dataset.id);
+      const input = itemEl.querySelector('.quantidade');
+      let qtd = parseInt(input.value || '1', 10);
+
+      if (btn.dataset.action === 'menos' && qtd > 1) qtd--;
+      if (btn.dataset.action === 'mais') qtd++;
+
+      updateQuantity(id, qtd);
+    });
+  });
+
+  // Alteração manual no input
+  container.querySelectorAll('.quantidade').forEach(input => {
+    input.addEventListener('input', e => {
+      const val = parseInt(e.target.value.replace(/[^\d]/g, ''), 10);
+      const id = Number(e.target.closest('.item').dataset.id);
+      updateQuantity(id, val || 1);
+    });
+  });
+
+  // Remover item
+  container.querySelectorAll('.btn-remover').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.closest('.item').dataset.id);
+      removeFromCart(id);
+    });
+  });
 }
 
-// Checkout
+// --- Checkout ---
 document.getElementById('btnCheckout').addEventListener('click', () => {
   const cart = getCart();
   if (cart.length === 0) return;
   window.location.href = "checkout.html";
 });
 
-// Inicialização
+// --- Inicialização ---
 document.addEventListener('DOMContentLoaded', renderCart);
 window.removeFromCart = removeFromCart;
 window.updateQuantity = updateQuantity;
-
-
-
-// ======== Dropdown Menu ========
-const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropdown');
-
-dropdowns.forEach(dropdown => {
-  const link = dropdown.querySelector('a');
-
-  // Só previne comportamento se não for o link do carrinho
-  if (!link.classList.contains('cart-link')) {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      dropdowns.forEach(item => {
-        if (item !== dropdown) item.classList.remove('ativo');
-      });
-      dropdown.classList.toggle('ativo');
-    });
-  }
-});
-
-document.addEventListener('click', e => {
-  if (![...dropdowns].some(dropdown => dropdown.contains(e.target))) {
-    dropdowns.forEach(dropdown => dropdown.classList.remove('ativo'));
-  }
-});
-
-// ======== Dropdown Perfil ========
-const dropdownsPerfil = document.querySelectorAll('.dropdown-perfil');
-
-function toggleDropdown(e) {
-  e.preventDefault();
-  if (this.classList.contains('ativo')) {
-    this.classList.remove('ativo');
-  } else {
-    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
-    this.classList.add('ativo');
-  }
-}
-
-dropdownsPerfil.forEach(item => item.addEventListener('click', toggleDropdown));
-
-document.addEventListener('click', (e) => {
-  if (![...dropdownsPerfil].some(item => item.contains(e.target))) {
-    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
-  }
-});
-
-
-document.querySelectorAll('.item').forEach(item => {
-  const minus = item.querySelector('.btn-minus');
-  const plus = item.querySelector('.btn-plus');
-  const input = item.querySelector('.quantidade');
-
-  if (!input) return;
-
-  // garante valor mínimo correto
-  const min = parseInt(input.getAttribute('min') || '1', 10);
-
-  minus.addEventListener('click', () => {
-    const current = parseInt(input.value || '0', 10);
-    if (current > min) input.value = current - 1;
-    input.dispatchEvent(new Event('change'));
-  });
-
-  plus.addEventListener('click', () => {
-    const current = parseInt(input.value || '0', 10);
-    input.value = current + 1;
-    input.dispatchEvent(new Event('change'));
-  });
-
-  // valida entrada manual
-  input.addEventListener('input', () => {
-    // mantém só números inteiros positivos
-    let val = input.value.replace(/[^\d]/g, '');
-    if (val === '') val = String(min);
-    input.value = Math.max(min, parseInt(val, 10));
-  });
-});
