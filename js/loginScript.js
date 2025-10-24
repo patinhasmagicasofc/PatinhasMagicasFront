@@ -39,7 +39,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         switch (perfil.toLowerCase()) {
             case 'administrador':
                 setTimeout(() => {
-                    window.location.href = 'listapedidos.html';
+                    window.location.href = 'lista-pedidos.html';
                 }, 100);
                 break;
             case 'cliente':

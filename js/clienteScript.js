@@ -222,11 +222,9 @@ async function handleUpdatePessoal(event) {
     }
 
     const updateDto = {
-        idUsuario: parseInt(userId),
         nome: nomeInput.value.trim(),
         email: emailInput.value.trim(),
         cpf: cpfInput.value.trim(),
-        senha: localStorage.getItem('senhaUsuario') || '123456',
         ddd: dddInput.value ? parseInt(dddInput.value) : null,
         telefone: telefoneInput.value.trim(),
         tipoUsuarioId: 1
@@ -273,6 +271,7 @@ async function handleUpdateEndereco(event) {
         bairro: bairroInput.value.trim(),
         cidade: cidadeInput.value.trim(),
         estado: estadoInput.value.trim(),
+        usuarioId: parseInt(userId)
         usuarioId: parseInt(userId)
     };
 

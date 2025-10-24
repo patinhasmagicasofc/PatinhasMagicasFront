@@ -42,6 +42,8 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
         tipoUsuarioId: 1
     };
 
+    console.log('Dados para cadastro:', dadosCadastro);
+
     try {
         const response = await fetch(CADASTRO_ENDPOINT, {
             method: 'POST',

@@ -65,3 +65,20 @@ async function consumirAPIAutenticada(endpoint, method = 'GET', body = null) {
         return null;
     }
 }
+
+function getUserIdFromToken() {
+    const token = localStorage.getItem('authToken');
+    if (!token) return null;
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.nameid;
+}
+
+function validarLogin() {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        window.location.href = '/login.html';
+        return false;
+    }
+    return true;
+}

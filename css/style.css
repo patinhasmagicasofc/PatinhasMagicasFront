@@ -64,11 +64,17 @@ header {
     z-index: 1000;
 
     .logo {
+      img {
+        width: 160px;
+        height: 60px;
+
+      }
+
     }
 
     .menu {
       background: var(--clr-white-one);
-      backdrop-filter: blur(1em);
+      backdrop-filter: blur(.5em);
       padding: 1em 2em;
       border-radius: 2em;
 
@@ -292,8 +298,7 @@ header {
           font-weight: var(--fw-title);
         }
 
-        .text-product {
-        }
+        .text-product {}
       }
     }
   }
@@ -417,6 +422,7 @@ header {
     flex-direction: column;
     align-items: center;
     padding-bottom: 3em;
+
     .title-container {
       & ul {
         & li {
@@ -435,6 +441,7 @@ header {
       gap: 3rem;
       max-width: 1300px;
       margin: auto;
+
       .service-card-container-one {
         gap: 2em;
 
@@ -458,6 +465,7 @@ header {
               }
             }
           }
+
           .container-banho-tosa {
             display: flex;
             flex-direction: column;
@@ -486,6 +494,7 @@ header {
               .text-two {
                 & ul {
                   margin-bottom: 0;
+
                   & li {
                     & p {
                       margin-bottom: 0;
@@ -500,6 +509,7 @@ header {
               padding-top: 2em;
             }
           }
+
           .btn-card {
             margin: 2em 0 1em;
 
@@ -532,6 +542,7 @@ header {
           gap: 1em;
           align-items: center;
           padding: 1em;
+
           .title-adestramento-comportamento {
             & ul {
               & li {
@@ -542,10 +553,12 @@ header {
               }
             }
           }
+
           .container-adestramento-comportamento {
             display: flex;
             flex-direction: column;
             gap: 1em;
+
             .img-text-one,
             .img-text-two {
               display: grid;
@@ -567,8 +580,7 @@ header {
               .text-two {
                 & ul {
                   & li {
-                    & p {
-                    }
+                    & p {}
                   }
                 }
               }
@@ -619,10 +631,12 @@ header {
           align-items: center;
           padding: 1em;
           width: 400px;
+
           .container-atendimento-vet {
             display: flex;
             flex-direction: column;
             gap: 2em;
+
             .img-text-one,
             .img-text-two,
             .img-text-three {
@@ -630,6 +644,7 @@ header {
               align-items: center;
               grid-template-columns: auto 1fr;
               gap: 1em;
+
               .img-one,
               .img-two,
               .img-three {
@@ -645,8 +660,10 @@ header {
               .text-two,
               .text-three {
                 max-width: 320px;
+
                 & ul {
                   margin-bottom: 0;
+
                   & li {
                     & p {
                       margin-bottom: 0;
@@ -660,6 +677,7 @@ header {
               display: flex;
             }
           }
+
           .title-atendimento-vet {
             & ul {
               & li {
@@ -745,8 +763,10 @@ header {
               .text-two,
               .text-three {
                 max-width: 320px;
+
                 & ul {
                   margin-bottom: 0;
+
                   & li {
                     & p {
                       margin-bottom: 0;
@@ -862,8 +882,7 @@ header {
               }
             }
 
-            .text-grid {
-            }
+            .text-grid {}
           }
 
           .btn-card {
@@ -897,6 +916,7 @@ header {
         gap: 2rem;
         width: 100%;
         flex: 1;
+
         .banho-tosa,
         .adestramento-comportamento,
         .atendimento-vet,
@@ -910,6 +930,7 @@ header {
     }
   }
 }
+
 /* #endregion */
 
 /* #region adoption */
@@ -938,8 +959,7 @@ header {
           font-weight: var(--fw-title);
         }
 
-        .text-adoption {
-        }
+        .text-adoption {}
       }
     }
   }
@@ -990,6 +1010,7 @@ header {
           padding: 0.5em;
           border-radius: 0.6em;
           flex: 1 1 150px;
+
           & p {
             margin-bottom: 0;
             margin-top: 1em;
@@ -1174,7 +1195,7 @@ header {
       .maps-container {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        /* align-items: center; */
         width: 100%;
 
         .maps {
@@ -1199,8 +1220,7 @@ footer {
   padding: 2em;
   justify-content: space-evenly;
 
-  .logo {
-  }
+  .logo {}
 
   .footer-nav {
     nav {
@@ -1278,6 +1298,7 @@ footer {
   .social-media {
     display: flex;
     gap: 1em;
+
     .facebook,
     .x,
     .instagram {
