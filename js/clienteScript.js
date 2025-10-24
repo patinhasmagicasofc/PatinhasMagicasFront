@@ -272,7 +272,6 @@ async function handleUpdateEndereco(event) {
         cidade: cidadeInput.value.trim(),
         estado: estadoInput.value.trim(),
         usuarioId: parseInt(userId)
-        usuarioId: parseInt(userId)
     };
 
     const url = idEndereco ? `Endereco/${idEndereco}` : `Endereco`;

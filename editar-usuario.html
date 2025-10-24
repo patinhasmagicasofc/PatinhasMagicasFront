@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Patinhas Mágicas - Meu Perfil</title>
+    <link rel="stylesheet" href="css/fullStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="Button" class="fas fa-paw"></div>
+
+<div class="Nav">
+  <a href="./index.html"><span class="fas fa-home"></span></a>
+  <a href="./index.html#product"><span class="fas fa-box-open"></span></a>
+  <a href="./index.html#service"><span class="fas fa-hand-holding-heart"></span></a>
+  <!-- <a href="#"><span class="fas  fa-paw"></span></a> -->
+  <a href="./index.html#contact"><span class="fas  fa-envelope"></span></a>
+</div>
+
+<canvas></canvas>
+
+
+    <div class="painel">
+        <button onclick="logout()" class="btn-logout">Sair</button>
+        <h1>Meu Perfil <i class="fas fa-paw"></i></h1>
+        <p>Olá, <strong id="nomeUsuario">Cliente</strong>. Aqui você pode gerenciar seus dados pessoais.</p>
+
+        <h2 class="section-header"><i class="fas fa-user"></i> Dados Pessoais</h2>
+        <form id="formDadosPessoais" class="form-section">
+            <div class="input-group">
+                <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
+                <input type="text" id="nome" required disabled>
+            </div>
+            
+            <div class="input-group">
+                <label for="cpf"><i class="fas fa-id-card"></i> CPF (Não Editável)</label>
+                <input type="text" id="cpf" disabled>
+            </div>
+
+            <div class="input-group">
+                <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
+                <input type="email" id="email" required disabled>
+            </div>
+            
+            <div class="input-group input-inline">
+                <div id="ddd-input-group">
+                    <label for="ddd"><i class="fas fa-phone-alt"></i> DDD</label>
+                    <input type="text" id="ddd" required disabled maxlength="2">
+                </div>
+                <div id="telefone-input-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" required disabled>
+                </div>
+            </div>
+
+            <div id="botoesAcaoPessoal" style="margin-top: 10px;">
+                <button type="button" id="btnEditarPessoal" class="btn-login">
+                    <i class="fas fa-edit"></i> Editar Dados
+                </button>
+                <button type="submit" id="btnSalvarPessoal" class="btn-login" style="display: none;">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+            </div>
+            <p id="msgPessoal" class="erro"></p>
+        </form>
+
+        <h2 class="section-header"><i class="fas fa-home"></i> Endereço</h2>
+        <form id="formEndereco" class="form-section">
+            <div class="input-group">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" required disabled maxlength="9">
+            </div>
+            
+            <div class="input-group">
+                <label for="logradouro">Rua/Avenida</label>
+                <input type="text" id="logradouro" disabled>
+            </div>
+            
+            <div class="input-group input-inline">
+                <div id="bairro-input-group">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" id="bairro" required disabled>
+                </div>
+                <div id="cidade-input-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" required disabled>
+                </div>
+            </div>
+            
+            <div class="input-group input-inline">
+                <div id="estado-input-group">
+                    <label for="estado">Estado (UF)</label>
+                    <input type="text" id="estado" required disabled maxlength="2">
+                </div>
+                <div id="numero-input-group">
+                    <label for="numero">Número</label>
+                    <input type="text" id="numero" disabled required>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="complemento">Complemento (Opcional)</label>
+                <input type="text" id="complemento" disabled>
+            </div>
+            
+            <div id="botoesAcaoEndereco" style="margin-top: 10px;">
+                <button type="button" id="btnEditarEndereco" class="btn-login">
+                    <i class="fas fa-edit"></i> Editar Endereço
+                </button>
+                <button type="submit" id="btnSalvarEndereco" class="btn-login" style="display: none;">
+                    <i class="fas fa-save"></i> Salvar Endereço
+                </button>
+            </div>
+            <p id="msgEndereco" class="erro"></p>
+        </form>
+    </div>
+
+    <!-- Carregue o jQuery primeiro -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+    <!-- Plugin de Máscara -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script src="js/menuScript.js"></script>
+    <script src="js/validacoesCampos.js"></script>
+    <script src="js/verificarAcesso.js"></script>
+    <script src="js/clienteScript.js"></script>
+</body>
+</html>
