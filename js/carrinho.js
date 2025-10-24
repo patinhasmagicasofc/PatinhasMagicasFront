@@ -33,6 +33,19 @@ function renderCart() {
 
   if (!container) return;
 
+  // Atualiza badge do carrinho
+  const cartCountEl = document.getElementById('cart-count');
+  if (cartCountEl) {
+    const totalItens = cart.reduce((sum, item) => sum + item.quantidade, 0);
+    cartCountEl.textContent = totalItens;
+  }
+
+  // Botão Excluir Selecionados
+  const btnExcluirSelecionados = document.getElementById('btnExcluirSelecionados');
+  if (btnExcluirSelecionados) {
+    btnExcluirSelecionados.style.display = cart.length === 0 ? 'none' : 'inline-block';
+  }
+
   if (cart.length === 0) {
     container.innerHTML = `
       <div class="empty-cart text-center my-5">
@@ -121,7 +134,7 @@ function renderCart() {
     });
   });
 
-  // Remover item
+  // Remover item individual
   container.querySelectorAll('.btn-remover').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = Number(btn.closest('.item').dataset.id);
@@ -144,6 +157,20 @@ function renderCart() {
       item.addEventListener('change', () => {
         checkboxGeral.checked = Array.from(checkboxesItens).every(i => i.checked);
       });
+    });
+  }
+
+  // --- Botão Excluir Selecionados ---
+  if (btnExcluirSelecionados) {
+    btnExcluirSelecionados.addEventListener('click', () => {
+      const idsParaRemover = Array.from(checkboxesItens)
+        .filter(cb => cb.checked)
+        .map(cb => Number(cb.closest('.item').dataset.id));
+
+      if (idsParaRemover.length === 0) return;
+
+      const novoCart = cart.filter(item => !idsParaRemover.includes(item.id));
+      setCart(novoCart);
     });
   }
 }
