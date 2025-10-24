@@ -69,7 +69,6 @@ function renderCart() {
         <li>Preço</li>
         <li>Quantidade</li>
         <li>Subtotal</li>
-        <li></li>
       </ul>`;
 
   for (const produto of cart) {
@@ -94,7 +93,6 @@ function renderCart() {
           <button class="btn-quantidade" data-action="mais">+</button>
         </li>
         <li><strong>R$ ${subtotal.toFixed(2)}</strong></li>
-        <li><button class="btn btn-sm btn-danger btn-remover">🗑</button></li>
       </ul>`;
   }
 
