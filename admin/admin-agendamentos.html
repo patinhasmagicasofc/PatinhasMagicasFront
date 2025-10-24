@@ -18,7 +18,7 @@
     <h3>📅 Lista de Agendamentos</h3>
     <hr>
     <div class="table-responsive">
-      <table class="table table-striped align-middle">
+      <table id="tbAgendamentos" class="table table-striped align-middle">
         <thead class="table-dark">
           <tr>
             <th>ID</th>
@@ -35,37 +35,7 @@
     </div>
   </div>
 
-  <script>
-    const agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
-
-    const animais = [
-      { id: 1, nome: "Luna" },
-      { id: 2, nome: "Mimi" }
-    ];
-
-    const servicos = [
-      { id: 1, nome: "Banho" },
-      { id: 2, nome: "Tosa Completa" },
-      { id: 3, nome: "Consulta Veterinária" }
-    ];
-
-    const tabela = document.getElementById("tabelaAgendamentos");
-    tabela.innerHTML = agendamentos.map(a => {
-      const animal = animais.find(an => an.id == a.idAnimal);
-      const servico = servicos.find(s => s.id == a.idServico);
-
-      return `
-        <tr>
-          <td>${a.id}</td>
-          <td>Cliente ${a.idUsuario}</td>
-          <td>${animal ? animal.nome : "—"}</td>
-          <td>${servico ? servico.nome : "—"}</td>
-          <td>${new Date(a.data).toLocaleString("pt-BR")}</td>
-          <td><span class="badge ${a.status === 'Confirmado' ? 'bg-success' : 'bg-warning'}">${a.status}</span></td>
-          <td><a href="admin-agendamento-detalhes.html?id=${a.id}" class="btn btn-sm btn-primary">Ver Detalhes</a></td>
-        </tr>
-      `;
-    }).join("");
-  </script>
+  <script src="../js/verificarAcesso.js"></script>
+  <script src="../js/admin-agendamentos"></script>
 </body>
 </html>
