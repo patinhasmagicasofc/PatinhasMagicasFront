@@ -1,7 +1,3 @@
-// loginScript.js
-
-
-
 const API_BASE_URL = 'http://localhost:5260/api';
 const LOGIN_ENDPOINT = `${API_BASE_URL}/Login/login`;
 
