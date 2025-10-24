@@ -88,10 +88,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         selectAnimal.style.display = 'none';
         semAnimaisDiv.style.display = 'block';
         selectServico.disabled = true;
-        return [];
+
       }
 
-      semAnimaisDiv.style.display = 'none';
+      // semAnimaisDiv.style.display = 'none';
       selectAnimal.style.display = 'block';
       selectAnimal.innerHTML = '<option value="">Selecione um animal</option>';
 
@@ -133,5 +133,50 @@ document.addEventListener("DOMContentLoaded", async () => {
       selectServico.innerHTML = '<option value="">Erro ao carregar serviços</option>';
       return [];
     }
+  }
+});
+
+// ======== Dropdown Menu ========
+const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropdown');
+
+dropdowns.forEach(dropdown => {
+  const link = dropdown.querySelector('a');
+
+  // Só previne comportamento se não for o link do carrinho
+  if (!link.classList.contains('cart-link')) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      dropdowns.forEach(item => {
+        if (item !== dropdown) item.classList.remove('ativo');
+      });
+      dropdown.classList.toggle('ativo');
+    });
+  }
+});
+
+document.addEventListener('click', e => {
+  if (![...dropdowns].some(dropdown => dropdown.contains(e.target))) {
+    dropdowns.forEach(dropdown => dropdown.classList.remove('ativo'));
+  }
+});
+
+// ======== Dropdown Perfil ========
+const dropdownsPerfil = document.querySelectorAll('.dropdown-perfil');
+
+function toggleDropdown(e) {
+  e.preventDefault();
+  if (this.classList.contains('ativo')) {
+    this.classList.remove('ativo');
+  } else {
+    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
+    this.classList.add('ativo');
+  }
+}
+
+dropdownsPerfil.forEach(item => item.addEventListener('click', toggleDropdown));
+
+document.addEventListener('click', (e) => {
+  if (![...dropdownsPerfil].some(item => item.contains(e.target))) {
+    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
   }
 });

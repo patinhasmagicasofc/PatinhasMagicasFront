@@ -9,7 +9,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="./css/pagina-venda.css" />
+  <link rel="stylesheet" href="./css/agendamento-servico.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <link rel="stylesheet"
@@ -20,23 +20,8 @@
 
   <header>
     <nav id="menuLogado" class="d-none">
-      <div class="perfil">
-        <ul>
-          <li class="dropdown-perfil">
-            <a class="perfil-img" href="#"><img src="./img/img-adoption/adoption-for.png" alt="" /></a>
-            <ul class="dropdown-content">
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-            </ul>
-          </li>
-        </ul>
+      <div class="logo">
+        <img src="./img/logo/logo.png" alt="logo" />
       </div>
 
       <div class="menu">
@@ -60,30 +45,39 @@
         </div>
       </div>
 
+
       <div class="shopping-cart-order-service">
         <ul>
-          <li class="dropdown order">
+          <li class="order">
             <a class="order-title" href="#"><i class="material-icons">local_mall</i>Pedidos</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Banho e Tosa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-            </ul>
           </li>
 
-          <li class="dropdown shopping-cart">
-            <a class="shopping-cart-title" href="#"><i class="material-icons">shopping_cart</i>Carrinho</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Banho e Tosa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-            </ul>
+          <li class="shopping-cart">
+            <a class="shopping-cart-title" href="carrinho.html"><i class="material-icons">shopping_cart</i>Carrinho</a>
           </li>
 
           <li class="dropdown service">
             <a class="service-title" href="#"><i class="material-icons">handshake</i>Serviços</a>
             <ul class="dropdown-content">
-              <li><a href="#">Banho e Tosa</a></li>
+              <li><a href="#">Ver serviços</a></li>
+              <li><a href="#">Agendar serviço</a></li>
+              <li><a href="#">Agendados</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="perfil">
+        <ul>
+          <li class="dropdown-perfil">
+            <a class="perfil-img" href="#"><img src="./img/img-adoption/adoption-for.png" alt="" /></a>
+            <ul class="dropdown-content">
+              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
+              <li><a href="#">Veterinário</a></li>
+              <li><a href="#">Adestramento</a></li>
+              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
               <li><a href="#">Veterinário</a></li>
               <li><a href="#">Adestramento</a></li>
             </ul>
@@ -131,34 +125,63 @@
     </nav>
   </header>
 
-  <div class="container mt-5">
-    <h2 class="mb-4 text-center">Agendamento de Serviços</h2>
+  <main>
+    <section id="agedamento-servico">
+      <div class="container-agendamento">
+        <div class="title-agendamento-servico">
+          <ul>
+            <li>
+              <p>Agendamento de Serviços</p>
+            </li>
+          </ul>
+        </div>
 
-    <form id="formAgendamento">
-      <div class="mb-4">
-        <label class="form-label">Selecione seu Animal:</label>
-        <select id="animal" class="form-select" required></select>
+        <form id="formAgendamento" class="formulario-agendamento">
+
+          <div class="selecionar-cadastrar">
+            <div class="pet-select">
+              <label class="form-label">Selecione seu Animal:</label>
+              <select id="animal" class="form-select" required></select>
+            </div>
+
+            <div id="semAnimais" class="semAnimaist">
+              <div class="message">
+                <ul>
+                  <li>
+                    <p>Cadastre seu animal </p>
+                  </li>
+                </ul>
+              </div>
+              <a href="cadastro-animal.html">Cadastrar Animal</a>
+            </div>
+          </div>
+
+
+          <div class="service-select">
+            <label class="form-label">Selecione o Serviço:</label>
+            <select id="servico" class="form-select" required>
+            </select>
+          </div>
+
+          <div class="datetime">
+            <label class="form-label">Data e Hora:</label>
+            <input type="datetime-local" id="dataAgendamento" class="form-control" required>
+          </div>
+
+          <div class="btn-prox-volt">
+            <button id="btn-voltar" type="submit">Voltar</button>
+            <button id="btn-proximo" type="submit">Avançar</button>
+
+          </div>
+
+
+        </form>
       </div>
 
-      <div id="semAnimais" style="display: none;">
-        <p>Você não possui nenhum animal cadastrado.</p>
-        <a href="cadastro-animal.html" class="btn btn-primary">Cadastrar Animal</a>
-      </div>
 
-      <div class="mb-4">
-        <label class="form-label">Selecione o Serviço:</label>
-        <select id="servico" class="form-select" required>
-        </select>
-      </div>
+    </section>
+  </main>
 
-      <div class="mb-4">
-        <label class="form-label">Data e Hora:</label>
-        <input type="datetime-local" id="dataAgendamento" class="form-control" required>
-      </div>
-
-      <button id="btnProximo" type="submit" class="btn btn-success w-100">Avançar</button>
-    </form>
-  </div>
 
 
   <script src="./js/verificarAcesso.js"></script>
