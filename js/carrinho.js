@@ -30,7 +30,6 @@ function calcularTotal(cart) {
 function renderCart() {
   const container = document.getElementById('cartContainer');
   const cart = getCart();
-
   if (!container) return;
 
   // Atualiza badge do carrinho
@@ -46,6 +45,7 @@ function renderCart() {
     btnExcluirSelecionados.style.display = cart.length === 0 ? 'none' : 'inline-block';
   }
 
+  // Carrinho vazio
   if (cart.length === 0) {
     container.innerHTML = `
       <div class="empty-cart text-center my-5">
@@ -58,6 +58,7 @@ function renderCart() {
 
   document.getElementById('btnCheckout').disabled = false;
 
+  // Renderiza lista de produtos
   let html = `
     <div class="lista-produtos">
       <ul class="cabecalho">
@@ -106,7 +107,8 @@ function renderCart() {
 
   container.innerHTML = html;
 
-  // === Eventos dinâmicos ===
+  // --- Eventos dinâmicos ---
+  const checkboxesItens = container.querySelectorAll('.lista-produtos .item .remover');
 
   // Botões + e -
   container.querySelectorAll('.btn-quantidade').forEach(btn => {
@@ -132,34 +134,26 @@ function renderCart() {
     });
   });
 
-  // Remover item individual
-  container.querySelectorAll('.btn-remover').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = Number(btn.closest('.item').dataset.id);
-      removeFromCart(id);
-    });
-  });
-
   // --- Checkbox Geral ---
   const checkboxGeral = container.querySelector('#selecao-geral');
-  const checkboxesItens = container.querySelectorAll('.lista-produtos .item .remover');
-
   if (checkboxGeral) {
-    // Selecionar/deselecionar todos
     checkboxGeral.addEventListener('change', () => {
       checkboxesItens.forEach(item => item.checked = checkboxGeral.checked);
+      atualizarEstadoBotaoExcluir(checkboxesItens, btnExcluirSelecionados);
     });
 
-    // Atualizar checkbox geral se algum item for desmarcado
     checkboxesItens.forEach(item => {
       item.addEventListener('change', () => {
         checkboxGeral.checked = Array.from(checkboxesItens).every(i => i.checked);
+        atualizarEstadoBotaoExcluir(checkboxesItens, btnExcluirSelecionados);
       });
     });
   }
 
   // --- Botão Excluir Selecionados ---
   if (btnExcluirSelecionados) {
+    btnExcluirSelecionados.disabled = !Array.from(checkboxesItens).some(cb => cb.checked);
+
     btnExcluirSelecionados.addEventListener('click', () => {
       const idsParaRemover = Array.from(checkboxesItens)
         .filter(cb => cb.checked)
@@ -171,6 +165,11 @@ function renderCart() {
       setCart(novoCart);
     });
   }
+}
+
+function atualizarEstadoBotaoExcluir(checkboxesItens, btnExcluirSelecionados) {
+  const algumSelecionado = Array.from(checkboxesItens).some(cb => cb.checked);
+  if (btnExcluirSelecionados) btnExcluirSelecionados.disabled = !algumSelecionado;
 }
 
 // --- Checkout ---

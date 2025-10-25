@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./css/produto-detalhes.css">
+  <link rel="stylesheet" href="../../css/produto-detalhes.css">
   <title>Detalhes do Produto</title>
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -109,7 +109,7 @@
 
     <section id="product-details">
       <div id="produtoContainer">
-        <div class="detail-container">
+        <!-- <div class="detail-container">
           <div class="img-product">
             <img src="${produto.urlImagem || 'https://placehold.co/400x300?text=Produto'}" alt="${produto.nome}">
           </div>
@@ -120,7 +120,7 @@
               <ul>
                 <li>
                   <p>
-                    <!-- ${produto.nome} -->
+                    ${produto.nome}
                   </p>
                 </li>
               </ul>
@@ -129,7 +129,7 @@
               <ul>
                 <li>
                   <p>
-                    <!-- ${produto.marca} • ${produto.categoriaNome} -->
+                    ${produto.marca} • ${produto.categoriaNome}
                   </p>
                 </li>
               </ul>
@@ -138,7 +138,7 @@
               <ul>
                 <li>
                   <p class="descricao">
-                    <!-- ${produto.descricaoDetalhada || produto.descricao} -->
+                    ${produto.descricaoDetalhada || produto.descricao}
                   </p>
                 </li>
               </ul>
@@ -147,9 +147,9 @@
               <ul>
                 <li>
                   <p><strong>
-                      <!-- Código: -->
+                      Código:
                     </strong>
-                    <!-- ${produto.codigo} -->
+                    ${produto.codigo}
                   </p>
                 </li>
               </ul>
@@ -165,8 +165,6 @@
 
           </div>
         </div>
-
-
 
         <div class="cart-add">
           <div class="amount">
@@ -184,10 +182,10 @@
               </ul>
             </div>
             <div class="btn-final">
-              <!-- <button ${produto.estoque===0 ? 'disabled' : '' }
+              <button ${produto.estoque===0 ? 'disabled' : '' }
               onclick="adicionar(${produto.id})">
               Adicionar ao carrinho
-              </button> -->
+              </button>
             </div>
             <div class="informations">
               <ul>
@@ -199,7 +197,7 @@
             </div>
 
           </div>
-        </div>
+        </div> -->
       </div>
 
     </section>
@@ -210,8 +208,8 @@
   </main>
 
 
-  <script src="../js/verificarAcesso.js"></script>
-  <script src="js/produto-detalhes.js"></script>
+  <script src="../../js/verificarAcesso.js"></script>
+  <script src="../../js/produto-detalhes.js"></script>
 </body>
 
 </html>

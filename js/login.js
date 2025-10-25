@@ -40,7 +40,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
                 break;
             case 'cliente':
             default:
-                window.location.href = 'cliente.html';
+                window.location.href = 'pagina-venda.html';
         }
 
     } catch (error) {
