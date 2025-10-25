@@ -7,7 +7,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./css/lista-usuarios.css">
+  <link rel="stylesheet" href="../../css/lista-produtos.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -30,7 +30,7 @@
                 <span class="txt-link">Pedidos</span>
               </a>
             </li>
-            <li class="item-menu">
+            <li class="item-menu ativo">
               <a href="lista-produtos.html">
                 <span class="icon"><i class="material-icons">local_mall</i></span>
                 <span class="txt-link">Produtos</span>
@@ -42,7 +42,7 @@
                 <span class="txt-link">Configurações</span>
               </a>
             </li>
-            <li class="item-menu ativo">
+            <li class="item-menu">
               <a href="lista-usuarios.html">
                 <span class="icon"><i class="material-icons">person</i></span>
                 <span class="txt-link">Usuários</span>
@@ -87,7 +87,7 @@
       <form>
         <input class="busca-id" id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
         <select id="tipo-usuario" name="status" class="status-usuario">
-          <option class="one" value="">Tipo Usuario</option>
+          <option class="one" value="">Todos</option>
         </select>
 
         <input class="date" type="date" id="dataInicio" name="dataInicio">
@@ -105,46 +105,27 @@
     <section class="summary-orders">
       <div class="summary">
 
-        <div id="totalVendas" class="card">
-          <p>Total de usuarios</p>
-          <strong>0</strong>
+        <!-- Lista de usuarios -->
+        <div class="orders">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Imagem</th>
+                <th>Marca</th>
+                <th>Preco</th>
+                <th>Validade</th>
+                <th>Categoria</th>
+                <th></th>
+              </tr>
+            </thead>
+            <!-- <tbody> -->
+            <tbody class="tbUsuarios">
+              <!-- Linhas da tabela inseridas via JavaScript -->
+            </tbody>
+          </table>
         </div>
-        <div id="valorTotalVendas" class="card">
-          <p>Total de vendas</p>
-          <strong>R$ 0,00</strong>
-        </div>
-        <div id="usuariosPendentes" class="card">
-          <p>Usuarios pendentes</p>
-          <strong>0</strong>
-        </div>
-        <div id="usuariosCancelados" class="card">
-          <p>Usuarios cancelados</p>
-          <strong>0</strong>
-        </div>
-      </div>
-
-      <!-- Lista de usuarios -->
-      <div class="orders">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Data do Cadastro</th>
-              <th>DDD</th>
-              <th>Telefone</th>
-              <th>Tipo Usuario</th>
-              <th>Ativo</th>
-              <th></th>
-            </tr>
-          </thead>
-          <!-- <tbody> -->
-          <tbody class="tbUsuarios">
-            <!-- Linhas da tabela inseridas via JavaScript -->
-          </tbody>
-        </table>
-      </div>
     </section>
     <!-- Resumo -->
 
@@ -153,8 +134,8 @@
     </nav>
   </main>
 
-  <script src="js/verificarAcesso.js"></script>
-  <script src="/js/lista-usuarios.js"></script>
+  <script src="../../js/verificarAcesso.js"></script>
+  <script src="../../js/lista-produtos.js"></script>
 </body>
 
 </html>
