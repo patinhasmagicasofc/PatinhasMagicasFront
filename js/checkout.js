@@ -1,13 +1,15 @@
 const carrinho = JSON.parse(localStorage.getItem("cart")) || [];
 const resumoDiv = document.getElementById("resumoCarrinho");
 const pagamentoSelect = document.getElementById("pagamento");
-const cartBadge = document.getElementById("cart-badge");
+const cartBadge = document.getElementById("cart-count");
 
 // Atualiza badge do carrinho
 function updateCartBadge() {
     const count = carrinho.reduce((total, item) => total + (item.quantidade || 1), 0);
-    cartBadge.textContent = count;
-    cartBadge.style.display = count > 0 ? "inline" : "none";
+    if(cartBadge){
+        cartBadge.textContent = count;
+        cartBadge.style.display = count > 0 ? "inline" : "none";
+    }
 }
 
 // Renderiza resumo do carrinho
@@ -34,13 +36,15 @@ function renderCarrinho() {
           <tbody>`;
 
     carrinho.forEach(item => {
-        const subtotal = item.preco * item.quantidade;
+        const precoUnitario = item.preco || 0;
+        const quantidade = item.quantidade || 1;
+        const subtotal = precoUnitario * quantidade;
         total += subtotal;
         html += `
           <tr>
             <td><img src="${item.urlImagem}" class="produto-img me-2">${item.nome}</td>
-            <td>${item.quantidade}</td>
-            <td>R$ ${item.preco.toFixed(2)}</td>
+            <td>${quantidade}</td>
+            <td>R$ ${precoUnitario.toFixed(2)}</td>
             <td>R$ ${subtotal.toFixed(2)}</td>
           </tr>`;
     });
@@ -55,7 +59,6 @@ function renderCarrinho() {
 async function carregarPagamentos() {
     try {
         const tiposPagamento = await consumirAPIAutenticada('/TipoPagamento', 'GET'); // ajuste sua função de API
-        console.log(tiposPagamento)
         pagamentoSelect.innerHTML = `<option value="">Selecione</option>`;
         tiposPagamento.forEach(p => {
             pagamentoSelect.innerHTML += `<option value="${p.id}">${p.nome}</option>`;
@@ -66,14 +69,13 @@ async function carregarPagamentos() {
     }
 }
 
-renderCarrinho();
-carregarPagamentos();
-
 // Simula usuário logado
 function getUsuarioLogadoId() {
-    // Ajuste para pegar o Id do usuário logado da sua aplicação
     return JSON.parse(localStorage.getItem("usuarioLogado"))?.IdUsuario || 1;
 }
+
+renderCarrinho();
+carregarPagamentos();
 
 // Finaliza pedido
 document.getElementById("formCheckout").addEventListener("submit", async (e) => {
@@ -84,18 +86,16 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
     if (!pagamentoId) return alert("Selecione uma forma de pagamento");
 
     try {
-        // Cria pedido
         const dataPedidoLocal = new Date().toISOString().slice(0, 19);
 
         const pedido = {
-            usuarioId: getUserIdFromToken(),
+            usuarioId: getUsuarioLogadoId(),
             dataPedido: dataPedidoLocal,
-            StatusPedidoId: 1 // Pendente
+            StatusPedidoId: 1
         };
 
         const responsePedido = await consumirAPIAutenticada('/Pedido', 'POST', pedido);
 
-        // Cria itens do pedido
         await Promise.all(carrinho.map(item => {
             const itemPedido = {
                 pedidoId: responsePedido.pedidoId,
@@ -106,8 +106,7 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
             return consumirAPIAutenticada('/ItemPedido', 'POST', itemPedido);
         }));
 
-        // Cria pagamento
-        const valorTotal = carrinho.reduce((t, i) => t + i.preco * i.quantidade, 0);
+        const valorTotal = carrinho.reduce((t, i) => t + (i.preco || 0) * (i.quantidade || 1), 0);
 
         const pagamento = {
             pedidoId: responsePedido.pedidoId,
@@ -120,9 +119,8 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
 
         await consumirAPIAutenticada('/Pagamento', 'POST', pagamento);
 
-        // Finalização
         localStorage.removeItem("cart");
-        window.location.href = "confirmacao.html?id=" + responsePedido.pedidoId;
+        window.location.href = "../pages/user/confirmacao.html?id=" + responsePedido.pedidoId;
 
     } catch (err) {
         console.error(err);

@@ -18,7 +18,7 @@ function verificarAcesso(perfisEsperados = []) {
 
 function logout() {
     localStorage.clear();
-    window.location.href = 'index.html';
+    window.location.href = '/index.html';
 }
 
 async function consumirAPIAutenticada(endpoint, method = 'GET', body = null) {
@@ -77,7 +77,7 @@ function getUserIdFromToken() {
 function validarLogin() {
     const token = localStorage.getItem('authToken');
     if (!token) {
-        window.location.href = '/login.html';
+        window.location.href = '/index.html';
         return false;
     }
     return true;
