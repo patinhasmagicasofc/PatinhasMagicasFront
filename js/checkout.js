@@ -17,15 +17,23 @@ function renderCarrinho() {
     updateCartBadge();
 
     if (!carrinho.length) {
-        resumoDiv.innerHTML = `<div class="alert alert-warning">Seu carrinho está vazio.</div>`;
+        resumoDiv.innerHTML = `<div class="alert">Seu carrinho está vazio.</div>`;
         document.getElementById("formCheckout").style.display = "none";
         return;
     }
 
     let total = 0;
-    let html = `<h4>Resumo do Pedido</h4>
-        <table class="table align-middle">
-          <thead>
+    let html = `<div class="title-resumoCarrinho">
+          <ul>
+            <li>
+              <p>
+                Resumo do Pedido
+              </p>
+            </li>
+          </ul>
+        </div>
+        <table >
+          <thead >
             <tr>
               <th>Produto</th>
               <th>Qtd</th>
@@ -42,7 +50,7 @@ function renderCarrinho() {
         total += subtotal;
         html += `
           <tr>
-            <td><img src="${item.urlImagem}" class="produto-img me-2">${item.nome}</td>
+            <td><img src="${item.urlImagem}" class="produto-img">${item.nome}</td>
             <td>${quantidade}</td>
             <td>R$ ${precoUnitario.toFixed(2)}</td>
             <td>R$ ${subtotal.toFixed(2)}</td>
@@ -50,7 +58,15 @@ function renderCarrinho() {
     });
 
     html += `</tbody></table>
-        <h5 class="text-end text-success">Total: R$ ${total.toFixed(2)}</h5>`;
+    <div class="total">
+          <ul>
+            <li>
+              <p>
+                Total: R$ ${total.toFixed(2)}
+              </p>
+            </li>
+          </ul>
+        </div>`;
 
     resumoDiv.innerHTML = html;
 }
