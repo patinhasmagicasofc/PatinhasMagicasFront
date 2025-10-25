@@ -166,22 +166,32 @@ function carregarProduto(produto) {
         </div>
         <div class="cart-add">
           <div class="amount">
+          <i class="material-icons position-relative">add_shopping_cart <span>Comprar</span></i>
             <div class="amount-add">
               <label for="quantidade">
-                Quantidade:
+                Quantidade
               </label>
               <ul>
                 <li>
                   <button class="btn-quantidade men">-</button>
-                  <input class="quantidade" type="text" pattern="[0-9]*" role="spinbutton" aria-valuenow="1" value="1">
+                  <input id="quantidade" type="text" pattern="[0-9]*" min="1" value="1">                       
                   <button class="btn-quantidade mas">+</button>
                 </li>
               </ul>
-
             </div>
-            <input id="quantidade" type="number" min="1" value="1">
-            <button ${produto.estoque === 0 ? 'disabled' : ''} class="btn btn-primary"
+
+            <div class="btn-final">
+              <button ${produto.estoque === 0 ? 'disabled' : ''}
               onclick="adicionar(${produto.id})">Adicionar ao carrinho</button>
+            </div>
+            <div class="informations">
+              <ul>
+                <li>
+                  <span>● Altere ou cancele, sem taxas.</span>
+                  <p>Descontos não cumulativos. O maior desconto elegível será aplicado no carrinho.</p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       `;
@@ -194,3 +204,52 @@ function adicionar(id) {
 }
 
 window.adicionar = adicionar;
+
+
+
+
+
+// ======== Dropdown Menu ========
+const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropdown');
+
+dropdowns.forEach(dropdown => {
+  const link = dropdown.querySelector('a');
+
+  // Só previne comportamento se não for o link do carrinho
+  if (!link.classList.contains('cart-link')) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      dropdowns.forEach(item => {
+        if (item !== dropdown) item.classList.remove('ativo');
+      });
+      dropdown.classList.toggle('ativo');
+    });
+  }
+});
+
+document.addEventListener('click', e => {
+  if (![...dropdowns].some(dropdown => dropdown.contains(e.target))) {
+    dropdowns.forEach(dropdown => dropdown.classList.remove('ativo'));
+  }
+});
+
+// ======== Dropdown Perfil ========
+const dropdownsPerfil = document.querySelectorAll('.dropdown-perfil');
+
+function toggleDropdown(e) {
+  e.preventDefault();
+  if (this.classList.contains('ativo')) {
+    this.classList.remove('ativo');
+  } else {
+    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
+    this.classList.add('ativo');
+  }
+}
+
+dropdownsPerfil.forEach(item => item.addEventListener('click', toggleDropdown));
+
+document.addEventListener('click', (e) => {
+  if (![...dropdownsPerfil].some(item => item.contains(e.target))) {
+    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
+  }
+});
