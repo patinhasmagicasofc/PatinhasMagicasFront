@@ -88,12 +88,12 @@ function addToCart(id, quantidade) {
     if (item) item.quantidade += quantidade;
     else cart.push({ id, quantidade });
     setCart(cart);
-    showToast(`Adicionado ${quantidade}x "${produtos.find(p => p.id === id).nome}" ao carrinho.`);
+    //showToast(`Adicionado ${quantidade}x "${produtos.find(p => p.id === id).nome}" ao carrinho.`);
 }
 function updateCartBadge() {
     const cart = getCart();
     const total = cart.reduce((s, i) => s + i.quantidade, 0);
-    document.getElementById('cartCountBadge').textContent = total;
+    //document.getElementById('cartCountBadge').textContent = total;
 }
 
 // TOAST
@@ -115,27 +115,74 @@ function carregarProduto(produto) {
     }
 
     container.innerHTML = `
-        <div class="col-md-5 text-center">
-          <img src="${produto.urlImagem || 'https://placehold.co/400x300?text=Produto'}"
-               alt="${produto.nome}" class="produto-img img-fluid shadow-sm">
+    <div class="detail-container">
+        <div class="img-product">
+          <img src="${produto.urlImagem || 'https://placehold.co/400x300?text=Produto'}" alt="${produto.nome}">
         </div>
-        <div class="col-md-7">
-          <h2>${produto.nome}</h2>
-          <p class="text-muted">${produto.marca} • ${produto.categoriaNome}</p>
-          <h4 class="text-success mb-3">R$ ${produto.preco.toFixed(2)}</h4>
-          <p class="descricao">${produto.descricaoDetalhada || produto.descricao}</p>
 
-          <div class="d-flex align-items-center mb-3">
-            <label for="quantidade" class="me-2">Quantidade:</label>
-            <input id="quantidade" type="number" min="1" value="1" class="form-control w-auto me-3">
-            <button ${produto.estoque === 0 ? 'disabled' : ''} 
-                    class="btn btn-primary" 
-                    onclick="adicionar(${produto.id})">Adicionar ao carrinho</button>
+
+        <div class="container-product-detail">
+        
+          <div class="product-name">
+            <ul>
+              <li>
+                <p>
+                  ${produto.nome}
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="product-brand">
+            <ul>
+              <li>
+                <p>${produto.marca} • ${produto.categoriaNome}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="product-description">
+            <ul>
+              <li>
+                <p class="descricao">${produto.descricaoDetalhada || produto.descricao}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="product-code">
+            <ul>
+              <li>
+                <p><strong>Código:</strong> ${produto.codigo}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="product-price">
+            <ul>
+              <li>
+                <p>R$ ${produto.preco.toFixed(2)}</p>
+              </li>
+            </ul>
           </div>
 
-          <p><strong>Código:</strong> ${produto.codigo}</p>
-          <p><strong>Validade:</strong> ${produto.validade}</p>
-          <a href="pagina-venda.html" class="btn btn-outline-secondary mt-3">← Voltar ao catálogo</a>
+
+        </div>
+        </div>
+        <div class="cart-add">
+          <div class="amount">
+            <div class="amount-add">
+              <label for="quantidade">
+                Quantidade:
+              </label>
+              <ul>
+                <li>
+                  <button class="btn-quantidade men">-</button>
+                  <input class="quantidade" type="text" pattern="[0-9]*" role="spinbutton" aria-valuenow="1" value="1">
+                  <button class="btn-quantidade mas">+</button>
+                </li>
+              </ul>
+
+            </div>
+            <input id="quantidade" type="number" min="1" value="1">
+            <button ${produto.estoque === 0 ? 'disabled' : ''} class="btn btn-primary"
+              onclick="adicionar(${produto.id})">Adicionar ao carrinho</button>
+          </div>
         </div>
       `;
 }
