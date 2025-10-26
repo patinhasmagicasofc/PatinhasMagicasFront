@@ -120,7 +120,7 @@ function renderTable(produtos) {
         linha.innerHTML = `
             <td>${produto.id}</td>
             <td>${produto.nome}</td>
-            <td style="display:flex;align-items:center;gap:10px;">${produto.urlImagem? `<img src="${produto.urlImagem}" alt="${produto.urlImagem}" style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;" />`: `<div style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;"></div>`}</td>
+            <td style="display:flex;align-items:center;gap:10px;">${produto.urlImagem ? `<img src="${produto.urlImagem}" alt="${produto.urlImagem}" style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;" />` : `<div style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;"></div>`}</td>
             <td>${produto.marca}</td>
             <td>R$${produto.preco}</td>
             <td>${dataFormatada}</td>
@@ -132,12 +132,13 @@ function renderTable(produtos) {
                   </button>
                   <div class="menu-options">
                     <button class="view-btn" title="Ver">
-                      <a href="editar-produto.html?idProduto=${produto.id}" title="Ver">
+                      
                         <span class="material-icons">visibility</span>
                         <span> Detalhes</span>
-                      </a>
                     </button>
-                    <button title="Editar"><span class="material-icons">edit</span> Editar</button>
+                    <a href="editar-produto.html?idProduto=${produto.id}" title="Ver">
+                        <button title="Editar"><span class="material-icons">edit</span> Editar</button>
+                    </a>
                   </div>
                 </div>
               </td>
