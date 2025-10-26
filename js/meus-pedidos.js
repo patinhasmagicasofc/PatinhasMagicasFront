@@ -38,7 +38,7 @@ function renderizarPedidos(pedidos) {
         div.className = 'pedido';
         div.innerHTML = `
             <div class="pedido-header">
-                <span class="pedido-id">Pedido #${pedido.id}</span>
+                <span class="pedido-id">Pedido ${pedido.id}</span>
                 <span class="pedido-status ${statusClass[pedido.statusPedido] || ''}">
                     ${pedido.statusPedido}
                 </span>
