@@ -85,11 +85,6 @@ async function carregarPagamentos() {
     }
 }
 
-// Simula usuário logado
-function getUsuarioLogadoId() {
-    return JSON.parse(localStorage.getItem("usuarioLogado"))?.IdUsuario || 1;
-}
-
 renderCarrinho();
 carregarPagamentos();
 
@@ -105,11 +100,12 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
         const dataPedidoLocal = new Date().toISOString().slice(0, 19);
 
         const pedido = {
-            usuarioId: getUsuarioLogadoId(),
+            usuarioId: getUserIdFromToken(),
             dataPedido: dataPedidoLocal,
             StatusPedidoId: 1
         };
 
+        console.log(pedido)
         const responsePedido = await consumirAPIAutenticada('/Pedido', 'POST', pedido);
 
         await Promise.all(carrinho.map(item => {
