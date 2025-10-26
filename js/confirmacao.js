@@ -2,80 +2,55 @@ document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     const idPedido = params.get("id");
 
+    const dadosPedidoContainer = document.getElementById("pedidoItens");
+    const pedidoTotalSpan = document.getElementById("pedidoTotal");
+
     if (!idPedido) {
-        document.getElementById("dadosPedido").innerHTML = `
-            <div class="alert alert-danger">ID do pedido não informado.</div>
-        `;
+        dadosPedidoContainer.innerHTML = `<div style="color:red; text-align:center;">ID do pedido não informado.</div>`;
         return;
     }
 
     try {
         const pedido = await consumirAPIAutenticada(`/Pedido/${idPedido}`, "GET");
 
-        //let total = pedido.itens.reduce((acc, item) => acc + (item.precoUnitario * item.quantidade), 0);
-
         console.log(pedido)
 
-        let html = `
-            <h4>Resumo do Pedido #${pedido.id}</h4>
-            <p><strong>Cliente:</strong> ${pedido.nomeUsuario}</p>
+        const itens = pedido.itemPedidoOutputDTOs; // <-- aqui
 
-            <table class="table table-bordered mt-3">
-              <thead>
-                <tr>
-                  <th>Produto</th>
-                  <th>Quantidade</th>
-                  <th>Preço Unitário</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-        `;
+        if (!itens || itens.length === 0) {
+            dadosPedidoContainer.innerHTML = `<div style="text-align:center;">Nenhum item encontrado para este pedido.</div>`;
+            pedidoTotalSpan.textContent = "R$ 0,00";
+            return;
+        }
 
-        
-        // let html = `
-        //     <h4>Resumo do Pedido #${pedido.id}</h4>
-        //     <p><strong>Cliente:</strong> ${pedido.NomeCliente}</p>
-        //     <p><strong>E-mail:</strong> ${pedido.usuario.email}</p>
-        //     <p><strong>Forma de Pagamento:</strong> ${pedido.pagamento.tipoPagamento}</p>
-        //     <p><strong>Status:</strong> ${pedido.statusPedido.nome}</p>
-        //     <p><strong>Data:</strong> ${new Date(pedido.dataPedido).toLocaleString()}</p>
+        let total = 0;
+        dadosPedidoContainer.innerHTML = ""; // limpa antes de preencher
 
-        //     <table class="table table-bordered mt-3">
-        //       <thead>
-        //         <tr>
-        //           <th>Produto</th>
-        //           <th>Quantidade</th>
-        //           <th>Preço Unitário</th>
-        //           <th>Subtotal</th>
-        //         </tr>
-        //       </thead>
-        //       <tbody>
-        // `;
+        itens.forEach(item => {
+            const subtotal = item.precoUnitario * item.quantidade;
+            total += subtotal;
 
-        // pedido.itens.forEach(item => {
-        //     html += `
-        //       <tr>
-        //         <td>${item.produto.nome}</td>
-        //         <td>${item.quantidade}</td>
-        //         <td>R$ ${item.precoUnitario.toFixed(2)}</td>
-        //         <td>R$ ${(item.precoUnitario * item.quantidade).toFixed(2)}</td>
-        //       </tr>
-        //     `;
-        // });
+            const card = document.createElement("div");
+            card.className = "pedido-card";
 
-        // html += `
-        //       </tbody>
-        //     </table>
-        //     <h5 class="text-end text-success">Total: R$ ${total.toFixed(2)}</h5>
-        // `;
+            card.innerHTML = `
+                <div class="item-info">
+                <img src=${item.produtoOutputDTO.urlImagem} width=50px></img>
+                    <p><strong>Produto:</strong> ${item.produto}</p>
+                    <p><strong>Quantidade:</strong> ${item.quantidade}</p>
+                    <p><strong>Preço unitário:</strong> R$ ${item.precoUnitario.toFixed(2)}</p>
+                </div>
+                <div class="item-total"><strong>Subtotal:</strong> R$ ${subtotal.toFixed(2)}</div>
+            `;
 
-        document.getElementById("dadosPedido").innerHTML = html;
+            dadosPedidoContainer.appendChild(card);
+        });
+
+        pedidoTotalSpan.textContent = `R$ ${total.toFixed(2)}`;
 
     } catch (err) {
         console.error(err);
-        document.getElementById("dadosPedido").innerHTML = `
-            <div class="alert alert-danger">Erro ao carregar o pedido.</div>
-        `;
+        dadosPedidoContainer.innerHTML = `<div style="color:red; text-align:center;">Erro ao carregar o pedido.</div>`;
+        pedidoTotalSpan.textContent = "R$ 0,00";
     }
 });

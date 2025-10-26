@@ -12,7 +12,7 @@ async function carregarPedidosByUsuarioId(usuarioId) {
         const data = await consumirAPIAutenticada(`/Pedido/Usuario/${usuarioId}`, 'GET');
         pedidos = data;
 
-        renderizarPedidos(pedidos); 
+        renderizarPedidos(pedidos);
     } catch (error) {
         console.error('Erro ao carregar pedidos:', error);
     }
@@ -26,9 +26,10 @@ function renderizarPedidos(pedidos) {
     };
 
     const container = document.getElementById('pedidos-container');
-    container.innerHTML = ''; 
+    container.innerHTML = '';
 
     pedidos.forEach(pedido => {
+        console.log(pedido)
         const div = document.createElement('div');
         div.className = 'pedido';
         div.innerHTML = `
@@ -56,6 +57,7 @@ function verDetalhes(id) {
 
     const itensHTML = pedido.itemPedidoOutputDTOs?.map(i => `
         <li>
+        <img src=${i.produtoOutputDTO.urlImagem} width=50px></img>
             <span>${i.produto}</span>
             <span>Qtd: ${i.quantidade}</span>
             <span>R$ ${i.precoUnitario.toFixed(2)}</span>
@@ -81,7 +83,7 @@ function fecharModal() {
 }
 
 // Fecha o modal ao clicar fora
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('detalhesModal');
     if (event.target === modal) {
         modal.style.display = 'none';
