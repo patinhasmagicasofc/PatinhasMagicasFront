@@ -2,12 +2,14 @@ const API_BASE_URL = 'http://localhost:5260/api';
 
 function verificarAcesso(perfisEsperados = []) {
     const token = localStorage.getItem('authToken');
-    const perfilUsuario = localStorage.getItem('userProfile');
+    const perfilUsuario = getUserProfileFromToken();
 
-    console.log('Token:', token);
-    console.log('Perfil do usuário:', perfilUsuario);
-
-    if (!token || !perfisEsperados.includes(perfilUsuario)) {
+    // Verificação case-insensitive
+    if (
+        !token ||
+        !perfilUsuario ||
+        !perfisEsperados.map(p => p.toLowerCase()).includes(perfilUsuario.toLowerCase())
+    ) {
         alert('Sua sessão expirou ou acesso negado. Faça login novamente.');
         logout();
         return false;
@@ -72,6 +74,18 @@ function getUserIdFromToken() {
 
     const payload = JSON.parse(atob(token.split('.')[1]));
     return payload.nameid;
+}
+
+function getUserProfileFromToken() {
+    const token = localStorage.getItem('authToken');
+    if (!token) return null;
+
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.role;
+    } catch {
+        return null;
+    }
 }
 
 function validarLogin() {

@@ -3,10 +3,11 @@ let pageSize = 10;
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    if (!verificarAcesso('administrador')) {
-        window.location.href = 'login.html';
+
+    if (!verificarAcesso(['administrador'])) {
         return;
     }
+
     const loadingContainer = document.getElementById("loading-container");
     try {
         mostrarLoading(true);

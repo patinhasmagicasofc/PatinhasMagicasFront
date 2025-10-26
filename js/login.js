@@ -30,7 +30,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
         localStorage.setItem('authToken', token);
         localStorage.setItem('userProfile', perfil.toLowerCase());
-        localStorage.setItem('idUsuario', id.toString());
 
         switch (perfil.toLowerCase()) {
             case 'administrador':
