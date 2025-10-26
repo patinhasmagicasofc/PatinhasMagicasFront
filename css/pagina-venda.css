@@ -597,6 +597,7 @@ header {
   flex-direction: column;
   gap: 2em;
   align-items: center;
+
   .highlight-sections {
     margin-top: 2em;
     display: grid;
@@ -830,7 +831,7 @@ header {
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
-      gap: 0.5em;
+      gap: 2em;
       padding: 1em 0;
       cursor: grab;
       overflow-x: auto;
@@ -855,12 +856,25 @@ header {
       border-radius: 0.5em;
       overflow: hidden;
       background: var(--clr-white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
 
-      img {
-        width: 100%;
-        display: block;
-        border-radius: 0.5em;
+      a {
+
+        img {
+          width: 100%;
+          display: block;
+          border-radius: 0.5em;
+        }
+
+        span {
+          color: var(--clr-black-gray);
+        }
       }
+
     }
   }
 }
