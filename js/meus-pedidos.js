@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    if (!verificarAcesso('administrador')) {
-        window.location.href = 'login.html';
-        return;
-    }
-
     const usuarioId = getUserIdFromToken();
     await carregarPedidosByUsuarioId(usuarioId);
 });

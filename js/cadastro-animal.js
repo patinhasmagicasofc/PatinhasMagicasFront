@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const selectTamanho = document.getElementById("tamanhoAnimal");
+    const selectEspecie = document.getElementById("especie");
     const form = document.getElementById("formCadastroAnimal");
 
     async function carregarTamanhos() {
@@ -18,28 +19,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    async function carregarEspecies() {
+        try {
+            const especies = await consumirAPIAutenticada('/Especie', 'GET');
+            if (!especies || especies.length === 0) return;
+
+            especies.forEach(t => {
+                const option = document.createElement('option');
+                option.value = t.id;
+                option.textContent = t.nome;
+                selectEspecie.appendChild(option);
+            });
+        } catch (err) {
+            console.error("Erro ao carregar tamanhos:", err);
+        }
+    }
+
     await carregarTamanhos();
+    await carregarEspecies();
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const nome = document.getElementById("nome").value.trim();
-        const especie = document.getElementById("especie").value.trim();
         const raca = document.getElementById("raca").value.trim();
         const idade = document.getElementById("idade").value;
+        const especieId = selectEspecie.value;
         const tamanhoAnimalId = selectTamanho.value;
 
-        if (!nome || !especie || !tamanhoAnimalId) {
+        if (!nome || !especieId || !tamanhoAnimalId) {
             alert("Por favor, preencha todos os campos obrigatórios!");
             return;
         }
 
-        const usuarioId = getUserIdFromToken(); 
+        const usuarioId = getUserIdFromToken();
         console.log(usuarioId)
 
         const animal = {
             nome,
-            especie,
+            especieId: parseInt(especieId),
             raca: raca || null,
             idade: idade ? parseInt(idade) : null,
             tamanhoAnimalId: parseInt(tamanhoAnimalId),
