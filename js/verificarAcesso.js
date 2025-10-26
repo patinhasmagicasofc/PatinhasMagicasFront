@@ -88,6 +88,21 @@ function getUserProfileFromToken() {
     }
 }
 
+function getUserFromToken() {
+  const token = localStorage.getItem('authToken');
+  if (!token) return null;
+
+  try {
+    const payload = token.split('.')[1];
+    const decoded = atob(payload); 
+    const user = JSON.parse(decoded);
+    return user;
+  } catch (error) {
+    console.error("Erro ao decodificar token:", error);
+    return null;
+  }
+}
+
 function validarLogin() {
     const token = localStorage.getItem('authToken');
     if (!token) {

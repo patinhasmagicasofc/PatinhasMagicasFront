@@ -2,6 +2,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   const menuLogado = document.getElementById("menuLogado");
   const menuDeslogado = document.getElementById("menuDeslogado");
 
+  const user = getUserFromToken();
+
+  if (user) {
+    console.log(user.unique_name);
+    const nomeElemento = document.getElementById('nomeUsuario');
+    if (nomeElemento) {
+      nomeElemento.textContent = user.unique_name;
+    }
+  }
+
   // Exibir menu correto
   if (validarLogin()) {
     menuLogado.classList.remove("d-none");
@@ -248,5 +258,3 @@ document.addEventListener('click', (e) => {
     dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
   }
 });
-
-
