@@ -68,7 +68,7 @@
             <li class="item-menu">
               <a href="">
                 <!-- imagem exemplo -->
-                <span class="img-perfil"><img src="./img/img-adoption/adoption-for.png" alt=""></span>
+                <span class="img-perfil"><img src="../../img/img-adoption/adoption-for.png" alt=""></span>
                 <span class="txt-link">Perfil</span>
               </a>
             </li>
@@ -95,61 +95,47 @@
               <p>Cadastro de Produto</p>
 
               <div class="form">
+
                 <div class="category">
                   <label>Categoria</label>
                   <div class="container-category">
-                  <select id="categoria">
-                    <option>Selecione a Categoria</option>
-                    <!-- <option>Ração</option>
-                    <option>Brinquedo</option>
-                    <option>Acessório</option>
-                    <option>Higiene</option>
-                    <option>Medicamento</option> -->
-                  </select>
-                  <div class="category-create">
-                    <button class="btn-category-create">Criar</button>
-                  </div>  
+                    <select id="categoria" required>
+                      <option value="">Selecione a Categoria</option>
+                    </select>
+                    <div class="category-create">
+                      <button class="btn-category-create">+Categoria</button>
+                    </div>
                   </div>
-                  
                 </div>
-
-
 
                 <div class="species">
                   <label>Espécie / Animal</label>
                   <div class="container-species">
-                    <select id="especie">
-                    <option>Selecione a Especie</option>
-                    <!-- <option>Cachorro</option>
-                    <option>Gato</option>
-                    <option>Pássaro</option>
-                    <option>Peixe</option>
-                    <option>Roedor</option> -->
-                  </select>
-                  <div class="specie-create">
+                    <select id="especie" required>
+                      <option value="">Selecione a Especie</option>
+                    </select>
+                    <div class="specie-create">
 
-                    <button class="btn-specie-create">Criar</button>
+                      <button class="btn-specie-create">+Especie</button>
+                    </div>
                   </div>
-                  </div>
-                  
                 </div>
-
 
               </div>
 
               <div class="brand">
                 <label>Nome</label>
-                <input id="nome" type="text" placeholder="Premier" />
+                <input id="nome" type="text" placeholder="Premier" maxlength="100"/>
               </div>
 
               <div class="brand">
                 <label>Marca / Fabricante</label>
-                <input id="marca" type="text" placeholder="Premier" />
+                <input id="marca" type="text" placeholder="Premier" maxlength="50"/>
               </div>
 
               <div class="short-description">
                 <label>Descrição curta</label>
-                <input id="descricao" placeholder="Ração premium para cães adultos de porte médio" />
+                <input id="descricao" placeholder="Ração premium para cães adultos de porte médio" maxlength="255"/>
               </div>
 
               <div class="long-description">
@@ -161,15 +147,15 @@
               <div class="form">
                 <div class="sale-price">
                   <label>Preço de venda</label>
-                  <input type="text" id="preco" placeholder="R$ 120,00" />
+                  <input type="text" id="preco" placeholder="R$ 120,00" required />
                 </div>
                 <div class="cost-price">
                   <label>Preço de custo</label>
-                  <input type="text" id="cost-price" placeholder="R$ 70,00" disabled="true" />
+                  <input type="text" id="cost-price" placeholder="R$ 70,00" disabled="true" maxlength="11" />
                 </div>
                 <div class="barcode">
                   <label>Código de barras / SKU</label>
-                  <input id="codigo" type="text" placeholder="7898433321015" />
+                  <input id="codigo" type="text" placeholder="7898433321015" maxlength="50"/>
                 </div>
               </div>
 
@@ -197,19 +183,8 @@
 
               <div class="form-group">
                 <label>Link da Imagem do produto</label>
-                <input id="urlImagem" type="text" placeholder="https://static.petz.com.br/fotos/1558637497224.jpg" />
+                <input id="urlImagem" type="text" placeholder="https://static.petz.com.br/fotos/1558637497224.jpg" maxlength="255"/>
               </div>
-
-              <!-- <div class="form-group">
-                  <label>Imagem do produto</label>
-                  <input type="file" accept="image/*" />
-                  <div class="image-preview">
-                    <img
-                      src="https://static.petz.com.br/fotos/1558637497224.jpg"
-                      alt="Produto exemplo"
-                    />
-                  </div>
-                </div> -->
 
               <div class="actions">
                 <button type="button" class="btn-cancel">Cancelar</button>
@@ -224,6 +199,7 @@
 
   <div id="toast" class="toast"></div>
   <script src="../../js/verificarAcesso.js"></script>
+  <script src="../../js/script.js"></script>
   <script src="../../js/cadastro-produto.js"></script>
 </body>
 

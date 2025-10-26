@@ -1,5 +1,5 @@
 const API_BASE_URL = 'http://localhost:5260/api';
-const LOGIN_ENDPOINT = `${API_BASE_URL}/Login/login`;
+const LOGIN_ENDPOINT = `${API_BASE_URL}/Login`;
 
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault();
