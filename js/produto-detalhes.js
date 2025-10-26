@@ -118,6 +118,13 @@ function carregarProduto(produto) {
       </div>
 
       <div class="container-product-detail">
+        <nav class="breadcrumb">
+          <a href="index.html"><i class="material-icons">home</i></a>
+          <span>›</span>
+          <a href="pagina-venda.html">Cátalogo</a>
+          <span>›</span>
+          <a href="produto-detalhes.html?idProduto=${produto.id}">${produto.marca.split(" ").slice(0, 2).join(" ")}</a>
+        </nav>
         <div class="product-name"><p>${produto.nome}</p></div>
         <div class="product-brand"><p>${produto.marca} • ${produto.categoriaNome}</p></div>
         <div class="product-description"><p class="descricao">${produto.descricaoDetalhada || produto.descricao}</p></div>

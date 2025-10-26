@@ -598,6 +598,48 @@ header {
   gap: 2em;
   align-items: center;
 
+  .breadcrumb {
+    max-width: 1264px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #5a2ec4;
+    justify-content: start;
+    width: 100%;
+    margin: 0;
+
+    a {
+      text-decoration: none;
+      color: var(--clr-blue);
+      transition: color 0.2s ease;
+      display: flex;
+      justify-content: center;
+
+      i {
+        font-size: 20px;
+        color: var(--clr-blue);
+      }
+
+      &:hover {
+        color: var(--clr-blue-light);
+      }
+
+    }
+
+    span {
+      color: var(--clr-gray);
+      user-select: none;
+      font-size: var(--fs-title);
+    }
+
+    i {
+      font-size: 16px;
+      color: #5a2ec4;
+    }
+  }
+
   .highlight-sections {
     margin-top: 2em;
     display: grid;
