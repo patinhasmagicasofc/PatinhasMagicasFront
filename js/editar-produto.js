@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const validadeInput = document.getElementById("validade").value;
         const produto = {
             nome: document.getElementById("nome").value,
             preco: parseFloat(document.getElementById("preco").value.replace(/\./g, '').replace(',', '.')),
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             codigo: document.getElementById("codigo").value,
             descricao: document.getElementById("descricao").value,
             descricaoDetalhada: document.getElementById("descricaoDetalhada").value,
-            validade: document.getElementById("validade").value,
+            validade: validadeInput ? validadeInput : null,
             categoriaId: parseInt(document.getElementById("categoria").value),
         };
 
@@ -108,6 +109,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             mostrarToast("✅ Produto atualizado com sucesso!", "sucesso");
             console.log('✅ Produto atualizado com sucesso:', data);
+
+            await sleep(3000);
+
+            window.location.href = "../admin/lista-produtos.html";
         } catch (error) {
             console.error('❌ Erro ao atualizar produto', error);
             mostrarToast("❌ Erro ao atualizar produto.", "erro");
@@ -208,22 +213,3 @@ costPrecoInput.addEventListener('input', function (e) {
     valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
     e.target.value = valor;
 });
-
-// --- Toast ---
-function mostrarToast(mensagem, tipo = "sucesso") {
-    const toast = document.getElementById("toast");
-    toast.textContent = mensagem;
-
-    if (tipo === "erro") {
-        toast.style.backgroundColor = "#d9534f";
-    } else if (tipo === "aviso") {
-        toast.style.backgroundColor = "#f0ad4e";
-    } else {
-        toast.style.backgroundColor = "#5cb85c";
-    }
-
-    toast.className = "toast show";
-    setTimeout(() => {
-        toast.className = "toast";
-    }, 3000);
-}

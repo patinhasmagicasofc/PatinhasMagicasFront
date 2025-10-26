@@ -78,35 +78,10 @@
     </nav>
   </header>
 
-  <div id="loading-container" style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    flex-direction: column;
-    gap: 10px;
-">
-    <div class="spinner" style="
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #3498db;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-    "></div>
+  <div id="loading-container">
+    <div class="spinner"></div>
     <span>Carregando produto...</span>
   </div>
-  <style>
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
 
   <main>
     <section id="product">
@@ -122,28 +97,18 @@
         <div id="register-product">
           <div class="container-basic-product-info">
             <form id="formProduto" class="product-form" style="display: none;">
-              <p>Cadastro de Produto</p>
+              <p>Detalhes do Produto</p>
 
               <div class="form">
                 <div class="category">
                   <label>Categoria</label>
                   <select id="categoria">
-                    <!-- <option>Ração</option>
-                    <option>Brinquedo</option>
-                    <option>Acessório</option>
-                    <option>Higiene</option>
-                    <option>Medicamento</option> -->
                   </select>
                 </div>
 
                 <div class="species">
                   <label>Espécie / Animal</label>
                   <select id="especie"></select>
-                    <!-- <option></option>
-                    <option>Gato</option>
-                    <option>Pássaro</option>
-                    <option>Peixe</option>
-                    <option>Roedor</option> -->
                   </select>
                 </div>
               </div>
@@ -211,17 +176,6 @@
                 <input id="urlImagem" type="text" placeholder="https://static.petz.com.br/fotos/1558637497224.jpg" />
               </div>
 
-              <!-- <div class="form-group">
-                  <label>Imagem do produto</label>
-                  <input type="file" accept="image/*" />
-                  <div class="image-preview">
-                    <img
-                      src="https://static.petz.com.br/fotos/1558637497224.jpg"
-                      alt="Produto exemplo"
-                    />
-                  </div>
-                </div> -->
-
               <div class="actions">
                 <button type="button" class="btn-cancel">Cancelar</button>
                 <button type="submit" class="btn-save">Salvar</button>
@@ -234,6 +188,7 @@
   </main>
 
   <div id="toast" class="toast"></div>
+  <script src="../../js/script.js"></script>
   <script src="../../js/verificarAcesso.js"></script>
   <script src="../../js/editar-produto.js"></script>
 </body>

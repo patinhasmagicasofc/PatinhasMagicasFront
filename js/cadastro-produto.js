@@ -13,18 +13,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const validadeInput = document.getElementById("validade").value;
         const produto = {
             nome: document.getElementById("nome").value,
-            preco: parseFloat(document.getElementById("preco").value),
+            preco: parseFloat(document.getElementById("preco").value.replace(/\./g, '').replace(',', '.')),
             especieId: parseInt(document.getElementById("especie").value),
             marca: document.getElementById("marca").value,
             urlImagem: document.getElementById("urlImagem").value || "https://placehold.co/400x300?text=Produto",
             codigo: document.getElementById("codigo").value,
             descricao: document.getElementById("descricao").value,
             descricaoDetalhada: document.getElementById("descricaoDetalhada").value,
-            validade: document.getElementById("validade").value,
+            validade: validadeInput ? new Date(validadeInput).toISOString() : null,
             categoriaId: parseInt(document.getElementById("categoria").value),
         };
+
+        const categoriaValue = document.getElementById("categoria").value;
+        const especieValue = document.getElementById("especie").value;
+
+        if (!categoriaValue) {
+            alert("Por favor, selecione uma categoria válida!");
+            return;
+        }
+        if (!categoriaValue) {
+            alert("Por favor, selecione uma categoria válida!");
+            return;
+        }
+
+        if (!especieValue) {
+            alert("Por favor, selecione uma espécie válida!");
+            return;
+        }
+
 
         console.log("Produto a ser cadastrado:", produto);
         await cadastrarProduto(produto);
@@ -144,21 +163,3 @@ costPrecoInput.addEventListener('input', function (e) {
     valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
     e.target.value = valor;
 });
-
-function mostrarToast(mensagem, tipo = "sucesso") {
-    const toast = document.getElementById("toast");
-    toast.textContent = mensagem;
-
-    if (tipo === "erro") {
-        toast.style.backgroundColor = "#d9534f"; // vermelho
-    } else if (tipo === "aviso") {
-        toast.style.backgroundColor = "#f0ad4e"; // amarelo
-    } else {
-        toast.style.backgroundColor = "#5cb85c"; // verde sucesso
-    }
-
-    toast.className = "toast show";
-    setTimeout(() => {
-        toast.className = "toast";
-    }, 3000);
-}

@@ -1,15 +1,25 @@
 let currentPage = 1;
 let pageSize = 10;
 
+
 document.addEventListener("DOMContentLoaded", async () => {
     if (!verificarAcesso('administrador')) {
         window.location.href = 'login.html';
         return;
     }
+    const loadingContainer = document.getElementById("loading-container");
+    try {
+        mostrarLoading(true);
+        await carregarStatusPedidos();
+        // Depois buscamos o produto
 
-    // --- Carrega status dos pedidos ---
-    await carregarStatusPedidos();
+    } finally {
+        mostrarLoading(false);
+    }
 
+    function mostrarLoading(exibir) {
+        loadingContainer.style.display = exibir ? "flex" : "none";
+    }
     // --- Cria navegação da paginação ---
     const pagination = document.querySelector('.pagination');
     if (pagination) {
@@ -125,7 +135,7 @@ function renderTable(pedidos) {
         const linha = document.createElement('tr');
         linha.innerHTML = `
             <td>${pedido.id}</td>
-            <td><div class="email">${pedido.nomeCliente}</div></td>
+            <td><div class="email">${pedido.nomeUsuario}</div></td>
             <td>${dataFormatada}</td>
             <td>R$${pedido.valorPedido}</td>
             <td>${pedido.formaPagamento}</td>
