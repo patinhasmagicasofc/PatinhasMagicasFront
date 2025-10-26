@@ -453,7 +453,7 @@ header {
 }
 
 main {
-  margin-top: 120px;
+  margin-top: 120px !important;
 }
 
 .meus-pedidos {
@@ -569,6 +569,7 @@ main {
     animation: fadeIn 0.3s ease;
 
     .modal-content {
+      margin-top: 120px !important;
       background: #fff;
       max-width: 900px;
       width: 90%;
