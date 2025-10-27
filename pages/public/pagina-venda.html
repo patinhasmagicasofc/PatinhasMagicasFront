@@ -22,33 +22,90 @@
 
     <!-- MENU SEM LOGIN -->
     <nav id="menuDeslogado">
-      <div class="logo">
-        <img src="./img/logo.png" alt="Patinhas Mágicas" />
-      </div>
+      <div class="container-menu-up">
 
-      <div class="menu">
-        <div class="category-search">
-          <div class="category">
-            <select id="categoriaDeslogado">
-              <option>Todos</option>
-            </select>
+        <div class="logo">
+          <img src="/img/logo/logo.png" alt="Patinhas Mágicas" />
+        </div>
+
+        <div class="menu">
+          <div class="category-search">
+            <div class="category">
+              <select id="categoriaLogado">
+                <option>Todos</option>
+              </select>
+            </div>
+          </div>
+          <div class="search-box">
+            <input type="text" placeholder="Buscar produto..." />
+            <button><i class="material-icons">search</i></button>
           </div>
         </div>
 
-        <div class="search-box">
-          <input type="text" placeholder="Buscar produto..." />
-          <button><i class="material-icons">search</i></button>
+        <div class="shopping-cart-order-service">
+          <ul>
+            <li class="dropdown order">
+              <a class="order-title" href="/pages/user/meus-pedidos.html"><i class="material-icons">local_mall</i>Pedidos</a>
+            </li>
+
+            <li class="dropdown shopping-cart">
+              <a href="carrinho.html" class="cart-link shopping-cart-title">
+                <i class="material-icons position-relative">
+                  shopping_cart
+                  <span id="cart-count"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                </i>
+              </a>
+            </li>
+
+            <div class="login">
+              <ul>
+                <li class="login-container">
+                  <a class="logar" href="login.html">
+                    Login
+                  </a>
+                  <a class="cadastrar" href="cadastro-usuario.html">
+                    Cadastrar-se
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="container-menu-down">
+        <div class="shopping-cart-order-service down">
+          <ul>
+            <a class="service-title" href="#">Cachorros</a>
+            <a class="service-title" href="#">Gatos</a>
+
+            <li class="dropdown animal">
+              <a class="service-title" href="#">Outros Pets</a>
+              <ul class="dropdown-content">
+              </ul>
+            </li>
+
+            <li class="dropdown service">
+              <a class="service-title" href="#">Serviços</a>
+              <ul class="dropdown-content">
+                <li><a href="../user/agendamento-servico.html">Agendar Serviço</a></li>
+                <li><a href="../user/meus-servicos.html">Servicos Agendados</a></li>
+              </ul>
+            </li>
+            <li class="dropdown more">
+              <a class="service-title" href="#">Mais</a>
+              <ul class="dropdown-content">
+
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div class="login-cadastro">
-        <ul class="login">
-          <li><a href="login.html">Login</a></li>
-        </ul>
-        <ul class="cadastro">
-          <li><a href="cadastro-usuario.html">Cadastrar-se</a></li>
-        </ul>
-      </div>
+
+
     </nav>
 
     <!-- MENU COM LOGIN -->
@@ -77,11 +134,6 @@
           <ul>
             <li class="dropdown order">
               <a class="order-title" href="/pages/user/meus-pedidos.html"><i class="material-icons">local_mall</i>Pedidos</a>
-              <!-- <ul class="dropdown-content">
-                <li><a href="#">Banho e Tosa</a></li>
-                <li><a href="#">Veterinário</a></li>
-                <li><a href="#">Adestramento</a></li>
-              </ul> -->
             </li>
 
             <li class="dropdown shopping-cart">
@@ -108,7 +160,7 @@
                       <div class="configuration">
                         <ul>
                           <li>
-                            <p id="nomeUsuario" class="name"><!-- Nome de usuário --></p>
+                            <p id="nomeUsuario" class="name"></p>
                             <p class="config"><a href="../user/editar-usuario.html">Ver perfil</a></p>
                           </li>
                         </ul>
@@ -116,7 +168,6 @@
                     </li>
 
                     <li class="account"><a href="#">Configurações da conta</a></li>
-                    <!-- <li><a href="#">Pagamentos</a></li> -->
                     <li><a href="../../pages/user/meus-pedidos.html">Meus pedidos</a></li>
                     <li><a href="#">Favoritos</a></li>
                     <li><a href="#">Suporte</a></li>
@@ -139,9 +190,6 @@
             <li class="dropdown animal">
               <a class="service-title" href="#">Outros Pets</a>
               <ul class="dropdown-content">
-                <!-- <li><a href="#">Banho e Tosa</a></li>
-                <li><a href="#">Veterinário</a></li>
-                <li><a href="#">Adestramento</a></li> -->
               </ul>
             </li>
 
@@ -155,9 +203,7 @@
             <li class="dropdown more">
               <a class="service-title" href="#">Mais</a>
               <ul class="dropdown-content">
-                <!-- <li><a href="#">Banho e Tosa</a></li>
-                <li><a href="#">Veterinário</a></li>
-                <li><a href="#">Adestramento</a></li> -->
+
               </ul>
             </li>
           </ul>
@@ -167,6 +213,7 @@
 
 
     </nav>
+    
   </header>
 
   <main class="products-page">

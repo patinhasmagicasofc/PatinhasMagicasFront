@@ -30,3 +30,4 @@ function mostrarToast(mensagem, tipo = "sucesso") {
     toast.className = "toast";
   }, 3000);
 }
+
