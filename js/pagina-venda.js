@@ -220,8 +220,7 @@ const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropd
 dropdowns.forEach(dropdown => {
   const link = dropdown.querySelector('a');
 
-  // Só previne comportamento se não for o link do carrinho
-  if (!link.classList.contains('cart-link')) {
+  if (!link.classList.contains('cart-link') && !link.classList.contains('order-title')) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       dropdowns.forEach(item => {
@@ -231,6 +230,7 @@ dropdowns.forEach(dropdown => {
     });
   }
 });
+
 
 document.addEventListener('click', e => {
   if (![...dropdowns].some(dropdown => dropdown.contains(e.target))) {
@@ -242,12 +242,14 @@ document.addEventListener('click', e => {
 const dropdownsPerfil = document.querySelectorAll('.dropdown-perfil');
 
 function toggleDropdown(e) {
-  e.preventDefault();
-  if (this.classList.contains('ativo')) {
-    this.classList.remove('ativo');
-  } else {
-    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
-    this.classList.add('ativo');
+  if (e.target.closest('.perfil-img')) {
+    e.preventDefault();
+    if (this.classList.contains('ativo')) {
+      this.classList.remove('ativo');
+    } else {
+      dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
+      this.classList.add('ativo');
+    }
   }
 }
 
