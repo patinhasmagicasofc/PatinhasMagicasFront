@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const selectAnimal = document.getElementById("animal");
   const selectServico = document.getElementById("servico");
-  const btnProximo = document.getElementById("btnProximo");
+  const btnProximo = document.getElementById("btn-proximo");
   const semAnimaisDiv = document.getElementById("semAnimais");
 
   selectServico.disabled = true;
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     listaServicos = await carregarServicosPorAnimal(idAnimal);
   });
 
-  btnProximo.addEventListener("click", () => {
-    event.preventDefault();  // Impede o envio do formulário
+  btnProximo.addEventListener("click", (event) => {
+    event.preventDefault();
     const idAnimal = selectAnimal.value;
     const idServico = selectServico.value;
     const data = document.getElementById("dataAgendamento").value;
