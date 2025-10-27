@@ -55,7 +55,7 @@ body::before {
 }
 
 
-/*    HEADER E MENU  */
+/* HEADER E MENU  */
 
 header nav {
   display: flex;
@@ -141,7 +141,7 @@ header nav .logo img {
   transition: color 0.3s ease;
 }
 
-/* Hover bonito no desktop */
+
 @media (min-width: 768px) {
   .menu ul li a::after {
     content: "";
@@ -188,7 +188,7 @@ header nav .logo img {
   color: var(--clr-forest);
 }
 
-/*    HAMBURGUER  */
+/* HAMBURGUER  */
 
 /* === MENU HAMBÚRGUER (Base) === */
 .hamburger {
@@ -225,7 +225,7 @@ header nav .logo img {
 }
 
 
-/*    RESPONSIVIDADE */
+/* RESPONSIVIDADE */
 
 @media (max-width: 768px) {
   .hamburger {
@@ -1403,25 +1403,27 @@ header nav .logo img {
 /* #region adoption */
 
 #adoption {
-  /* height: 100vh; */
-  min-height: 60vh; /* Usa min-height para garantir um tamanho mínimo sem fixar */
+  height: 60vh;
+  /* margin-top: -250px; */
+  min-height: 60vh; /*Usa min-height para garantir um tamanho mínimo sem fixar
   display: flex;
   flex-direction: column;
   padding-bottom: 4em; /* Adiciona padding na parte de baixo da seção */
+  z-index: -100;
 
   .title-text-adoption {
     background-color: var(--clr-mint);
     text-align: center;
     padding: 1.5em;
-    align-self: stretch; /* Mantém a largura 100% */
+   /* align-self: stretch; Mantém a largura 100% */
     /* margin-bottom: 2em; Adiciona um espaço entre o título e o carrossel */
 
     & ul {
       padding-top: 4em;
       display: flex;
       flex-direction: column;
-      max-width: 1300px;
-      margin: 0 auto;
+      /* max-width: 1300px; */
+      /* margin: 0 auto; */
 
       & li {
         .title-adoption {
@@ -1436,64 +1438,64 @@ header nav .logo img {
   }
 
   .adopt-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     gap: 2em;
     flex-direction: column;
-    flex: 1;
+    flex: 1; */
 
     .why-adopt,
     .how-adopt {
-      max-width: 1300px;
+      /* max-width: 1300px;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      align-items: stretch; */
 
       .section-title {
-        background: var(--clr-mint);
+        /* background: var(--clr-mint);
         padding: 1.5em;
         text-align: center;
         border-radius: 0.3em;
-        font-weight: var(--fw-title);
+        font-weight: var(--fw-title); */
       }
 
       & ul {
-        list-style: none;
+        /* list-style: none;
         padding: 0;
         margin: 1em 0 0 0;
         display: flex;
         justify-content: space-around;
-        gap: 1em;
+        gap: 1em; */
 
         .section-title-card {
-          display: flex;
+          /* display: flex;
           justify-content: center;
-          margin-right: 2em;
+          margin-right: 2em; */
         }
 
         & li {
-          display: flex;
+          /* display: flex;
           flex-direction: column;
           justify-content: space-between;
           text-align: center;
           background: var(--clr-mint);
           padding: 0.5em;
           border-radius: 0.6em;
-          flex: 1 1 150px;
-          & p {
+          flex: 1 1 150px; */
+          /* & p {
             margin-bottom: 0;
             margin-top: 1em;
             max-width: 150px;
-          }
+          } */
 
-          & img {
+          /* & img {
             width: 150px;
             height: 180px;
             border-radius: 0.3em;
             object-fit: cover;
             margin-bottom: 0.5em;
-          }
+          } */
         }
       }
     }
@@ -1506,27 +1508,29 @@ header nav .logo img {
 
 @layer demo {
 	.carousel {
+    margin-top: -170px !important;
     align-items: center;
     justify-self: center;
-    margin: 2em auto;
+    z-index: 5 !important;
+    /* margin: 2em auto; */
 
     /* margin-bottom: 0 15px; */
 		--items: 6;
 		--carousel-duration: 40s;
 		@media (width > 600px) {
-			--carousel-duration: 30s;
+			--carousel-duration: 40s;
 		}
 		--carousel-width: min(
-			80vw,
-			1200px
-		); /* note - it will "break" if it gets too wide and there aren't enough items */
+			90vw,
+			1440px
+		); 
 		--carousel-item-width: 280px;
-		--carousel-item-height: 450px;
+		/* --carousel-item-height: 500px; */
 		--carousel-item-gap: 2rem;
 
 		--clr-cta: rgb(0, 132, 209);
 
-		position: relative;
+		/* position: relative; */
 		width: var(--carousel-width);
 		height: var(--carousel-item-height);
 		overflow: clip;
@@ -1544,6 +1548,7 @@ header nav .logo img {
 		&[reverse] > article {
 			animation-direction: reverse;
 		}
+    
 		/* hover pauses animation */
 		&:hover > article {
 			animation-play-state: paused;

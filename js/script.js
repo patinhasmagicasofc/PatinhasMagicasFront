@@ -159,9 +159,9 @@ if (productCarousel && nextBtn && prevBtn) {
     // INFORMATION: your .card-information is the scroller
     initCarousel('#information .card-information');
 
-    // SERVICE: two containers
-    initCarousel('.service-card-container-one');
-    initCarousel('.service-card-container-two');
+    // // SERVICE: two containers
+    // initCarousel('.service-card-container-one');
+    // initCarousel('.service-card-container-two');
   });
 })();
 

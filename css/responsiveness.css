@@ -1,4 +1,3 @@
-/* --- TABLETS (até 1024px) --- */
 @media (max-width: 1024px) {
   header nav {
     justify-content: space-between;
@@ -9,80 +8,168 @@
     gap: 1.5em;
   }
 
-  /* Reduz o tamanho da fonte dos títulos */
-  .title-information, .title-product, .title-service, .title-adoption, .title-contact {
+  .title-information,
+  .title-product,
+  .title-service,
+  .title-adoption,
+  .title-contact {
     font-size: 1.8em !important;
   }
-  
-  /* Mantém layout de grade de 2 colunas para tablets */
+
+  #home {
+    height: auto;
+    padding: 8em 1em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #home .title-home ul li p {
+    font-size: 1.6em;
+    text-align: center;
+    margin-bottom: 1.2em;
+  }
+
+  #home .container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    margin: 0 auto;
+    gap: 1.5em;
+  }
+
+  #home .container .left {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #home .container .left img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 0.8em;
+    object-fit: cover;
+  }
+
+  #home .container .right {
+    order: 2;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  #home .container .right img {
+    flex: 1 1 45%;
+    max-width: 280px;
+    border-radius: 0.8em;
+    object-fit: cover;
+  }
+
   #information .grid-wrapper .card-information,
   #product .product-container-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5em;
     max-width: 90%;
+    gap: 1.5em;
   }
 
-
-  /* Ajuste para a grade de serviços (muda de 5 cards para 2 colunas) */
   #service .container-service .grid-service {
     max-width: 90%;
-    gap: 1.5em;
   }
 
   #service .service-card-container-one,
   #service .service-card-container-two {
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5em;
   }
-  
-  /* Permite que os cards de serviço se ajustem à largura do contêiner */
+
   #service .card-banho-tosa,
   #service .card-adestramento-comportamento,
   #service .card-atendimento-vet,
   #service .card-hospedagem-creche,
   #service .card-transporte-pet {
     width: 100%;
-    max-width: 600px; 
+    max-width: 90%;
+    height: auto;
     margin: 0 auto;
   }
+
+  #service .container-service .grid-service .service-card-container-one .card-banho-tosa .container-banho-tosa {
+    width: auto;
+  }
+
+  #service .container-service .grid-service .service-card-container-two .card-transporte-pet .container-transporte-pet .img-text-one .img-one img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #service .container-service .grid-service .service-card-container-two .card-atendimento-vet,
+  #service .container-service .grid-service .service-card-container-two .card-hospedagem-creche,
+  #service .container-service .grid-service .service-card-container-two .card-transporte-pet {
+    width: auto;
+  }
   
-  /* Ajusta o contêiner interno dos cards de serviço para flex-direction: column */
-  #service .card-banho-tosa .container-banho-tosa,
-  #service .card-adestramento-comportamento .container-adestramento-comportamento {
+  #service .container-service .grid-service .service-card-container-one .card-adestramento-comportamento .container-adestramento-comportamento .img-text-one .img-one img,
+  #service .container-service .grid-service .service-card-container-one .card-adestramento-comportamento .container-adestramento-comportamento .img-text-two .img-two img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #service .card-adestramento-comportamento .container-adestramento-comportamento,
+  #service .card-atendimento-vet .container-atendimento-vet,
+  #service .card-hospedagem-creche .container-hospedagem-pet,
+  #service .card-transporte-pet .container-transporte-pet {
     width: 100%;
-    padding: 0 1em;
+    max-width: 90%;
   }
-  
-  /* Contato - Reduz a largura do formulário e mapa */
-  @media (max-width: 900px) {
-          #contact .container-contact-form-address {
-        flex-direction: column;
-        align-items: center;
-        gap: 2em;
-      }
-    
-      #contact .container-contact .form form > div {
-        width: 100%;
-        max-width: 90vw;
-      }
-    
-      #contact .container-address .maps iframe {
-        width: 90vw;
-        height: 250px;
-      }
-    
-  
-    #contact .container-contact .form form > div {
-      width: 100%;
-      max-width: 90vw;
-    }
-  
-    #contact .container-address .maps iframe {
-      width: 90vw;
-      height: 250px;
-    }
+
+  #service .card-banho-tosa .img-text-one,
+  #service .card-banho-tosa .img-text-two,
+  #service .card-adestramento-comportamento .img-text-one,
+  #service .card-adestramento-comportamento .img-text-two,
+  #service .card-atendimento-vet .img-text-one,
+  #service .card-atendimento-vet .img-text-two,
+  #service .card-atendimento-vet .img-text-three,
+  #service .card-hospedagem-creche .img-text-one,
+  #service .card-hospedagem-creche .img-text-two,
+  #service .card-hospedagem-creche .img-text-three,
+  #service .card-transporte-pet .img-text-one,
+  #service .card-transporte-pet .img-text-two {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
+
+  #service img {
+    width: auto;
+    max-width: 320px;
+    height: auto;
+    border-radius: 0.8em;
+    object-fit: cover;
+  }
+
+  #service p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4em;
+    padding: 0 0.5em;
+  }
+
+  #service .btn-card ul {
+    display: flex;
+    justify-content: center;
+  }
 
   #contact .container-contact-form-address {
     padding: 0 2em;
@@ -101,120 +188,123 @@
   }
 }
 
-/* --- CELULARES (até 768px) --- */
+@media (max-width: 900px) {
+  #contact .container-contact-form-address {
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+
+  #contact .container-contact .form form > div {
+    width: 100%;
+    max-width: 90vw;
+  }
+
+  #contact .container-address .maps iframe {
+    width: 90vw;
+    height: 250px;
+  }
+}
+
+@media (max-width: 769px) {
+  .carousel-btn {
+    display: none;
+  }
+
+  .product-carousel {
+    display: flex;
+    gap: 1em;
+    padding: 1em 0.5em;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  .product-carousel .card {
+    flex: 0 0 auto;
+    width: 45%;
+    min-width: 150px;
+    max-width: 220px;
+    box-sizing: border-box;
+  }
+
+  .carousel > article {
+    flex: 0 0 75vw;
+  }
+
+  .carousel {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .title-text-product p {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Reaplicação e ajustes do menu */
   header nav {
     padding: 1em;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
   }
-  
-  /* Tamanho menor do logo do header */
+
   header nav .logo img {
     width: 68px !important;
   }
 
-  /* Hamburger Menu - Animação Otimizada */
-
-.hamburger {
-  display: flex;
-}
-
+  .hamburger {
+    display: flex;
+  }
 
   .hamburger.active span:nth-child(2) {
     opacity: 0;
   }
 
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-8px);
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(3px, 5px);
   }
 
-  /* Menu lateral */
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(3px, -5px);
+  }
+
   .menu {
+    position: fixed;
+    top: 0;
     right: -100%;
     width: 70%;
+    height: 100vh;
+    background: var(--clr-white-one);
+    backdrop-filter: blur(1em);
+    padding: 5em 2em;
+    border-radius: 1em 0 0 1em;
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 3000; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    transition: right 0.4s ease;
+    z-index: 3000;
   }
 
   .menu.active {
     right: 0;
   }
 
+  .menu ul {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  .menu ul li a {
+    color: var(--clr-forest-one);
+    font-size: 1.2em;
+  }
+
   .login {
     display: none;
   }
 
-
-
-  /* --- HOME --- */
-
-@media (max-width: 1024px) {
-  #home {
-    height: auto;
-    padding: 8em 1em 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #home .title-home ul li p {
-    font-size: 1.6em;
-    text-align: center;
-    margin-bottom: 1.2em;
-  }
-
-  /* container principal */
-  #home .container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100%;
-    margin: 0 auto;
-    gap: 1.5em;
-  }
-
-  /* imagem do cachorro */
-  #home .container .left {
-    order: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  #home .container .left img {
-    width: 90%;
-    max-width: 400px;
-    border-radius: 0.8em;
-    object-fit: cover;
-  }
-
-  /* bloco das meninas — lado a lado */
-  #home .container .right {
-    order: 2;
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  #home .container .right img {
-    flex: 1 1 45%;
-    max-width: 280px;
-    border-radius: 0.8em;
-    object-fit: cover;
-  }
-}
-
-
-
-
-
-  /* --- INFORMATION (Rolagem horizontal) --- */
   #information {
     height: auto;
     padding-bottom: 2em;
@@ -224,87 +314,19 @@
     padding: 1em;
   }
 
-  @media (max-width: 1024px) {
-    #product .product-container-grid {
-      gap: 1.5em;
-    }
-  }
-  
-
-
-/* Para telas até 769px */
-@media (max-width: 769px) {
-  /* Esconde os botões do carrossel */
-  .carousel-btn {
-    display: none;
+  #information .card-information {
+    grid-template-columns: 1fr;
   }
 
-  /* Contêiner do carrossel */
-  .product-carousel {
-    display: flex;
-    gap: 1em;
-    padding: 1em 0.5em;
-    overflow-x: auto; /* Permite scroll horizontal */
-    scroll-behavior: smooth; /* Rolagem suave */
+  #product .product-container-grid {
+    grid-template-columns: 1fr;
   }
 
-  /* Cada card */
-  .product-carousel .card {
-    flex: 0 0 auto;      /* Não cresce nem encolhe */
-    width: 45%;          /* Ocupa 45% do container */
-    min-width: 150px;    /* Limite mínimo de tamanho */
-    max-width: 220px;    /* Limite máximo de tamanho */
-    box-sizing: border-box;
-  }
-
-  /* Ajusta o artigo dentro do carrossel */
-  .carousel > article {
-    flex: 0 0 75vw;      /* Ocupa 75% da viewport */
-  }
-
-  /* Contêiner do carrossel centralizado */
-  .carousel {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  /* Ajuste de texto dentro do título e descrição */
-  .title-text-product p {
-    font-size: 0.9rem;
-    line-height: 1.3rem;
-  }
-}
-
-/* Para telas bem pequenas até 600px */
-@media (max-width: 600px) {
-  /* Botão "Ver todos os produtos" */
-  #product .more-products a {
-    width: 80%;
-    font-size: 0.85rem;
-    padding: 0.6em 1em;
-  }
-
-  /* Cards ficam menores */
-  .product-carousel .card {
-    width: 70%;
-    min-width: 140px;
-  }
-
-  /* Ajuste do título e descrição */
-  .title-text-product p {
-    font-size: 0.85rem;
-    line-height: 1.2rem;
-  }
-}
-
-
-
-  /* --- SERVICE (Rolagem horizontal nos containers internos) --- */
   #service {
     min-height: auto;
     padding-bottom: 2em;
   }
-  
+
   #service .title-text-service {
     padding: 1em;
   }
@@ -316,29 +338,35 @@
 
   #service .container-service .grid-service {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+    flex-wrap: wrap;
     gap: 2em;
-    max-width: 100%; 
     padding: 0 1em;
+    max-width: 100%;
   }
 
+  #service .service-card-container-one,
+  #service .service-card-container-two {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 
   #service .card-banho-tosa,
   #service .card-adestramento-comportamento {
-    max-width: 350px;
-    height: 100%; 
+    max-width: 300px;
+    height: 100%;
+    flex-wrap: wrap;
   }
 
-  
-#service .card-atendimento-vet,
+  #service .card-atendimento-vet,
   #service .card-hospedagem-creche,
   #service .card-transporte-pet {
     max-width: 350px;
     padding: 1em;
-    height: 100%; 
+    height: 100%;
   }
-  
-  /* Reset de layout interno para mobile (volta para empilhamento vertical dentro do card) */
+
   #service .card-banho-tosa .container-banho-tosa .img-text-one,
   #service .card-banho-tosa .container-banho-tosa .img-text-two,
   #service .card-adestramento-comportamento .container-adestramento-comportamento .img-text-one,
@@ -349,11 +377,18 @@
   #service .card-hospedagem-creche .container-hospedagem-pet .img-text-one,
   #service .card-hospedagem-creche .container-hospedagem-pet .img-text-two,
   #service .card-hospedagem-creche .container-hospedagem-pet .img-text-three {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     text-align: center;
   }
-  
-  /* Centraliza imagens nos cards de serviço */
+
+  #service .container-service img {
+    width: 250px;
+    /* height: 160px; */
+    object-fit: cover;
+    border-radius: 0.8em;
+    max-width: 100% !important;
+  }
+
   #service .card-banho-tosa .container-banho-tosa .img-one,
   #service .card-banho-tosa .container-banho-tosa .img-two,
   #service .card-adestramento-comportamento .container-adestramento-comportamento .img-one,
@@ -366,12 +401,46 @@
   #service .card-hospedagem-creche .container-hospedagem-pet .img-three,
   #service .card-transporte-pet .container-transporte-pet .img-text-one .img-one,
   #service .card-transporte-pet .container-transporte-pet .img-text-two .img-two {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.5em;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+    width: 100%;
   }
   
-  /* Centraliza textos nos cards de serviço */
+  #service .container-service .grid-service .service-card-container-one .card-adestramento-comportamento .container-adestramento-comportamento .img-text-two .img-two {
+    order: 1;
+  }
+  #service .container-service .grid-service .service-card-container-one .card-adestramento-comportamento .container-adestramento-comportamento .img-text-two .text-two {
+    order: 2;
+  }
+  
+  #service .container-service .grid-service .service-card-container-two .card-atendimento-vet .container-atendimento-vet .img-text-one .img-one {
+    order: 1;
+  }
+  #service .container-service .grid-service .service-card-container-two .card-atendimento-vet .container-atendimento-vet .img-text-one .text-one {
+    order: 2;
+  }
+  #service .container-service .grid-service .service-card-container-two .card-atendimento-vet .container-atendimento-vet .img-text-three .img-three {
+    order: 1;
+  }
+   #service .container-service .grid-service .service-card-container-two .card-atendimento-vet .container-atendimento-vet .img-text-three .text-three {
+    order: 2;
+  }
+
+  #service .container-service .grid-service .service-card-container-two .card-hospedagem-creche .container-hospedagem-pet .img-text-two .img-two {
+    order: 1;
+  }
+  #service .container-service .grid-service .service-card-container-two .card-hospedagem-creche .container-hospedagem-pet .img-text-two .text-two {
+    order: 2;
+  }
+  
+  #service .container-service .grid-service .service-card-container-two .card-transporte-pet .container-transporte-pet .img-text-one .img-one {
+    order: 1;
+  }
+   #service .container-service .grid-service .service-card-container-two .card-transporte-pet .container-transporte-pet .img-text-one .text-one {
+    order: 2;
+  }
+
   #service .card-banho-tosa .container-banho-tosa .img-text-one .text-one,
   #service .card-banho-tosa .container-banho-tosa .img-text-two .text-two,
   #service .card-adestramento-comportamento .container-adestramento-comportamento .img-text-one .text-one,
@@ -384,16 +453,13 @@
   #service .card-hospedagem-creche .container-hospedagem-pet .img-text-three .text-three,
   #service .card-transporte-pet .container-transporte-pet .img-text-one .text-one,
   #service .card-transporte-pet .container-transporte-pet .img-text-two .text-two {
-      text-align: center;
-      max-width: none;
+    text-align: center;
   }
-  
+
   #service .card-transporte-pet .container-transporte-pet .img-text-two {
-      flex-direction: column; 
+    flex-direction: column;
   }
 
-
-  /* --- ADOPTION (Rolagem horizontal) --- */
   #adoption {
     height: auto;
     padding-bottom: 2em;
@@ -406,56 +472,55 @@
   #adoption .adopt-container {
     padding: 2em 1em;
   }
-  
+
   #adoption .why-adopt,
   #adoption .how-adopt {
-      width: 100%;
-      max-width: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   #adoption .why-adopt ul,
   #adoption .how-adopt ul {
-    flex-direction: row; 
+    flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
     gap: 1.5em;
     justify-content: flex-start;
-    padding: 0 1em 1em; 
+    padding: 0 1em 1em;
     margin: 1em auto;
-    width: fit-content; /* Permite que o conteúdo defina a largura mínima */
+    width: fit-content;
   }
 
   #adoption .why-adopt ul li,
   #adoption .how-adopt ul li {
-    flex: 0 0 150px; 
+    flex: 0 0 150px;
   }
 
   #adoption .why-adopt ul .section-title-card,
   #adoption .how-adopt ul .section-title-card {
-      margin-right: 0;
-      flex: 0 0 auto;
-      max-width: 150px;
+    margin-right: 0;
+    flex: 0 0 auto;
+    max-width: 150px;
   }
-  
-  /* --- CONTACT --- */
+
   #contact {
     height: auto;
     padding-bottom: 2em;
   }
-  
+
   #contact .title-text-contact {
     padding: 1em;
   }
 
   #contact .container-contact-form-address {
-    flex-direction: column; 
+    flex-direction: column;
     gap: 2em;
     align-items: center;
     padding: 2em 1em;
   }
-  
+
   #contact .container-contact .form form {
-      max-width: 100%;
+    max-width: 100%;
   }
 
   #contact .container-contact .form form .name,
@@ -463,144 +528,154 @@
   #contact .container-contact .form form .phone,
   #contact .container-contact .form form .message {
     width: 100%;
-    max-width: 400px; 
+    max-width: 400px;
   }
-  
+
   #contact .container-address {
-      width: 100%;
-      max-width: 400px;
+    width: 100%;
+    max-width: 400px;
   }
-  
+
   #contact .container-address .clinica li {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
 
   #contact .container-address .maps-container {
     width: 100%;
   }
-  
+
   #contact .container-address .maps-container .maps iframe {
     width: 100%;
     height: 220px;
   }
 
-
-  /* --- FOOTER --- */
   footer {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     gap: 2em;
     padding: 2em 1em;
     text-align: center;
   }
-  
+
   footer .footer-nav {
-      width: 100%;
+    width: 100%;
   }
 
   footer .footer-nav nav {
-    flex-direction: column; 
+    flex-direction: column;
     gap: 1.5em;
   }
-  
+
   footer .social-media {
-      padding-top: 1em;
+    padding-top: 1em;
   }
-  
+
   footer .footer-nav nav .our-products,
   footer .footer-nav nav .tips-warnings {
     width: 100%;
     padding: 0;
   }
-  
+
   footer .footer-nav nav .our-products ul li .links-op,
   footer .footer-nav nav .tips-warnings ul li .links-tw {
-      align-items: center; 
+    align-items: center;
   }
 }
 
-/* --- CELULARES PEQUENOS (até 480px) --- */
-@media (max-width: 480px) {
-  /* Reduz o padding geral */
-  section {
-    padding: 3em 1em;
-  }
-  
-  body::before {
-    height: 4.5em; 
+@media (max-width: 600px) {
+  #product .more-products a {
+    width: 80%;
+    font-size: 0.85rem;
+    padding: 0.6em 1em;
   }
 
-  
-  /* Ajuste geral dos títulos */
-  .title-information, .title-product, .title-service, .title-adoption, .title-contact {
-    font-size: 1.5em !important;
-  }
-  
-
-
-  /* Ajuste no tamanho dos cards de informações para a rolagem horizontal */
-  #information .card-information .card {
-    flex: 0 0 200px; 
-    max-width: 220px;
+  .product-carousel .card {
+    width: 70%;
+    min-width: 140px;
   }
 
-  /* Reduz o tamanho dos cards de produtos para a rolagem horizontal */
-  #product .product-container-grid .card {
-    flex: 0 0 250px; 
+  .title-text-product p {
+    font-size: 0.85rem;
+    line-height: 1.2rem;
   }
 
-  /* Ajuste no tamanho dos cards de serviço para a rolagem horizontal */
+  #service .grid-service > div {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   #service .card-banho-tosa,
   #service .card-adestramento-comportamento,
   #service .card-atendimento-vet,
   #service .card-hospedagem-creche,
   #service .card-transporte-pet {
-    flex: 0 0 280px; 
-    max-width: 300px;
-  }
-  
-  /* Ajuste nos títulos e textos */
-  .title-information, .title-product, .title-service, .title-adoption, .title-contact {
-    font-size: 1.4em;
-  }
-  
-  .text-information, .text-product, .text-service, .text-adoption, .text-contact {
-      font-size: 0.9em;
-  }
-  
-  /* Ajuste para o título dentro do service */
-  #service .container-service .title-container ul li p {
-      font-size: 1.1em;
+    max-width: 75%;
   }
 
-  /* Ajuste nos botões */
-  .btn-card ul li a {
-    padding: 0.6em 1em;
-    font-size: 0.9em;
+  #service img {
+    max-width: 175px;
   }
 }
 
-/* Ajustes gerais de responsividade */
-@media (max-width: 768px) {
-
-  #information .card-information {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  section {
+    padding: 3em 1em;
   }
 
-  #product .product-container-grid {
-    grid-template-columns: 1fr;
+  body::before {
+    height: 4.5em;
   }
 
-  #service .service-card-container-two,
-  #service .service-card-container-one {
-    flex-direction: column;
-    align-items: center;
+  .title-information,
+  .title-product,
+  .title-service,
+  .title-adoption,
+  .title-contact {
+    font-size: 1.5em !important;
   }
 
-  footer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2em;
+  #information .card-information .card {
+    flex: 0 0 200px;
+    max-width: 220px;
+  }
+
+  #product .product-container-grid .card {
+    flex: 0 0 250px;
+  }
+
+  #service .card-banho-tosa,
+  #service .card-adestramento-comportamento,
+  #service .card-atendimento-vet,
+  #service .card-hospedagem-creche,
+  #service .card-transporte-pet {
+    flex: 0 0 200px;
+    max-width: 300px;
+  }
+
+  .title-information,
+  .title-product,
+  .title-service,
+  .title-adoption,
+  .title-contact {
+    font-size: 1.4em;
+  }
+
+  .text-information,
+  .text-product,
+  .text-service,
+  .text-adoption,
+  .text-contact {
+    font-size: 0.9em;
+  }
+
+  #service .container-service .title-container ul li p {
+    font-size: 1.1em;
+  }
+
+  .btn-card ul li a {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
   }
 }
