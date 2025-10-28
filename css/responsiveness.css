@@ -382,12 +382,20 @@
   }
 
   #service .container-service img {
-    width: 250px;
-    /* height: 160px; */
+    width: auto !important;
+    height: 130px !important;
     object-fit: cover;
     border-radius: 0.8em;
     max-width: 100% !important;
   }
+  #service .container-banho-tosa img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+    border-radius: 0.8em;
+    max-width: 100% !important;
+  }
+  
 
   #service .card-banho-tosa .container-banho-tosa .img-one,
   #service .card-banho-tosa .container-banho-tosa .img-two,
