@@ -23,23 +23,26 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             erroDisplay.textContent = data.message || 'Falha no login. Credenciais inválidas.';
             return;
         }
-
-        console.log('Dados recebidos do login:', data.data);
-
-        const { token, perfil, id } = data.data;
+        const { token, perfil } = data.data;
 
         localStorage.setItem('authToken', token);
         localStorage.setItem('userProfile', perfil.toLowerCase());
 
-        switch (perfil.toLowerCase()) {
-            case 'administrador':
-                setTimeout(() => {
-                    window.location.href = '/pages/admin/lista-pedidos.html';
-                }, 100);
-                break;
-            case 'cliente':
-            default:
-                window.location.href = 'pagina-venda.html';
+
+        // Atualiza menu da página atual sem reload
+        if (typeof atualizarMenu === "function") {
+            atualizarMenu();
+        }
+
+        // Redireciona para página anterior
+        const paginaAnterior = localStorage.getItem("paginaAnterior");
+        if (paginaAnterior) {
+            window.location.href = paginaAnterior;
+            localStorage.removeItem("paginaAnterior");
+        } else {
+            window.location.href = (perfil.toLowerCase() === 'administrador')
+                ? '/pages/admin/lista-pedidos.html'
+                : '/pages/user/pagina-venda.html';
         }
 
     } catch (error) {

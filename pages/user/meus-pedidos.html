@@ -14,74 +14,14 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../../css/meus-pedidos.css">
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 
-<body>
+<body style="display:none">
 
     <header>
-        <nav id="menuLogado">
-            <div class="perfil">
-                <ul>
-                    <li class="dropdown-perfil"> <a class="perfil-img" href="#"> <img
-                                src="./img/img-adoption/adoption-for.png" alt="Foto do usuário" /> </a>
-                        <ul class="dropdown-content">
-                            <li class="perfil-configuration">
-                                <div class="img"> <img src="./img/img-adoption/adoption-for.png"
-                                        alt="Foto do usuário" /> </div>
-                                <div class="configuration">
-                                    <ul>
-                                        <li>
-                                            <p class="name">Nome de usuário</p>
-                                            <p class="config"><a href="cadastro-usuario.html">Ver perfil</a></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="account"><a href="#">Configurações da conta</a></li>
-                            <li><a href="#">Pagamentos</a></li>
-                            <li><a href="#">Meus pedidos</a></li>
-                            <li><a href="#">Favoritos</a></li>
-                            <li><a href="#">Suporte</a></li>
-                            <li class="down"><a href="index.html">Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="menu">
-                <div class="category-search">
-                    <div class="category"> <select id="categoriaLogado">
-                            <option>Todos</option>
-                        </select> </div>
-                </div>
-                <div class="search-box"> <input type="text" placeholder="Buscar produto..." /> <button><i
-                            class="material-icons">search</i></button> </div>
-            </div>
-            <div class="shopping-cart-order-service">
-                <ul>
-                    <li class="dropdown order"> <a class="order-title" href="#"><i
-                                class="material-icons">local_mall</i>Pedidos</a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Banho e Tosa</a></li>
-                            <li><a href="#">Veterinário</a></li>
-                            <li><a href="#">Adestramento</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown shopping-cart"> <a href="carrinho.html" class="cart-link shopping-cart-title">
-                            <i class="material-icons position-relative"> shopping_cart <span id="cart-count"
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                            </i>
-                            Carrinho </a> </li>
-                    <li class="dropdown service"> <a class="service-title" href="#"><i
-                                class="material-icons">handshake</i>Serviços</a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Banho e Tosa</a></li>
-                            <li><a href="#">Veterinário</a></li>
-                            <li><a href="#">Adestramento</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="menu-container"></div>
+        <script src="../../js/menu.js"></script>
     </header>
 
     <main>

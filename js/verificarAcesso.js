@@ -4,11 +4,7 @@ function verificarAcesso(perfisEsperados = []) {
     const token = localStorage.getItem('authToken');
     const perfilUsuario = getUserProfileFromToken();
 
-    // Verificação case-insensitive
-    if (
-        !token ||
-        !perfilUsuario ||
-        !perfisEsperados.map(p => p.toLowerCase()).includes(perfilUsuario.toLowerCase())
+    if (!token || !perfilUsuario || !perfisEsperados.map(p => p.toLowerCase()).includes(perfilUsuario.toLowerCase())
     ) {
         alert('Sua sessão expirou ou acesso negado. Faça login novamente.');
         logout();
@@ -89,18 +85,18 @@ function getUserProfileFromToken() {
 }
 
 function getUserFromToken() {
-  const token = localStorage.getItem('authToken');
-  if (!token) return null;
+    const token = localStorage.getItem('authToken');
+    if (!token) return null;
 
-  try {
-    const payload = token.split('.')[1];
-    const decoded = atob(payload); 
-    const user = JSON.parse(decoded);
-    return user;
-  } catch (error) {
-    console.error("Erro ao decodificar token:", error);
-    return null;
-  }
+    try {
+        const payload = token.split('.')[1];
+        const decoded = atob(payload);
+        const user = JSON.parse(decoded);
+        return user;
+    } catch (error) {
+        console.error("Erro ao decodificar token:", error);
+        return null;
+    }
 }
 
 function validarLogin() {
@@ -110,4 +106,8 @@ function validarLogin() {
         return false;
     }
     return true;
+}
+
+function salvarPaginaAtual() {
+    localStorage.setItem("paginaAnterior", window.location.pathname);
 }

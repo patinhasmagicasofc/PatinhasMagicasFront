@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
+
     const usuarioId = getUserIdFromToken();
-    await carregarServicosByUsuarioId(usuarioId);
+    if (verificarAcesso(['administrador', 'cliente']) && usuarioId) {
+        document.body.style.display = 'block';
+        await carregarServicosByUsuarioId(usuarioId);
+    }
 });
 
 let agendamentos = [];

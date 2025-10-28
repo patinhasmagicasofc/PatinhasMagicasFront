@@ -1,24 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const menuLogado = document.getElementById("menuLogado");
-  const menuDeslogado = document.getElementById("menuDeslogado");
-
-  if (validarLogin()) {
-    menuLogado.classList.remove("d-none");
-    menuDeslogado.classList.add("d-none");
-  } else {
-    menuDeslogado.classList.remove("d-none");
-    menuLogado.classList.add("d-none");
+  const usuarioId = getUserIdFromToken();
+  if (verificarAcesso(['administrador', 'cliente']) && usuarioId) {
+    document.body.style.display = 'block';
   }
-
-  const btnLogout = document.getElementById("btnLogout");
-  if (btnLogout) {
-    btnLogout.addEventListener("click", () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("usuario");
-      window.location.href = "index.html";
-    });
-  }
-
 
   const selectAnimal = document.getElementById("animal");
   const selectServico = document.getElementById("servico");
@@ -27,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   selectServico.disabled = true;
 
-  const usuarioId = getUserIdFromToken();
+
   const listaAnimais = await carregarAnimaisUsuario(usuarioId);
   let listaServicos = [];
 

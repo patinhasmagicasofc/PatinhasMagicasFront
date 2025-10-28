@@ -14,115 +14,14 @@
 
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 
 <body>
 
   <header>
-    <nav id="menuLogado" class="d-none">
-      <div class="logo">
-        <img src="./img/logo/logo.png" alt="logo" />
-      </div>
-
-      <div class="menu">
-        <div class="category-search">
-          <div class="category">
-            <select>
-              <option>Todos</option>
-              <option>Ração</option>
-              <option>Brinquedo</option>
-              <option>Acessório</option>
-              <option>Higiene</option>
-              <option>Medicamento</option>
-            </select>
-          </div>
-        </div>
-        <div class="search-box">
-          <input type="text" placeholder="Buscar produto..." />
-          <button>
-            <i class="material-icons">search</i>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="shopping-cart-order-service">
-        <ul>
-          <li class="order">
-            <a class="order-title" href="#"><i class="material-icons">local_mall</i>Pedidos</a>
-          </li>
-
-          <li class="shopping-cart">
-            <a class="shopping-cart-title" href="carrinho.html"><i class="material-icons">shopping_cart</i>Carrinho</a>
-          </li>
-
-          <li class="dropdown service">
-            <a class="service-title" href="#"><i class="material-icons">handshake</i>Serviços</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Ver serviços</a></li>
-              <li><a href="#">Agendar serviço</a></li>
-              <li><a href="#">Agendados</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="perfil">
-        <ul>
-          <li class="dropdown-perfil">
-            <a class="perfil-img" href="#"><img src="./img/img-adoption/adoption-for.png" alt="" /></a>
-            <ul class="dropdown-content">
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-              <li><a href="#">Banho e Tosa aaaaaaaaaaaaaaaaa</a></li>
-              <li><a href="#">Veterinário</a></li>
-              <li><a href="#">Adestramento</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-    </nav>
-
-    <!-- menu sem login -->
-    <nav id="menuDeslogado" class="d-none">
-      <div class="logo">
-        <img src="" alt="" />
-      </div>
-
-      <div class="menu">
-        <div class="category-search">
-          <div class="category">
-            <select>
-              <option>Todos</option>
-              <option>Ração</option>
-              <option>Brinquedo</option>
-              <option>Acessório</option>
-              <option>Higiene</option>
-              <option>Medicamento</option>
-            </select>
-          </div>
-        </div>
-        <div class="search-box">
-          <input type="text" placeholder="Buscar produto..." />
-          <button>
-            <i class="material-icons">search</i>
-          </button>
-        </div>
-      </div>
-      <div class="login-cadastro">
-        <ul class="login">
-          <li><a href="login.html">Login</a></li>
-        </ul>
-
-        <ul class="cadastro">
-          <li><a href="">Cadastrar-se</a></li>
-        </ul>
-      </div>
-    </nav>
+    <div id="menu-container"></div>
+    <script src="../../js/menu.js"></script>
   </header>
 
   <main>

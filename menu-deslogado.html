@@ -2,7 +2,9 @@
     <div class="container-menu-up">
 
         <div class="logo">
-            <img src="/img/logo/logo.png" alt="Patinhas Mágicas" />
+            <a href="/index.html">
+                <img src="/img/logo/logo.png" alt="Patinhas Mágicas" />
+            </a>
         </div>
 
         <div class="menu">
@@ -22,12 +24,12 @@
         <div class="shopping-cart-order-service">
             <ul>
                 <li class="dropdown order">
-                    <a class="order-title" href="/pages/user/meus-pedidos.html"><i
+                    <a class="order-title" href="/pages/user/meus-pedidos.html" class="exige-login"><i
                             class="material-icons">local_mall</i>Pedidos</a>
                 </li>
 
                 <li class="dropdown shopping-cart">
-                    <a href="carrinho.html" class="cart-link shopping-cart-title">
+                    <a href="/pages/public/carrinho.html" class="cart-link shopping-cart-title">
                         <i class="material-icons position-relative">
                             shopping_cart
                             <span id="cart-count"
@@ -39,10 +41,10 @@
                 <div class="login">
                     <ul>
                         <li class="login-container">
-                            <a class="logar" href="login.html">
+                            <a class="logar" href="/pages/public/login.html" onclick="salvarPaginaAtual()">
                                 Login
                             </a>
-                            <a class="cadastrar" href="cadastro-usuario.html">
+                            <a class="cadastrar" href="/pages/public/cadastro-usuario.html">
                                 Cadastrar-se
                             </a>
                         </li>
@@ -68,8 +70,8 @@
                 <li class="dropdown service">
                     <a class="service-title" href="#">Serviços</a>
                     <ul class="dropdown-content">
-                        <li><a href="../user/agendamento-servico.html">Agendar Serviço</a></li>
-                        <li><a href="../user/meus-servicos.html">Servicos Agendados</a></li>
+                        <li><a href="/pages/user/agendamento-servico.html">Agendar Serviço</a></li>
+                        <li><a href="/pages/user/meus-servicos.html">Servicos Agendados</a></li>
                     </ul>
                 </li>
                 <li class="dropdown more">
