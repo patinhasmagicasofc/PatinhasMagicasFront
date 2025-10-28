@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const menuLogado = document.getElementById("menuLogado");
-  const menuDeslogado = document.getElementById("menuDeslogado");
-
   const user = getUserFromToken();
 
   if (user) {
