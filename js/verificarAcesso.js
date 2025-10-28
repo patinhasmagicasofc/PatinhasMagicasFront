@@ -106,7 +106,7 @@ function getUserFromToken() {
 function validarLogin() {
     const token = localStorage.getItem('authToken');
     if (!token) {
-        window.location.href = '/index.html';
+        //window.location.href = '/index.html';
         return false;
     }
     return true;

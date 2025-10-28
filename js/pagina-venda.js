@@ -12,15 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Exibir menu correto
-  if (validarLogin()) {
-    menuLogado.classList.remove("d-none");
-    if (menuDeslogado) menuDeslogado.classList.add("d-none");
-  } else {
-    if (menuDeslogado) menuDeslogado.classList.remove("d-none");
-    menuLogado.classList.add("d-none");
-  }
-
   const secctionProdutos = document.getElementById("secctionProdutos");
   const productCarousel = document.getElementById("product-carousel");
 
