@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento - Cartão de Crédito</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+    }
+
+    .cartao {
+        background: linear-gradient(135deg, #242424, #121212);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        width: 350px;
+        transition: all 0.3s;
+    }
+
+    .cartao:hover {
+        transform: translateY(-5px);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #bbb;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: 8px;
+        background: #2c2c2c;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    input:focus {
+        outline: 2px solid #0f9d58;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #0f9d58;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #13b76d;
+    }
+
+    .msg {
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: bold;
+        display: none;
+    }
+
+    .msg.ok {
+        color: #00e676;
+    }
+
+    .msg.error {
+        color: #ff5252;
+    }
+</style>
+</head>
+<body>
+    <div class="cartao">
+        <h2>Pagamento com Cartão 💳</h2>
+        <form id="formPagamento">
+            <label>Número do cartão</label>
+            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+
+            <label>Nome no cartão</label>
+            <input type="text" placeholder="JOÃO SILVA">
+
+            <label>Validade</label>
+            <input type="text" placeholder="MM/AA" maxlength="5">
+
+            <label>CVV</label>
+            <input type="text" placeholder="123" maxlength="3">
+
+            <button type="submit">Pagar agora</button>
+        </form>
+        <p class="msg" id="msgPagamento">Pagamento aprovado ✅</p>
+    </div>
+
+<script>
+document.getElementById('formPagamento').addEventListener('submit', e => {
+    e.preventDefault();
+    const msg = document.getElementById('msgPagamento');
+    msg.textContent = "Processando pagamento...";
+    msg.style.display = "block";
+    msg.className = "msg";
+
+    setTimeout(() => {
+        msg.textContent = "Pagamento aprovado ✅";
+        msg.classList.add("ok");
+    }, 2000);
+});
+</script>
+</body>
+</html>
