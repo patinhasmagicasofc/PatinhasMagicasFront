@@ -9,7 +9,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/agendamento-confirmar.css">
+  <link rel="stylesheet" href="/css/agendamento-confirmar.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <link rel="stylesheet"
@@ -18,21 +19,6 @@
   <!-- Ícone da aba -->
   <link rel="icon" href="img/pet-icon.png">
 
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-
-    .card {
-      border-radius: 15px;
-    }
-
-    .btn-success {
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 10px;
-    }
-  </style>
 </head>
 
 <body>
@@ -40,108 +26,46 @@
     <div id="menu-container"></div>
     <script src="../../js/menu.js"></script>
   </header>
-
-  <div class="container mt-5 mb-5">
-    <h2 class="text-center mb-4 fw-semibold text-info">Confirmação do Agendamento</h2>
-
-    <!-- Resumo preenchido dinamicamente -->
-    <div id="resumoAgendamento" class="mb-4"></div>
-
-    <!-- Formulário -->
-    <form id="formFinalizar" class="shadow-sm p-4 bg-white rounded-3">
-      <div class="mb-3">
-        <label class="form-label fw-semibold">Forma de Pagamento</label>
-        <select id="tipoPagamento" class="form-select" required>
-          <option value="">Selecione...</option>
-        </select>
+  <main>
+    <div class="container-agendamento-confirmar">
+      <div class="title-agendamento-confirmar">
+        <ul>
+          <li>
+            <p>
+              Confirmação do Agendamento
+            </p>
+          </li>
+        </ul>
       </div>
 
-      <button type="submit" class="btn btn-success w-100">Confirmar Agendamento</button>
-    </form>
-  </div>
 
-  <!-- Modal Pagamento -->
-  <div class="modalPagamento" id="modalPagamento" style="display:none;">
-    <div class="modalConteudo" id="modalConteudo">
-      <span class="fecharModal" id="fecharModal">&times;</span>
-      <div id="conteudoPagamento"></div>
+      <!-- Resumo preenchido dinamicamente -->
+      <div id="resumoAgendamento" class="resumo-agendamento-confirmar"></div>
+
+      <!-- Formulário -->
+      <form id="formFinalizar" class="formulario-finalizar">
+        <div>
+          <label class="form-label fw-semibold">Forma de Pagamento</label>
+          <select id="tipoPagamento" class="form-select" required>
+            <option value="">Selecione...</option>
+          </select>
+        </div>
+        <div class="btn-confirmar">
+          <button type="submit" class="btn-finalizar">Confirmar Agendamento</button>
+        </div>
+
+      </form>
     </div>
-  </div>
 
-  <style>
-    .modalPagamento {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+    <!-- Modal Pagamento -->
+    <div class="modalPagamento" id="modalPagamento" style="display:none;">
+      <div class="modalConteudo" id="modalConteudo">
+        <span class="fecharModal" id="fecharModal">&times;</span>
+        <div id="conteudoPagamento"></div>
+      </div>
+    </div>
+  </main>
 
-    .modalConteudo {
-      background: #1f1f1f;
-      padding: 2rem;
-      border-radius: 15px;
-      width: 360px;
-      max-width: 90%;
-      position: relative;
-    }
-
-    .fecharModal {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-    }
-
-    .modalConteudo h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: white;
-    }
-
-    .modalConteudo input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 8px;
-      background: #2c2c2c;
-      color: white;
-    }
-
-    .modalConteudo button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #0f9d58;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .modalConteudo button:hover {
-      background: #13b76d;
-    }
-
-    .msg {
-      text-align: center;
-      font-weight: bold;
-      margin-top: 10px;
-      display: none;
-    }
-
-    .msg.ok {
-      color: #00e676;
-    }
-  </style>
 
   <script src="../../js/verificarAcesso.js"></script>
   <script src="../../js/agendamento-confirmar.js"></script>

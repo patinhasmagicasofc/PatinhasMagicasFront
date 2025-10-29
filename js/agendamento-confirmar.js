@@ -8,26 +8,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!modal) {
     modal = document.createElement("div");
     modal.id = "modalPagamento";
-    modal.style.display = "none";
-    modal.style.position = "fixed";
-    modal.style.top = 0;
-    modal.style.left = 0;
-    modal.style.width = "100%";
-    modal.style.height = "100%";
-    modal.style.background = "rgba(0,0,0,0.7)";
-    modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
-    modal.style.zIndex = 1000;
 
     const modalConteudo = document.createElement("div");
     modalConteudo.id = "modalConteudo";
-    modalConteudo.style.background = "#1f1f1f";
-    modalConteudo.style.padding = "2rem";
-    modalConteudo.style.borderRadius = "15px";
-    modalConteudo.style.width = "360px";
-    modalConteudo.style.maxWidth = "90%";
-    modalConteudo.style.position = "relative";
+;
 
     modalConteudo.innerHTML = `
       <span class="fecharModal" id="fecharModal" style="position:absolute;top:10px;right:15px;font-size:1.5rem;color:white;cursor:pointer;">&times;</span>
@@ -100,13 +84,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (tipo === "2") {
       // Pix
       conteudo.innerHTML = `
-        <h2>Pagamento via Pix 💸</h2>
-        <div class="qr" style="background:white;padding:20px;border-radius:15px;box-shadow:0 0 20px rgba(0,0,0,0.5); text-align:center;">
+       <div class="pagamento-pix">
+        <div class="title-pagamento-pix">
+          <ul>
+            <li>
+              <p>
+                Pagamento via Pix 💸
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="qr">
           <img src="https://api.qrserver.com/v1/create-qr-code/?data=fakepix123&size=200x200" alt="QR Code Pix">
         </div>
-        <p style="color:white;text-align:center;">Escaneie o QR Code para simular o pagamento.</p>
-        <button id="btnPixPago" style="margin-top:20px;background:#00e676;border:none;padding:12px 24px;border-radius:8px;color:black;font-weight:bold;cursor:pointer;">Já paguei</button>
+        <p class="simular-pagamento">Escaneie o QR Code para simular o pagamento.</p>
+        <button id="btnPixPago">Já paguei</button>
         <p class="msg" id="msgPix">Pagamento confirmado ✅</p>
+      </div>
       `;
       document.getElementById("btnPixPago").addEventListener("click", () => {
         document.getElementById("msgPix").style.display = "block";
