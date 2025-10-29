@@ -127,7 +127,7 @@ a {
 }
 
 main {
-  margin-top: 140px !important;
+  /* margin-top: 100px !important; */
 }
 
 ul,
@@ -153,6 +153,7 @@ body::before {
   height: 5em;
 }
 
+
 /* #region home */
 
 #home {
@@ -163,13 +164,13 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  /* align-items: center; */
+  align-items: center;
 
   .title-home {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: var(--clr-blue);
+    margin-bottom: 2em;
     height: 40%;
 
     & ul {
@@ -456,7 +457,9 @@ body::before {
   .carousel-wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    max-width: 1264px;
 
     .carousel-btn {
       background: var(--clr-transparente);
