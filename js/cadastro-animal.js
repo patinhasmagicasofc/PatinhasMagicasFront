@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const tamanhoAnimalId = selectTamanho.value;
 
         if (!nome || !especieId || !tamanhoAnimalId) {
-            alert("Por favor, preencha todos os campos obrigatórios!");
+            mostrarToast("✅ Por favor, preencha todos os campos obrigatórios!", "sucesso");
             return;
         }
 
@@ -66,11 +66,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             await consumirAPIAutenticada('/Animal', 'POST', animal);
-            alert("Animal cadastrado com sucesso!");
-            window.location.href = "agendamento-servico.html";
+            mostrarToast("✅ Animal cadastrado com sucesso!", "sucesso");
+
+            setTimeout(() => {
+                window.location.href = "agendamento-servico.html";
+            }, 2500);
+
         } catch (err) {
             console.error(err);
-            alert("Erro ao cadastrar animal. Tente novamente.");
+            mostrarToast("❌ Erro ao cadastrar animal. Tente novamente.", "erro");
         }
     });
 });
