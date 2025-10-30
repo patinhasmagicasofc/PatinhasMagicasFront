@@ -1,3 +1,38 @@
+@media (min-width: 768px) {
+  .menu ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--clr-forest);
+    transition: width 0.3s ease;
+  }
+
+  .menu ul li a:hover {
+    color: var(--clr-olive);
+  }
+
+  .menu ul li a:hover::after {
+    width: 100%;
+  }
+}
+
+@media (width > 600px) {
+  section.cards-demo1 {
+    --_offset-steps: 4em;
+  }
+  
+  article.cards-demo1 > div {
+    grid-template-columns: 1fr 2fr;
+  }
+  
+  .carousel {
+		--carousel-duration: 40s;
+	}
+}
+
 @media (max-width: 1024px) {
   header nav {
     justify-content: space-between;
@@ -173,6 +208,14 @@
 
   #contact .container-contact-form-address {
     padding: 0 2em;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+  
+  #contact .container-contact,
+  #contact .container-address {
+    max-width: 90%;
   }
 
   #contact .container-contact .form form .name,
@@ -180,6 +223,10 @@
   #contact .container-contact .form form .phone,
   #contact .container-contact .form form .message {
     width: 350px;
+  }
+  
+  #contact .container-contact .form form > div {
+    max-width: 100%;
   }
 
   #contact .container-address .maps-container .maps iframe {
@@ -261,11 +308,11 @@
   }
 
   .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(3px, 5px);
+    transform: rotate(45deg) translate(9px, 5px);
   }
 
   .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(3px, -5px);
+    transform: rotate(-45deg) translate(7px, -6px);
   }
 
   .menu {
@@ -388,6 +435,7 @@
     border-radius: 0.8em;
     max-width: 100% !important;
   }
+  
   #service .container-banho-tosa img {
     width: 80px !important;
     height: 80px !important;
@@ -396,7 +444,6 @@
     max-width: 100% !important;
   }
   
-
   #service .card-banho-tosa .container-banho-tosa .img-one,
   #service .card-banho-tosa .container-banho-tosa .img-two,
   #service .card-adestramento-comportamento .container-adestramento-comportamento .img-one,
@@ -624,6 +671,18 @@
 
   #service img {
     max-width: 175px;
+  }
+  
+  #contact .title-text-contact ul {
+    padding-top: 2em;
+  }
+
+  #contact .container-contact-form-address {
+    padding: 1em;
+  }
+
+  #contact .container-address .maps iframe {
+    height: 200px;
   }
 }
 

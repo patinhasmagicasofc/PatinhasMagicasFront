@@ -165,4 +165,46 @@ if (productCarousel && nextBtn && prevBtn) {
   });
 })();
 
+//botãoHome
 
+const pawBtn = document.getElementById("pawTopBtn");
+window.onscroll = function() {
+  pawBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+};
+
+// Função de rolagem suave + animação de patinhas
+pawBtn.onclick = function() {
+  const pawTrail = document.createElement("div");
+  pawTrail.classList.add("paw-trail");
+  document.body.appendChild(pawTrail);
+  setTimeout(() => pawTrail.remove(), 2000);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+//Email
+
+(function(){
+  emailjs.init("iuD9mvzu2ap-ATYms"); // Substitua pelo seu public key do EmailJS
+})();
+
+const form = document.querySelector("#contact form");
+const feedback = document.createElement("p");
+feedback.className = "feedback";
+form.appendChild(feedback);
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  feedback.textContent = "Enviando...";
+  feedback.className = "feedback";
+
+  emailjs.sendForm("service_m2doe7w", "template_ozc3vgv", this)
+    .then(() => {
+      feedback.textContent = "Mensagem enviada com sucesso! 🐾";
+      feedback.classList.add("success");
+      form.reset();
+    }, (error) => {
+      feedback.textContent = "Ops! Ocorreu um erro. Tente novamente.";
+      feedback.classList.add("error");
+      console.error("Erro ao enviar:", error);
+    });
+});
