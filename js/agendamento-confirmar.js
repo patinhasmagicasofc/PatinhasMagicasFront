@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <h5 class="card-title">${agendamentoTemp.nomeServico}</h5>
         <p><strong>Animal:</strong> ${agendamentoTemp.nomeAnimal} (${agendamentoTemp.nomeEspecie} - ${agendamentoTemp.tamanhoAnimal})</p>
         <p><strong>Data e hora:</strong> ${dataFormatada}</p>
-        <p><strong>Duração estimada:</strong> ${agendamentoTemp.duracaoServico} min</p>
+        <p><strong>Duração estimada:</strong> ${agendamentoTemp.duracaoServico ?? "00:00"} min</p>
         <p><strong>Preço:</strong> R$ ${Number(agendamentoTemp.precoServico).toFixed(2)}</p>
       </div>
     </div>
