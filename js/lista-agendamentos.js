@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 linha.innerHTML = `
                     <td>${agendamento.id}</td>
-                    <td>Cliente ${agendamento.animal.nomeUsuario}</td>
+                    <td>${agendamento.animal.nomeUsuario}</td>
                     <td>${nomeAnimal}</td>
                     <td>${nomeServico}</td>
                     <td>${dataConfirmacao}</td>
