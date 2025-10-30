@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("formFinalizar");
   const selectPagamento = document.getElementById("tipoPagamento");
 
+
   // 🔹 Adiciona modal no body
   let modal = document.getElementById("modalPagamento");
   if (!modal) {
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const modalConteudo = document.createElement("div");
     modalConteudo.id = "modalConteudo";
-;
+    ;
 
     modalConteudo.innerHTML = `
       <span class="fecharModal" id="fecharModal" style="position:absolute;top:10px;right:15px;font-size:1.5rem;color:white;cursor:pointer;">&times;</span>
@@ -56,56 +57,59 @@ document.addEventListener("DOMContentLoaded", async () => {
     const conteudo = document.getElementById("conteudoPagamento");
     conteudo.innerHTML = "";
 
+    const textoSelecionado = selectPagamento.options[selectPagamento.selectedIndex].text;
+    console.log("Texto:", textoSelecionado);
+
+    console.log(textoSelecionado.toUpperCase())
+
     if (!tipo) return;
 
-    if (tipo === "1") {
-      // Cartão
+    // 💳 Cartão de crédito / débito
+    if (["CARTÃO DE CRÉDITO", "CARTÃO DE DÉBITO"].includes(textoSelecionado.toUpperCase())) {
+
       conteudo.innerHTML = `
-        <h2>Pagamento com Cartão 💳</h2>
-        <form id="formPagamento">
-          <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
-          <input type="text" placeholder="Nome no cartão">
-          <input type="text" placeholder="MM/AA" maxlength="5">
-          <input type="text" placeholder="CVV" maxlength="3">
-          <button type="submit">Pagar agora</button>
-        </form>
-        <p class="msg" id="msgPagamento">Pagamento aprovado ✅</p>
-      `;
-      document.getElementById("formPagamento").addEventListener("submit", e => {
-        e.preventDefault();
-        const msg = document.getElementById("msgPagamento");
-        msg.style.display = "block";
-        msg.textContent = "Processando pagamento...";
-        setTimeout(() => {
-          msg.textContent = "Pagamento aprovado ✅";
-          msg.classList.add("ok");
-        }, 2000);
+    <h2>Pagamento com Cartão 💳</h2>
+    <form id="formPagamento">
+      <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+      <input type="text" placeholder="Nome no cartão">
+      <input type="text" placeholder="MM/AA" maxlength="5">
+      <input type="text" placeholder="CVV" maxlength="3">
+      <button type="button" id="btnCartaoPago">Pagar agora</button>
+    </form>
+    <p class="msg" id="msgPagamento" style="display:none;">Pagamento aprovado ✅</p>
+  `;
+
+      document.getElementById("btnCartaoPago").addEventListener("click", () => {
+        document.getElementById("msgPagamento").style.display = "block";
       });
-    } else if (tipo === "2") {
-      // Pix
+    }
+
+    // 💸 PIX
+    else if (textoSelecionado.toUpperCase() == "PIX") {
       conteudo.innerHTML = `
-       <div class="pagamento-pix">
-        <div class="title-pagamento-pix">
-          <ul>
-            <li>
-              <p>
-                Pagamento via Pix 💸
-              </p>
-            </li>
-          </ul>
-        </div>
-        <div class="qr">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?data=fakepix123&size=200x200" alt="QR Code Pix">
-        </div>
-        <p class="simular-pagamento">Escaneie o QR Code para simular o pagamento.</p>
-        <button id="btnPixPago">Já paguei</button>
-        <p class="msg" id="msgPix">Pagamento confirmado ✅</p>
-      </div>
-      `;
+   <div class="pagamento-pix">
+    <div class="title-pagamento-pix">
+      <ul>
+        <li><p>Pagamento via Pix 💸</p></li>
+      </ul>
+    </div>
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=fakepix123&size=200x200" alt="QR Code Pix">
+    </div>
+    <p class="simular-pagamento">Escaneie o QR Code para simular o pagamento.</p>
+    <button id="btnPixPago">Já paguei</button>
+    <p class="msg" id="msgPix" style="display:none;">Pagamento confirmado ✅</p>
+  </div>
+  `;
+
       document.getElementById("btnPixPago").addEventListener("click", () => {
         document.getElementById("msgPix").style.display = "block";
       });
     }
+    else {
+      conteudo.innerHTML = `<p>Instruções para pagamento via ${textoSelecionado} serão enviadas por e-mail.</p>`;
+    }
+    
 
     modal.style.display = "flex";
   });
@@ -120,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     const tipoPagamentoId = selectPagamento.value;
     if (!tipoPagamentoId) {
-      alert("Selecione uma forma de pagamento!");
+      mostrarToast("✅ Selecione uma forma de pagamento!", "erro");
       return;
     }
 
@@ -139,11 +143,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.removeItem("agendamentoTemp");
         window.location.href = `agendamento-sucesso.html?id=${resultado.agendamento.id}`;
       } else {
-        alert("Erro ao confirmar o agendamento.");
+        mostrarToast("✅ Erro ao confirmar o agendamento..", "erro");
       }
     } catch (err) {
       console.error(err);
-      alert("Não foi possível confirmar o agendamento.");
+      mostrarToast("✅ Não foi possível confirmar o agendamento.", "erro");
     }
   });
 
@@ -170,3 +174,4 @@ async function carregarPagamento() {
     console.error('Erro ao carregar tipos de pagamento:', err);
   }
 }
+

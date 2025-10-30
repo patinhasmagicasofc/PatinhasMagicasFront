@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 🔹 Formatando datas
     const dataFormatada = new Date(agendamento.dataAgendamento).toLocaleString("pt-BR");
-    const dataCadastro = new Date(agendamento.dataCadastro).toLocaleString("pt-BR");
+    const dataCadastro = new Date(agendamento.dataConfirmacao).toLocaleString("pt-BR");
 
     console.log(agendamento)
     // 🔹 Montando HTML
