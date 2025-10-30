@@ -1,38 +1,41 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const usuarioId = getUserIdFromToken();
   if (verificarAcesso(['administrador', 'cliente']) && usuarioId) {
-    document.body.style.display = 'block';
   }
 
   const selectAnimal = document.getElementById("animal");
   const selectServico = document.getElementById("servico");
-  const btnProximo = document.getElementById("btn-proximo");
   const semAnimaisDiv = document.getElementById("semAnimais");
+  const form = document.getElementById("formAgendamento");
 
   selectServico.disabled = true;
-
 
   const listaAnimais = await carregarAnimaisUsuario(usuarioId);
   let listaServicos = [];
 
+  // Quando mudar o animal
   selectAnimal.addEventListener("change", async () => {
     const idAnimal = selectAnimal.value;
+
     if (!idAnimal) {
       selectServico.disabled = true;
       return;
     }
+
     selectServico.disabled = false;
     listaServicos = await carregarServicosPorAnimal(idAnimal);
   });
 
-  btnProximo.addEventListener("click", (event) => {
-    event.preventDefault();
+  // Evento de submit fora do "change"
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
     const idAnimal = selectAnimal.value;
     const idServico = selectServico.value;
     const data = document.getElementById("dataAgendamento").value;
 
     if (!idAnimal || !idServico || !data) {
-      alert("Preencha todos os campos!");
+      mostrarToast("❌ Preencha todos os campos.", "erro");
       return;
     }
 
@@ -53,13 +56,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       status: "Pendente"
     };
 
-    console.log(agendamentoTemp)
+    console.log(agendamentoTemp);
 
-    console.log("Redirecionando para a página de confirmação...");
+    mostrarToast("✅ Redirecionando para a página de confirmação!", "sucesso");
     localStorage.setItem("agendamentoTemp", JSON.stringify(agendamentoTemp));
-    console.log("Redirecionando para a página de confirmação...");
-    window.location.href = "agendamento-confirmar.html";
-    console.log("Redirecionando para a página de confirmação...");
+
+    setTimeout(() => {
+      window.location.href = "agendamento-confirmar.html";
+    }, 3000);
   });
 
   async function carregarAnimaisUsuario(usuarioId) {
@@ -75,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       }
 
-      // semAnimaisDiv.style.display = 'none';
+      //semAnimaisDiv.style.display = 'none';
       selectAnimal.style.display = 'block';
       selectAnimal.innerHTML = '<option value="">Selecione um animal</option>';
 
@@ -120,47 +124,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// ======== Dropdown Menu ========
-const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropdown');
 
-dropdowns.forEach(dropdown => {
-  const link = dropdown.querySelector('a');
-
-  // Só previne comportamento se não for o link do carrinho
-  if (!link.classList.contains('cart-link')) {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      dropdowns.forEach(item => {
-        if (item !== dropdown) item.classList.remove('ativo');
-      });
-      dropdown.classList.toggle('ativo');
-    });
-  }
-});
-
-document.addEventListener('click', e => {
-  if (![...dropdowns].some(dropdown => dropdown.contains(e.target))) {
-    dropdowns.forEach(dropdown => dropdown.classList.remove('ativo'));
-  }
-});
-
-// ======== Dropdown Perfil ========
-const dropdownsPerfil = document.querySelectorAll('.dropdown-perfil');
-
-function toggleDropdown(e) {
-  e.preventDefault();
-  if (this.classList.contains('ativo')) {
-    this.classList.remove('ativo');
-  } else {
-    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
-    this.classList.add('ativo');
-  }
-}
-
-dropdownsPerfil.forEach(item => item.addEventListener('click', toggleDropdown));
-
-document.addEventListener('click', (e) => {
-  if (![...dropdownsPerfil].some(item => item.contains(e.target))) {
-    dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
-  }
-});
