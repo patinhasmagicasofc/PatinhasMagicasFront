@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
   if (validarLogin()) {
-  } 
+  }
 
   const btnLogout = document.getElementById("btnLogout");
   if (btnLogout) {
@@ -35,16 +35,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(agendamento)
     // 🔹 Montando HTML
     div.innerHTML = `
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">${agendamento.servico?.nome ?? "Serviço"}</h5>
+      <div>
+        <div class="container-informations">
+          <div class="title-nome">
+            <ul>
+                <li>
+                    <p class="card-title">${agendamento.servico?.nome ?? "Serviço"}</p>
+                </li>
+              </ul>
+          </div>
           <p><strong>Animal:</strong> ${agendamento.animal?.nome ?? "—"} (${agendamento.animal?.nomeEspecie ?? "—"} - ${agendamento.animal?.nomeTamanhoAnimal ?? "—"})</p>
           <p><strong>Data e hora:</strong> ${dataFormatada}</p>
           <p><strong>Forma de pagamento:</strong> ${agendamento.tipoPagamento ?? "—"}</p>
           <p><strong>Status:</strong> ${agendamento.status ?? "Agendado"}</p>
           <p><strong>Cadastrado em:</strong> ${dataCadastro}</p>
           <hr>
-          <h5 class="text-success text-end">Total: R$ ${Number(agendamento.valorTotal ?? 0).toFixed(2)}</h5>
+          <div class="valor-total">
+              <ul>
+                <li>
+                  <p class="text-success">Total: R$ ${Number(agendamento.valorTotal ?? 0).toFixed(2)}</p>
+                </li>
+            </ul>
+          </div>
         </div>
       </div>
     `;
