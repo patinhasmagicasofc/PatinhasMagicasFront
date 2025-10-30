@@ -125,23 +125,7 @@ function renderTable(produtos) {
             <td>R$${produto.preco}</td>
             <td>${dataFormatada}</td>
             <td>${produto.categoriaNome}</td>
-             <td class="actions">
-                <div class="menu-container">
-                  <button class="menu-btn" title="Mais opções">
-                    <span class="material-icons">more_vert</span>
-                  </button>
-                  <div class="menu-options">
-                    <button class="view-btn" title="Ver">
-                      
-                        <span class="material-icons">visibility</span>
-                        <span> Detalhes</span>
-                    </button>
-                    <a href="editar-produto.html?idProduto=${produto.id}" title="Ver">
-                        <button title="Editar"><span class="material-icons">edit</span> Editar</button>
-                    </a>
-                  </div>
-                </div>
-              </td>
+            <td><a href="/pages/admin/editar-produto.html?idProduto=${produto.id}">Ver Detalhes</a></td>
         `;
         tabela.appendChild(linha);
     });
