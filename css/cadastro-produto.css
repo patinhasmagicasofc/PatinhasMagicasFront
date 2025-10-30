@@ -21,20 +21,20 @@
 }
 
 ul {
-  padding-left: 0;
-  margin: 0;
-  list-style: none;
+  padding-left: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
 }
 
 p {
-  padding-left: 0;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  padding-left: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* ===== Root ===== */
@@ -75,6 +75,7 @@ a {
   --clr-gray-light: #b4b4b4;
   --clr-gray-lighter: #dddddd;
   --clr-cloud-white: #f5f6fa;
+  --clr-cloud-gray: #f7f7f7;
   --clr-white: #ffffff;
   --clr-white-transparent: #ffffff80;
   --clr-silver: #e9e9e9;
@@ -89,28 +90,28 @@ a {
   --clr-sand: #f2e5d7;
 
   /* ===== cores quentes e fofas ===== */
-  --clr-coral: #FF9F80;
-  --clr-peach: #FFBFAF;
-  --clr-pink-light: #FFD6E0;
-  --clr-pink: #FF6B9B;
-  --clr-orange: #FFA94D;
-  --clr-yellow: #FFD56B;
+  --clr-coral: #ff9f80;
+  --clr-peach: #ffbfaf;
+  --clr-pink-light: #ffd6e0;
+  --clr-pink: #ff6b9b;
+  --clr-orange: #ffa94d;
+  --clr-yellow: #ffd56b;
 
   /* ===== cores frias e calmantes ===== */
-  --clr-aqua: #A0E7E5;
-  --clr-blue-light: #8EC6E6;
-  --clr-blue: #4D9DE0;
-  --clr-purple-light: #C3A0E7;
-  --clr-purple: #9B5DE5;
-  --clr-green-light: #B5E48C;
-  --clr-green: #6BCB77;
-  --clr-green-dark: #2D6A4F;
+  --clr-aqua: #a0e7e5;
+  --clr-blue-light: #8ec6e6;
+  --clr-blue: #4d9de0;
+  --clr-purple-light: #c3a0e7;
+  --clr-purple: #9b5de5;
+  --clr-green-light: #b5e48c;
+  --clr-green: #6bcb77;
+  --clr-green-dark: #2d6a4f;
 
   /* ===== cores de alerta e sucesso ===== */
-  --clr-red: #FF6B6B;
-  --clr-red-dark: #E63946;
-  --clr-green-success: #00C49A;
-  --clr-yellow-alert: #FFDD57;
+  --clr-red: #ff6b6b;
+  --clr-red-dark: #e63946;
+  --clr-green-success: #00c49a;
+  --clr-yellow-alert: #ffdd57;
 
   /* ===== textos ===== */
   --clr-text-main: #252525;
@@ -372,7 +373,9 @@ header {
 
             .category {
               .container-category {
+                align-items: center;
                 gap: 1em;
+                border: none;
                 display: flex;
               }
 
@@ -380,7 +383,9 @@ header {
 
             .species {
               .container-species {
+                align-items: center;
                 gap: 1em;
+                border: none;
                 display: flex;
               }
 
@@ -394,7 +399,8 @@ header {
                 padding: 0.6em;
                 cursor: pointer;
                 transition: all .2s ease;
-                &:hover{
+
+                &:hover {
                   background: var(--clr-green-dark);
                   color: var(--clr-white);
                 }
@@ -409,7 +415,8 @@ header {
                 padding: 0.6em;
                 cursor: pointer;
                 transition: all .2s ease;
-                &:hover{
+
+                &:hover {
                   background: var(--clr-green-dark);
                   color: var(--clr-white);
                 }

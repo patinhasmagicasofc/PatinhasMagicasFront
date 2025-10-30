@@ -9,7 +9,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/editar-produto.css" />
+  <link rel="stylesheet" href="/css/editar-produto.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -37,9 +37,9 @@
               </a>
             </li>
             <li class="item-menu">
-              <a href="#">
-                <span class="icon"><i class="material-icons">settings</i></span>
-                <span class="txt-link">Configurações</span>
+              <a href="lista-agendamentos.html">
+                <span class="icon"><i class="material-icons">calendar_today</i></span>
+                <span class="txt-link">Lista de agendamentos</span>
               </a>
             </li>
             <li class="item-menu">
@@ -78,10 +78,10 @@
     </nav>
   </header>
 
-  <div id="loading-container">
+  <!-- <div id="loading-container">
     <div class="spinner"></div>
     <span>Carregando produto...</span>
-  </div>
+  </div> -->
 
   <main>
     <section id="product">
@@ -96,20 +96,36 @@
 
         <div id="register-product">
           <div class="container-basic-product-info">
-            <form id="formProduto" class="product-form" style="display: none;">
+
+            <!-- remoção do display none -->
+            <form id="formProduto" class="product-form">
               <p>Detalhes do Produto</p>
 
               <div class="form">
                 <div class="category">
                   <label>Categoria</label>
-                  <select id="categoria">
-                  </select>
+                  <div class="container-category">
+                    <select id="categoria" required>
+                      <option value="">Selecione a Categoria</option>
+                    </select>
+                    <div class="category-create">
+                      <a class="btn-category-create">+Categoria</a>
+                    </div>
+                  </div>
                 </div>
+
 
                 <div class="species">
                   <label>Espécie / Animal</label>
-                  <select id="especie"></select>
-                  </select>
+                  <div class="container-species">
+                    <select id="especie" required>
+                      <option value="">Selecione a Especie</option>
+                    </select>
+                    <div class="specie-create">
+
+                      <a class="btn-specie-create">+Especie</a>
+                    </div>
+                  </div>
                 </div>
               </div>
 

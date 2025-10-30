@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (produto) {
             preencherProduto(produto);
-            form.style.display = "block";
+            // form.style.display = "block";
         }
 
     } finally {
