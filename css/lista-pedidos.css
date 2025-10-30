@@ -322,6 +322,7 @@ header {
 .summary-orders {
   display: flex;
   flex-direction: column;
+  height: 90vh;
 
   .summary {
     background: var(--clr-gray-two);
@@ -558,7 +559,7 @@ header {
   justify-content: end;
   align-items: center;
   gap: 0.8em;
-  margin-top: 1em;
+  margin-top: auto; 
 
   & button {
     padding: .4em .8em;
