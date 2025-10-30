@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const tamanhoAnimalId = selectTamanho.value;
 
         if (!nome || !especieId || !tamanhoAnimalId) {
-            mostrarToast("✅ Por favor, preencha todos os campos obrigatórios!", "sucesso");
+            mostrarToast("❌ Por favor, preencha todos os campos obrigatórios!", "erro");
             return;
         }
 

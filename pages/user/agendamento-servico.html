@@ -9,19 +9,20 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/agendamento-servico.css">
+  <link rel="stylesheet" href="/css/agendamento-servico.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
 
   <header>
     <div id="menu-container"></div>
-    <script src="../../js/menu.js"></script>
+    <script src="/js/menu.js"></script>
   </header>
 
   <main>
@@ -40,7 +41,10 @@
           <div class="selecionar-cadastrar">
             <div class="pet-select">
               <label class="form-label">Selecione seu Animal:</label>
-              <select id="animal" class="form-select" required></select>
+              <select id="animal" class="form-select" required>
+                <option value="">Selecione seu Animal</option>
+              </select>
+
             </div>
 
             <div id="semAnimais" class="semAnimaist">
@@ -68,8 +72,8 @@
           </div>
 
           <div class="btn-prox-volt">
-            <button id="btn-voltar" type="submit">Voltar</button>
-            <button id="btn-proximo" type="button">Avançar</button>
+            <button id="btn-voltar" type="button">Voltar</button>
+            <button id="btn-proximo" type="submit">Avançar</button>
 
           </div>
         </form>
@@ -79,9 +83,11 @@
     </section>
   </main>
 
-  <script src="../../js/verificarAcesso.js"></script>
-  <script src="../../js/agendamento-servico.js"></script>
+
+  <div id="toast" class="toast"></div>
+  <script src="/js/script.js"></script>
+  <script src="/js/verificarAcesso.js"></script>
+  <script src="/js/agendamento-servico.js"></script>
 
 </body>
-
 </html>
