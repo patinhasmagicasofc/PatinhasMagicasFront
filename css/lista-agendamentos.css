@@ -27,10 +27,10 @@ ul {
 }
 
 p {
-  padding-left: 0;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  padding-left: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
 }
 
 a {
@@ -290,4 +290,117 @@ header {
 
 /* #endregion */
 
+/* #region container */
+.container {
+  min-height: 100vh;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  background: var(--clr-gray-lighter);
+  border-radius: 1em;
 
+  .title-lista-agendamentos {
+    display: flex;
+    text-align: center;
+
+    ul {
+      li {
+        p {
+          font-size: var(--fs-sub-title);
+          font-weight: var(--fw-title);
+          color: var(--clr-black);
+        }
+      }
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--clr-gray-dark);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .tabela-agendamentos {
+    background: var(--clr-white);
+    border-radius: 1em;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+
+      thead {
+        background: var(--clr-peach);
+        color: var(--clr-forest-dark);
+
+        th {
+          padding: 1em 1.5em;
+          font-weight: 600;
+          font-size: 1rem;
+          letter-spacing: 0.3px;
+          text-transform: uppercase;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid var(--clr-silver);
+          transition: background 0.2s ease-in-out;
+
+          &:hover {
+            background: var(--clr-cloud-gray);
+          }
+
+          td {
+            padding: 1em 1.5em;
+            color: var(--clr-text-main);
+            font-size: 0.95em;
+
+            a.btn {
+              background: var(--clr-pink-light);
+              color: var(--clr-white);
+              padding: 0.4em 0.8em;
+              border-radius: .4em;
+              font-size: 0.85em;
+              transition: background 0.3s ease;
+              border: none;
+              display: flex;
+              text-align: center;
+              justify-content: center;
+
+              &:hover {
+                background: var(--clr-blue-light);
+              }
+            }
+
+            .badge {
+              padding: 0.4em 0.7em;
+              border-radius: .4em;
+              font-size: 0.85em;
+              color: var(--clr-white);
+              font-weight: 500;
+              display: flex;
+              text-align: center;
+              justify-content: center;
+
+              &.bg-success {
+                background: var(--clr-green-success);
+              }
+
+              &.bg-warning {
+                background: var(--clr-yellow-alert);
+                color: var(--clr-black-gray);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* #endregion */
