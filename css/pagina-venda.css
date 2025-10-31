@@ -475,10 +475,107 @@ main {
   }
 }
 
+/* #region footer */
+
 footer {
-  background: var(--clr-peach);
-  text-align: center;
-  padding: 2em 1em;
-  border-top: 1px solid var(--clr-gray-two);
-  color: var(--clr-gray);
+  background: var(--clr-pink-light);
+  display: flex;
+  padding: 2em;
+  justify-content: space-evenly;
+
+  .logo {}
+
+  .footer-nav {
+    nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .tips-warnings {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1em;
+
+        & ul {
+          & li {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .title-tips-warnings {
+              & p {
+                font-weight: var(--fw-title);
+              }
+            }
+
+            .links-tw {
+              display: flex;
+              flex-direction: column;
+              gap: 0.8em;
+
+              & a {
+                text-decoration: none;
+                color: var(--clr-forest-one);
+              }
+            }
+          }
+        }
+      }
+
+      .our-products {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1em;
+
+        & ul {
+          & li {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .title-our-products {
+              & p {
+                font-weight: var(--fw-title);
+              }
+            }
+
+            .links-op {
+              display: flex;
+              flex-direction: column;
+              gap: 0.8em;
+
+              & a {
+                list-style: none;
+                text-decoration: none;
+                color: var(--clr-forest-one);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .social-media {
+    display: flex;
+    gap: 1em;
+
+    .facebook,
+    .x,
+    .instagram {
+      & ul {
+        & li {
+          & a {
+            & img {
+              width: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
+/* #endregion */
