@@ -11,8 +11,8 @@
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/menu.css">
-  <link rel="stylesheet" href="../../css/produto-detalhes.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/produto-detalhes.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -20,7 +20,7 @@
 <body>
   <header>
     <div id="menu-container"></div>
-    <script src="../../js/menu.js"></script>
+    <script src="/js/menu.js"></script>
   </header>
 
 
@@ -122,10 +122,45 @@
       </div>
 
     </section>
-    
+
     <section id="products-sale">
 
     </section>
+    
+    <section class="products-page">
+      <!-- MAIS VENDIDOS -->
+      <div class="best-sellers">
+        <div class="title-best-sellers">
+          <ul>
+            <li>
+              <p>Mais Vendidos</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="carousel-wrapper">
+          <button class="carousel-btn prev">&lt;</button>
+
+          <div id="product-carousel" class="product-carousel">
+            <!-- O JS pode preencher dinamicamente -->
+            <!-- <div class="product-card"><img src="./img/img-product/racao.png" alt="Produto 1" /></div>
+          <div class="product-card"><img src="./img/img-product/racao.png" alt="Produto 2" /></div>
+          <div class="product-card"><img src="./img/img-product/racao.png" alt="Produto 3" /></div>
+          <div class="product-card"><img src="./img/img-product/racao.png" alt="Produto 4" /></div> -->
+          </div>
+
+          <button class="carousel-btn next">&gt;</button>
+        </div>
+      </div>
+
+
+      <!-- Produtos carregados dinamicamente -->
+      <div id="secctionProdutos" class="highlight-sections">
+        <!-- O JS irá injetar os produtos aqui -->
+      </div>
+    </section>
+
+
   </main>
 
   <footer>
@@ -199,8 +234,8 @@
       </div>
     </div>
   </footer>
-  <script src="../../js/verificarAcesso.js"></script>
-  <script src="../../js/produto-detalhes.js"></script>
+  <script src="/js/verificarAcesso.js"></script>
+  <script src="/js/produto-detalhes.js"></script>
 </body>
 
 </html>
