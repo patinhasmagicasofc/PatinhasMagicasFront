@@ -132,7 +132,7 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
         await consumirAPIAutenticada('/Pagamento', 'POST', pagamento);
 
         localStorage.removeItem("cart");
-        window.location.href = "../user/confirmacao.html?id=" + responsePedido.pedidoId;
+        window.location.href = "/pages/user/confirmacao.html?id=" + responsePedido.pedidoId;
 
     } catch (err) {
         console.error(err);
