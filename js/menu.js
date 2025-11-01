@@ -14,6 +14,9 @@ async function carregarMenu() {
     initDropdowns();
     initDropdownPerfil();
 
+    // Atualiza a contagem do carrinho
+    atualizarContagemCarrinho();
+
   } catch (err) {
     console.error("Erro ao carregar o menu:", err);
   }
@@ -109,3 +112,13 @@ function logout() {
   // 3️⃣ Redireciona para página pública
   window.location.href = '/pages/public/login.html';
 }
+
+function atualizarContagemCarrinho() {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const totalItens = cart.reduce((sum, item) => sum + item.quantidade, 0);
+  const cartCountEl = document.getElementById('cart-count');
+  if (cartCountEl) {
+    cartCountEl.textContent = totalItens;
+  }
+}
+
