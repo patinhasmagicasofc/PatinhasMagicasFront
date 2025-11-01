@@ -130,15 +130,12 @@ main {
 }
 
 .products-page {
-  padding: 2em;
+   padding: 2em;
   background: var(--clr-white);
-  margin-top: 70px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 2em;
   align-items: center;
-
   .breadcrumb {
     max-width: 1264px;
     display: flex;
@@ -182,24 +179,25 @@ main {
   }
 
   .highlight-sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 300px);
-    gap: 2em;
-    justify-content: start;
+     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5em;
     width: 100%;
     max-width: 1300px;
+    justify-items: center;
+    margin: 0 auto;
 
     .highlight-section-one {
-      background: var(--clr-white);
-      border-radius: 12px;
-      box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
-      padding: 1em;
+      width: 100%;
+      max-width: 300px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 1em;
-      width: 300px;
-      height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
+      padding: 1em;
+      background: var(--clr-white);
 
       .product-info {
         .product-name {
@@ -257,9 +255,10 @@ main {
         align-items: center;
 
         img {
-          max-width: 200px;
-          height: 100%;
-          border-radius: 0.5em;
+          width: 100%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 0.5em;
         }
       }
 
@@ -509,3 +508,58 @@ footer {
 }
 
 /* #endregion */
+@media (max-width: 1024px) {
+  .products-page {
+    padding: 1.5em;
+
+    .highlight-sections {
+      gap: 1em;
+
+      .highlight-section-one {
+        max-width: 300px;
+
+        .main-image-product img {
+          max-width: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .products-page {
+    padding: 1em;
+
+    .highlight-sections {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0.8em;
+
+      .highlight-section-one {
+        max-width: 300px;
+
+        .main-image-product img {
+          max-width: 160px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .products-page {
+    padding: 0.8em;
+
+    .highlight-sections {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1em;
+
+      .highlight-section-one {
+        max-width: 300px;
+
+        .main-image-product img {
+          max-width: 130px;
+        }
+      }
+    }
+  }
+}
