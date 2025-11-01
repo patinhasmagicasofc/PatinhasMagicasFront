@@ -427,3 +427,49 @@ main {
     }
   }
 }
+
+
+/* ===== Responsividade ===== */
+@media (max-width: 1024px) {
+  .container-agendamento-confirmar,
+  .pagamento-cartao,
+  .pagamento-pix {
+    padding: 2em;
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-agendamento-confirmar,
+  .pagamento-cartao,
+  .pagamento-pix {
+    padding: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-agendamento-confirmar,
+  .pagamento-cartao,
+  .pagamento-pix {
+    padding: 1em;
+    width: 100%;
+  }
+
+  .formulario-finalizar {
+    flex-direction: column;
+
+    .btn-confirmar {
+      justify-content: center;
+    }
+  }
+
+  .input-inline {
+    flex-direction: column;
+
+    #ddd-input-group,
+    #telefone-input-group {
+      flex: 1 1 100%;
+    }
+  }
+}
+
