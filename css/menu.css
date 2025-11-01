@@ -1,7 +1,7 @@
 /* menu sem login */
 header {
     nav#menuDeslogado {
-        background: var(--clr-peach);
+        background: var(--clr-pet-blue-dark);
         display: flex;
         position: fixed;
         top: 0;
@@ -10,6 +10,7 @@ header {
         width: 100%;
         z-index: 1000;
         flex-direction: column;
+        padding: 1em 0 0;
 
         .container-menu-up {
             display: flex;
@@ -17,6 +18,7 @@ header {
             justify-content: space-around;
             width: 100%;
             z-index: 1000;
+            padding-bottom: 1em;
 
             .logo {
                 img {
@@ -244,13 +246,14 @@ header {
         }
 
         .container-menu-down {
-            border-top: 1px solid var(--clr-pink);
+            border-top: 1px solid var(--clr-pet-blue-soft);
             padding: 0.5rem 0;
             display: flex;
             justify-content: space-around;
             align-items: center;
             gap: 1rem;
             width: 100%;
+            background: var(--clr-white);
 
             .service-title {
                 font-weight: 400;
@@ -353,7 +356,7 @@ header {
 /* menu com login */
 header {
     nav#menuLogado {
-        background: var(--clr-peach);
+        background: var(--clr-pet-blue-dark);
         display: flex;
         position: fixed;
         top: 0;
@@ -362,6 +365,7 @@ header {
         width: 100%;
         z-index: 1000;
         flex-direction: column;
+        padding: 1em 0 0;
 
         .container-menu-up {
             display: flex;
@@ -369,11 +373,13 @@ header {
             justify-content: space-around;
             width: 100%;
             z-index: 1000;
+            padding-bottom: 1em;
 
             .logo {
                 img {
                     width: 130px;
                     height: 50px;
+                    filter: brightness(0) invert(1);
                 }
             }
 
@@ -612,6 +618,10 @@ header {
                             font-size: 2em;
                         }
                     }
+                    .order-title{
+                        color: var(--clr-white);
+                    }
+
                 }
 
                 .shopping-cart {
@@ -695,13 +705,14 @@ header {
         }
 
         .container-menu-down {
-            border-top: 1px solid var(--clr-pink);
+            border-top: 1px solid var(--clr-pet-blue-soft);
             padding: 0.5rem 0;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 1rem;
             width: 100%;
+            background: var(--clr-white);
 
             .service-title {
                 font-weight: 400;
@@ -799,4 +810,8 @@ header {
         }
 
     }
+}
+
+i {
+    color: var(--clr-white) !important;
 }
