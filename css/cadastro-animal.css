@@ -276,3 +276,67 @@ main {
         }
     }
 }
+
+/* ===== Responsividade ===== */
+@media (max-width: 1024px) {
+  #cadastro-animal .container-cadastro {
+    padding: 1.5em 2em;
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  #cadastro-animal {
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #cadastro-animal .container-cadastro {
+    padding: 1.2em 1.5em;
+  }
+
+  .cadastro-animal .title ul li p {
+    font-size: 1.8em;
+  }
+
+  .cadastro-animal form ul li {
+    gap: 0.6em;
+  }
+
+  .btn-cadastrar-animal {
+    flex-direction: column;
+    gap: 1em;
+
+    button,
+    a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #cadastro-animal .container-cadastro {
+    padding: 1em;
+    width: 100%;
+  }
+
+  .cadastro-animal .title ul li p {
+    font-size: 1.5em;
+  }
+
+  .cadastro-animal form ul li {
+    gap: 0.4em;
+  }
+
+  .btn-cadastrar-animal {
+    gap: 0.5em;
+  }
+
+  .btn-cadastrar-animal button,
+  .btn-cadastrar-animal a {
+    font-size: 0.95em;
+    padding: 0.7em;
+  }
+}
