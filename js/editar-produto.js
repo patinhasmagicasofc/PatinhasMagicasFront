@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     function mostrarLoading(exibir) {
-        loadingContainer.style.display = exibir ? "flex" : "none";
+        //loadingContainer.style.display = exibir ? "flex" : "none";
     }
 
     function preencherProduto(produto) {
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             mostrarToast("✅ Produto atualizado com sucesso!", "sucesso");
             console.log('✅ Produto atualizado com sucesso:', data);
 
-            await sleep(3000);
+            //await sleep(3000);
 
             window.location.href = "../admin/lista-produtos.html";
         } catch (error) {
