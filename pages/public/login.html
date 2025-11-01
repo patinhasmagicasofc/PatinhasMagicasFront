@@ -13,30 +13,56 @@
 
 <body>
     <!-- Formulário de Login -->
-    <div class="login-container">
-        <div class="header">
-            <i class="fas fa-paw"></i>
-            <h2>Patinhas Mágicas - Acesso</h2>
+    <main>
+        <div class="login-container">
+            <div class="header">
+                <i class="fas fa-paw"></i>
+                <h2>Patinhas Mágicas - Acesso</h2>
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="senha"><i class="fas fa-lock"></i> Senha</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit" class="btn-login">Entrar</button>
+
+                <button type="button" class="btn-cadastro" onclick="window.location.href='cadastro-usuario.html'">Criar
+                    conta</button>
+                <p id="mensagemErro" class="erro"></p>
+            </form>
+
+            <nav class="breadcrumb">
+                <ul>
+                    <li>
+                        <a id="btnVoltar" class="breadcrumb-voltar" href="/index.html">
+                            Voltar </a>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
+        <div class="container-info">
+            <ul>
+                <li>
+                    <p>Bem-vindo ao PetCare!</p>
+                </li>
+                <li>
+                    <p>Entre para cuidar de quem te faz sorrir todos os dias.</p>
+                </li>
+                <li>
+                    <p>Agende serviços, acompanhe seus pets e tenha tudo em um só lugar.</p>
+                </li>
+            </ul>
+        </div>
+    </main>
 
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
-                <input type="email" id="email" placeholder="Digite seu e-mail" required>
-            </div>
-
-            <div class="input-group">
-                <label for="senha"><i class="fas fa-lock"></i> Senha</label>
-                <input type="password" id="senha" placeholder="Digite sua senha" required>
-            </div>
-
-            <button type="submit" class="btn-login">Entrar</button>
-
-            <button type="button" class="btn-cadastro" onclick="window.location.href='cadastro-usuario.html'">Criar
-                conta</button>
-            <p id="mensagemErro" class="erro"></p>
-        </form>
-    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/login.js"></script>
 </body>

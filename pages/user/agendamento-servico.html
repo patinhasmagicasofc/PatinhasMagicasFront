@@ -9,13 +9,13 @@
   <link
     href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Lexend:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="/css/agendamento-servico.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="/css/menu.css">
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/agendamento-servico.css">
 </head>
 
 <body>
@@ -26,61 +26,72 @@
   </header>
 
   <main>
-    <section id="agedamento-servico">
-      <div class="container-agendamento">
-        <div class="title-agendamento-servico">
-          <ul>
-            <li>
-              <p>Agendamento de Serviços</p>
-            </li>
-          </ul>
+    <section class="container-agendamento-servivo">
+      <nav class="breadcrumb">
+        <ul>
+          <li>
+            <a id="btnVoltar" class="breadcrumb-voltar" href="/index.html">
+              Voltar </a>
+          </li>
+        </ul>
+      </nav>
+      <section id="agedamento-servico">
+        <div class="container-agendamento">
+          <div class="title-agendamento-servico">
+            <ul>
+              <li>
+                <p>Agendamento de Serviços</p>
+              </li>
+            </ul>
+          </div>
+
+          <form id="formAgendamento" class="formulario-agendamento">
+
+            <div class="selecionar-cadastrar">
+              <div class="pet-select">
+                <label class="form-label">Selecione seu Animal:</label>
+                <select id="animal" class="form-select" required>
+                  <option value="">Selecione seu Animal</option>
+                </select>
+
+              </div>
+
+              <div id="semAnimais" class="semAnimaist">
+                <div class="message">
+                  <ul>
+                    <li>
+                      <p>Cadastre seu animal </p>
+                    </li>
+                  </ul>
+                </div>
+                <a href="cadastro-animal.html">Cadastrar Animal</a>
+              </div>
+            </div>
+
+
+            <div class="service-select">
+              <label class="form-label">Selecione o Serviço:</label>
+              <select id="servico" class="form-select" required>
+              </select>
+            </div>
+
+            <div class="datetime">
+              <label class="form-label">Data e Hora:</label>
+              <input type="datetime-local" id="dataAgendamento" class="form-control" required>
+            </div>
+
+            <div class="btn-prox-volt">
+              <a id="btn-voltar" type="button" href="/index.html" >Voltar</a>
+              <button id="btn-proximo" type="submit">Avançar</button>
+
+            </div>
+          </form>
         </div>
 
-        <form id="formAgendamento" class="formulario-agendamento">
 
-          <div class="selecionar-cadastrar">
-            <div class="pet-select">
-              <label class="form-label">Selecione seu Animal:</label>
-              <select id="animal" class="form-select" required>
-                <option value="">Selecione seu Animal</option>
-              </select>
-
-            </div>
-
-            <div id="semAnimais" class="semAnimaist">
-              <div class="message">
-                <ul>
-                  <li>
-                    <p>Cadastre seu animal </p>
-                  </li>
-                </ul>
-              </div>
-              <a href="cadastro-animal.html">Cadastrar Animal</a>
-            </div>
-          </div>
-
-
-          <div class="service-select">
-            <label class="form-label">Selecione o Serviço:</label>
-            <select id="servico" class="form-select" required>
-            </select>
-          </div>
-
-          <div class="datetime">
-            <label class="form-label">Data e Hora:</label>
-            <input type="datetime-local" id="dataAgendamento" class="form-control" required>
-          </div>
-
-          <div class="btn-prox-volt">
-            <button id="btn-voltar" type="button">Voltar</button>
-            <button id="btn-proximo" type="submit">Avançar</button>
-
-          </div>
-        </form>
-      </div>
-
-
+      </section>
     </section>
+
   </main>
 
 
@@ -90,4 +101,5 @@
   <script src="/js/agendamento-servico.js"></script>
 
 </body>
+
 </html>

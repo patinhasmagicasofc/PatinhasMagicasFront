@@ -68,7 +68,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (["CARTÃO DE CRÉDITO", "CARTÃO DE DÉBITO"].includes(textoSelecionado.toUpperCase())) {
 
       conteudo.innerHTML = `
-    <h2>Pagamento com Cartão 💳</h2>
+      <div class="pagamento-cartao">
+      <div class="title-pagamento-pix">
+      <ul>
+        <li><p>Pagamento com Cartão</p></li>
+      </ul>
+    </div>
     <form id="formPagamento">
       <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
       <input type="text" placeholder="Nome no cartão">
@@ -77,6 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <button type="button" id="btnCartaoPago">Pagar agora</button>
     </form>
     <p class="msg" id="msgPagamento" style="display:none;">Pagamento aprovado ✅</p>
+    </div>
   `;
 
       document.getElementById("btnCartaoPago").addEventListener("click", () => {

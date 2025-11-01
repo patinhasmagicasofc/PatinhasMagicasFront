@@ -1,7 +1,61 @@
+:root {
+    /* ===== neutros ===== */
+    --clr-black: #000000;
+    --clr-black-gray: #252525;
+    --clr-gray: #929292;
+    --clr-gray-light: #b4b4b4;
+    --clr-gray-lighter: #dddddd;
+    --clr-cloud-white: #f5f6fa;
+    --clr-white: #ffffff;
+    --clr-silver: #e9e9e9;
+    --clr-transparent: transparent;
+
+    /* ===== azul pet ===== */
+    --clr-pet-blue: #52728d;
+    --clr-pet-blue-dark: #033447;
+    --clr-pet-blue-light: #a1c0cc;
+    --clr-pet-blue-soft: #e9f3f6;
+    --clr-pet-blue-gradient-top: #e8edf0;
+    --clr-pet-blue-gradient-bottom: #c9dbe0;
+
+    --clr-pet-purple: #833aae;
+    --clr-pet-purple-dark: #280f36;
+    --clr-pet-purple-light: #9e5dc3;
+    --clr-pet-purple-soft: #f0e9f6;
+    --clr-pet-purple-gradient-top: #ebe8f0;
+    --clr-pet-purple-gradient-bottom: #d6c9e0;
+
+    /* ===== amarelo pet ===== */
+    --clr-pet-yellow: #F2C94C;
+    --clr-pet-yellow-dark: #886600;
+    --clr-pet-yellow-light: #F9E79F;
+    --clr-pet-yellow-soft: #FFF9E5;
+    --clr-pet-yellow-gradient-top: #FFF4CC;
+    --clr-pet-yellow-gradient-bottom: #FFEBA1;
+
+    /* ===== textos ===== */
+    --clr-text-main: #252525;
+    --clr-text-muted: #7a7a7a;
+    --clr-text-light: #ffffff;
+    --clr-pet-text: #333333;
+
+    /* ===== tamanhos ===== */
+    --fs-title: 2em;
+    --fs-sub-title: 1.5em;
+    --fs-sub: 1.2em;
+    --fs-body: 1em;
+
+    /* ===== pesos ===== */
+    --fw-title: 700;
+    --fw-sub: 600;
+    --fw-regular: 400;
+}
+
 /* menu sem login */
 header {
     nav#menuDeslogado {
         background: var(--clr-pet-blue-dark);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         display: flex;
         position: fixed;
         top: 0;
@@ -11,6 +65,7 @@ header {
         z-index: 1000;
         flex-direction: column;
         padding: 1em 0 0;
+
 
         .container-menu-up {
             display: flex;
@@ -22,8 +77,9 @@ header {
 
             .logo {
                 img {
-                    width: 130px;
+                    width: 140px;
                     height: 50px;
+                    filter: brightness(0) invert(1);
                 }
             }
 
@@ -116,7 +172,7 @@ header {
                 li {
                     a {
                         align-items: flex-end;
-                        color: var(--clr-black);
+                        color: var(--clr-pet-blue-gradient-bottom);
                         gap: 0.2em;
                     }
                 }
@@ -127,6 +183,7 @@ header {
                     display: flex;
                     align-items: center;
                     gap: 0.4em;
+                    color: var(--clr-pet-blue-gradient-bottom);
 
                     .material-icons {
                         font-size: 2em;
@@ -137,7 +194,7 @@ header {
             .shopping-cart {
                 a {
                     align-items: flex-end;
-                    color: var(--clr-black);
+                    color: var(--clr-pet-blue-gradient-bottom);
                     gap: 0.2em;
 
                     i {
@@ -171,7 +228,7 @@ header {
 
                     a {
                         text-decoration: none;
-                        color: var(--clr-black);
+                        color: var(--clr-pet-blue-gradient-bottom);
                         padding: 0.6em 0.8em;
                         display: block;
                     }
@@ -221,25 +278,26 @@ header {
 
                 a {
                     text-decoration: none;
-                    color: var(--clr-black);
+                    color: var(--clr-pet-blue-gradient-bottom);
                     padding: 0.6em 0.8em;
                 }
 
                 .cadastrar {
                     background: var(--clr-blue);
+                    color: var(--clr-white);
                     border-radius: 0.4em;
                     transition: all .2s ease;
-
+                    background: var(--clr-pet-blue);
                     &:hover {
-                        background: var(--clr-aqua);
+                        background: var(--clr-pet-blue-light);
+                        color: var(--clr-pet-blue-dark);
                     }
                 }
 
                 .logar {
                     transition: all .2s ease;
-
                     &:hover {
-                        color: var(--clr-blue);
+                        color: var(--clr-white);
                     }
                 }
             }
@@ -356,6 +414,7 @@ header {
 /* menu com login */
 header {
     nav#menuLogado {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         background: var(--clr-pet-blue-dark);
         display: flex;
         position: fixed;
@@ -377,7 +436,7 @@ header {
 
             .logo {
                 img {
-                    width: 130px;
+                    width: 140px;
                     height: 50px;
                     filter: brightness(0) invert(1);
                 }
@@ -602,7 +661,7 @@ header {
                     li {
                         a {
                             align-items: flex-end;
-                            color: var(--clr-black);
+                            color: var(--clr-pet-blue-gradient-bottom);
                             gap: 0.2em;
                         }
                     }
@@ -618,7 +677,8 @@ header {
                             font-size: 2em;
                         }
                     }
-                    .order-title{
+
+                    .order-title {
                         color: var(--clr-white);
                     }
 

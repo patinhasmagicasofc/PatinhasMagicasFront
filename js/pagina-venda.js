@@ -94,14 +94,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <li><span class="stock in-stock">Em estoque</span></li>
               </ul>
             </div>
-          </div>
-
-          <div class="product-actions">
+            
+           <div class="product-actions">
             <button class="btn-details">
               <a href="produto-detalhes.html?idProduto=${produto.id}">Ver detalhes</a>
             </button>
             <button class="btn-add" data-id="${produto.id}">Adicionar</button>
+          </div> 
           </div>
+
+          
         </div>
       `;
 
