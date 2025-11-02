@@ -2,10 +2,8 @@ let currentPage = 1;
 let pageSize = 10;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // if (!verificarAcesso('administrador')) {
-    //     window.location.href = 'login.html';
-    //     return;
-    // }
+
+    if (!verificarAcesso(['administrador'])) return;
 
     // --- Carrega tipos dos usuarios ---
     await carregarCategoria();
@@ -62,7 +60,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadPage(page = 1, pageSize = 10) {
-    if (!validarLogin()) return;
 
     const tipoUsuario = document.getElementById('tipo-usuario')?.value || '';
     const dataInicio = document.getElementById('dataInicio')?.value || '';
@@ -133,8 +130,6 @@ function renderTable(produtos) {
 
 async function carregarCategoria() {
     try {
-        if (!validarLogin()) return;
-
         const data = await consumirAPIAutenticada('/Categoria', 'GET');
         const selectCategoria = document.getElementById('tipo-usuario');
         if (!selectCategoria || !data) return;

@@ -559,7 +559,7 @@ header {
   justify-content: end;
   align-items: center;
   gap: 0.8em;
-  margin-top: auto; 
+  margin-top: auto;
 
   & button {
     padding: .4em .8em;
@@ -600,4 +600,35 @@ header {
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 14px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 30px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
+
+/* .toast {
+  left: auto;
+  right: 30px;
+  bottom: 30px;
+  margin-left: 0;
+} */
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
 }

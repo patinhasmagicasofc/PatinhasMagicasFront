@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
     const usuarioId = getUserIdFromToken();
+
+    usuarioId == null;
     if (verificarAcesso(['administrador', 'cliente']) && usuarioId) {
-        document.body.style.display = 'block';
         await carregarPedidosByUsuarioId(usuarioId);
     }
 });
@@ -12,9 +13,8 @@ let pedidos = [];
 
 async function carregarPedidosByUsuarioId(usuarioId) {
     try {
-        if (!validarLogin()) return;
-
         const data = await consumirAPIAutenticada(`/Pedido/Usuario/${usuarioId}`, 'GET');
+        console.log(data);
         pedidos = data;
 
         renderizarPedidos(pedidos);

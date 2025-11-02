@@ -1,13 +1,28 @@
 const API_BASE_URL = 'http://localhost:5260/api';
 
 function verificarAcesso(perfisEsperados = []) {
-    const token = localStorage.getItem('authToken');
-    const perfilUsuario = getUserProfileFromToken();
+    if (!Array.isArray(perfisEsperados)) {
+        perfisEsperados = [perfisEsperados];
+    }
 
-    if (!token || !perfilUsuario || !perfisEsperados.map(p => p.toLowerCase()).includes(perfilUsuario.toLowerCase())
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        console.log('Acesso negado. Usuário não autenticado.');
+        mostrarToast("⚠️ Acesso negado. Faça login para continuar.", "aviso");
+
+        setTimeout(() => { logout(); }, 3000);
+        return false;
+    }
+
+    const perfilUsuario = getUserProfileFromToken();
+    if (
+        !perfilUsuario ||
+        !perfisEsperados.map(p => p.toLowerCase()).includes(perfilUsuario.toLowerCase())
     ) {
-        alert('Sua sessão expirou ou acesso negado. Faça login novamente.');
-        logout();
+        console.log('Acesso negado. Perfil não autorizado.');
+        mostrarToast("⚠️ Acesso negado. Faça login para continuar.", "aviso");
+
+        setTimeout(() => { logout(); }, 3000);
         return false;
     }
 
@@ -15,7 +30,7 @@ function verificarAcesso(perfisEsperados = []) {
 }
 
 function logout() {
-    localStorage.clear();
+    localStorage.removeItem('authToken');
     window.location.href = '/index.html';
 }
 
@@ -32,10 +47,14 @@ async function consumirAPIAutenticada(endpoint, method = 'GET', body = null) {
     try {
         const response = await fetch(url, options);
 
+        console.log('Response Status:', response.status);
+
         const data = await response.json().catch(() => null);
 
         if (response.status === 401 || response.status === 403) {
-            alert('Sessão expirada ou acesso negado. Faça login novamente.');
+            mostrarToast("⚠️ Sessão expirada ou acesso negado. Faça login novamente.", "aviso");
+
+            setTimeout(() => { logout(); }, 3000);
             logout();
             return null;
         }
@@ -97,15 +116,6 @@ function getUserFromToken() {
         console.error("Erro ao decodificar token:", error);
         return null;
     }
-}
-
-function validarLogin() {
-    const token = localStorage.getItem('authToken');
-    if (!token) {
-        //window.location.href = '/index.html';
-        return false;
-    }
-    return true;
 }
 
 function salvarPaginaAtual() {

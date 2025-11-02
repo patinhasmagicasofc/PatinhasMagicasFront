@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // -------- Funções internas --------
   async function carregarCategorias() {
     try {
-      if (!validarLogin()) return;
 
       const data = await consumirAPIAutenticada('/Categoria', 'GET');
       if (!data) return;
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function carregarProdutos() {
     try {
-      if (!validarLogin()) return [];
       return await consumirAPIAutenticada('/Produto', 'GET');
     } catch (error) {
       console.error('Erro ao carregar produtos:', error);

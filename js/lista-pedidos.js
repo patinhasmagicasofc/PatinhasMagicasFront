@@ -1,12 +1,9 @@
 let currentPage = 1;
 let pageSize = 10;
 
-
 document.addEventListener("DOMContentLoaded", async () => {
 
-    if (!verificarAcesso(['administrador'])) {
-        return;
-    }
+    if (!verificarAcesso(['administrador'])) return;
 
     const loadingContainer = document.getElementById("loading-container");
     try {
@@ -73,7 +70,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadPage(page = 1, pageSize = 10) {
-    if (!validarLogin()) return;
 
     const status = document.getElementById('status-pedidos')?.value || '';
     const dataInicio = document.getElementById('dataInicio')?.value || '';
@@ -165,8 +161,6 @@ function renderTable(pedidos) {
 
 async function carregarStatusPedidos() {
     try {
-        if (!validarLogin()) return;
-
         const data = await consumirAPIAutenticada('/StatusPedido', 'GET');
         const selectStatus = document.getElementById('status-pedidos');
         if (!selectStatus || !data) return;

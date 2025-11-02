@@ -2,10 +2,7 @@ let currentPage = 1;
 let pageSize = 10;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    if (!verificarAcesso('administrador')) {
-        window.location.href = 'login.html';
-        return;
-    }
+    if (!verificarAcesso(['administrador'])) return;
 
     // --- Carrega tipos dos usuarios ---
     await carregarTiposUsuario();
