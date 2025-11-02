@@ -200,7 +200,12 @@ main{
 
           li {
             margin: 0 1em;
+
+            
           }
+          .sub{
+              margin-left: 1em !important;
+            }
         }
 
         &.item {

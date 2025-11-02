@@ -69,7 +69,7 @@ function renderCart() {
         <li>Produto</li>
         <li>Preço</li>
         <li>Quantidade</li>
-        <li>Subtotal</li>
+        <li class="sub">Subtotal</li>
       </ul>`;
 
   for (const produto of cart) {
