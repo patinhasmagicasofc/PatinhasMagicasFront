@@ -11,6 +11,7 @@
   padding-left: 0;
 }
 
+/* --- Reset global para ignorar o Bootstrap --- */
 *,
 *::before,
 *::after {
@@ -129,27 +130,14 @@ body::before {
   --fw-regular: 400;
 }
 
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
 main {
-  margin-top: 100px;
+  margin-top: 100px !important;
+  margin: 1em;
 }
 
 .container-detalhes-agendamento {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   border-radius: 1em;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -158,32 +146,39 @@ main {
   flex-direction: column;
   gap: 2em;
 
+  .alerts {
+    padding: 1em;
+    border-radius: .4em;
+    background: var(--clr-status-success-light) !important;
+  }
+
   #detalhesAgendamento {
     display: flex;
     flex-direction: column;
     gap: 2em;
-    color: var(--clr-text-main);
+    color: var(--clr-black-gray);
 
     .container-informations {
       display: flex;
       flex-direction: column;
       gap: 0.4em;
+
       .title-nome {
         ul {
-
           li {
             p.card-title {
               font-size: var(--fs-sub-title);
               font-weight: var(--fw-title);
-              color: var(--clr-blue);
+              color: var(--clr-pet-blue-dark);
             }
           }
         }
       }
 
       p {
-        font-size: 1em;
+        font-size: var(--fs-body);
         line-height: 1.6;
+        color: var(--clr-black-gray);
       }
 
       hr {
@@ -195,13 +190,13 @@ main {
 
       .valor-total {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
 
         ul {
           li {
             p.text-success {
-              font-weight: 700;
-              color: var(--clr-green);
+              font-weight: var(--fw-title);
+              color: var(--clr-status-success);
               font-size: 1.1em;
             }
           }
@@ -210,9 +205,43 @@ main {
     }
   }
 
+  .item-lista {
+    list-style: none;
+    padding: 0;
+    margin-top: 1em;
+    border-top: 1px solid var(--clr-gray-lighter);
+
+    li {
+      display: grid;
+      grid-template-columns: 50px 2fr 1fr 1fr 1fr;
+      align-items: center;
+      gap: 0.5em;
+      border-bottom: 1px solid var(--clr-gray-lighter);
+      font-size: 0.9rem;
+      padding: 1em 0 !important;
+
+      img {
+        max-width: 50px;
+        max-height: 50px;
+        object-fit: cover;
+      }
+
+      span {
+        display: block;
+        color: var(--clr-black-gray);
+      }
+
+      span:nth-child(3),
+      span:nth-child(4),
+      span:nth-child(5) {
+        text-align: right;
+      }
+    }
+  }
+
   .text-center {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 1em;
     flex-wrap: wrap;
 
@@ -220,31 +249,86 @@ main {
       text-decoration: none;
       padding: 0.8em 1.6em;
       border-radius: 0.8em;
-      font-weight: var(--fw-title);
-      font-size: 0.95em;
       border: none;
 
       &.btn-primary {
-        background: var(--clr-peach);
-        color: var(--clr-white);
+        background: var(--clr-pet-blue-light);
+        color: var(--clr-black);
         transition: all 0.3s ease;
 
         &:hover {
-          background: var(--clr-white);
-          color: var(--clr-peach);
+          background: var(--clr-pet-blue);
+          color: var(--clr-white);
         }
       }
 
       &.btn-outline-secondary {
-        background: var(--clr-peach);
-        color: var(--clr-white);
+        background: var(--clr-status-success-light);
+        color: var(--clr-black);
         transition: all 0.3s ease;
 
         &:hover {
-          background: var(--clr-white);
-          color: var(--clr-peach);
+          background: var(--clr-status-success);
+          color: var(--clr-white);
         }
       }
     }
+  }
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  .container-detalhes-agendamento {
+    padding: 1.5em;
+
+    .item-lista li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      /* alinha conteúdo à esquerda */
+      gap: 0.3em;
+      grid-template-columns: none !important;
+      text-align: left;
+
+      span:nth-child(3),
+      span:nth-child(4),
+      span:nth-child(5) {
+        text-align: left;
+        /* todos os textos à esquerda */
+      }
+    }
+
+    .text-center {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container-detalhes-agendamento {
+    padding: 1em;
+
+    .item-lista li {
+      padding: 0.8em 0 !important;
+    }
+
+    .text-center {
+      gap: 0.5em;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}
+
+/* ===== Animação ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
