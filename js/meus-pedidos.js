@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const usuarioId = getUserIdFromToken();
 
-    usuarioId == null;
     if (verificarAcesso(['administrador', 'cliente']) && usuarioId) {
         await carregarPedidosByUsuarioId(usuarioId);
     }

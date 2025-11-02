@@ -224,7 +224,7 @@ async function handleUpdateEndereco(event) {
 }
 
 // --- Inicialização ---
-if (typeof verificarAcesso === 'function' && verificarAcesso(['cliente'])) {
+if (typeof verificarAcesso === 'function') {
     btnEditarPessoal.addEventListener('click', () => habilitarEdicaoPessoal(true));
     btnSalvarPessoal.addEventListener('click', handleUpdatePessoal);
     btnEditarEndereco.addEventListener('click', () => habilitarEdicaoEndereco(true));
