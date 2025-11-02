@@ -9,10 +9,20 @@ async function carregarMenu() {
     const html = await response.text();
     menuContainer.innerHTML = html;
 
-    // Depois que o menu foi carregado, protegemos links e inicializamos dropdowns
+    // Depois que o menu foi carregado, protegemos link e inicializamos dropdowns
     protegerLinks();
     initDropdowns();
-    initDropdownPerfil();
+    initDropdownPerfil(); 
+
+    const user = getUserFromToken();
+
+    if (user) {
+      console.log(user.unique_name);
+      const nomeElemento = document.getElementById('nomeUsuario');
+      if (nomeElemento) {
+        nomeElemento.textContent = user.unique_name;
+      }
+    }
 
     // Atualiza a contagem do carrinho
     atualizarContagemCarrinho();
