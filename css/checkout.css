@@ -280,128 +280,33 @@ main {
   }
 }
 
-
-/* ===== Responsividade ===== */
-
-/* Telas grandes (desktop) */
-@media (min-width: 1025px) {
-  .container {
-    max-width: 1300px !important;
-    padding: 2em !important;
-  }
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 14px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 30px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
 }
 
-/* Telas médias (laptops e tablets grandes) */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .container {
-    max-width: 900px !important;
-    padding: 1.5em !important;
+/* .toast {
+  left: auto;
+  right: 30px;
+  bottom: 30px;
+  margin-left: 0;
+} */
 
-    #resumoCarrinho table th,
-    #resumoCarrinho table td {
-      padding: 0.5em !important;
-    }
-
-    img.produto-img {
-      width: 35px !important;
-      height: 35px !important;
-    }
-
-    .btn-cancelar-confirmar {
-      flex-direction: row !important;
-      justify-content: space-between !important;
-    }
-  }
-}
-
-/* Telas pequenas (tablets pequenos / grandes smartphones) */
-@media (max-width: 768px) and (min-width: 481px) {
-  .container {
-    max-width: 700px !important;
-    padding: 1em !important;
-
-    .title-checkout ul li p,
-    .title-resumoCarrinho ul li p,
-    .informations ul li p {
-      font-size: 1.2em !important;
-    }
-
-    #resumoCarrinho table {
-      font-size: 0.9em !important;
-    }
-
-    #resumoCarrinho table th,
-    #resumoCarrinho table td {
-      padding: 0.4em !important;
-    }
-
-    img.produto-img {
-      width: 30px !important;
-      height: 30px !important;
-    }
-
-    #formCheckout div {
-      flex-direction: column !important;
-    }
-
-    .btn-cancelar-confirmar {
-      flex-direction: column !important;
-      align-items: stretch !important;
-
-      .cancelar,
-      .confirmar {
-        width: 100% !important;
-        text-align: center !important;
-      }
-    }
-  }
-}
-
-/* Telas muito pequenas (smartphones < 480px) */
-@media (max-width: 480px) {
-  .container {
-    max-width: 95% !important;
-    padding: 0.8em !important;
-
-    .title-checkout ul li p,
-    .title-resumoCarrinho ul li p,
-    .informations ul li p {
-      font-size: 1em !important;
-    }
-
-    #resumoCarrinho table {
-      display: block !important;
-      overflow-x: auto !important;
-      width: 100% !important;
-    }
-
-    #resumoCarrinho table th,
-    #resumoCarrinho table td {
-      padding: 0.3em !important;
-      white-space: nowrap !important;
-    }
-
-    img.produto-img {
-      width: 25px !important;
-      height: 25px !important;
-    }
-
-    #formCheckout div {
-      flex-direction: column !important;
-      gap: 0.5em !important;
-    }
-
-    .btn-cancelar-confirmar {
-      flex-direction: column !important;
-      align-items: stretch !important;
-      gap: 0.5em !important;
-
-      .cancelar,
-      .confirmar {
-        width: 100% !important;
-        text-align: center !important;
-        font-size: 0.9rem !important;
-      }
-    }
-  }
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
 }
