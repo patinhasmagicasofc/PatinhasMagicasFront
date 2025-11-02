@@ -142,8 +142,8 @@ body {
 /* ===== Main ===== */
 main {
   max-width: 1300px;
-  margin: 100px auto !important;
-  padding: 1em 2em;
+  margin: 70px auto !important;
+  padding: 1em;
   text-align: left;
   width: 100%;
 
@@ -152,9 +152,10 @@ main {
     background: var(--clr-white);
     padding: 1em 2em;
     border-radius: 1em;
-display: flex;
-flex-direction: column;
-gap: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
     .alert-success {
       display: flex;
       align-items: center;
@@ -190,7 +191,8 @@ gap: 1em;
       justify-content: space-between;
       align-items: center;
       transition: transform 0.2s;
-gap: 1em;
+      gap: 1em;
+
       &:hover {
         transform: translateY(-3px);
       }
@@ -211,19 +213,25 @@ gap: 1em;
       margin-top: 20px;
     }
 
-    .btn-primary {
-      display: inline-block;
-      background-color: var(--clr-status-success-light);
-      color: var(--clr-black);
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s;
-      margin-top: 20px;
-      &:hover {
-        background-color: var(--clr-status-success);
-        color: var(--clr-white);
+    .btn-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
+      .btn-primary {
+        background-color: var(--clr-status-success-light);
+        color: var(--clr-black);
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s;
+        width: 200px;
+text-align: center;
+        &:hover {
+          background-color: var(--clr-status-success);
+          color: var(--clr-white);
+        }
       }
     }
 
@@ -241,10 +249,12 @@ gap: 1em;
         text-align: left;
       }
 
-      .btn-primary {
-        float: none;
-        width: 100%;
-        text-align: center;
+      .btn-container {
+        justify-content: center;
+
+        .btn-primary {
+          width: 100%;
+        }
       }
     }
 
@@ -261,12 +271,10 @@ gap: 1em;
         padding: 12px 15px;
       }
 
-      .btn-primary {
+      .btn-container .btn-primary {
         padding: 10px;
         font-size: 0.9rem;
       }
     }
-
   }
-
 }
