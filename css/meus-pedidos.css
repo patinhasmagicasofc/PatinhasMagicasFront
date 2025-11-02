@@ -202,12 +202,19 @@ main {
       }
 
       .pedido-body {
-        display: flex;
-        justify-content: space-between;
-        color: var(--clr-black-gray);
-        margin-top: 0.6em;
-        font-size: 0.95rem;
-      }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  color: var(--clr-black-gray);
+  margin-top: 0.6em;
+  font-size: 0.95rem;
+
+  > :last-child {
+    justify-self: end;
+    text-align: right;
+  }
+}
+
 
       .btn-detalhes {
         margin-top: 1.2em;
