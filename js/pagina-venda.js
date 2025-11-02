@@ -1,14 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const user = getUserFromToken();
-
-  if (user) {
-    console.log(user.unique_name);
-    const nomeElemento = document.getElementById('nomeUsuario');
-    if (nomeElemento) {
-      nomeElemento.textContent = user.unique_name;
-    }
-  }
-
   const secctionProdutos = document.getElementById("secctionProdutos");
   const productCarousel = document.getElementById("product-carousel");
 

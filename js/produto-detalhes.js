@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(document.location.search);
   const idProduto = params.get("idProduto");
 
+  if (!verificarAcesso(['administrador', 'Cliente'])) return;
+
   updateCartBadge();
 
   try {
@@ -24,8 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ------------------- CONSULTAR PRODUTO -------------------
   async function consultarProduto() {
     try {
-      if (!validarLogin()) return null;
-
       const data = await consumirAPIAutenticada(`/Produto/${idProduto}`, "GET");
       console.log("✅ Produto consultado:", data);
       return data || null;
@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ------------------- CARREGAR CATEGORIAS -------------------
   async function carregarCategoria() {
     try {
-      if (!validarLogin()) return;
-
       const data = await consumirAPIAutenticada("/Categoria", "GET");
       const selectCategoria = document.getElementById("categoriaLogado");
       if (!selectCategoria || !data) return;
