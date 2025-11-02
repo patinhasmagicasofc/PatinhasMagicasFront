@@ -127,6 +127,45 @@ main {
   white-space: pre-line;
 }
 
+.breadcrumb {
+  max-width: 1264px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: var(--clr-pet-purple-light);
+  justify-content: start;
+  width: 100%;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    color: var(--clr-pet-purple-light) !important;
+    transition: color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    transition: all .2 ease;
+
+    i {
+      font-size: 20px;
+      color: var(--clr-pet-purple-light) !important;
+      transition: all .2 ease;
+
+      &:hover {
+        color: var(--clr-pet-purple-dark) !important;
+      }
+    }
+
+    &:hover {
+      color: var(--clr-pet-purple-dark) !important;
+    }
+
+  }
+
+}
+
+
 #product-details {
   padding: 2em;
   min-height: 100%;
@@ -281,6 +320,7 @@ main {
           display: flex;
           align-items: center;
           gap: 0.5em;
+          color: var(--clr-pet-purple-light) !important;
         }
 
         .amount-add {
@@ -373,48 +413,6 @@ main {
   flex-direction: column;
   gap: 2em;
   align-items: center;
-
-  .breadcrumb {
-    max-width: 1264px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    color: #5a2ec4;
-    justify-content: start;
-    width: 100%;
-    margin: 0;
-
-    a {
-      text-decoration: none;
-      color: var(--clr-pet-blue);
-      transition: color 0.2s ease;
-      display: flex;
-      justify-content: center;
-
-      i {
-        font-size: 20px;
-        color: var(--clr-pet-blue);
-      }
-
-      &:hover {
-        color: var(--clr-pet-blue-light);
-      }
-
-    }
-
-    span {
-      color: var(--clr-gray);
-      user-select: none;
-      font-size: var(--fs-title);
-    }
-
-    i {
-      font-size: 16px;
-      color: #5a2ec4;
-    }
-  }
 
   .highlight-sections {
     display: grid;
@@ -774,7 +772,7 @@ footer {
 }
 
 @media screen and (max-width: 900px) {
-   #product-details #produtoContainer {
+  #product-details #produtoContainer {
     flex-direction: column;
     align-items: center;
   }
@@ -783,6 +781,7 @@ footer {
     flex-direction: column;
     align-items: center;
   }
+
   .products-page .highlight-sections {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1em;

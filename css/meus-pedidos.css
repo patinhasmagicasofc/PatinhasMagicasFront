@@ -127,6 +127,44 @@ main {
   margin-top: 80px !important;
 }
 
+
+.breadcrumb {
+  max-width: 1264px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: var(--clr-pet-purple-light);
+  justify-content: start;
+  width: 100%;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    color: var(--clr-pet-purple-light) !important;
+    transition: color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    transition: all .2 ease;
+
+    i {
+      font-size: 1.5em;
+      color: var(--clr-pet-purple-light) !important;
+      transition: all .2 ease;
+
+      &:hover {
+        color: var(--clr-pet-purple-dark) !important;
+      }
+    }
+
+    &:hover {
+      color: var(--clr-pet-purple-dark) !important;
+    }
+
+  }
+
+}
 .meus-pedidos {
   max-width: 1200px;
   margin: 0 auto;
@@ -136,13 +174,15 @@ main {
   gap: 2em;
 
   .title-meus-pedidos {
-    ul {
-      list-style: none;
+    li {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1em !important;
 
       p {
-        font-size: 1.8rem;
-        font-weight: 600;
-        color: var(--clr-black-gray);
+        font-size: var(--fs-sub-title);
+        font-weight: var(--fw-title);
+        color: var(--clr-pet-blue-dark);
         letter-spacing: 0.5px;
       }
     }
