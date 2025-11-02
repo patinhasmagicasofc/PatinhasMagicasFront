@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             productCarousel.innerHTML += `
       <div class="product-card">
-        <a href="produto-detalhes.html?idProduto=${produto.id}">
+        <a href="/pages/public/produto-detalhes.html?idProduto=${produto.id}">
           <img src="${produto.urlImagem}" alt="${produto.nome}" />
           <span>${produto.nome.split(" ").slice(0, 2).join(" ")}</span>
         </a>
