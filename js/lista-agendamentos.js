@@ -1,15 +1,12 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // if (!verificarAcesso('administrador')) {
-    //     window.location.href = 'login.html';
-    //     return;
-    // }
+
+    if (!verificarAcesso(['administrador'])) return;
 
     await carregarAgendamentos();
 
     async function carregarAgendamentos() {
         try {
-            if (!validarLogin()) return;
 
             const data = await consumirAPIAutenticada('/Agendamento', 'GET');
             const tabela = document.getElementById("tabelaAgendamentos");
