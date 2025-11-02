@@ -143,12 +143,19 @@ main{
   min-height: 100vh;
 
   .title-carrinho ul {
+
     li {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1em !important;
+      margin-left: 1em !important;
       p {
         font-size: var(--fs-title) !important;
         color: var(--clr-black) !important;
         font-weight: var(--fw-title);
-        margin-left: 0.5em !important;
+      }
+      i{
+        font-size: 1.5em;
       }
     }
   }
@@ -200,7 +207,12 @@ main{
 
           li {
             margin: 0 1em;
+
+            
           }
+          .sub{
+              margin-left: 1em !important;
+            }
         }
 
         &.item {
@@ -353,11 +365,11 @@ main{
     justify-content: flex-end;
     gap: 1em;
     margin-top: 1.5em;
-
+    margin-right: 1em;
     button,
     a {
       padding: 0.6em 1.2em;
-      border-radius: 0.5em;
+      border-radius: 0.4em;
       font-size: var(--fs-body);
       cursor: pointer;
       transition: all 0.3s ease;
@@ -398,7 +410,43 @@ main{
 
 }
 
+.breadcrumb {
+  max-width: 1264px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: var(--clr-pet-purple-light);
+  justify-content: start;
+  width: 100%;
+  margin: 0;
 
+  a {
+    text-decoration: none;
+    color: var(--clr-pet-purple-light) !important;
+    transition: color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    transition: all .2 ease;
+
+    i {
+      font-size: 1.5em;
+      color: var(--clr-pet-purple-light) !important;
+      transition: all .2 ease;
+
+      &:hover {
+        color: var(--clr-pet-purple-dark) !important;
+      }
+    }
+
+    &:hover {
+      color: var(--clr-pet-purple-dark) !important;
+    }
+
+  }
+
+}
 /* ===== Responsividade ===== */
 
 /* Grandes telas (desktop) */
