@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const usuarioId = getUserIdFromToken();
     if (verificarAcesso(['administrador', 'cliente']) && usuarioId) {
-        document.body.style.display = 'block';
+        //document.body.style.display = 'block';
         await carregarServicosByUsuarioId(usuarioId);
     }
 });
@@ -11,7 +11,6 @@ let agendamentos = [];
 
 async function carregarServicosByUsuarioId(usuarioId) {
     try {
-        if (!validarLogin()) return;
 
         const data = await consumirAPIAutenticada(`/Agendamento/Usuario/${usuarioId}`, 'GET');
         agendamentos = data;

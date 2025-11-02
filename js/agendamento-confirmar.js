@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 // 🔹 Função para carregar tipos de pagamento da API
 async function carregarPagamento() {
   try {
-    if (!validarLogin()) return;
     const data = await consumirAPIAutenticada('/TipoPagamento', 'GET');
     const selectTipoPagamento = document.getElementById('tipoPagamento');
     if (!selectTipoPagamento) return;

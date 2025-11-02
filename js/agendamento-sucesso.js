@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
+  if (!verificarAcesso(['administrador', 'Cliente'])) return;
 
-  if (validarLogin()) {
-  }
 
   const btnLogout = document.getElementById("btnLogout");
   if (btnLogout) {
