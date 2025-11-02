@@ -105,42 +105,52 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// ======== CARROSSEL ========
+// ======== Carrossel ========
 const prevBtn = document.querySelector('.carousel-btn.prev');
 const nextBtn = document.querySelector('.carousel-btn.next');
 const carousel = document.querySelector('.product-carousel');
 const scrollAmount = 250;
 
 if (nextBtn && carousel) {
-  nextBtn.addEventListener('click', () => carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
 }
 
 if (prevBtn && carousel) {
-  prevBtn.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
-}
-
-// Movimento por arrastar
-if (carousel) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  carousel.addEventListener('mousedown', (e) => {
-    isDown = true;
-    carousel.classList.add('active');
-    startX = e.clientX;
-    scrollLeft = carousel.scrollLeft;
-    e.preventDefault();
-  });
-
-  carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.remove('active'); });
-  carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('active'); });
-  carousel.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    const walk = e.clientX - startX;
-    carousel.scrollLeft = scrollLeft - walk;
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   });
 }
+
+//movimento carrosel
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carousel.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carousel.classList.add('active');
+  startX = e.clientX;
+  scrollLeft = carousel.scrollLeft;
+  e.preventDefault();
+});
+
+carousel.addEventListener('mouseup', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
+
+carousel.addEventListener('mouseleave', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
+
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  const walk = e.clientX - startX;
+  carousel.scrollLeft = scrollLeft - walk;
+});
 
 // ======== EVENTOS DE ADIÇÃO AO CARRINHO ========
   document.addEventListener('click', (e) => {
