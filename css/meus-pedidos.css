@@ -186,7 +186,7 @@ main {
         }
 
         .status-pendente {
-          background: var(--clr-pet-yellow);
+          background: var(--clr-status-warning-light);
           color: var(--clr-black-gray);
         }
 
