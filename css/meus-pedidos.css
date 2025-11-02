@@ -144,7 +144,7 @@ main {
 
   .title-meus-pedidos {
     ul {
-      
+
       list-style: none;
 
       p {
@@ -162,7 +162,7 @@ main {
     gap: 1.5em;
 
     .pedido {
-      background: var(--clr-white); 
+      background: var(--clr-white);
       border-radius: 14px;
       padding: 1.5em 2em;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
@@ -204,7 +204,7 @@ main {
         }
 
         .status-cancelado {
-          background: var(--clr-status-error); 
+          background: var(--clr-status-error);
           color: var(--clr-white);
         }
       }
@@ -230,7 +230,7 @@ main {
         transition: 0.2s ease;
 
         &:hover {
-          background: var(--clr-pet-blue-dark); 
+          background: var(--clr-pet-blue-dark);
         }
       }
     }
@@ -287,13 +287,33 @@ main {
         border-top: 1px solid var(--clr-gray-lighter);
 
         li {
-          display: flex;
-          justify-content: space-between;
-          padding: 0.7em 0;
+          display: grid;
+          grid-template-columns: 50px 2fr 1fr 1fr 1fr;
+
+          align-items: center;
+          gap: 0.5em;
           border-bottom: 1px solid var(--clr-gray-lighter);
           font-size: 0.9rem;
+padding: 1em 0 !important;
+          img {
+            max-width: 50px;
+            max-height: 50px;
+            object-fit: cover;
+          }
+
+          span {
+            display: block;
+          }
+
+          span:nth-child(3),
+          span:nth-child(4),
+          span:nth-child(5) {
+            text-align: right;
+          }
         }
       }
+
+
 
       .close {
         position: absolute;
@@ -305,7 +325,7 @@ main {
         transition: 0.2s ease;
 
         &:hover {
-          color: var(--clr-status-error); 
+          color: var(--clr-status-error);
         }
       }
     }
@@ -351,13 +371,25 @@ main {
 
 /* ===== Animações ===== */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== Toast ===== */

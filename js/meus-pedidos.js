@@ -88,7 +88,7 @@ function verDetalhes(id) {
             <span>${i.produto}</span>
             <span>Qtd: ${i.quantidade}</span>
             <span>R$ ${i.precoUnitario.toFixed(2)}</span>
-            <span>Subtotal: R$ ${(i.quantidade * i.precoUnitario).toFixed(2)}</span>
+            <span>Subtotal: <br> R$ ${(i.quantidade * i.precoUnitario).toFixed(2)}</span>
         </li>
     `).join('') || '<li>Nenhum item encontrado</li>';
 
