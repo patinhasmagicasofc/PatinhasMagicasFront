@@ -620,3 +620,83 @@ input[type="text"]:focus {
         }
     }
 }
+
+
+
+/* ===== Responsividade ===== */
+
+/* Telas menores (até 768px) — texto acima, tudo compacto */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    padding: 1.5em 1em;
+  }
+
+  .container-info {
+    order: 1; /* texto em cima */
+    width: 90%;
+    text-align: center;
+    padding: 1.5em;
+  }
+
+  .login-container,
+  .painel {
+    order: 2; /* form embaixo */
+    width: 90%;
+    padding: 1.5em;
+  }
+}
+
+/* De 769px até 1024px — crescendo suavemente */
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    padding: 2em;
+  }
+
+  .container-info {
+    order: 1;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    padding: 2em;
+  }
+
+  .login-container,
+  .painel {
+    order: 2;
+    width: 80%;
+    max-width: 600px;
+    padding: 2em;
+  }
+}
+
+/* Acima de 1024px — lado a lado, texto à direita */
+@media (min-width: 1025px) {
+  main {
+    flex-direction: row-reverse; /* inverte posições: texto à direita */
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+    padding: 3em;
+  }
+
+  .container-info {
+    order: 1; /* texto à direita */
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+  }
+
+  .login-container,
+  .painel {
+    order: 2; /* form à esquerda */
+    width: 100%;
+    max-width: 600px;
+  }
+}
