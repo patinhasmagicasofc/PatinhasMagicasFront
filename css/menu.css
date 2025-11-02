@@ -288,6 +288,7 @@ header {
                     border-radius: 0.4em;
                     transition: all .2s ease;
                     background: var(--clr-pet-blue);
+
                     &:hover {
                         background: var(--clr-pet-blue-light);
                         color: var(--clr-pet-blue-dark);
@@ -296,6 +297,7 @@ header {
 
                 .logar {
                     transition: all .2s ease;
+
                     &:hover {
                         color: var(--clr-white);
                     }
@@ -546,29 +548,38 @@ header {
                             position: absolute;
                             top: 100%;
                             left: -190px;
-                            border-radius: 0.4em;
+                            border-radius: 0.6em;
                             min-width: 250px;
-                            z-index: 10;
-                            background: var(--clr-white);
-                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                            padding: 0;
                             min-height: 350px;
-                            transition: all 0.2s ease;
+                            background: var(--clr-white);
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+                            padding: 0 !important;
+                            z-index: 10;
+                            transition: all 0.25s ease;
+
 
                             .down {
                                 margin-top: auto;
-                                border-top: 1px solid var(--clr-gray-two);
-                                border-radius: 0.4em;
+                                border-top: 1px solid var(--clr-gray-lighter);
+                                border-radius: 0 0 0.6em 0.6em;
+                                background: var(--clr-pet-blue-soft);
 
                                 a {
-                                    color: var(--clr-red);
-                                }
+                                    display: block;
+                                    color: var(--clr-status-error);
+                                    text-align: center;
+                                    padding: 0.7em;
+                                    transition: 0.2s ease;
+                                    cursor: pointer;
 
-                                &:hover {
-                                    background: var(--clr-gray-one);
+                                    &:hover {
+                                        background: var(--clr-status-error-soft);
+                                        color: var(--clr-status-error-dark);
+                                    }
                                 }
                             }
 
+                            /* ==== Itens do dropdown ==== */
                             li {
                                 list-style: none;
 
@@ -576,22 +587,24 @@ header {
                                     display: flex;
                                     align-items: center;
                                     gap: 1em;
-                                    padding: 0.6em 0.8em;
-                                    border-radius: 0.4em;
-                                    border: 1px solid var(--clr-transparente);
-                                    background: var(--clr-gray);
-                                    transition: all 0.2s ease;
+                                    padding: 0.8em 1em !important;
+                                    border-radius: 0.6em;
+                                    background: var(--clr-pet-blue-soft);
+                                    border: 1px solid var(--clr-gray-lighter);
                                     cursor: pointer;
+                                    transition: 0.25s ease;
+
 
                                     .img {
-                                        width: 40px;
-                                        height: 40px;
+                                        width: 42px;
+                                        height: 42px;
 
                                         img {
                                             width: 100%;
                                             height: 100%;
                                             border-radius: 50%;
                                             object-fit: cover;
+                                            border: 2px solid var(--clr-pet-blue-light);
                                         }
                                     }
 
@@ -599,42 +612,51 @@ header {
                                         ul {
                                             li {
                                                 .name {
-                                                    font-weight: var(--fw-title);
-                                                    color: var(--clr-black);
+                                                    font-weight: var(--fw-sub);
+                                                    font-size: 0.95rem;
+                                                    color: var(--clr-black-gray);
                                                 }
 
                                                 .config {
                                                     a {
-                                                        color: var(--clr-black);
-                                                        font-size: 14px;
-                                                        padding: 0;
-                                                        transition: all 0.2s ease;
+                                                        color: var(--clr-gray);
+                                                        font-size: 0.85rem;
+                                                        transition: 0.2s ease;
+                                                        padding: 0 !important;
+                                                        transition: all 0.3s ease;
 
                                                         &:hover {
-                                                            background: var(--clr-transparente);
-                                                            color: var(--clr-cloud-white);
+                                                            background: var(--clr-transparent) !important;
+                                                            color: var(--clr-pet-blue-dark) !important;
                                                         }
                                                     }
-
                                                 }
                                             }
                                         }
                                     }
                                 }
 
+                                /* ==== Links padrão ==== */
                                 a {
                                     display: block;
-                                    padding: 0.6em 0.8em;
-                                    border-radius: 0.4em;
-                                    border: 1px solid var(--clr-transparente);
-                                    transition: all 0.2s ease;
-                                    font-size: 15px;
-                                    color: var(--clr-black);
+                                    padding: 0.8em 1em;
+                                    border-radius: 0.5em;
+                                    border: 1px solid var(--clr-transparent);
+                                    color: var(--clr-black-gray);
+                                    font-size: 0.95rem;
+                                    transition: all 0.3s ease;
 
                                     &:hover {
-                                        background: var(--clr-gray-two);
+                                        background: var(--clr-pet-blue-gradient-bottom);
+                                        color: var(--clr-pet-blue-dark) !important;
                                     }
                                 }
+                            }
+
+                            /* ==== Animação de exibição ==== */
+                            &.show {
+                                display: flex;
+                                animation: dropdownFade 0.25s ease forwards;
                             }
                         }
 
@@ -768,7 +790,7 @@ header {
             border-top: 1px solid var(--clr-pet-blue-soft);
             padding: 0.5rem 0;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             gap: 1rem;
             width: 100%;
@@ -840,7 +862,7 @@ header {
                             top: 100%;
                             left: 1;
                             border-radius: 0.4em;
-                            min-width: 100%;
+                            min-width: 300px;
                             z-index: 10;
                             background: var(--clr-white);
                             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -852,6 +874,7 @@ header {
                                     border-radius: 0.4em;
                                     border: 1px solid var(--clr-transparente);
                                     transition: border 0.2s ease;
+                                    width: 100%;
 
                                     &:hover {
                                         border: 1px solid var(--clr-gray);
