@@ -13,14 +13,14 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="../../css/confirmacao.css">
-  <link rel="stylesheet" href="../../css/menu.css">
+  <link rel="stylesheet" href="/css/confirmacao.css">
+  <link rel="stylesheet" href="/css/menu.css">
 </head>
 
 <body>
   <header>
     <div id="menu-container"></div>
-    <script src="../../js/menu.js"></script>
+    <script src="/js/menu.js"></script>
   </header>
 
   <!-- Confirmação do pedido -->
@@ -54,14 +54,16 @@
         </div>
       </section>
       <div class="btn-container">
-        <a href="../public/pagina-venda.html" class="btn-primary">Voltar à Loja</a>
+        <a href="/pages/public/pagina-venda.html" class="btn-primary">Voltar à Loja</a>
       </div>
     </section>
 
   </main>
 
-  <script src="../../js/verificarAcesso.js" defer></script>
-  <script src="../../js/confirmacao.js" defer></script>
+  <div id="toast" class="toast"></div>
+  <script src="/js/script.js"></script>
+  <script src="/js/verificarAcesso.js" defer></script>
+  <script src="/js/confirmacao.js" defer></script>
 </body>
 
 </html>
