@@ -123,6 +123,7 @@ body {
   --fw-sub: 600;
   --fw-regular: 400;
 }
+
 /* ===== Body ===== */
 body {
   background: var(--clr-cloud-white);
@@ -483,99 +484,27 @@ header {
             padding: .8em;
             word-break: break-word;
 
-            &.actions {
-              display: flex;
-              align-items: center;
-              gap: 0.8em;
-              position: relative;
+            .view-btn {
+              border: none;
 
-              button {
-                cursor: pointer;
-                padding: 0.2em;
-                border-radius: 0.4em;
-                transition: background 0.2s ease;
+              a {
+                background: var(--clr-pet-blue-light);
+                color: var(--clr-black);
+                padding: 0.4em 0.8em;
+                border-radius: .4em;
+                font-size: 0.8em;
+                transition: background 0.3s ease;
                 border: none;
+                display: flex;
+                text-align: center;
+                justify-content: center;
 
                 &:hover {
-                  background: rgba(0, 0, 0, 0.05);
-                }
-
-                .material-icons {
-                  font-size: 1.2em;
-                  vertical-align: middle;
-                  border: none;
+                  background: var(--clr-pet-blue);
+                  color: var(--clr-white);
                 }
               }
 
-              .view-btn {
-                background: var(--clr-white);
-
-                & a {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  color: inherit;
-                  gap: 0.6em;
-                }
-              }
-
-
-              .menu-container {
-                position: relative;
-                border: none;
-
-                .menu-btn {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  background: var(--clr-white);
-
-                  &:hover {
-                    background: rgba(0, 0, 0, 0.05);
-                  }
-                }
-
-                .menu-options {
-                  border: none;
-                  position: absolute;
-                  top: 120%;
-                  right: 0;
-                  border-radius: .6em;
-                  box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.1);
-                  display: none;
-                  flex-direction: column;
-                  min-width: 140px;
-                  z-index: 9999;
-                  animation: fadeIn 0.15s ease;
-                  background: var(--clr-white);
-
-                  button {
-                    background: none;
-                    border: none;
-                    display: flex;
-                    align-items: center;
-                    gap: 0.8em;
-                    padding: 0.6em 0.8em;
-                    width: 100%;
-                    cursor: pointer;
-                    font-family: inherit;
-                    font-size: 0.9rem;
-                    transition: background 0.2s;
-
-                    &:hover {
-                      background: rgba(0, 0, 0, 0.05);
-                    }
-
-                    .material-icons {
-                      font-size: 1.2em;
-                    }
-                  }
-                }
-
-                &.open .menu-options {
-                  display: flex;
-                }
-              }
             }
           }
 
