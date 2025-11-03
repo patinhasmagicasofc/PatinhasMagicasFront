@@ -49,10 +49,6 @@ p {
   margin: 0 !important;
 }
 
-body {
-  margin: 0;
-  font-family: "Lexend", sans-serif;
-}
 
 :root {
   /* ===== neutros ===== */
@@ -123,10 +119,7 @@ body {
   --fw-sub: 600;
   --fw-regular: 400;
 }
-body {
-  margin: 0;
-  font-family: "Lexend", sans-serif;
-}
+
 
 body::before {
   content: "";
