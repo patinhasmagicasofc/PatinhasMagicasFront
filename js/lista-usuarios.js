@@ -2,11 +2,22 @@ let currentPage = 1;
 let pageSize = 10;
 
 document.addEventListener("DOMContentLoaded", async () => {
+
     if (!verificarAcesso(['administrador'])) return;
 
-    // --- Carrega tipos dos usuarios ---
-    await carregarTiposUsuario();
+    const loadingContainer = document.getElementById("loading-container");
+    try {
+        mostrarLoading(true);
+        await carregarStatusPedidos();
+        // Depois buscamos o produto
 
+    } finally {
+        mostrarLoading(false);
+    }
+
+    function mostrarLoading(exibir) {
+        loadingContainer.style.display = exibir ? "flex" : "none";
+    }
     // --- Cria navegação da paginação ---
     const pagination = document.querySelector('.pagination');
     if (pagination) {
@@ -59,16 +70,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadPage(page = 1, pageSize = 10) {
-    if (!validarLogin()) return;
 
-    const tipoUsuario = document.getElementById('tipo-usuario')?.value || '';
+    const status = document.getElementById('status-pedidos')?.value || '';
     const dataInicio = document.getElementById('dataInicio')?.value || '';
     const dataFim = document.getElementById('dataFim')?.value || '';
     const nome = document.getElementById('nome')?.value || '';
 
     const params = new URLSearchParams();
     if (nome) params.append('nome', nome);
-    if (tipoUsuario) params.append('tipoUsuario', tipoUsuario);
+    if (status) params.append('status', status);
     if (dataInicio) params.append('dataInicio', dataInicio);
     if (dataFim) params.append('dataFim', dataFim);
     params.append('page', page);
@@ -83,12 +93,12 @@ async function loadPage(page = 1, pageSize = 10) {
     }
 
     const usuarios = data.usuarioOutputDTOs || data.usuarios || [];
-    console.log('Usuarios recebidos:', usuarios);
-    const tabela = document.querySelector('.tbUsuarios');
+    console.log('Usuario recebidos:', usuarios);
+    const tabela = document.querySelector('.tbPedidos');
     if (!tabela) return;
 
     if (usuarios.length === 0) {
-        tabela.innerHTML = `<tr><td colspan="7">Nenhum usuario encontrado.</td></tr>`;
+        tabela.innerHTML = `<tr><td colspan="7">Nenhum usuário encontrado.</td></tr>`;
     } else {
         renderTable(usuarios);
     }
@@ -99,79 +109,59 @@ async function loadPage(page = 1, pageSize = 10) {
     const totalPages = Math.max(1, Math.ceil((data.qTotalVendas || 0) / pageSize));
     document.getElementById('totalPages').textContent = `Página ${page} de ${totalPages}`;
 
-    document.getElementById('totalVendas').innerHTML = `<p>Total de usuarios</p><strong>${data.qTotalVendas || 0}</strong>`;
+    document.getElementById('totalVendas').innerHTML = `<p>Total de pedidos</p><strong>${data.qTotalVendas || 0}</strong>`;
     document.getElementById('valorTotalVendas').innerHTML = `<p>Total de vendas</p><strong>R$${data.valorTotalVendas || 0}</strong>`;
-    document.getElementById('usuariosPendentes').innerHTML = `<p>Usuarios pendentes</p><strong>${data.qPedidosPendente || 0}</strong>`;
-    document.getElementById('usuariosCancelados').innerHTML = `<p>Usuarios cancelados</p><strong>${data.qPedidosCancelado || 0}</strong>`;
+    document.getElementById('pedidosPendentes').innerHTML = `<p>Pedidos pendentes</p><strong>${data.qPedidosPendente || 0}</strong>`;
+    document.getElementById('pedidosCancelados').innerHTML = `<p>Pedidos cancelados</p><strong>${data.qPedidosCancelado || 0}</strong>`;
 
     document.getElementById('btnPrev').disabled = page <= 1;
     document.getElementById('btnNext').disabled = page >= totalPages;
 }
 
 function renderTable(usuarios) {
-    const tabela = document.querySelector('.tbUsuarios');
+    const tabela = document.querySelector('.tbPedidos');
     tabela.innerHTML = '';
 
     usuarios.forEach(usuario => {
-        const data = new Date(usuario.dataCadastro);
-        const dataFormatada = data.toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        });
-
-        console.log(usuario);
         const linha = document.createElement('tr');
         linha.innerHTML = `
-            <td>${usuario.id}</td>
-            <td>${usuario.nome}</td>
-            <td><div class="email">${usuario.email}</div></td>
-            <td>${dataFormatada}</td>
-            <td>${usuario.ddd}</td>
-            <td>${usuario.telefone}</td>
-            <td>${usuario.tipoUsuarioNome}</td>
-            <td>
-                <span style="color:${usuario.ativo ? 'green' : 'red'};">
-                    ${usuario.ativo ? "Ativo" : "Inativo"}
-                </span>
-            </td>
-             <td class="actions">
-                <div class="menu-container">
-                  <button class="menu-btn" title="Mais opções">
-                    <span class="material-icons">more_vert</span>
-                  </button>
-                  <div class="menu-options">
-                    <button class="view-btn" title="Ver">
-                      <a href="detalhesUsuario.html?idUsuario=${usuario.id}" title="Ver">
-                        <span class="material-icons">visibility</span>
-                        <span> Detalhes</span>
-                      </a>
-                    </button>
-                    <button title="Editar"><span class="material-icons">edit</span> Editar</button>
-                  </div>
-                </div>
-              </td>
-        `;
+                        <td>${usuario.id}</td>
+                        <td><div class="email">${usuario.nome}</div></td>
+                        <td><div class="email">${usuario.email}</div></td>
+                        <td><div>${usuario.ddd}</div></td>
+                        <td><div>${usuario.telefone}</div></td>
+                        <td><div>${usuario.tipoUsuarioNome}</div></td>
+                        <td>
+                            <span class="status ${usuario.ativo ? 'ativo' : 'inativo'}">
+                                ${usuario.ativo ? 'Ativo' : 'Inativo'}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="view-btn" title="Ver">
+                                <a href="/pages/admin/usuario-detalhes.html?idUsuario=${usuario.id}" title="Ver">
+                                    Ver Detalhes
+                                </a>
+                            </button>
+                        </td>
+                    `;
         tabela.appendChild(linha);
     });
 }
 
-async function carregarTiposUsuario() {
+async function carregarStatusPedidos() {
     try {
-        if (!validarLogin()) return;
+        const data = await consumirAPIAutenticada('/StatusPedido', 'GET');
+        const selectStatus = document.getElementById('status-pedidos');
+        if (!selectStatus || !data) return;
 
-        const data = await consumirAPIAutenticada('/TipoUsuario', 'GET');
-        const selectTipoUsuario = document.getElementById('tipo-usuario');
-        if (!selectTipoUsuario || !data) return;
-
-        data.forEach(tipoUsuario => {
+        data.forEach(status => {
             const option = document.createElement('option');
-            option.value = tipoUsuario.descricaoTipoUsuario;
-            option.textContent = tipoUsuario.descricaoTipoUsuario;
-            selectTipoUsuario.appendChild(option);
+            option.value = status.nome;
+            option.textContent = status.nome;
+            selectStatus.appendChild(option);
         });
     } catch (error) {
-        console.error('Erro ao carregar tipos do usuario:', error);
+        console.error('Erro ao carregar status dos pedidos:', error);
     }
 }
 

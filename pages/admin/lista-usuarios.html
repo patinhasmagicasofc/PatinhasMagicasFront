@@ -24,7 +24,7 @@
       <div class="menu-informations">
         <div class="informations">
           <ul>
-            <li class="item-menu">
+            <li class="item-menu ativo">
               <a href="lista-pedidos.html">
                 <span class="icon"><i class="material-icons">assignment</i></span>
                 <span class="txt-link">Pedidos</span>
@@ -42,7 +42,7 @@
                 <span class="txt-link">Lista de agendamentos</span>
               </a>
             </li>
-            <li class="item-menu ativo">
+            <li class="item-menu">
               <a href="lista-usuarios.html">
                 <span class="icon"><i class="material-icons">person</i></span>
                 <span class="txt-link">Usuários</span>
@@ -78,6 +78,11 @@
     </nav>
   </header>
 
+  <div id="loading-container">
+    <div class="spinner"></div>
+    <span>Carregando pedidos...</span>
+  </div>
+
   <section id="filter-exp" class="filters-exp">
     <div id="btn-filters-expandir">
       <span class="material-symbols-outlined">tune</span>
@@ -86,8 +91,8 @@
     <div class="filters">
       <form>
         <input class="busca-id" id="nome" name="Nome" type="text" placeholder="Buscar por ID, cliente...">
-        <select id="tipo-usuario" name="status" class="status-usuario">
-          <option class="one" value="">Tipo Usuario</option>
+        <select id="status-pedidos" name="status" class="status-pedido">
+          <option class="one" value="">Status</option>
         </select>
 
         <input class="date" type="date" id="dataInicio" name="dataInicio">
@@ -106,24 +111,24 @@
       <div class="summary">
 
         <div id="totalVendas" class="card">
-          <p>Total de usuarios</p>
+          <p>Total de pedidos</p>
           <strong>0</strong>
         </div>
         <div id="valorTotalVendas" class="card">
           <p>Total de vendas</p>
           <strong>R$ 0,00</strong>
         </div>
-        <div id="usuariosPendentes" class="card">
-          <p>Usuarios pendentes</p>
+        <div id="pedidosPendentes" class="card">
+          <p>Pedidos pendentes</p>
           <strong>0</strong>
         </div>
-        <div id="usuariosCancelados" class="card">
-          <p>Usuarios cancelados</p>
+        <div id="pedidosCancelados" class="card">
+          <p>Pedidos cancelados</p>
           <strong>0</strong>
         </div>
       </div>
 
-      <!-- Lista de usuarios -->
+      <!-- Lista de pedidos -->
       <div class="orders">
         <table>
           <thead>
@@ -131,26 +136,27 @@
               <th>ID</th>
               <th>Nome</th>
               <th>E-mail</th>
-              <th>Data do Cadastro</th>
               <th>DDD</th>
               <th>Telefone</th>
               <th>Tipo Usuario</th>
-              <th>Ativo</th>
+              <th>Status</th>
               <th></th>
             </tr>
           </thead>
           <!-- <tbody> -->
-          <tbody class="tbUsuarios">
-            <!-- Linhas da tabela inseridas via JavaScript -->
+          <tbody class="tbPedidos">
+            <!-- Linhas da tabela serão inseridas aqui dinamicamente -->
           </tbody>
         </table>
       </div>
+
+      <!-- Paginação -->
+      <nav class="pagination">
+      </nav>
     </section>
     <!-- Resumo -->
 
-    <!-- Paginação -->
-    <nav class="pagination">
-    </nav>
+
   </main>
 
   <div id="toast" class="toast"></div>

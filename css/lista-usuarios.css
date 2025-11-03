@@ -37,6 +37,12 @@ a {
   text-decoration: none;
 }
 
+body::before {
+  content: "";
+  display: block;
+  height: 5em;
+}
+
 ul,
 ol,
 li {
@@ -49,6 +55,10 @@ p {
   margin: 0 !important;
 }
 
+body {
+  margin: 0;
+  font-family: "Lexend", sans-serif;
+}
 
 :root {
   /* ===== neutros ===== */
@@ -120,19 +130,9 @@ p {
   --fw-regular: 400;
 }
 
-
-
-body::before {
-  content: "";
-  display: block;
-  height: 5em;
-}
-
-
 /* ===== Body ===== */
 body {
   background: var(--clr-cloud-white);
-  margin-bottom: 1em;
 }
 
 
@@ -160,7 +160,7 @@ header {
   nav.menu-lateral {
     width: 54px;
     height: 100vh;
-    background: var(--clr-white-one);
+    background: var(--clr-white);
     backdrop-filter: blur(1em);
     box-shadow: 2px 0 0 black;
     position: fixed;
@@ -181,7 +181,7 @@ header {
 
       .material-icons {
         font-size: 1.5em;
-        color: var(--clr-p);
+        color: var(--clr-pet-blue);
       }
     }
 
@@ -220,7 +220,7 @@ header {
             }
 
             a:hover {
-              background: var(--clr-silver);
+              background: var(--clr-gray);
             }
 
             &.ativo {
@@ -355,7 +355,7 @@ header {
         outline: none;
       }
 
-      .status-usuario {
+      .status-pedido {
         option {
           background: var(--clr-white);
           margin: 1em;
@@ -366,18 +366,18 @@ header {
         transition: all .3s ease-in-out;
 
         &:hover {
-          background: var(--clr-gray-one);
+          background: var(--clr-gray-light);
           color: var(--clr-white);
         }
       }
 
       .date,
-      .status-usuario,
+      .status-pedido,
       .busca-id {
         transition: all .3s ease-in-out;
 
         &:hover {
-          background: var(--clr-silver);
+          background: var(--clr-gray);
         }
       }
     }
@@ -414,11 +414,14 @@ header {
 /* #region summary-orders*/
 
 .summary-orders {
-
   display: flex;
   flex-direction: column;
+  height: 90vh;
 
   .summary {
+    background: var(--clr-pet-blue) !important;
+    padding: 0.8em;
+    border-radius: 0.6em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1em;
@@ -427,7 +430,7 @@ header {
     .card {
       background: var(--clr-white);
       padding: 1em;
-      border-radius: .6em;
+      border-radius: .4em;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       text-align: center;
 
@@ -445,12 +448,16 @@ header {
   }
 
   .orders {
-    background: var(--clr-white);
+    background: var(--clr-pet-blue);
+    padding: 1em;
     border-radius: 0.6em;
     padding: 1em;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 
     table {
+      background: var(--clr-white);
+      padding: 1em;
+      border-radius: .4em;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -469,7 +476,7 @@ header {
         }
       }
 
-      .tbUsuarios {
+      .tbPedidos {
         display: flex;
         flex-direction: column;
 
@@ -483,106 +490,34 @@ header {
             padding: .8em;
             word-break: break-word;
 
-            &.actions {
-              display: flex;
-              align-items: center;
-              gap: 0.8em;
-              position: relative;
+            .view-btn {
+              border: none;
 
-              button {
-                cursor: pointer;
-                padding: 0.2em;
-                border-radius: 0.4em;
-                transition: background 0.2s ease;
+              a {
+                background: var(--clr-pet-blue-light);
+                color: var(--clr-black);
+                padding: 0.4em 0.8em;
+                border-radius: .4em;
+                font-size: 0.8em;
+                transition: background 0.3s ease;
                 border: none;
+                display: flex;
+                text-align: center;
+                justify-content: center;
 
                 &:hover {
-                  background: rgba(0, 0, 0, 0.05);
-                }
-
-                .material-icons {
-                  font-size: 1.2em;
-                  vertical-align: middle;
-                  border: none;
+                  background: var(--clr-pet-blue);
+                  color: var(--clr-white);
                 }
               }
 
-              .view-btn {
-                background: var(--clr-white);
-
-                & a {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  color: inherit;
-                  gap: 0.6em;
-                }
-              }
-
-
-              .menu-container {
-                position: relative;
-                border: none;
-
-                .menu-btn {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  background: var(--clr-white);
-
-                  &:hover {
-                    background: rgba(0, 0, 0, 0.05);
-                  }
-                }
-
-                .menu-options {
-                  border: none;
-                  position: absolute;
-                  top: 120%;
-                  right: 0;
-                  border-radius: .6em;
-                  box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.1);
-                  display: none;
-                  flex-direction: column;
-                  min-width: 140px;
-                  z-index: 9999;
-                  animation: fadeIn 0.15s ease;
-                  background: var(--clr-white);
-
-                  button {
-                    background: none;
-                    border: none;
-                    display: flex;
-                    align-items: center;
-                    gap: 0.8em;
-                    padding: 0.6em 0.8em;
-                    width: 100%;
-                    cursor: pointer;
-                    font-family: inherit;
-                    font-size: 0.9rem;
-                    transition: background 0.2s;
-
-                    &:hover {
-                      background: rgba(0, 0, 0, 0.05);
-                    }
-
-                    .material-icons {
-                      font-size: 1.2em;
-                    }
-                  }
-                }
-
-                &.open .menu-options {
-                  display: flex;
-                }
-              }
             }
           }
 
         }
       }
 
-      .tbUsuarios td .email {
+      .tbPedidos td .email {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -593,27 +528,26 @@ header {
       td .status {
         display: inline-block;
         padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
+        border-radius: .4em;
+        font-size: 0.8em;
         color: #fff;
         text-align: center;
 
         &.pago {
-          background: #28a745;
+          background: var(--clr-status-success);
         }
 
         &.pendente {
-          background: #ffc107;
+          background: var(--clr-pet-yellow);
           color: #000;
         }
 
         &.enviado {
-          background: #17a2b8;
+          background: var(--clr-pet-blue);
         }
 
         &.cancelado {
-          background: #dc3545;
+          background: var(--clr-status-error);
         }
       }
     }
@@ -646,11 +580,11 @@ header {
   justify-content: end;
   align-items: center;
   gap: 0.8em;
-  margin-top: 1em;
+  margin-top: auto;
 
   & button {
     padding: .4em .8em;
-    border: 1px solid var(--clr-gray-two);
+    border: 1px solid var(--clr-gray-light);
     background: var(--clr-white);
     cursor: pointer;
     border-radius: .4em;
@@ -664,11 +598,30 @@ header {
   & select {
     padding: .4em;
     border-radius: .4em;
-    border: 1px solid var(--clr-gray-two);
+    border: 1px solid var(--clr-gray-light);
   }
 }
 
 /* #endregion */
+
+#loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.spinner {
+  border: 4px solid var(--clr-white);
+  border-top: 4px solid var(--clr-pet-blue);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
 
 .toast {
   visibility: hidden;
@@ -699,4 +652,18 @@ header {
   visibility: visible;
   opacity: 1;
   bottom: 50px;
+}
+
+.status.ativo {
+  background-color: green;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.status.inativo {
+  background-color: red;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
 }
