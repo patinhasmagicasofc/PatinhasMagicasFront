@@ -41,8 +41,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             localStorage.removeItem("paginaAnterior");
         } else {
             window.location.href = (perfil.toLowerCase() === 'administrador')
-                ? '/pages/admin/lista-pedidos.html'
-                : '/pages/user/pagina-venda.html';
+                ? '/pages/public/pagina-venda.html'
+                : '/pages/public/pagina-venda.html';
         }
 
     } catch (error) {

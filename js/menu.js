@@ -12,15 +12,29 @@ async function carregarMenu() {
     // Depois que o menu foi carregado, protegemos link e inicializamos dropdowns
     protegerLinks();
     initDropdowns();
-    initDropdownPerfil(); 
+    initDropdownPerfil();
+
 
     const user = getUserFromToken();
 
     if (user) {
       console.log(user.unique_name);
+
       const nomeElemento = document.getElementById('nomeUsuario');
       if (nomeElemento) {
         nomeElemento.textContent = user.unique_name;
+      }
+
+      // 👇 Controle de exibição do menu admin (dentro do IF)
+      const perfil = user.role?.toLowerCase(); // garante que não quebre
+      const menuAdmin = document.getElementById("menuAdmin");
+
+      console.log("Perfil do usuário:", perfil);
+
+      if (perfil === "administrador" && menuAdmin) {
+        menuAdmin.style.display = "block"; // mostra o item
+      } else if (menuAdmin) {
+        menuAdmin.style.display = "none"; // mantém oculto
       }
     }
 

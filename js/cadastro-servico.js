@@ -1,10 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // if (!verificarAcesso('administrador')) {
-    //     window.location.href = 'login.html';
-    //     return;
-    // }
+    if (!verificarAcesso(['administrador'])) return;
 
-   await carregarTiposServico();
+    await carregarTiposServico();
 
     const ADD_ENDPOINT = '/Servico';
     const form = document.getElementById("formServico");
@@ -35,7 +32,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function cadastrarServico(servico) {
         try {
-            if (!validarLogin()) return;
 
             const data = await consumirAPIAutenticada(ADD_ENDPOINT, 'POST', servico);
 
@@ -58,13 +54,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function carregarTiposServico() {
     try {
-        if (!validarLogin()) return;
 
         const data = await consumirAPIAutenticada('/TipoServico', 'GET');
         const selectTipoServico = document.getElementById('tipos-servicos');
         if (!selectTipoServico || !data) return;
 
-        console.log('Tipos de servicos carregados:', data); 
+        console.log('Tipos de servicos carregados:', data);
 
         data.forEach(tipoServico => {
             const option = document.createElement('option');
