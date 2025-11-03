@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
     const div = document.getElementById("detalhesAgendamento");
-
+    inicializarMenuLateral();
     if (!id) {
         div.innerHTML = `<div class="alert alert-danger">Agendamento não encontrado.</div>`;
         return;
@@ -186,4 +186,31 @@ async function carregarStatus(nomeSelecionado = null, selectElement = null) {
     } catch (error) {
         console.error("Erro ao carregar status:", error);
     }
+}
+
+
+// --- Inicialização dos menus ---
+function inicializarMenuLateral() {
+    const menuItems = document.querySelectorAll('.item-menu');
+    const btnExpandir = document.getElementById('btn-exp');
+    const nav = document.querySelector('.menu-lateral');
+    const header = document.querySelector('header');
+
+    menuItems.forEach(item => item.addEventListener('click', () => {
+        menuItems.forEach(i => i.classList.remove('ativo'));
+        item.classList.add('ativo');
+    }));
+
+    btnExpandir?.addEventListener('click', e => {
+        e.stopPropagation();
+        nav?.classList.toggle('expandir');
+        header?.classList.toggle('expandir');
+    });
+
+    document.addEventListener('click', e => {
+        if (!nav?.contains(e.target) && nav?.classList.contains('expandir')) {
+            nav.classList.remove('expandir');
+            header?.classList.remove('expandir');
+        }
+    });
 }
