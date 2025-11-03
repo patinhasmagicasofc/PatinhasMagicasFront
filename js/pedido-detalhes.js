@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    if (!verificarAcesso(['administrador'])) return;
 
     const toBRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     let valorTotalProduto = 0;
@@ -53,8 +54,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             tr.innerHTML = `
                 <td style="display:flex;align-items:center;gap:10px;">
                     ${itemPedido.produtoOutputDTO.urlImagem
-                ? `<img src="${itemPedido.produtoOutputDTO.urlImagem}" alt="${itemPedido.produtoOutputDTO.nome}" style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;" />`
-                : `<div style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;"></div>`}
+                    ? `<img src="${itemPedido.produtoOutputDTO.urlImagem}" alt="${itemPedido.produtoOutputDTO.nome}" style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;" />`
+                    : `<div style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;"></div>`}
                     <div>
                         <div style="font-weight:600">${itemPedido.produtoOutputDTO.nome}</div>
                         <div class="muted" style="margin-top:6px;">SKU: ${itemPedido.produtoOutputDTO.codigo}</div>

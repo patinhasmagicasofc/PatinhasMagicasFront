@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!verificarAcesso(['administrador', 'Cliente'])) return;
   const divResumo = document.getElementById("resumoAgendamento");
   const form = document.getElementById("formFinalizar");
   const selectPagamento = document.getElementById("tipoPagamento");
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     else {
       conteudo.innerHTML = `<p>Instruções para pagamento via ${textoSelecionado} serão enviadas por e-mail.</p>`;
     }
-    
+
 
     modal.style.display = "flex";
   });

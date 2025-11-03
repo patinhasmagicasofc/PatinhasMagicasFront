@@ -1,0 +1,1 @@
+  if (!verificarAcesso(['administrador'])) return;

@@ -1,8 +1,6 @@
 
 const usuarioId = getUserIdFromToken();
-if (!verificarAcesso(['administrador', 'cliente']) || !usuarioId) {
-    alert('Acesso negado ou sessão expirada.');
-}
+if (!verificarAcesso(['administrador', 'cliente']) || !usuarioId) return;
 
 let enderecoId = null;
 
