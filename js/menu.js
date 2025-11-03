@@ -12,7 +12,7 @@ async function carregarMenu() {
     // Depois que o menu foi carregado, protegemos link e inicializamos dropdowns
     protegerLinks();
     initDropdowns();
-    initDropdownPerfil(); 
+    initDropdownPerfil();
 
     const user = getUserFromToken();
 
@@ -22,6 +22,18 @@ async function carregarMenu() {
       if (nomeElemento) {
         nomeElemento.textContent = user.unique_name;
       }
+    }
+
+    //Aqui entra o controle de exibição do menu admin
+    const perfil = user.role?.toLowerCase(); // ou user.role, depende de como vem no token
+    const menuAdmin = document.getElementById("menuAdmin");
+
+    console.log("Perfil do usuário:", perfil);
+
+    if (perfil === "administrador" && menuAdmin) {
+      menuAdmin.style.display = "block"; // mostra o item
+    } else if (menuAdmin) {
+      menuAdmin.style.display = "none"; // mantém oculto
     }
 
     // Atualiza a contagem do carrinho
