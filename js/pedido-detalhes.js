@@ -14,12 +14,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
+    console.log('Dados do pedido:', dados);
+
     // ===================== DADOS DO PEDIDO =====================
     const tabelaPedidos = document.querySelector('.order-meta');
     if (tabelaPedidos) {
+        const data = new Date(dados.dataPedido);
+        const dataFormatada = data.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+
         tabelaPedidos.innerHTML = `
             <p><strong>ID</strong><br><span id="order-id">#${dados.id}</span></p>
-            <p><strong>Data</strong><br><span id="order-date">${dados.dataPedido}</span></p>
+            <p><strong>Data</strong><br><span id="order-date">${dataFormatada}</span></p>
             <p><strong>Pagamento</strong><br><span id="order-payment" class="small">${dados.formaPagamento ?? 'Pix'}</span></p>
             <p><strong>Status</strong><br><span id="order-status" class="badge">${dados.statusPedido}</span></p>
         `;
@@ -47,8 +52,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td style="display:flex;align-items:center;gap:10px;">
-                    ${itemPedido.produtoOutputDTO.foto
-                ? `<img src="${itemPedido.produtoOutputDTO.foto}" alt="${itemPedido.produtoOutputDTO.nome}" style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;" />`
+                    ${itemPedido.produtoOutputDTO.urlImagem
+                ? `<img src="${itemPedido.produtoOutputDTO.urlImagem}" alt="${itemPedido.produtoOutputDTO.nome}" style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;" />`
                 : `<div style="width:56px;height:56px;border-radius:8px;background:#f3f4f6;display:inline-block;"></div>`}
                     <div>
                         <div style="font-weight:600">${itemPedido.produtoOutputDTO.nome}</div>
@@ -69,9 +74,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         delivery.innerHTML = `
             <h4>Endereço de Entrega</h4>
             <p id="delivery-name"><strong>Nome:</strong> ${dados.usuarioOutputDTO.nome}</p>
-            <p id="delivery-street"><strong>Rua:</strong> ${dados.usuarioOutputDTO.enderecoOutputDTO.logradouro}</p>
-            <p id="delivery-city"><strong>Cidade:</strong> ${dados.usuarioOutputDTO.enderecoOutputDTO.cidade} - ${dados.usuarioOutputDTO.enderecoOutputDTO.estado}</p>
-            <p id="delivery-zip"><strong>CEP:</strong> ${dados.usuarioOutputDTO.enderecoOutputDTO.cep}</p>
+            <p id="delivery-street"><strong>Rua:</strong> ${dados.usuarioOutputDTO.endereco.logradouro}</p>
+            <p id="delivery-city"><strong>Cidade:</strong> ${dados.usuarioOutputDTO.endereco.cidade} - ${dados.usuarioOutputDTO.endereco.estado}</p>
+            <p id="delivery-zip"><strong>CEP:</strong> ${dados.usuarioOutputDTO.endereco.cep}</p>
             <p id="delivery-phone"><strong>Tel:</strong> ${dados.usuarioOutputDTO.telefone}</p>
         `;
     }
@@ -100,14 +105,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (btnUpdateStatus && modalEditar) {
         btnUpdateStatus.addEventListener('click', () => {
             modalEditar.style.display = 'flex';
-            // Preencher campos do modal
+            // Preencher campos do modal com o objeto correto
             document.getElementById('modal-status').value = dados.statusPedido ?? '';
             document.getElementById('modal-pagamento').value = dados.formaPagamento ?? 'Pix';
             document.getElementById('modal-nome').value = dados.usuarioOutputDTO.nome ?? '';
-            document.getElementById('modal-rua').value = dados.usuarioOutputDTO.enderecoOutputDTO.logradouro ?? '';
-            document.getElementById('modal-cidade').value = dados.usuarioOutputDTO.enderecoOutputDTO.cidade ?? '';
-            document.getElementById('modal-estado').value = dados.usuarioOutputDTO.enderecoOutputDTO.estado ?? '';
-            document.getElementById('modal-cep').value = dados.usuarioOutputDTO.enderecoOutputDTO.cep ?? '';
+            document.getElementById('modal-rua').value = dados.usuarioOutputDTO.endereco.logradouro ?? '';
+            document.getElementById('modal-cidade').value = dados.usuarioOutputDTO.endereco.cidade ?? '';
+            document.getElementById('modal-estado').value = dados.usuarioOutputDTO.endereco.estado ?? '';
+            document.getElementById('modal-cep').value = dados.usuarioOutputDTO.endereco.cep ?? '';
             document.getElementById('modal-telefone').value = dados.usuarioOutputDTO.telefone ?? '';
         });
     }

@@ -4,7 +4,7 @@ if (!verificarAcesso(['administrador', 'cliente']) || !usuarioId) {
     alert('Acesso negado ou sessão expirada.');
 }
 
-let idEndereco = null;
+let enderecoId = null;
 
 // --- Inputs e elementos ---
 const nomeInput = document.getElementById('nome');
@@ -72,6 +72,8 @@ async function carregarDadosCliente() {
     try {
         const userData = await consumirAPIAutenticada(`Usuario/${usuarioId}`, 'GET', null);
 
+        console.log("Dados do usuário:", userData);
+
         if (userData) {
             document.getElementById('nomeUsuario').textContent = userData.nome || 'Cliente';
             nomeInput.value = userData.nome || '';
@@ -81,7 +83,7 @@ async function carregarDadosCliente() {
             telefoneInput.value = userData.telefone || '';
 
             if (userData.endereco) {
-                idEndereco = userData.endereco.idEndereco;
+                enderecoId = userData.endereco.enderecoId || userData.endereco.id || null;
                 cepInput.value = userData.endereco.cep || '';
                 logradouroInput.value = userData.endereco.logradouro || '';
                 numeroInput.value = userData.endereco.numero || '';
@@ -161,6 +163,8 @@ async function handleUpdatePessoal(event) {
         telefone: telefoneInput.value.trim(),
     };
 
+    console.log("Dados para atualização pessoal:", updateDto);
+
     try {
         await consumirAPIAutenticada(`Usuario/${usuarioId}`, 'PUT', updateDto);
         msgPessoal.textContent = 'Dados pessoais atualizados com sucesso!';
@@ -194,9 +198,9 @@ async function handleUpdateEndereco(event) {
     }
 
     const dadosEndereco = {
-        ...(idEndereco && { idEndereco }),
+        ...(enderecoId && { enderecoId }),
         logradouro: logradouroInput.value.trim(),
-        numero: numeroInput.value.trim(),
+        numero: parseInt(numeroInput.value.trim()),
         complemento: complementoInput.value.trim(),
         cep: cepInput.value.trim(),
         bairro: bairroInput.value.trim(),
@@ -205,13 +209,18 @@ async function handleUpdateEndereco(event) {
         usuarioId: parseInt(usuarioId)
     };
 
-    const url = idEndereco ? `Endereco/${idEndereco}` : `Endereco`;
-    const method = idEndereco ? 'PUT' : 'POST';
+    const url = enderecoId ? `Endereco/${enderecoId}` : `Endereco`;
+    const method = enderecoId ? 'PUT' : 'POST';
+    console.log("URL para atualização de endereço:", url);
+    console.log("Método para atualização de endereço:", method);
+    console.log("Usuário ID para atualização de endereço:", usuarioId);
+    console.log("CEP para atualização de endereço:", dadosEndereco.enderecoId);
 
+    console.log("Dados para atualização de endereço:", dadosEndereco);
     try {
         const responseData = await consumirAPIAutenticada(url, method, dadosEndereco);
-        if (method === 'POST' && responseData && responseData.idEndereco)
-            idEndereco = responseData.idEndereco;
+        if (method === 'POST' && responseData && responseData.enderecoId)
+            enderecoId = responseData.enderecoId;
 
         msgEndereco.textContent = 'Endereço salvo com sucesso!';
         msgEndereco.className = 'sucesso';
