@@ -145,7 +145,7 @@ function renderTable(pedidos) {
 
                   <div class="menu-options">
                     <button class="view-btn" title="Ver">
-                      <a href="/pedido-detalhes.html?idPedido=${pedido.id}" title="Ver">
+                      <a href="/pages/admin/pedido-detalhes.html?idPedido=${pedido.id}" title="Ver">
                         <span class="material-icons">visibility</span>
                         <span> Detalhes</span>
                       </a>

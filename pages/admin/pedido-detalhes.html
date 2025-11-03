@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <div class="container">
 
     <!-- Breadcrumb + Title -->
@@ -20,7 +19,6 @@
         <div class="muted">Visão completa do pedido e ações administrativas</div>
       </div>
       <div style="display:flex; gap:10px;">
-        <button class="btn secondary" id="btn-edit">Editar</button>
         <button class="btn primary" id="btn-print">Imprimir</button>
       </div>
     </div>
@@ -55,11 +53,11 @@
 
       <div class="card">
         <div class="section-title">Resumo do Pagamento</div>
-        <p class="small"><strong>Subtotal:</strong> <span id="summary-subtotal">R$ 1,00</span></p>
-        <p class="small"><strong>Frete:</strong> <span id="summary-shipping">R$ 2,00</span></p>
-        <p class="small"><strong>Desconto:</strong> <span id="summary-discount">R$ 3,00</span></p>
+        <p class="small"><strong>Subtotal:</strong> <span id="summary-subtotal">R$ 0,00</span></p>
+        <p class="small"><strong>Frete:</strong> <span id="summary-shipping">R$ 0,00</span></p>
+        <p class="small"><strong>Desconto:</strong> <span id="summary-discount">R$ 0,00</span></p>
         <div class="line"></div>
-        <p><strong>Total:</strong> <span id="summary-total" style="font-size:18px;">R$ 4,00</span></p>
+        <p><strong>Total:</strong> <span id="summary-total" style="font-size:18px;">R$0,00</span></p>
       </div>
     </div>
 
@@ -75,9 +73,7 @@
             <th class="right">Subtotal</th>
           </tr>
         </thead>
-        <tbody id="items-body">
-          <!-- Linhas geradas por JS -->
-        </tbody>
+        <tbody id="items-body"></tbody>
       </table>
 
       <div class="summary-row">
@@ -102,77 +98,73 @@
         <button class="btn secondary" id="btn-back">Voltar</button>
       </div>
       <div style="display:flex; gap:10px;">
-        <button class="btn negative" id="btn-cancel">Cancelar pedido</button>
-        <button class="btn primary" id="btn-update-status">Atualizar status</button>
+        <button class="btn primary" id="btn-update-status">Editar pedido</button>
       </div>
     </div>
-
   </div>
 
-  <script>
-    // ===== Exemplo de dados (substitua por fetch/API) =====
-    const exampleOrder = {
-      id: 1234,
-      date: "2025-10-01T14:23:00Z",
-      paymentMethod: "Cartão de Crédito",
-      status: "Pago", // pago | pendente | enviado | cancelado
-      shipping: 15.0,
-      discount: 0.0
-    };
+  <!-- Modal de edição -->
+  <div id="modal-editar" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Editar Pedido</h2>
 
-    // ===== Helpers =====
+      <div class="modal-row">
+        <label>Status do Pedido</label>
+        <select id="modal-status">
+          <option value="Pendente">Pendente</option>
+          <option value="Pago">Pago</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
 
-    const el = id => document.getElementById(id);
+      <div class="modal-row">
+        <label>Forma de Pagamento</label>
+        <select id="modal-pagamento">
+          <option value="Pix">Pix</option>
+          <option value="Cartão">Cartão</option>
+          <option value="Boleto">Boleto</option>
+        </select>
+      </div>
 
-    // ===== Render =====
-    function renderOrder(order) {
-      // status badge
-      const statusEl = el('order-status');
-      statusEl.textContent = order.status;
-      statusEl.className = 'badge ' + order.status.toLowerCase();
+      <div class="modal-row">
+        <label>Nome do Recebedor</label>
+        <input type="text" id="modal-nome" disabled />
+      </div>
 
-      // const total = subtotal + order.shipping - (order.discount || 0);
-      // resumo
-      // el('summary-subtotal').textContent = toBRL(subtotal);
-      // el('summary-shipping').textContent = toBRL(order.shipping);
-      // el('summary-discount').textContent = toBRL(order.discount || 0);
-      // el('summary-total').textContent = toBRL(total);
+      <div class="modal-row">
+        <label>Rua</label>
+        <input type="text" id="modal-rua" disabled />
+      </div>
 
-      // // boxes
-      // el('box-subtotal').textContent = toBRL(subtotal);
-      // el('box-shipping').textContent = toBRL(order.shipping);
-      // el('box-total').textContent = toBRL(total);
-    }
+      <div class="modal-row">
+        <label>Cidade</label>
+        <input type="text" id="modal-cidade" disabled />
+      </div>
 
-    // Render inicial
-    renderOrder(exampleOrder);
+      <div class="modal-row">
+        <label>Estado</label>
+        <input type="text" id="modal-estado" disabled />
+      </div>
 
-    // ===== Ações básicas (exemplo) =====
-    document.getElementById('btn-back').addEventListener('click', () => history.back());
-    document.getElementById('btn-update-status').addEventListener('click', () => {
-      // exemplo simples: alterna entre Enviado/Pago
-      const current = exampleOrder.status;
-      exampleOrder.status = current === 'Pago' ? 'Enviado' : (current === 'Enviado' ? 'Pendente' : 'Pago');
-      renderOrder(exampleOrder);
-      alert('Status atualizado (exemplo). Aqui você chamaria o backend.');
-    });
-    document.getElementById('btn-cancel').addEventListener('click', () => {
-      if (confirm('Tem certeza que deseja cancelar este pedido?')) {
-        exampleOrder.status = 'Cancelado';
-        renderOrder(exampleOrder);
-      }
-    });
-    document.getElementById('btn-edit').addEventListener('click', () => {
-      alert('Abrir modal/rota de edição (exemplo).');
-    });
+      <div class="modal-row">
+        <label>CEP</label>
+        <input type="text" id="modal-cep" disabled />
+      </div>
 
-  </script>
+      <div class="modal-row">
+        <label>Telefone</label>
+        <input type="text" id="modal-telefone" disabled />
+      </div>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+      <div class="modal-actions">
+        <button id="modal-salvar" class="btn primary">Salvar</button>
+        <button id="modal-cancelar" class="btn secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <script src="/js/verificarAcesso.js"></script>
   <script src="/js/pedido-detalhes.js"></script>
-
 </body>
 
 </html>
