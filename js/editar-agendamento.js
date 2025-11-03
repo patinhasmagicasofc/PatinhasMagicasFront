@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="title-nome">
                     <ul><li><p class="card-title">${agendamento.servico?.nome ?? "Serviço"}</p></li></ul>
                 </div>
+                <div class="container-information-aditar">
                 <p><strong>Animal:</strong> ${agendamento.animal?.nome ?? "—"} (${agendamento.animal?.nomeEspecie ?? "—"} - ${agendamento.animal?.nomeTamanhoAnimal ?? "—"})</p>
 
                 <div class="mb-3">
@@ -61,6 +62,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="text-center mt-3" id="botoesAgendamento">
                     <button type="button" class="btn btn-primary" id="btnEditar">Editar</button>
                 </div>
+                </div>
+                
             </div>
         </form>
         `;
