@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const selectEspecie = document.getElementById("especie");
     const form = document.getElementById("formCadastroAnimal");
 
+    if (!verificarAcesso(['administrador', 'Cliente'])) return;
+    
     async function carregarTamanhos() {
         try {
             const tamanhos = await consumirAPIAutenticada('/TamanhoAnimal', 'GET');

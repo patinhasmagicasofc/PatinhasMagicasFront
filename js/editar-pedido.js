@@ -1,3 +1,5 @@
+if (!verificarAcesso(['administrador'])) return;
+
 const el = id => document.getElementById(id);
 
 window.addEventListener('message', e => {

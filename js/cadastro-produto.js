@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // if (!verificarAcesso('administrador')) {
-    //     window.location.href = 'login.html';
-    //     return;
-    // }
+    if (!verificarAcesso(['administrador'])) return;
 
     const ADD_ENDPOINT = '/Produto';
     const form = document.getElementById("formProduto");
@@ -51,8 +48,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function cadastrarProduto(produto) {
         try {
-            if (!validarLogin()) return;
-
             const data = await consumirAPIAutenticada(ADD_ENDPOINT, 'POST', produto);
 
             if (!data) {
@@ -72,7 +67,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function carregarCategoria() {
         try {
-            if (!validarLogin()) return;
 
             const data = await consumirAPIAutenticada('/Categoria', 'GET');
             const selectCategoria = document.getElementById('categoria');
