@@ -219,18 +219,20 @@ header {
           font-size: 0.95em;
 
           a.btn {
-            background: var(--clr-pet-blue);
-            color: var(--clr-white);
+            background: var(--clr-pet-blue-light);
+            color: var(--clr-black);
             padding: 0.4em 0.8em;
-            border-radius: 0.4em;
-            font-size: 0.85em;
+            border-radius: .4em;
+            font-size: 0.8em;
             transition: background 0.3s ease;
             border: none;
             display: flex;
+            text-align: center;
             justify-content: center;
-text-align: center;
+
             &:hover {
-              background: var(--clr-pet-blue-light);
+              background: var(--clr-pet-blue);
+              color: var(--clr-white);
             }
           }
 

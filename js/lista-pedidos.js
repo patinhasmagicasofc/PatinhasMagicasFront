@@ -137,23 +137,13 @@ function renderTable(pedidos) {
             <td>R$${pedido.valorPedido}</td>
             <td>${pedido.formaPagamento}</td>
             <td><span class="status ${pedido.statusPedido.toLowerCase()}">${pedido.statusPedido}</span></td>
-             <td class="actions">
-                <div class="menu-container">
-                  <button class="menu-btn" title="Mais opções">
-                    <span class="material-icons">more_vert</span>
-                  </button>
-
-                  <div class="menu-options">
+            <td>
                     <button class="view-btn" title="Ver">
-                      <a href="/pages/admin/pedido-detalhes.html?idPedido=${pedido.id}" title="Ver">
-                        <span class="material-icons">visibility</span>
-                        <span> Detalhes</span>
+                      <a href="/pages/admin/pedido-detalhes.html?idPedido=${pedido.id}" title="Ver">Ver Detalhes
                       </a>
                     </button>
-                    <button title="Editar"><span class="material-icons">edit</span> Editar</button>
-                  </div>
-                </div>
-              </td>
+                </div
+            </td>
         `;
         tabela.appendChild(linha);
     });
