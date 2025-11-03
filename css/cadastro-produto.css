@@ -54,11 +54,6 @@ body {
   font-family: "Lexend", sans-serif;
 }
 
-body::before {
-  content: "";
-  display: block;
-  height: 5em;
-}
 
 :root {
   /* ===== neutros ===== */
@@ -138,7 +133,7 @@ main {
   transition: margin-left 0.4s ease, margin-right 0.4s ease;
   margin-right: 0;
 
-  header.expandir~& {
+  header.expandir ~ & {
     margin-left: 250px;
   }
 }

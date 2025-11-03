@@ -36,7 +36,11 @@ p {
 a {
   text-decoration: none;
 }
-
+body::before {
+  content: "";
+  display: block;
+  height: 5em;
+}
 ul,
 ol,
 li {
@@ -133,7 +137,7 @@ body {
 /* ===== Main ===== */
 main {
   margin-left: 54px;
-  padding: 3em 3em;
+  padding: 0 3em;
   transition: margin-left 0.4s ease, margin-right 0.4s ease;
   margin-right: 0;
 
