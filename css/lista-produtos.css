@@ -414,17 +414,38 @@ header {
 
 .summary-orders {
 
+  padding: 1em 0.8em 0.8em;
   display: flex;
   flex-direction: column;
+  gap: 2em;
+  background: var(--clr-pet-blue);
+  border-radius: 0.6em;
+
+  .title-lista-produtos {
+    display: flex;
+    text-align: center;
+
+    ul li p {
+      font-size: var(--fs-sub-title);
+      font-weight: var(--fw-title);
+      color: var(--clr-white);
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--clr-gray-dark);
+    margin: 0 auto;
+    width: 100%;
+  }
 
   .summary {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1em;
     margin-bottom: 1.4em;
-background: var(--clr-pet-blue);
-padding: 0.8em;
-border-radius: 0.6em;
+    border-radius: 0.6em;
+
     .card {
       background: var(--clr-pet-blue-gradient-bottom) !important;
       padding: 1em;
