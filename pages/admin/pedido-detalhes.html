@@ -10,243 +10,112 @@
     rel="stylesheet" />
   <title>Detalhes do Pedido</title>
 </head>
+<main>
+
+</main>
+
+
 
 <body>
 
   <main>
-
-  </main>
-  <div class="container">
-
-    <!-- Breadcrumb + Title -->
-    <div class="breadcrumb">Home &gt; Pedidos &gt; <span id="breadcrumb-id">#1234</span></div>
-
-    <div class="title-row">
-      <ul>
-        <li>
-          <p>Detalhes do Pedido</p>
-        </li>
-      </ul>
-
-      <div class="muted">
-        <ul>
-          <li>
-            <p>Visão completa do pedido e ações administrativas</p>
-          </li>
-        </ul>
-      </div>
-
-      <div style="display:flex; gap:10px;">
-        <button class="btn-imprimir" id="btn-print">Imprimir</button>
-      </div>
-    </div>
-
-    <!-- Order top: meta + delivery -->
-    <div class="card order-top">
-      <div class="order-meta">
-        <ul>
-          <li>
-            <p><strong>ID: </strong><span id="order-id"> #1234</span></p>
-            <p><strong>Data: </strong><span id="order-date"> 01/10/2025 14:23</span></p>
-            <p><strong>Pagamento: </strong><span id="order-payment" class="small"> Pix</span></p>
-            <p><strong>Status: </strong><span id="order-status" class="badge Aprovado"> Pago</span></p>
-          </li>
-        </ul>
-      </div>
-
-      <div id="endereco-delivery" class="delivery">
-
-        <div class="title-delivery">
-          <ul>
-            <li>
-              <p>Endereço de Entrega</p>
-            </li>
-          </ul>
-          <div>
-            <p id="delivery-name"><strong>Nome:</strong> João da Silva</p>
-            <p id="delivery-street"><strong>Rua:</strong> Av. Exemplo, 123</p>
-            <p id="delivery-city"><strong>Cidade:</strong> São Paulo - SP</p>
-            <p id="delivery-zip"><strong>CEP:</strong> 01234-567</p>
-            <p id="delivery-phone"><strong>Tel:</strong> (11) 9 9999-9999</p>
-          </div>
+    <div class="container"> <!-- Breadcrumb + Title -->
+      <div class="breadcrumb"><a href="/pages/admin/lista-pedidos.html">Pedidos</a> &gt; <span id="breadcrumb-id">#1234</span></div>
+      <div class="title-row">
+        <div>
+          <h1>Detalhes do Pedido</h1>
+          <div class="muted">Visão completa do pedido e ações administrativas</div>
         </div>
-
-        <!-- Cliente info + Payment info -->
-        <div class="two-col">
-          <div id="info-cliente" class="card">
-            <div class="section-title">
-              <ul>
-                <li>
-                  <p>Informações do Cliente</p>
-                </li>
-              </ul>
-            </div>
-            <p><strong id="client-name">João da Silva</strong></p>
-            <p class="small" id="client-email">joao@email.com</p>
-            <p class="small" id="client-phone">(11) 9 9999-9999</p>
-          </div>
-
-          <div class="card">
-            <div class="section-title">
-              <ul>
-                <li>
-                  <p>Resumo do Pagamento</p>
-                </li>
-              </ul>
-            </div>
-            <p class="small"><strong>Subtotal:</strong> <span id="summary-subtotal">R$ 0,00</span></p>
-            <p class="small"><strong>Frete:</strong> <span id="summary-shipping">R$ 0,00</span></p>
-            <p class="small"><strong>Desconto:</strong> <span id="summary-discount">R$ 0,00</span></p>
-            <div class="line"></div>
-            <p><strong>Total:</strong> <span id="summary-total" style="font-size:18px;">R$ 0,00</span></p>
-          </div>
+        <div style="display:flex; gap:10px;"> <button class="btn primary" id="btn-print">Imprimir</button> </div>
+      </div> <!-- Order top: meta + delivery -->
+      <div class="card order-top">
+        <div class="order-meta">
+          <p><strong>ID</strong><br><span id="order-id">#1234</span></p>
+          <p><strong>Data</strong><br><span id="order-date">01/10/2025 14:23</span></p>
+          <p><strong>Pagamento</strong><br><span id="order-payment" class="small">Pix</span></p>
+          <p><strong>Status</strong><br><span id="order-status" class="badge Aprovado">Pago</span></p>
         </div>
-
-        <!-- Items -->
+        <div id="endereco-delivery" class="delivery">
+          <h4>Endereço de Entrega</h4>
+          <p id="delivery-name"><strong>Nome:</strong> João da Silva</p>
+          <p id="delivery-street"><strong>Rua:</strong> Av. Exemplo, 123</p>
+          <p id="delivery-city"><strong>Cidade:</strong> São Paulo - SP</p>
+          <p id="delivery-zip"><strong>CEP:</strong> 01234-567</p>
+          <p id="delivery-phone"><strong>Tel:</strong> (11) 9 9999-9999</p>
+        </div>
+      </div> <!-- Cliente info + Payment info -->
+      <div class="two-col">
+        <div id="info-cliente" class="card">
+          <div class="section-title">Informações do Cliente</div>
+          <p><strong id="client-name">João da Silva</strong></p>
+          <p class="small" id="client-email">joao@email.com</p>
+          <p class="small" id="client-phone">(11) 9 9999-9999</p>
+        </div>
         <div class="card">
-          <div class="section-title">
-            <ul>
-              <li>
-                <p>Itens do Pedido</p>
-              </li>
-            </ul>
+          <div class="section-title">Resumo do Pagamento</div>
+          <p class="small"><strong>Subtotal:</strong> <span id="summary-subtotal">R$ 0,00</span></p>
+          <p class="small"><strong>Frete:</strong> <span id="summary-shipping">R$ 0,00</span></p>
+          <p class="small"><strong>Desconto:</strong> <span id="summary-discount">R$ 0,00</span></p>
+          <div class="line"></div>
+          <p><strong>Total:</strong> <span id="summary-total" style="font-size:18px;">R$0,00</span></p>
+        </div>
+      </div> <!-- Items -->
+      <div class="card">
+        <div class="section-title">Itens do Pedido</div>
+        <table class="items-table" aria-label="Itens do pedido">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço unit.</th>
+              <th>Quantidade</th>
+              <th class="right">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="items-body"></tbody>
+        </table>
+        <div class="summary-row">
+          <div class="summary-box">
+            <div class="small">Subtotal</div> <b id="box-subtotal"></b>
           </div>
-          <table class="items-table" aria-label="Itens do pedido">
-            <thead>
-              <tr>
-                <th>Produto</th>
-                <th>Preço unit.</th>
-                <th>Quantidade</th>
-                <th class="right">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody id="items-body"></tbody>
-          </table>
-
-          <div class="summary-row">
-            <div class="summary-box">
-              <div class="small">
-                <ul>
-                  <li>
-                    <p>Subtotal</p>
-                  </li>
-                </ul>
-              </div>
-              <b id="box-subtotal"></b>
-            </div>
-
-            <div class="summary-box">
-              <div class="small">
-                <ul>
-                  <li>
-                    <p>Frete</p>
-                  </li>
-                </ul>
-              </div>
-              <b id="box-shipping">R$ 0,00</b>
-            </div>
-
-            <div class="summary-box">
-              <div class="small">
-                <ul>
-                  <li>
-                    <p>Total</p>
-                  </li>
-                </ul>
-              </div>
-              <b id="box-total"></b>
-            </div>
+          <div class="summary-box">
+            <div class="small">Frete</div> <b id="box-shipping">R$ 0,00</b>
+          </div>
+          <div class="summary-box">
+            <div class="small">Total</div> <b id="box-total"></b>
           </div>
         </div>
-
-        <!-- Actions -->
-        <div class="actions">
-          <div>
-            <button class="btn secondary" id="btn-back">Voltar</button>
-          </div>
-          <div style="display:flex; gap:10px;">
-            <button class="btn primary" id="btn-update-status">Editar pedido</button>
-          </div>
+      </div> <!-- Actions -->
+      <div class="actions">
+        <div> <button class="btn secondary" id="btn-back">Voltar</button> </div>
+        <div style="display:flex; gap:10px;"> <button class="btn primary" id="btn-update-status">Editar pedido</button>
         </div>
-
-      </div> <!-- fim do .delivery -->
-    </div>
-
-    <!-- Modal de edição -->
-    <div id="modal-editar">
+      </div>
+    </div> <!-- Modal de edição -->
+    <div id="modal-editar" class="modal" style="display:none;">
       <div class="modal-content">
-
-        <div class="section-title-modal">
-          <ul>
-            <li>
-              <p>Informações do Cliente</p>
-            </li>
-          </ul>
-        </div>
-
         <h2>Editar Pedido</h2>
-
-        <div class="modal-row">
-          <label>Status do Pedido</label>
-          <select id="modal-status">
+        <div class="modal-row"> <label>Status do Pedido</label> <select id="modal-status">
             <option value="Pendente">Pendente</option>
             <option value="Pago">Pago</option>
             <option value="Cancelado">Cancelado</option>
-          </select>
-        </div>
-
-        <div class="modal-row">
-          <label>Forma de Pagamento</label>
-          <select id="modal-pagamento">
+          </select> </div>
+        <div class="modal-row"> <label>Forma de Pagamento</label> <select id="modal-pagamento">
             <option value="Pix">Pix</option>
             <option value="Cartão">Cartão</option>
             <option value="Boleto">Boleto</option>
-          </select>
-        </div>
-
-        <div class="modal-row">
-          <label>Nome do Recebedor</label>
-          <input type="text" id="modal-nome" disabled />
-        </div>
-
-        <div class="modal-row">
-          <label>Rua</label>
-          <input type="text" id="modal-rua" disabled />
-        </div>
-
-        <div class="modal-row">
-          <label>Cidade</label>
-          <input type="text" id="modal-cidade" disabled />
-        </div>
-
-        <div class="modal-row">
-          <label>Estado</label>
-          <input type="text" id="modal-estado" disabled />
-        </div>
-
-        <div class="modal-row">
-          <label>CEP</label>
-          <input type="text" id="modal-cep" disabled />
-        </div>
-
-        <div class="modal-row">
-          <label>Telefone</label>
-          <input type="text" id="modal-telefone" disabled />
-        </div>
-
-        <div class="modal-actions">
-          <button id="modal-salvar" class="btn primary">Salvar</button>
-          <button id="modal-cancelar" class="btn secondary">Cancelar</button>
-        </div>
-
-      </div> <!-- fim do .modal-content -->
+          </select> </div>
+        <div class="modal-row"> <label>Nome do Recebedor</label> <input type="text" id="modal-nome" disabled /> </div>
+        <div class="modal-row"> <label>Rua</label> <input type="text" id="modal-rua" disabled /> </div>
+        <div class="modal-row"> <label>Cidade</label> <input type="text" id="modal-cidade" disabled /> </div>
+        <div class="modal-row"> <label>Estado</label> <input type="text" id="modal-estado" disabled /> </div>
+        <div class="modal-row"> <label>CEP</label> <input type="text" id="modal-cep" disabled /> </div>
+        <div class="modal-row"> <label>Telefone</label> <input type="text" id="modal-telefone" disabled /> </div>
+        <div class="modal-actions"> <button id="modal-salvar" class="btn primary">Salvar</button> <button
+            id="modal-cancelar" class="btn secondary">Cancelar</button> </div>
+      </div>
     </div>
+  </main>
 
-  </div>
-
-
-  <div id="toast" class="toast"></div>
-  <script src="/js/script.js"></script>
   <script src="/js/verificarAcesso.js"></script>
   <script src="/js/pedido-detalhes.js"></script>
 </body>
