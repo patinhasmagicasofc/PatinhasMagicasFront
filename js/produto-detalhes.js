@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(document.location.search);
   const idProduto = params.get("idProduto");
 
-  if (!verificarAcesso(['administrador', 'Cliente'])) return;
-
   updateCartBadge();
 
   try {

@@ -31,7 +31,7 @@ function verificarAcesso(perfisEsperados = []) {
 
 function logout() {
     localStorage.removeItem('authToken');
-    window.location.href = '/index.html';
+    window.location.href = '/pages/public/login.html';
 }
 
 async function consumirAPIAutenticada(endpoint, method = 'GET', body = null) {
