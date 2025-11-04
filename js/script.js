@@ -33,3 +33,22 @@ function mostrarToast(mensagem, tipo = "sucesso") {
   setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
+
+
+
+
+ 
+//botãoHome
+const pawBtn = document.getElementById("pawTopBtn");
+window.onscroll = function() {
+  pawBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+};
+
+// Função de rolagem suave + animação de patinhas
+pawBtn.onclick = function() {
+  const pawTrail = document.createElement("div");
+  pawTrail.classList.add("paw-trail");
+  document.body.appendChild(pawTrail);
+  setTimeout(() => pawTrail.remove(), 2000);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};

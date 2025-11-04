@@ -196,3 +196,33 @@ function updateCartBadge() {
         badge.style.display = count > 0 ? 'inline' : 'none';
     }
 }
+
+
+//email
+(function(){
+    emailjs.init("iuD9mvzu2ap-ATYms"); // Substitua pelo seu public key do EmailJS
+  })();
+  
+  const form = document.querySelector("#contact form");
+  const feedback = document.createElement("p");
+  feedback.className = "feedback";
+  form.appendChild(feedback);
+  
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    feedback.textContent = "Enviando...";
+    feedback.className = "feedback";
+  
+    emailjs.sendForm("service_m2doe7w", "template_ozc3vgv", this)
+      .then(() => {
+        feedback.textContent = "Mensagem enviada com sucesso! 🐾";
+        feedback.classList.add("success");
+        form.reset();
+      }, (error) => {
+        feedback.textContent = "Ops! Ocorreu um erro. Tente novamente.";
+        feedback.classList.add("error");
+        console.error("Erro ao enviar:", error);
+      });
+  });
+
+  
