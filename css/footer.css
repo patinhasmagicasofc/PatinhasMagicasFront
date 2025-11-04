@@ -1,0 +1,135 @@
+/* #region footer */
+
+footer {
+    background: var(--clr-pet-blue-soft);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 2em;
+  
+    .logo {
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
+  
+    .footer-nav {
+      nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 2em;
+        width: 100%;
+        max-width: 600px;
+  
+        .tips-warnings,
+        .our-products {
+          display: flex;
+          padding: 0 1em;
+          flex: 1 1 200px;
+  
+          ul li {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+  
+            .title-tips-warnings p,
+            .title-our-products p {
+              font-weight: var(--fw-title);
+            }
+  
+            .links-tw,
+            .links-op {
+              display: flex;
+              flex-direction: column;
+              gap: 0.8em;
+  
+              a {
+                text-decoration: none;
+                color: var(--clr-pet-blue-dark);
+                transition: color 0.2s ease;
+  
+                &:hover {
+                  color: var(--clr-pet-blue);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .social-media {
+      display: flex;
+      gap: 1em;
+  
+      a img {
+        width: 30px;
+        transition: transform 0.2s ease;
+  
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  
+    /* ===== Responsividade ===== */
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  
+      .footer-nav {
+        nav {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+  
+          .tips-warnings,
+          .our-products {
+            padding: 1em 0;
+  
+            ul li {
+              align-items: center;
+            }
+  
+            .links-tw,
+            .links-op {
+              align-items: center;
+            }
+          }
+        }
+      }
+  
+      .social-media {
+        justify-content: center;
+        margin-top: 1em;
+      }
+    }
+  
+    @media (max-width: 600px) {
+      padding: 1.5em;
+  
+      .logo img {
+        width: 150px;
+      }
+  
+      .footer-nav nav {
+        max-width: 100%;
+  
+        .tips-warnings,
+        .our-products {
+          flex: 1 1 100%;
+        }
+      }
+  
+      .social-media a img {
+        width: 25px;
+      }
+    }
+  }
+  
+  
+  /* #endregion */
