@@ -1375,3 +1375,62 @@ footer {
     }
   }
 }
+
+
+
+
+
+/* Botão Voltar ao Topo */
+#pawTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5000;
+  background: var(--clr-pet-blue-light);
+  color: var(--clr-white);
+  border: none;
+  padding: 0.3em 0.6em;
+  border-radius: 50%;
+  font-size: 1.5em;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 3px 10px var(--clr-gray-light);
+  transition: all 0.3s ease;
+width: 60px;
+height: 60px;
+  img{
+    width: 30px;
+  height: 75%;
+  }
+}
+
+#pawTopBtn:hover {
+  background: var(--clr-pet-yellow);
+  transform: translateY(-3px);
+}
+
+/* Animação de patinhas */
+@keyframes paw-walk {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0.6);
+  }
+}
+
+.paw-trail {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: 2em;
+  animation: paw-walk 2s linear forwards;
+  z-index: 4500;
+}
+
