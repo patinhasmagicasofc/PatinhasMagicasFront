@@ -180,6 +180,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2em;
+  min-height: 100vh;
 
   .title-meus-pedidos ul {
     li {

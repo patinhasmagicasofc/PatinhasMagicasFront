@@ -172,7 +172,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2em;
-
+min-height: 100vh;
+margin-bottom: 2em;
   .title-meus-pedidos {
     li {
       display: flex !important;
