@@ -1,3 +1,6 @@
+
+
+
 // ======== REVEAL ANIMATION ========
 const elements = document.querySelectorAll('.reveal');
 

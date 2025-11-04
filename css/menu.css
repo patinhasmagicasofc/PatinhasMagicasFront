@@ -79,7 +79,7 @@ header {
                 img {
                     width: 140px;
                     height: 50px;
-                    filter: brightness(0) invert(1);
+                    /* filter: brightness(0) invert(1); */
                 }
             }
 
@@ -897,4 +897,52 @@ header {
 
 i {
     color: var(--clr-white) !important;
+}
+
+
+/* === Menu hambúrguer universal (substitui elementos antigos de busca/painel) === */
+padding: 0.25em;
+}
+.hamburger span {
+width: 28px;
+height: 3px;
+background: var(--clr-white);
+border-radius: 2px;
+transition: all 0.25s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
+
+
+/* MENU LINKS (escondidos por padrão) */
+.menu-links {
+display: none;
+flex-direction: column;
+align-items: center;
+background: var(--clr-pet-blue);
+width: 100%;
+padding-bottom: 0.6em;
+}
+.menu-links.active { display: flex; }
+
+
+.menu-links ul { list-style: none; padding: 0; margin: 0; width: 100%; }
+.menu-links li { width: 100%; text-align: center; }
+.menu-links a {
+display: block;
+width: 100%;
+color: var(--clr-white);
+text-decoration: none;
+padding: 1em;
+font-weight: 600;
+}
+.menu-links a:hover { background: var(--clr-pet-blue-light); color: var(--clr-pet-blue-dark); }
+
+
+/* DESKTOP: mantemos o hambúrguer visível, mas o menu pode aparecer como dropdown central se preferir */
+@media (min-width: 1024px) {
+.menu-top { padding: 1em 2em; }
+.logo img { width: 150px; }
+.menu-links { max-width: 900px; margin: 0 auto; }
 }

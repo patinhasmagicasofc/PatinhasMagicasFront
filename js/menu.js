@@ -44,6 +44,10 @@ async function carregarMenu() {
   } catch (err) {
     console.error("Erro ao carregar o menu:", err);
   }
+
+
+
+  
 }
 
 // Inicializa menu no carregamento da página
