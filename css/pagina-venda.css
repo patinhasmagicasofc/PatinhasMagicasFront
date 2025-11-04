@@ -329,7 +329,7 @@ main {
     position: relative;
     display: flex;
     align-items: center;
-
+margin-bottom: 2em;
     .carousel-btn {
       background: var(--clr-transparente);
       color: var(--clr-black);
