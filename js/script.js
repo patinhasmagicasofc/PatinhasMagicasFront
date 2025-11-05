@@ -44,7 +44,7 @@ function mostrarToast(mensagem, tipo = "sucesso") {
 //botãoHome
 const pawBtn = document.getElementById("pawTopBtn");
 window.onscroll = function() {
-  pawBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+  pawBtn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
 };
 
 // Função de rolagem suave + animação de patinhas

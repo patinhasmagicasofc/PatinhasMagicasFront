@@ -639,7 +639,7 @@ main {
             .img-two {
               & img {
                 width: 80px;
-                height: 80px;
+                /* height: 80px; */
                 border-radius: 50%;
                 object-fit: cover;
               }
@@ -721,8 +721,8 @@ main {
             .img-one,
             .img-two {
               & img {
-                width: 280px;
-                height: 160px;
+                width: 150px;
+                /* height: 160px; */
                 border-radius: 0.8em;
                 object-fit: cover;
               }
@@ -769,7 +769,7 @@ main {
         justify-content: space-between;
         gap: 1em;
         align-items: center;
-        width: 400px;
+        width: 3800px;
         border: 1px solid var(--clr-pet-blue-light);
 
         .title-atendimento-vet,

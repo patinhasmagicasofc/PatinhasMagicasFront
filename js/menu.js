@@ -1,6 +1,6 @@
 // ===================== MENU DINÂMICO =====================
 async function carregarMenu() {
-  const logado = localStorage.getItem('authToken') !== null;
+  const logado = localStorage.getItem("authToken") !== null;
   const arquivo = logado ? "/menu-logado.html" : "/menu-deslogado.html";
   const menuContainer = document.getElementById("menu-container");
 
@@ -9,144 +9,132 @@ async function carregarMenu() {
     const html = await response.text();
     menuContainer.innerHTML = html;
 
-    // Depois que o menu foi carregado, protegemos link e inicializamos dropdowns
     protegerLinks();
     initDropdowns();
     initDropdownPerfil();
-
+    initHamburgerMenu();
 
     const user = getUserFromToken();
-
     if (user) {
-      console.log(user.unique_name);
+      const nomeElemento = document.getElementById("nomeUsuario");
+      if (nomeElemento) nomeElemento.textContent = user.unique_name;
 
-      const nomeElemento = document.getElementById('nomeUsuario');
-      if (nomeElemento) {
-        nomeElemento.textContent = user.unique_name;
-      }
-
-      // 👇 Controle de exibição do menu admin (dentro do IF)
-      const perfil = user.role?.toLowerCase(); // garante que não quebre
+      const perfil = user.role?.toLowerCase();
       const menuAdmin = document.getElementById("menuAdmin");
 
-      console.log("Perfil do usuário:", perfil);
-
-      if (perfil === "administrador" && menuAdmin) {
-        menuAdmin.style.display = "block"; // mostra o item
-      } else if (menuAdmin) {
-        menuAdmin.style.display = "none"; // mantém oculto
-      }
+      if (perfil === "administrador" && menuAdmin) menuAdmin.style.display = "block";
+      else if (menuAdmin) menuAdmin.style.display = "none";
     }
 
-    // Atualiza a contagem do carrinho
     atualizarContagemCarrinho();
-
   } catch (err) {
     console.error("Erro ao carregar o menu:", err);
   }
-
-
-
-  
 }
 
-// Inicializa menu no carregamento da página
 document.addEventListener("DOMContentLoaded", carregarMenu);
-
-// Função pública para atualizar menu dinamicamente
-function atualizarMenu() {
-  carregarMenu();
-}
+function atualizarMenu() { carregarMenu(); }
 
 // ===================== PROTEÇÃO DE LINKS =====================
 function protegerLinks() {
-  const links = document.querySelectorAll('.exige-login');
-
+  const links = document.querySelectorAll(".exige-login");
   links.forEach(link => {
-    link.addEventListener('click', function (e) {
-      const logado = localStorage.getItem('authToken') !== null;
+    link.addEventListener("click", function (e) {
+      const logado = localStorage.getItem("authToken") !== null;
       if (!logado) {
-        e.preventDefault(); // impede ir direto para a página
-        // salva a página de destino
-        localStorage.setItem('paginaAnterior', this.getAttribute('href'));
-        // redireciona para login
-        window.location.href = '/pages/public/login.html';
+        e.preventDefault();
+        localStorage.setItem("paginaAnterior", this.getAttribute("href"));
+        window.location.href = "/pages/public/login.html";
       }
     });
   });
 }
 
-// ===================== DROPDOWN MENU =====================
+// ===================== DROPDOWNS =====================
 function initDropdowns() {
-  const dropdowns = document.querySelectorAll('.shopping-cart-order-service .dropdown');
-
+  const dropdowns = document.querySelectorAll(".shopping-cart-order-service .dropdown");
   dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector('a');
-
-    if (!link.classList.contains('cart-link') && !link.classList.contains('order-title')) {
-      link.addEventListener('click', function (e) {
+    const link = dropdown.querySelector("a");
+    if (!link.classList.contains("cart-link") && !link.classList.contains("order-title")) {
+      link.addEventListener("click", e => {
         e.preventDefault();
         dropdowns.forEach(item => {
-          if (item !== dropdown) item.classList.remove('ativo');
+          if (item !== dropdown) item.classList.remove("ativo");
         });
-        dropdown.classList.toggle('ativo');
+        dropdown.classList.toggle("ativo");
       });
     }
   });
 
-  document.addEventListener('click', e => {
+  document.addEventListener("click", e => {
     if (![...dropdowns].some(dropdown => dropdown.contains(e.target))) {
-      dropdowns.forEach(dropdown => dropdown.classList.remove('ativo'));
+      dropdowns.forEach(dropdown => dropdown.classList.remove("ativo"));
     }
   });
 }
 
 // ===================== DROPDOWN PERFIL =====================
 function initDropdownPerfil() {
-  const dropdownsPerfil = document.querySelectorAll('.dropdown-perfil');
-
-  function toggleDropdown(e) {
-    if (e.target.closest('.perfil-img')) {
-      e.preventDefault();
-      if (this.classList.contains('ativo')) {
-        this.classList.remove('ativo');
-      } else {
-        dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
-        this.classList.add('ativo');
+  const dropdownsPerfil = document.querySelectorAll(".dropdown-perfil");
+  dropdownsPerfil.forEach(item => {
+    item.addEventListener("click", e => {
+      if (e.target.closest(".perfil-img")) {
+        e.preventDefault();
+        item.classList.toggle("ativo");
       }
-    }
-  }
+    });
+  });
 
-  dropdownsPerfil.forEach(item => item.addEventListener('click', toggleDropdown));
-
-  document.addEventListener('click', (e) => {
+  document.addEventListener("click", e => {
     if (![...dropdownsPerfil].some(item => item.contains(e.target))) {
-      dropdownsPerfil.forEach(item => item.classList.remove('ativo'));
+      dropdownsPerfil.forEach(item => item.classList.remove("ativo"));
     }
   });
 }
 
+// ===================== MENU LATERAL (HAMBÚRGUER) =====================
+function initHamburgerMenu() {
+  const hamburger = document.getElementById("hamburger");
+  const sideMenu = document.getElementById("sideMenu");
+  const closeBtn = document.getElementById("closeMenu");
 
-function logout() {
-  // 1️⃣ Remove dados de autenticação
-  localStorage.removeItem('authToken');
-  localStorage.removeItem('userProfile');
+  if (!hamburger || !sideMenu) return;
 
-  // 2️⃣ Atualiza o menu para versão deslogada
-  if (typeof atualizarMenu === "function") {
-    atualizarMenu();
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    sideMenu.classList.toggle("active");
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      sideMenu.classList.remove("active");
+    });
   }
 
-  // 3️⃣ Redireciona para página pública
-  window.location.href = '/pages/public/login.html';
+  document.addEventListener("click", e => {
+    if (
+      sideMenu.classList.contains("active") &&
+      !sideMenu.contains(e.target) &&
+      !hamburger.contains(e.target)
+    ) {
+      hamburger.classList.remove("active");
+      sideMenu.classList.remove("active");
+    }
+  });
+}
+
+// ===================== LOGOUT / CARRINHO =====================
+function logout() {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("userProfile");
+  if (typeof atualizarMenu === "function") atualizarMenu();
+  window.location.href = "/pages/public/login.html";
 }
 
 function atualizarContagemCarrinho() {
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
   const totalItens = cart.reduce((sum, item) => sum + item.quantidade, 0);
-  const cartCountEl = document.getElementById('cart-count');
-  if (cartCountEl) {
-    cartCountEl.textContent = totalItens;
-  }
+  const cartCountEl = document.getElementById("cart-count");
+  if (cartCountEl) cartCountEl.textContent = totalItens;
 }
-

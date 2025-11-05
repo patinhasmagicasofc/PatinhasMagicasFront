@@ -1,13 +1,10 @@
 <nav id="menuLogado">
     <div class="container-menu-up">
-
         <div class="logo">
             <a href="/index.html">
                 <img src="/img/logo/logo2.png" alt="Patinhas Mágicas" />
             </a>
         </div>
-
-        
 
         <div class="menu">
             <div class="category-search">
@@ -23,64 +20,80 @@
             </div>
         </div>
 
-        <div class="shopping-cart-order-service">
-            <ul>
-                <li class="dropdown order">
-                    <a class="order-title" href="/pages/user/meus-pedidos.html"><i
-                            class="material-icons">local_mall</i>Pedidos</a>
-                </li>
+        <div class="nav-right-side">
+            <div class="shopping-cart-order-service">
+                <ul>
+                    <li class="dropdown order">
+                        <a class="order-title" href="/pages/user/meus-pedidos.html"><i
+                                class="material-icons">local_mall</i></a>
+                    </li>
 
-                <li class="dropdown shopping-cart">
-                    <a href="/pages/public/carrinho.html" class="cart-link shopping-cart-title">
-                        <i class="material-icons position-relative">
-                            shopping_cart
-                            <span id="cart-count"
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                        </i>
-                    </a>
-                </li>
+                    <li class="dropdown shopping-cart">
+                        <a href="/pages/public/carrinho.html" class="cart-link shopping-cart-title">
+                            <i class="material-icons position-relative">
+                                shopping_cart
+                                <span id="cart-count"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-                <div class="perfil">
-                    <ul>
-                        <li class="dropdown-perfil">
-                            <a class="perfil-img" href="#">
-                                <img src="/img/img-adoption/adoption-for.png" alt="Foto do usuário" />
-                            </a>
-                            <ul class="dropdown-content">
-                                <li class="perfil-configuration">
-                                    <div class="img">
-                                        <img src="/img/img-adoption/adoption-for.png" alt="Foto do usuário" />
-                                    </div>
-                                    <div class="configuration">
-                                        <ul>
-                                            <li>
-                                                <p id="nomeUsuario" class="name"></p>
-                                                <p class="config"><a href="/pages/user/editar-usuario.html">Ver
-                                                        perfil</a>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
+            <div class="perfil">
+                <ul>
+                    <li class="dropdown-perfil">
+                        <a class="perfil-img" href="#">
+                            <img src="/img/img-adoption/adoption-for.png" alt="Foto do usuário" />
+                        </a>
+                        <ul class="dropdown-content">
+                            <li class="perfil-configuration">
+                                <div class="img">
+                                    <img src="/img/img-adoption/adoption-for.png" alt="Foto do usuário" />
+                                </div>
+                                <div class="configuration">
+                                    <ul>
+                                        <li>
+                                            <p id="nomeUsuario" class="name"></p>
+                                            <p class="config"><a href="/pages/user/editar-usuario.html">Ver
+                                                    perfil</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="account"><a href="#">Configurações da conta</a></li>
+                            <li><a href="/pages/user/meus-pedidos.html">Meus pedidos</a></li>
+                            <li><a href="#">Favoritos</a></li>
+                            <li><a href="#">Suporte</a></li>
+                            <li id="menuAdmin" style="display: none;">
+                                <a href="/pages/admin/lista-agendamentos.html">Painel do Administrador</a>
+                            </li>
+                            <li class="down"><a onclick="logout()">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
-                                <li class="account"><a href="#">Configurações da conta</a></li>
-                                <li><a href="/pages/user/meus-pedidos.html">Meus pedidos</a></li>
-                                <li><a href="#">Favoritos</a></li>
-                                <li><a href="#">Suporte</a></li>
-                                <li id="menuAdmin" style="display: none;">
-                                    <a href="/pages/admin/lista-agendamentos.html">Painel do Administrador</a>
-                                </li>
-                                <li class="down"><a onclick="logout()">Sair</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </ul>
+            <button id="hamburger" class="hamburger-button">
+                <i class="material-icons">menu</i>
+            </button>
         </div>
-
     </div>
 
-    <div class="container-menu-down">
+    <div id="sideMenu" class="container-menu-down">
+        <button id="closeMenu" class="close-button">
+            <i class="material-icons">close</i>
+        </button>
+
+        <div class="sidebar-auth">
+            <a class="perfil" href="/pages/user/editar-usuario.html">
+                Ver Perfil
+            </a>
+            <a class="sair" onclick="logout()">
+                Sair
+            </a>
+        </div>
         <div class="shopping-cart-order-service down">
             <ul>
                 <a class="service-title" href="#">Cachorros</a>
@@ -109,5 +122,4 @@
             </ul>
         </div>
     </div>
-
 </nav>
