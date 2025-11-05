@@ -53,13 +53,6 @@ body {
     margin: 0;
     font-family: "Lexend", sans-serif;
 }
-
-body::before {
-    content: "";
-    display: block;
-    height: 5em;
-}
-
 :root {
     /* ===== neutros ===== */
     --clr-black: #000000;
@@ -137,9 +130,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background: var(--clr-white);
-
+min-height: 100vh;
     .container-cadastro {
         width: 100%;
         max-width: 900px;
