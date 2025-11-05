@@ -74,7 +74,7 @@ function addToCart(product, quantidade = 1) {
   }
 
   setCart(cart);
-  showToast(`✅ Adicionado ${quantidade}x ao carrinho.`);
+  mostrarToast(`🛒 ${product.nome} adicionado ao carrinho! ${quantidade}x ao carrinho.`);
 }
 
 function updateCartBadge() {

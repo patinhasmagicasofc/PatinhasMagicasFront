@@ -94,9 +94,11 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
 
   if (!verificarAcesso(['administrador', 'Cliente'])) return;
 
-  if (!carrinho.length) return alert("Carrinho vazio!");
+  if (!carrinho.length) return mostrarToast("⚠️ Carrinho vazio!.", "aviso");;
   const pagamentoId = pagamentoSelect.value;
-  if (!pagamentoId) return alert("Selecione uma forma de pagamento");
+  if (!pagamentoId) return mostrarToast("⚠️ Selecione uma forma de pagamento!.", "aviso");;
+
+  
 
   try {
     const pedidoCompleto = {
@@ -116,13 +118,13 @@ document.getElementById("formCheckout").addEventListener("submit", async (e) => 
 
     if (!result.pedidoId) throw new Error("Erro ao criar pedido");
 
-    alert(result.message || "Pedido finalizado com sucesso!");
+    mostrarToast("✅ Pedido finalizado com sucesso!.", "sucesso");
 
     localStorage.removeItem("cart");
     window.location.href = "/pages/user/confirmacao.html?id=" + result.pedidoId;
 
   } catch (err) {
     console.error(err);
-    alert("Erro ao finalizar pedido. Tente novamente.");
+    mostrarToast("❌ Erro ao finalizar pedido. Tente novamente.", "erro");
   }
 });

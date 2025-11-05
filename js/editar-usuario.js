@@ -249,3 +249,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
 });
+
+function voltarPagina() {
+    if (document.referrer && document.referrer.includes(window.location.host)) {
+        history.back();
+    } else {
+        window.location.href = '/pages/admin/lista-usuarios.html';
+    }
+}

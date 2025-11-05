@@ -28,16 +28,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         const especieValue = document.getElementById("especie").value;
 
         if (!categoriaValue) {
-            alert("Por favor, selecione uma categoria válida!");
+            mostrarToast("⚠️ Por favor, selecione uma categoria válida!", "aviso");
             return;
         }
         if (!categoriaValue) {
-            alert("Por favor, selecione uma categoria válida!");
+            mostrarToast("⚠️ Por favor, selecione uma categoria válida", "aviso");
             return;
         }
 
         if (!especieValue) {
-            alert("Por favor, selecione uma espécie válida!");
+            mostrarToast("Por favor, selecione uma espécie válida", "aviso");
             return;
         }
 
@@ -45,6 +45,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("Produto a ser cadastrado:", produto);
         await cadastrarProduto(produto);
     });
+
+    // --- Inicializa menus ---
+    inicializarMenuLateral();
+    inicializarPainelFiltros();
+    inicializarMenuOptions();
 
     async function cadastrarProduto(produto) {
         try {
@@ -87,8 +92,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function carregarEspecies() {
         try {
-            if (!validarLogin()) return;
-
             const data = await consumirAPIAutenticada('/Especie', 'GET');
             const selectEspecie = document.getElementById('especie');
             if (!selectEspecie || !data) return;
@@ -107,34 +110,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-//função header
-const menuItem = document.querySelectorAll('.item-menu');
-
-function selectLink() {
-    menuItem.forEach((item) => item.classList.remove('ativo'));
-    this.classList.add('ativo');
-}
-
-menuItem.forEach((item) => item.addEventListener('click', selectLink));
-
-const btnExpandir = document.querySelector('#btn-exp');
-const nav = document.querySelector('.menu-lateral');
-const header = document.querySelector('header');
-
-// Abrir/fechar menu
-btnExpandir.addEventListener('click', (e) => {
-    e.stopPropagation()
-    nav.classList.toggle('expandir');
-    header.classList.toggle('expandir');
-});
-
-// Fechar menu ao clicar fora
-document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
-        nav.classList.remove('expandir');
-        header.classList.remove('expandir');
-    }
-});
 
 
 // Máscara de preço
@@ -157,3 +132,61 @@ costPrecoInput.addEventListener('input', function (e) {
     valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
     e.target.value = valor;
 });
+
+// --- Inicialização dos menus ---
+function inicializarMenuLateral() {
+    const menuItems = document.querySelectorAll('.item-menu');
+    const btnExpandir = document.getElementById('btn-exp');
+    const nav = document.querySelector('.menu-lateral');
+    const header = document.querySelector('header');
+
+    menuItems.forEach(item => item.addEventListener('click', () => {
+        menuItems.forEach(i => i.classList.remove('ativo'));
+        item.classList.add('ativo');
+    }));
+
+    btnExpandir?.addEventListener('click', e => {
+        e.stopPropagation();
+        nav?.classList.toggle('expandir');
+        header?.classList.toggle('expandir');
+    });
+
+    document.addEventListener('click', e => {
+        if (!nav?.contains(e.target) && nav?.classList.contains('expandir')) {
+            nav.classList.remove('expandir');
+            header?.classList.remove('expandir');
+        }
+    });
+}
+
+function inicializarPainelFiltros() {
+    const btnFilters = document.getElementById('btn-filters-expandir');
+    const sidebar = document.querySelector('.filters-exp');
+    const main = document.querySelector('main');
+
+    btnFilters?.addEventListener('click', e => {
+        e.stopPropagation();
+        sidebar?.classList.toggle('open');
+        main?.classList.toggle('shifted');
+    });
+
+    document.addEventListener('click', e => {
+        if (!sidebar?.contains(e.target) && !btnFilters?.contains(e.target)) {
+            sidebar?.classList.remove('open');
+            main?.classList.remove('shifted');
+        }
+    });
+}
+
+function inicializarMenuOptions() {
+    document.addEventListener("click", e => {
+        document.querySelectorAll(".menu-container").forEach(menu => {
+            if (!menu.contains(e.target)) menu.classList.remove("open");
+        });
+
+        const btn = e.target.closest(".menu-container");
+        if (e.target.closest(".menu-btn") && btn) {
+            btn.classList.toggle("open");
+        }
+    });
+}

@@ -10,13 +10,13 @@ $(document).ready(function () {
     }
 
     $('#telefone').mask(telefoneMask, {
-        onKeyPress: function(val, e, field, options) {
+        onKeyPress: function (val, e, field, options) {
             field.mask(telefoneMask(val), options);
         }
     });
 
     // --- Validações ---
-    $('#formCliente').on('submit', function(e) {
+    $('#formCliente').on('submit', function (e) {
         let valido = true;
         let mensagens = [];
 

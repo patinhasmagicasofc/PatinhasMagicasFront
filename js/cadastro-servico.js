@@ -49,6 +49,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             mostrarToast("❌ Erro ao cadastrar servico.", "erro");
         }
     }
+
+    // --- Inicializa menus ---
+    inicializarMenuLateral();
+    inicializarPainelFiltros();
+    inicializarMenuOptions();
 });
 
 
@@ -73,34 +78,67 @@ async function carregarTiposServico() {
     }
 }
 
-//função header
-const menuItem = document.querySelectorAll('.item-menu');
 
-function selectLink() {
-    menuItem.forEach((item) => item.classList.remove('ativo'));
-    this.classList.add('ativo');
+// --- Inicialização dos menus ---
+function inicializarMenuLateral() {
+    const menuItems = document.querySelectorAll('.item-menu');
+    const btnExpandir = document.getElementById('btn-exp');
+    const nav = document.querySelector('.menu-lateral');
+    const header = document.querySelector('header');
+
+    menuItems.forEach(item => item.addEventListener('click', () => {
+        menuItems.forEach(i => i.classList.remove('ativo'));
+        item.classList.add('ativo');
+    }));
+
+    btnExpandir?.addEventListener('click', e => {
+        e.stopPropagation();
+        nav?.classList.toggle('expandir');
+        header?.classList.toggle('expandir');
+    });
+
+    document.addEventListener('click', e => {
+        if (!nav?.contains(e.target) && nav?.classList.contains('expandir')) {
+            nav.classList.remove('expandir');
+            header?.classList.remove('expandir');
+        }
+    });
 }
 
-menuItem.forEach((item) => item.addEventListener('click', selectLink));
+function inicializarPainelFiltros() {
+    const btnFilters = document.getElementById('btn-filters-expandir');
+    const sidebar = document.querySelector('.filters-exp');
+    const main = document.querySelector('main');
 
-const btnExpandir = document.querySelector('#btn-exp');
-const nav = document.querySelector('.menu-lateral');
-const header = document.querySelector('header');
+    btnFilters?.addEventListener('click', e => {
+        e.stopPropagation();
+        sidebar?.classList.toggle('open');
+        main?.classList.toggle('shifted');
+    });
 
-// Abrir/fechar menu
-btnExpandir.addEventListener('click', (e) => {
-    e.stopPropagation()
-    nav.classList.toggle('expandir');
-    header.classList.toggle('expandir');
-});
+    document.addEventListener('click', e => {
+        if (!sidebar?.contains(e.target) && !btnFilters?.contains(e.target)) {
+            sidebar?.classList.remove('open');
+            main?.classList.remove('shifted');
+        }
+    });
+}
 
-// Fechar menu ao clicar fora
-document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && nav.classList.contains('expandir')) {
-        nav.classList.remove('expandir');
-        header.classList.remove('expandir');
-    }
-});
+function inicializarMenuOptions() {
+    document.addEventListener("click", e => {
+        document.querySelectorAll(".menu-container").forEach(menu => {
+            if (!menu.contains(e.target)) menu.classList.remove("open");
+        });
+
+        const btn = e.target.closest(".menu-container");
+        if (e.target.closest(".menu-btn") && btn) {
+            btn.classList.toggle("open");
+        }
+    });
+}
+
+
+
 
 function mostrarToast(mensagem, tipo = "sucesso") {
     const toast = document.getElementById("toast");

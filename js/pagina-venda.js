@@ -129,6 +129,7 @@ function addToCart(product) {
   }
 
   setCart(cart);
+  mostrarToast(`🛒 ${product.nome} adicionado ao carrinho! (x${item ? item.quantidade : 1})`);
 }
 
 function updateCartBadge() {
