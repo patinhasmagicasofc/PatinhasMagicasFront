@@ -1,7 +1,8 @@
 // cadastroScript.js
 
 // Configuração da API: ajuste a porta conforme necessário.
-const API_BASE_URL = 'http://localhost:5260/api';
+//const API_BASE_URL = 'http://localhost:5260/api';
+const API_BASE_URL = 'https://patinhasmagicasapi.onrender.com/api';
 const CADASTRO_ENDPOINT = `${API_BASE_URL}/Usuario`;
 
 document.getElementById('cadastroForm').addEventListener('submit', async function (event) {
