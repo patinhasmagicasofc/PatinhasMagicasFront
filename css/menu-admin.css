@@ -18,16 +18,23 @@ header {
         flex-direction: column;
 
         .btn-expandir {
-            margin: 1em 0 2em 1em;
-            padding-right: 1em;
             display: flex;
             cursor: pointer;
             justify-content: end;
 
-            .material-icons {
-                font-size: 1.5em;
-                color: var(--clr-pet-blue);
+            button {
+                padding: 1em;
+                border: none;
+                background: var(--clr-transparent);
+cursor: pointer;
+                .material-icons {
+
+                    font-size: 1.5em;
+                    color: var(--clr-pet-blue);
+                }
             }
+
+
         }
 
         .menu-informations {
