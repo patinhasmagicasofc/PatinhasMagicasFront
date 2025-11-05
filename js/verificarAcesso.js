@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://localhost:5260/api';
+//const API_BASE_URL = 'http://localhost:5260/api';
+const API_BASE_URL = 'https://patinhasmagicasapi.onrender.com/api';
 
 function verificarAcesso(perfisEsperados = []) {
     if (!Array.isArray(perfisEsperados)) {
