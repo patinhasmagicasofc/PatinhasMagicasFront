@@ -35,26 +35,26 @@
       </div> <!-- Order top: meta + delivery -->
       <div class="card order-top">
         <div class="order-meta">
-          <p><strong>ID</strong><br><span id="order-id">#1234</span></p>
-          <p><strong>Data</strong><br><span id="order-date">01/10/2025 14:23</span></p>
-          <p><strong>Pagamento</strong><br><span id="order-payment" class="small">Pix</span></p>
-          <p><strong>Status</strong><br><span id="order-status" class="badge Aprovado">Pago</span></p>
+          <p><strong>ID</strong><br><span id="order-id"></span></p>
+          <p><strong>Data</strong><br><span id="order-date"></span></p>
+          <p><strong>Pagamento</strong><br><span id="order-payment" class="small"></span></p>
+          <p><strong>Status</strong><br><span id="order-status" class="badge Aprovado"></span></p>
         </div>
         <div id="endereco-delivery" class="delivery">
           <h4>Endereço de Entrega</h4>
-          <p id="delivery-name"><strong>Nome:</strong> João da Silva</p>
-          <p id="delivery-street"><strong>Rua:</strong> Av. Exemplo, 123</p>
-          <p id="delivery-city"><strong>Cidade:</strong> São Paulo - SP</p>
-          <p id="delivery-zip"><strong>CEP:</strong> 01234-567</p>
-          <p id="delivery-phone"><strong>Tel:</strong> (11) 9 9999-9999</p>
+          <p id="delivery-name"><strong>Nome:</strong></p>
+          <p id="delivery-street"><strong>Rua:</strong></p>
+          <p id="delivery-city"><strong>Cidade:</strong> </p>
+          <p id="delivery-zip"><strong>CEP:</strong> </p>
+          <p id="delivery-phone"><strong>Tel:</strong> </p>
         </div>
       </div> <!-- Cliente info + Payment info -->
       <div class="two-col">
         <div id="info-cliente" class="card">
           <div class="section-title">Informações do Cliente</div>
-          <p><strong id="client-name">João da Silva</strong></p>
-          <p class="small" id="client-email">joao@email.com</p>
-          <p class="small" id="client-phone">(11) 9 9999-9999</p>
+          <p><strong id="client-name"></strong></p>
+          <p class="small" id="client-email"></p>
+          <p class="small" id="client-phone"></p>
         </div>
         <div class="card">
           <div class="section-title">Resumo do Pagamento</div>
@@ -99,16 +99,16 @@
     <div id="modal-editar" class="modal" style="display:none;">
       <div class="modal-content">
         <h2>Editar Pedido</h2>
-        <div class="modal-row"> <label>Status do Pedido</label> <select id="modal-status">
-            <option value="Pendente">Pendente</option>
-            <option value="Pago">Pago</option>
-            <option value="Cancelado">Cancelado</option>
-          </select> </div>
-        <div class="modal-row"> <label>Forma de Pagamento</label> <select id="modal-pagamento">
-            <option value="Pix">Pix</option>
-            <option value="Cartão">Cartão</option>
-            <option value="Boleto">Boleto</option>
-          </select> </div>
+        <div class="modal-row">
+          <label>Status do Pedido</label>
+          <select id="modal-status">
+          </select>
+        </div>
+        <div class="modal-row">
+          <label>Forma de Pagamento</label>
+          <select id="modal-pagamento">
+          </select>
+        </div>
         <div class="modal-row"> <label>Nome do Recebedor</label> <input type="text" id="modal-nome" disabled /> </div>
         <div class="modal-row"> <label>Rua</label> <input type="text" id="modal-rua" disabled /> </div>
         <div class="modal-row"> <label>Cidade</label> <input type="text" id="modal-cidade" disabled /> </div>

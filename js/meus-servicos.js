@@ -14,6 +14,7 @@ async function carregarServicosByUsuarioId(usuarioId) {
 
         const data = await consumirAPIAutenticada(`/Agendamento/Usuario/${usuarioId}`, 'GET');
         agendamentos = data;
+        console.log(data)
 
         renderizarAgendamentos(agendamentos);
     } catch (error) {
@@ -48,7 +49,7 @@ function renderizarAgendamentos(agendamentos) {
             day: '2-digit', month: '2-digit', year: 'numeric',
             hour: '2-digit', minute: '2-digit'
         });
-        const valor = valorTotal?.toFixed(2) || '0,00';
+        const valor = agendamento.valorTotal?.toFixed(2) || '0,00';
 
         const div = document.createElement('div');
         div.className = 'pedido';
@@ -72,6 +73,7 @@ function renderizarAgendamentos(agendamentos) {
     });
 }
 
+
 function verDetalhes(id) {
     const agendamento = agendamentos.find(a => a.id === id);
     if (!agendamento) return;
@@ -82,7 +84,7 @@ function verDetalhes(id) {
     const servicosHTML = agendamento.servicos?.length
         ? agendamento.servicos.map(s => `
             <li>
-                <strong>${s.nome}</strong> — R$ ${s.preco.toFixed(2)}
+                <strong>${s.nome}</strong> — R$ ${s.preco?.toFixed(2) ?? '0,00'}
             </li>
         `).join('')
         : '<li>Nenhum serviço informado</li>';
@@ -99,7 +101,6 @@ function verDetalhes(id) {
     const dataConfirmacao = agendamento.dataConfirmacao
         ? new Date(agendamento.dataConfirmacao).toLocaleString('pt-BR')
         : 'Ainda não confirmado';
-
     const status = agendamento.status || 'Não informado';
     const tipoPagamento = agendamento.tipoPagamento || 'Não informado';
     const valorTotal = agendamento.valorTotal?.toFixed(2) || '0.00';

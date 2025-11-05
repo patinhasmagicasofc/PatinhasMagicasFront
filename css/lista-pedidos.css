@@ -383,7 +383,7 @@ main {
         color: #fff;
         text-align: center;
 
-        &.pago {
+        &.aprovado {
           background: var(--clr-status-success);
         }
 
