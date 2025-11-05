@@ -54,11 +54,6 @@ body {
   font-family: "Lexend", sans-serif;
 }
 
-body::before {
-  content: "";
-  display: block;
-  height: 5em;
-}
 
 :root {
   /* ===== neutros ===== */

@@ -136,7 +136,7 @@ main {
   flex-direction: column;
   gap: 2em;
   align-items: center;
-
+min-height: 100vh;
   .breadcrumb {
     max-width: 1264px;
     display: flex;
