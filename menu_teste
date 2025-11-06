@@ -1,0 +1,53 @@
+<nav id="menuPrincipal">
+    <div class="container-menu-top">
+      <div class="logo">
+        <a href="/index.html">
+          <img src="/img/logo/logo2.png" alt="Patinhas Mágicas" />
+        </a>
+      </div>
+  
+      <div class="menu-right">
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+  
+        <a href="/pages/public/carrinho.html" class="cart-link">
+          <i class="material-icons">shopping_cart</i>
+          <span id="cart-count" class="badge bg-danger">0</span>
+        </a>
+  
+        <div class="perfil">
+          <ul>
+            <li class="dropdown-perfil">
+              <a class="perfil-img" href="/pages/public/login.html">
+                <img src="/img/img-adoption/adoption-for.png" alt="Foto do usuário" />
+              </a>
+              <ul class="dropdown-content">
+                <li class="perfil-configuration">
+                  <div class="img">
+                    <img src="/img/img-adoption/adoption-for.png" alt="Foto do usuário" />
+                  </div>
+                  <div class="configuration">
+                    <p id="nomeUsuario" class="name">Visitante</p>
+                    <p class="config"><a href="/pages/public/login.html">Entrar</a></p>
+                  </div>
+                </li>
+                <li class="down"><a onclick="logout()">Sair</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <div class="menu-links" id="menu-links">
+      <ul>
+        <li><a href="#">Cachorros</a></li>
+        <li><a href="#">Gatos</a></li>
+        <li><a href="#">Outros Pets</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Mais</a></li>
+      </ul>
+    </div>
+  </nav>
+  
