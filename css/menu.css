@@ -154,13 +154,13 @@ header nav#menuDeslogado .login,
 header nav#menuLogado .perfil,
 #hamburger {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 header nav#menuDeslogado .shopping-cart-order-service ul,
 header nav#menuLogado .shopping-cart-order-service ul {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.5em;
     margin: 0 !important;
     padding: 0 !important;
@@ -389,7 +389,7 @@ header nav#menuLogado .dropdown-perfil .down a:hover {
     text-decoration: none;
     padding: 0.8em 1em;
     border-radius: 0.4em;
-    text-align: center;
+    /* text-align: center; */
     font-weight: 600;
 }
 .sidebar-auth a.logar,
@@ -400,12 +400,19 @@ header nav#menuLogado .dropdown-perfil .down a:hover {
     color: var(--clr-pet-blue-light);
 }
 
-.logar{
-    .login-container{
-        display: flex !important;
-        gap: 1em !important;
+.login {
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    .login-container {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        list-style-type: none;
     }
 }
+
 .sidebar-auth a.cadastrar,
 .sidebar-auth a.sair {
     background: var(--clr-pet-blue);
