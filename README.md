@@ -11,7 +11,7 @@ Composta por uma **API** backend e um **frontend** para usuários finais, a plat
 
 - Cadastro e gerenciamento de perfis de pets;
 - Consultas de saúde e cuidados (vacinas, vermifugação, alimentação);
-- Dashboard administrativo para tutores e/ou para a equipe de resgate/abrigo;
+- Dashboard administrativo;
 
 ---
 
