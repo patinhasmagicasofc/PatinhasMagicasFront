@@ -900,3 +900,180 @@ i {
 }
 
 
+/* ===== MOBILE OVERRIDES ===== */
+@media (max-width: 1024px) {
+    .mobile-menu-icon {
+        /* display: block !important; */
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Esconde a busca e o menu principal no mobile por padrão */
+    header nav .container-menu-up .menu,
+    header nav .container-menu-down {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: var(--clr-pet-blue-dark);
+    }
+
+    /* Quando ativo, mostra como menu vertical */
+    header nav.mobile-active .container-menu-up .menu,
+    header nav.mobile-active .container-menu-down {
+        display: flex;
+    }
+
+    .container-menu-up {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 1em;
+    }
+
+    .menu {
+        order: 3;
+        /* Move a busca para baixo */
+        margin-top: 1em;
+        width: 100% !important;
+    }
+
+    .search-box {
+        width: 100% !important;
+    }
+
+    /* Ajuste do Dropdown de Perfil no Mobile */
+    .perfil .dropdown-content {
+        left: auto !important;
+        right: 0 !important;
+        width: 280px !important;
+    }
+}
+
+/* ===== MOBILE OVERRIDES (HAMBÚRGUER + BUSCA VISÍVEL) ===== */
+@media (max-width: 1025px) {
+    .title-img {
+        padding-top: 230px !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Exibe o ícone do hambúrguer */
+    .mobile-menu-icon {
+        display: block !important;
+        order: 2;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        i {
+            font-size: 2.2rem;
+            color: var(--clr-white) !important;
+        }
+    }
+
+    header {
+        nav#menuDeslogado {
+            .container-menu-up {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 1em;
+
+                /* 1. Logo no topo à esquerda */
+                .logo {
+                    order: 1;
+                }
+
+                /* 2. Busca e Categoria sempre visíveis na linha de baixo */
+                .menu {
+                    order: 3;
+                    display: flex !important;
+                    width: 100% !important;
+                    flex-direction: column;
+                    margin-top: 1em;
+                    background: transparent;
+                    box-shadow: none;
+                    padding: 0;
+
+                    .category-search,
+                    .search-box,
+                    .category select {
+                        width: 100% !important;
+                        box-sizing: border-box;
+                    }
+                }
+
+                /* 3. Ações (Pedidos, Carrinho, Login) escondidas por padrão */
+                .shopping-cart-order-service {
+                    order: 4;
+                    display: none;
+                    width: 100%;
+                    margin-top: 1em;
+                    padding-top: 1em;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+                    ul {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 1.5em;
+                        width: 100%;
+                        padding: 0;
+                    }
+
+                    /* Ajuste dos botões de Login e Cadastro lado a lado */
+                    .login {
+                        width: 100%;
+
+                        ul li.login-container {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+                            width: 100%;
+
+                            a {
+                                flex: 1;
+                                text-align: center;
+                                justify-content: center;
+                                padding: 0.8em;
+                                border-radius: 0.4em;
+                            }
+
+                            a.logar {
+                                border: 1px solid var(--clr-pet-blue-light);
+                                color: var(--clr-white);
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* 4. Mostra as ações quando o menu recebe a classe do JS */
+            &.mobile-active {
+                .container-menu-up {
+                    .shopping-cart-order-service {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Esconde o ícone no desktop */
+.mobile-menu-icon {
+    display: none;
+}
+
+/* ===== RESPONSIVIDADE ESPECÍFICA < 452px (MENU INFERIOR) ===== */
+@media (max-width: 452px) {
+
+    /* Ajusta os links da parte inferior do menu para quebrarem de linha organizados e centralizados */
+    header nav#menuDeslogado .container-menu-down .down ul,
+    header nav#menuLogado .container-menu-down .down ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        gap: 10px;
+        /* Adicionado um pequeno gap para os itens não grudarem quando quebrarem a linha */
+    }
+}

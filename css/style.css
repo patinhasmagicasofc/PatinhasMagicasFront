@@ -9,6 +9,7 @@
   font-size: 1rem;
   font-weight: lighter;
   padding-left: 0;
+  /* overflow-x: hidden; */
 }
 
 /* --- Reset global para ignorar o Bootstrap --- */

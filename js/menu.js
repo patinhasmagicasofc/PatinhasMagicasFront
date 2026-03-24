@@ -14,7 +14,9 @@ async function carregarMenu() {
     initDropdowns();
     initDropdownPerfil();
 
-
+// 👇 ADICIONE ESTA LINHA AQUI! 👇
+    initMobileMenu();
+    
     const user = getUserFromToken();
 
     if (user) {
@@ -150,3 +152,14 @@ function atualizarContagemCarrinho() {
   }
 }
 
+// ===================== MENU MOBILE HAMBÚRGUER =====================
+function initMobileMenu() {
+  const btnMobile = document.querySelector('.mobile-menu-icon');
+  const navMenu = document.querySelector('nav');
+
+  if (btnMobile && navMenu) {
+    btnMobile.addEventListener('click', function () {
+      navMenu.classList.toggle('mobile-active');
+    });
+  }
+}
