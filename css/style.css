@@ -1183,7 +1183,7 @@ main {
 /* Telas médias - laptops e tablets grandes */
 
 /* #endregion */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   #home {
     padding: 1.5em;
 
@@ -1199,7 +1199,50 @@ main {
       }
     }
   }
-}
+} */
+
+@media (max-width: 1024px) {
+    .grid-service {
+      flex-direction: column;
+      align-items: center;
+
+      /* 1. Garante que todos os cards tenham a mesma largura e não estourem a tela */
+      .card-banho-tosa,
+      .card-adestramento-comportamento,
+      .card-atendimento-vet,
+      .card-hospedagem-creche,
+      .card-transporte-pet {
+        width: 100% !important;
+        max-width: 400px !important;
+        flex: 1 1 auto !important;
+      }
+
+      /* 2. Quebra os blocos para 1 coluna empilhada */
+      .img-text-one,
+      .img-text-two,
+      .img-text-three {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 1.5em;
+
+        /* 3. Força as imagens a respeitarem o limite do card */
+        .img-one img,
+        .img-two img,
+        .img-three img {
+          width: 80% !important;
+          max-width: 220px !important;
+          margin: 0 auto;
+          height: auto !important;
+        }
+      }
+
+      /* 4. Inverte a ordem no mobile para a imagem ficar acima do texto no 2º bloco */
+      .card-adestramento-comportamento .img-text-two {
+        display: flex !important;
+        flex-direction: column-reverse;
+      }
+    }
+  }
 
 @media (max-width: 768px) {
   #home {

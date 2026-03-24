@@ -1052,6 +1052,12 @@ i {
                 .container-menu-up {
                     .shopping-cart-order-service {
                         display: flex;
+                        flex-direction: row; /* Força os itens a ficarem na horizontal */
+                        flex-wrap: wrap; /* Permite que o Login (que tem 100% de largura) quebre para a linha de baixo */
+                        
+                        align-items: center;
+                        column-gap: 4em; /* Espaço horizontal entre "Pedidos" e "Carrinho" */
+                        row-gap: 2em; /* Espaço vertical entre os ícones e a caixa de Login/Cadastro */
                     }
                 }
             }
