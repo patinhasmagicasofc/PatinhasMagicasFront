@@ -219,10 +219,10 @@ footer {
       }
     }
   
-    /* 1º Abaixo de 375px (Celular) - Tudo empilhado e centralizado (Imagem 1) */
-    @media (max-width: 375px) {
+    /* 1º Abaixo de 380px (Celular) - Tudo empilhado e centralizado */
+    @media (max-width: 380px) {
       footer {
-        padding: 1.5em;
+        padding: 1.5em 1em; /* Ajuste no padding geral para evitar vazamento */
       }
   
       .logo img {
@@ -230,29 +230,37 @@ footer {
       }
   
       .footer-nav nav {
-        flex-direction: column; /* Agora sim, empilha os blocos de links */
-        justify-content: center  !important;
+        flex-direction: column;
+        justify-content: center !important;
         align-items: center; 
-        gap: 1.5em;
+        gap: 2em;
+        width: 100%;
   
         .tips-warnings,
         .our-products {
           flex: 1 1 100%;
           width: 100%;
+          padding: 0; /* REMOVE o padding lateral que estava empurrando o bloco */
+          justify-content: center; /* Centraliza a lista dentro da div */
           
-          /* Centraliza o texto no celular como na 1ª imagem */
-          ul li {
-            align-items: center !important;
-            text-align: center !important;
+          ul {
+            padding: 0; /* REMOVE o recuo invisível padrão do HTML */
+            margin: 0;
+            width: 100%;
+            
+            li {
+              align-items: center !important;
+              text-align: center !important;
+            }
           }
   
           .links-tw,
           .links-op {
             align-items: center !important;
+            width: 100%;
           }
-
-          /* Ajuste de detalhe: Como o texto centralizou, a linha animada 
-             precisa nascer do centro novamente no celular */
+  
+          /* Mantém a animação nascendo do meio no celular */
           a::after {
             left: 50% !important;
             transform: translateX(-50%) !important;
@@ -260,10 +268,31 @@ footer {
         }
       }
   
-      .social-media a img {
-        width: 25px;
+      .social-media {
+        justify-content: center;
+        width: 100%;
+        gap: 2em; /* Dá um respiro bom entre os ícones no celular */
+        
+        a img {
+          width: 25px;
+        }
       }
     }
-  
+}
+
+/* ==== COPYRIGHT ==== */
+      .copyright {
+        width: 100%; /* Força o elemento a ocupar a linha inteira no final */
+        text-align: center;
+        padding-top: 1.5em;
+        margin-top: 1em;
+        border-top: 1px solid rgba(0, 0, 0, 0.1); /* Linha sutil para separar do resto do footer */
+        font-size: 0.9rem;
+        color: var(--clr-pet-blue-light); /* Mantendo a harmonia com suas variáveis */
+
+        p {
+          margin: 0;
+        }
+      }
 
     /* #endregion */
