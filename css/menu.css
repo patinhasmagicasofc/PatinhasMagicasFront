@@ -956,6 +956,150 @@ i {
     }
 }
 
+/* ===== EFEITOS DE HOVER ===== */
+@media (min-width: 1025px) {
+    
+    /* --- 1. MENU SUPERIOR (Pedidos, Carrinho, Login, Cadastro) --- */
+    header nav#menuDeslogado .shopping-cart-order-service,
+    header nav#menuLogado .shopping-cart-order-service {
+        
+        /* Pedidos e Carrinho */
+        .order, .shopping-cart {
+            position: relative;
+            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 0.6em;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.06); /* Fundo glass sutil */
+                transform: translateY(-2px);
+                
+                /* Efeito bounce no ícone */
+                .material-icons {
+                    transform: scale(1.15) rotate(4deg);
+                    color: var(--clr-pet-yellow) !important;
+                }
+                
+                .order-title, a {
+                    color: var(--clr-pet-yellow) !important;
+                }
+            }
+            
+            .material-icons {
+                /* Curva elástica para o ícone */
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            }
+            
+            .order-title, a {
+                transition: color 0.3s ease;
+            }
+        }
+
+        /* Botão de Login (Sublinhado swipe) */
+        .login .logar {
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--clr-pet-yellow);
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
+            
+            &:hover {
+                color: var(--clr-pet-yellow);
+                &::after {
+                    transform: scaleX(1);
+                    transform-origin: left;
+                }
+            }
+        }
+
+        /* Botão de Cadastrar-se (Preenchimento swipe) */
+        .login .cadastrar {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--clr-pet-yellow);
+                z-index: -1;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
+            
+            &:hover {
+                color: var(--clr-pet-blue-dark) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(242, 201, 76, 0.25);
+                
+                &::before {
+                    transform: scaleX(1);
+                    background: var(--clr-pet-purple);
+                }
+            }
+        }
+    }
+
+    /* --- 2. MENU INFERIOR (Categorias e Serviços) --- */
+    header nav#menuDeslogado .container-menu-down,
+    header nav#menuLogado .container-menu-down {
+        
+        .down ul li.dropdown {
+            a.service-title {
+                position: relative;
+                padding-bottom: 2px;
+                
+                /* Linha de destaque sob o texto */
+                &::before { 
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: var(--clr-pet-blue); 
+                    transform: scaleX(0);
+                    transform-origin: right;
+                    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+                
+                &:hover {
+                    color: var(--clr-pet-blue);
+                    
+                    /* Anima o sublinhado */
+                    &::before {
+                        transform: scaleX(1);
+                        transform-origin: left;
+                    }
+                    
+                    /* Dá um leve pulo na setinha do dropdown */
+                    &::after {
+                        border-color: var(--clr-pet-blue);
+                        transform: rotate(45deg) translate(2px, 2px); 
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 768px) {
 
     /* Exibe o ícone do hambúrguer */
