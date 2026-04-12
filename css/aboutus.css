@@ -10,6 +10,7 @@
     --accent-yellow: #fdd663;
 }
 
+/* Alterado para aplicar apenas na classe específica da página para não conflitar com o style.css global */
 body.about-page {
     background-color: var(--bg-color);
     color: var(--text-main);

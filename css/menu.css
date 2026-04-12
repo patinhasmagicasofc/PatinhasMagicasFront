@@ -74,7 +74,6 @@
     --fw-regular: 400;
 }
 
-/* menu sem login */
 header {
     nav#menuDeslogado {
         background: var(--clr-pet-blue-dark);
@@ -93,15 +92,16 @@ header {
         .container-menu-up {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             width: 100%;
             z-index: 1000;
-            padding: 0 1em 1em 1em;
+            padding-bottom: 1em;
 
             .logo {
                 img {
                     width: 140px;
-                    height: 70px;
+                    height: 50px;
+                    /* filter: brightness(0) invert(1); */
                 }
             }
 
@@ -109,11 +109,12 @@ header {
                 background: var(--clr-white-one);
                 backdrop-filter: blur(0.5em);
                 -webkit-backdrop-filter: blur(1em);
+                padding: 0.45em;
                 border-radius: 0.6em;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 1em;
-                flex-direction: row-reverse;
-
+flex-direction: row-reverse;
                 .category-search {
                     .category {
                         select {
@@ -460,7 +461,8 @@ header {
             .logo {
                 img {
                     width: 140px;
-                    height: 60px;
+                    height: 50px;
+                    filter: brightness(0) invert(1);
                 }
             }
 
@@ -470,9 +472,9 @@ header {
                 -webkit-backdrop-filter: blur(1em);
                 padding: 0.45em;
                 border-radius: 0.6em;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 1em;
-                flex-direction: row-reverse;
 
                 .category-search {
                     .category {
@@ -482,7 +484,7 @@ header {
                             border: 1px solid transparent;
                             outline: none;
                             transition: all 0.3s ease;
-width: 100%;
+
                             &:focus {
                                 border: 1px solid var(--clr-black-gray);
                                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -918,7 +920,6 @@ width: 100%;
 i {
     color: var(--clr-white) !important;
 }
-
 
 /* ===== MOBILE OVERRIDES ===== */
 @media (max-width: 1024px) {

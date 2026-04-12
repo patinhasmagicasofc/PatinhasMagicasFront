@@ -1280,14 +1280,14 @@ main {
       }
     }
   }
-} */
+} 
 
 @media (max-width: 1024px) {
   .grid-service {
     flex-direction: column;
     align-items: center;
 
-    /* 1. Garante que todos os cards tenham a mesma largura e não estourem a tela */
+
     .card-banho-tosa,
     .card-adestramento-comportamento,
     .card-atendimento-vet,
@@ -1297,8 +1297,6 @@ main {
       max-width: 400px !important;
       flex: 1 1 auto !important;
     }
-
-    /* 2. Quebra os blocos para 1 coluna empilhada */
     .img-text-one,
     .img-text-two,
     .img-text-three {
@@ -1322,6 +1320,7 @@ main {
     }
   }
 }
+
 
 @media (max-width: 768px) {
 
@@ -1512,6 +1511,15 @@ main {
 
       img {
         width: 100px !important;
+      }
+    }
+  }
+
+  #service{
+    .container-atendimento-vet, .card-hospedagem-creche, .card-transporte-pet{
+      img{
+        width: 150px !important;
+
       }
     }
   }
