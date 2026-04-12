@@ -134,7 +134,8 @@ body::before {
 body {
   background: var(--clr-cloud-white);
 }
-main{
+
+main {
   padding: 1em;
 }
 
@@ -149,12 +150,14 @@ main{
       flex-direction: column !important;
       gap: 1em !important;
       margin-left: 1em !important;
+
       p {
         font-size: var(--fs-title) !important;
         color: var(--clr-black) !important;
         font-weight: var(--fw-title);
       }
-      i{
+
+      i {
         font-size: 1.5em;
       }
     }
@@ -208,11 +211,12 @@ main{
           li {
             margin: 0 1em;
 
-            
+
           }
-          .sub{
-              margin-left: 1em !important;
-            }
+
+          .sub {
+            margin-left: 1em !important;
+          }
         }
 
         &.item {
@@ -232,9 +236,9 @@ main{
             gap: 0;
 
             strong {
-               margin: 0 0 0 1em !important;
-               min-width: 140px;
-               width: 100%;
+              margin: 0 0 0 1em !important;
+              min-width: 140px;
+              width: 100%;
             }
 
             .btn-quantidade {
@@ -366,6 +370,7 @@ main{
     gap: 1em;
     margin-top: 1.5em;
     margin-right: 1em;
+
     button,
     a {
       padding: 0.6em 1.2em;
@@ -381,19 +386,31 @@ main{
       background: var(--clr-status-error);
       color: var(--clr-text-light);
       border: none;
-
+border-radius: 2em;
       &:hover {
         background: var(--clr-status-error-dark);
       }
     }
 
     .btn-continuar {
-      background: var(--clr-pet-blue-light);
-      color: var(--clr-text-light);
-      border: none;
+      background: linear-gradient(135deg,
+          var(--clr-pet-blue) 0%,
+          var(--clr-pet-yellow) 50%,
+          var(--clr-pet-yellow-light) 100%);
+
+      background-size: 200% 200%;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      border-radius: 2em;
+
+      text-decoration: none;
+      color: var(--clr-white);
+
 
       &:hover {
-        background: var(--clr-pet-blue);
+        background-position: right center;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(199, 199, 199, 0.3);
       }
     }
 
@@ -401,7 +418,7 @@ main{
       background: var(--clr-status-success-light);
       color: var(--clr-text-main);
       border: none;
-
+border-radius: 2em;
       &:hover {
         background: var(--clr-status-success);
       }
@@ -447,6 +464,7 @@ main{
   }
 
 }
+
 /* ===== Responsividade ===== */
 
 /* Grandes telas (desktop) */
@@ -512,7 +530,8 @@ main{
     margin-top: 100px !important;
 
     .lista-produtos ul.cabecalho {
-      display: none !important; /* esconde o cabeçalho */
+      display: none !important;
+      /* esconde o cabeçalho */
     }
 
     .lista-produtos ul.item {
@@ -562,7 +581,8 @@ main{
       gap: 0.5em !important;
       margin-top: 1em !important;
 
-      button, a {
+      button,
+      a {
         width: 100% !important;
         font-size: 0.9rem !important;
       }

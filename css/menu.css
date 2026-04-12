@@ -5,39 +5,62 @@
     --clr-gray: #929292;
     --clr-gray-light: #b4b4b4;
     --clr-gray-lighter: #dddddd;
-    --clr-cloud-white: #f5f6fa;
+      --clr-cloud-white: #f5f5f56c;
     --clr-white: #ffffff;
     --clr-silver: #e9e9e9;
     --clr-transparent: transparent;
 
     /* ===== azul pet ===== */
-    --clr-pet-blue: #52728d;
-    --clr-pet-blue-dark: #033447;
-    --clr-pet-blue-light: #a1c0cc;
-    --clr-pet-blue-soft: #e9f3f6;
-    --clr-pet-blue-gradient-top: #e8edf0;
-    --clr-pet-blue-gradient-bottom: #c9dbe0;
+    --clr-pet-blue: #ff7a00;
+    --clr-pet-blue-dark: #e66b00;
+    --clr-pet-blue-light: #ffa94d;
+    --clr-pet-blue-soft: #fff1e6;
+    --clr-pet-blue-gradient-top: #ffe0c2;
+    --clr-pet-blue-gradient-bottom: #ffffff;
 
-    --clr-pet-purple: #833aae;
-    --clr-pet-purple-dark: #280f36;
-    --clr-pet-purple-light: #9e5dc3;
-    --clr-pet-purple-soft: #f0e9f6;
-    --clr-pet-purple-gradient-top: #ebe8f0;
-    --clr-pet-purple-gradient-bottom: #d6c9e0;
+    --clr-pet-purple: #a1c0cc;
+    --clr-pet-purple-dark: #0da808;
+    --clr-pet-purple-light: #e9f3f6;
+    --clr-pet-purple-soft: #ebf6e9;
+    --clr-pet-purple-gradient-top: #e9f3f6;
+    --clr-pet-purple-gradient-bottom: #ebf6e9;
 
     /* ===== amarelo pet ===== */
-    --clr-pet-yellow: #F2C94C;
-    --clr-pet-yellow-dark: #886600;
-    --clr-pet-yellow-light: #F9E79F;
-    --clr-pet-yellow-soft: #FFF9E5;
-    --clr-pet-yellow-gradient-top: #FFF4CC;
-    --clr-pet-yellow-gradient-bottom: #FFEBA1;
+    --clr-pet-yellow: #ffaa29;
+    --clr-pet-yellow-dark: #ff7a00;
+    --clr-pet-yellow-light: #f28b82;
+    --clr-pet-yellow-soft: #fff1e6;
+    --clr-pet-yellow-gradient-top: #fff5eb;
+    --clr-pet-yellow-gradient-bottom: #fff8f2;
 
     /* ===== textos ===== */
-    --clr-text-main: #252525;
+    --clr-text-main: #333333;
     --clr-text-muted: #7a7a7a;
     --clr-text-light: #ffffff;
     --clr-pet-text: #333333;
+
+
+    /* ===== status ===== */
+    --clr-status-success: #4CAF50;
+    --clr-status-success-light: #C8E6C9;
+    --clr-status-success-soft: #E8F5E9;
+
+    --clr-status-warning: #F2C94C;
+    --clr-status-warning-light: #F9E79F;
+    --clr-status-warning-soft: #FFF9E5;
+
+    --clr-status-error: #E63946;
+    --clr-status-error-light: #F5B7B1;
+    --clr-status-error-soft: #FDECEC;
+
+    --clr-status-info: #52728D;
+    --clr-status-info-light: #A1C0CC;
+    --clr-status-info-soft: #E9F3F6;
+
+    --clr-status-neutral: #B4B4B4;
+    --clr-status-neutral-light: #DDDDDD;
+    --clr-status-neutral-soft: #F5F6FA;
+
 
     /* ===== tamanhos ===== */
     --fs-title: 2em;
@@ -70,16 +93,15 @@ header {
         .container-menu-up {
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             width: 100%;
             z-index: 1000;
-            padding-bottom: 1em;
+            padding: 0 1em 1em 1em;
 
             .logo {
                 img {
                     width: 140px;
-                    height: 50px;
-                    /* filter: brightness(0) invert(1); */
+                    height: 70px;
                 }
             }
 
@@ -87,11 +109,10 @@ header {
                 background: var(--clr-white-one);
                 backdrop-filter: blur(0.5em);
                 -webkit-backdrop-filter: blur(1em);
-                padding: 0.45em;
                 border-radius: 0.6em;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 1em;
+                flex-direction: row-reverse;
 
                 .category-search {
                     .category {
@@ -439,8 +460,7 @@ header {
             .logo {
                 img {
                     width: 140px;
-                    height: 50px;
-                    filter: brightness(0) invert(1);
+                    height: 60px;
                 }
             }
 
@@ -450,9 +470,9 @@ header {
                 -webkit-backdrop-filter: blur(1em);
                 padding: 0.45em;
                 border-radius: 0.6em;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 1em;
+                flex-direction: row-reverse;
 
                 .category-search {
                     .category {
@@ -462,7 +482,7 @@ header {
                             border: 1px solid transparent;
                             outline: none;
                             transition: all 0.3s ease;
-
+width: 100%;
                             &:focus {
                                 border: 1px solid var(--clr-black-gray);
                                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -900,3 +920,330 @@ i {
 }
 
 
+/* ===== MOBILE OVERRIDES ===== */
+@media (max-width: 1024px) {
+    .mobile-menu-icon {
+        /* display: block !important; */
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Esconde a busca e o menu principal no mobile por padrão */
+    header nav .container-menu-up .menu,
+    header nav .container-menu-down {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: var(--clr-pet-blue-dark);
+    }
+
+    /* Quando ativo, mostra como menu vertical */
+    header nav.mobile-active .container-menu-up .menu,
+    header nav.mobile-active .container-menu-down {
+        display: flex;
+    }
+
+    .container-menu-up {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 1em;
+    }
+
+    .menu {
+        order: 3;
+        /* Move a busca para baixo */
+        margin-top: 1em;
+        width: 100% !important;
+    }
+
+    .search-box {
+        width: 100% !important;
+    }
+
+    /* Ajuste do Dropdown de Perfil no Mobile */
+    .perfil .dropdown-content {
+        left: auto !important;
+        right: 0 !important;
+        width: 280px !important;
+    }
+}
+
+/* ===== MOBILE OVERRIDES (HAMBÚRGUER + BUSCA VISÍVEL) ===== */
+@media (max-width: 1025px) {
+    .title-img {
+        padding-top: 230px !important;
+    }
+}
+
+/* ===== EFEITOS DE HOVER ===== */
+@media (min-width: 1025px) {
+    
+    /* --- 1. MENU SUPERIOR (Pedidos, Carrinho, Login, Cadastro) --- */
+    header nav#menuDeslogado .shopping-cart-order-service,
+    header nav#menuLogado .shopping-cart-order-service {
+        
+        /* Pedidos e Carrinho */
+        .order, .shopping-cart {
+            position: relative;
+            transition: background 0.3s ease, transform 0.3s ease;
+            border-radius: 0.6em;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.06); /* Fundo glass sutil */
+                transform: translateY(-2px);
+                
+                /* Efeito bounce no ícone */
+                .material-icons {
+                    transform: scale(1.15) rotate(4deg);
+                    color: var(--clr-pet-yellow) !important;
+                }
+                
+                .order-title, a {
+                    color: var(--clr-pet-yellow) !important;
+                }
+            }
+            
+            .material-icons {
+                /* Curva elástica para o ícone */
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            }
+            
+            .order-title, a {
+                transition: color 0.3s ease;
+            }
+        }
+
+        /* Botão de Login (Sublinhado swipe) */
+        .login .logar {
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--clr-pet-yellow);
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
+            
+            &:hover {
+                color: var(--clr-pet-yellow);
+                &::after {
+                    transform: scaleX(1);
+                    transform-origin: left;
+                }
+            }
+        }
+
+        /* Botão de Cadastrar-se (Preenchimento swipe) */
+        .login .cadastrar {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--clr-pet-yellow);
+                z-index: -1;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
+            
+            &:hover {
+                color: var(--clr-pet-blue-dark) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(242, 201, 76, 0.25);
+                
+                &::before {
+                    transform: scaleX(1);
+                    background: var(--clr-pet-purple);
+                }
+            }
+        }
+    }
+
+    /* --- 2. MENU INFERIOR (Categorias e Serviços) --- */
+    header nav#menuDeslogado .container-menu-down,
+    header nav#menuLogado .container-menu-down {
+        
+        .down ul li.dropdown {
+            a.service-title {
+                position: relative;
+                padding-bottom: 2px;
+                
+                /* Linha de destaque sob o texto */
+                &::before { 
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: var(--clr-pet-blue); 
+                    transform: scaleX(0);
+                    transform-origin: right;
+                    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+                
+                &:hover {
+                    color: var(--clr-pet-blue);
+                    
+                    /* Anima o sublinhado */
+                    &::before {
+                        transform: scaleX(1);
+                        transform-origin: left;
+                    }
+                    
+                    /* Dá um leve pulo na setinha do dropdown */
+                    &::after {
+                        border-color: var(--clr-pet-blue);
+                        transform: rotate(45deg) translate(2px, 2px); 
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Exibe o ícone do hambúrguer */
+    .mobile-menu-icon {
+        display: block !important;
+        order: 2;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        i {
+            font-size: 2.2rem;
+            color: var(--clr-white) !important;
+        }
+    }
+
+    header {
+        nav#menuDeslogado {
+            .container-menu-up {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 1em;
+
+                /* 1. Logo no topo à esquerda */
+                .logo {
+                    order: 1;
+                }
+
+                /* 2. Busca e Categoria sempre visíveis na linha de baixo */
+                .menu {
+                    order: 3;
+                    display: flex !important;
+                    width: 100% !important;
+                    flex-direction: column;
+                    margin-top: 1em;
+                    background: transparent;
+                    box-shadow: none;
+                    padding: 0;
+
+                    .category-search,
+                    .search-box,
+                    .category select {
+                        width: 100% !important;
+                        box-sizing: border-box;
+                    }
+                }
+
+                /* 3. Ações (Pedidos, Carrinho, Login) escondidas por padrão */
+                .shopping-cart-order-service {
+                    order: 4;
+                    display: none;
+                    width: 100%;
+                    margin-top: 1em;
+                    padding-top: 1em;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+                    ul {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 1.5em;
+                        width: 100%;
+                        padding: 0;
+                    }
+
+                    /* Ajuste dos botões de Login e Cadastro lado a lado */
+                    .login {
+                        width: 100%;
+
+                        ul li.login-container {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+                            width: 100%;
+
+                            a {
+                                flex: 1;
+                                text-align: center;
+                                justify-content: center;
+                                padding: 0.8em;
+                                border-radius: 0.4em;
+                            }
+
+                            a.logar {
+                                border: 1px solid var(--clr-pet-blue-light);
+                                color: var(--clr-white);
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* 4. Mostra as ações quando o menu recebe a classe do JS */
+            &.mobile-active {
+                .container-menu-up {
+                    .shopping-cart-order-service {
+                        display: flex;
+                        flex-direction: row; /* Força os itens a ficarem na horizontal */
+                        flex-wrap: wrap; /* Permite que o Login (que tem 100% de largura) quebre para a linha de baixo */
+                        
+                        align-items: center;
+                        column-gap: 4em; /* Espaço horizontal entre "Pedidos" e "Carrinho" */
+                        row-gap: 2em; /* Espaço vertical entre os ícones e a caixa de Login/Cadastro */
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Esconde o ícone no desktop */
+.mobile-menu-icon {
+    display: none;
+}
+
+/* ===== RESPONSIVIDADE ESPECÍFICA < 452px (MENU INFERIOR) ===== */
+@media (max-width: 452px) {
+
+    /* Ajusta os links da parte inferior do menu para quebrarem de linha organizados e centralizados */
+    header nav#menuDeslogado .container-menu-down .down ul,
+    header nav#menuLogado .container-menu-down .down ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        gap: 10px;
+        /* Adicionado um pequeno gap para os itens não grudarem quando quebrarem a linha */
+    }
+}

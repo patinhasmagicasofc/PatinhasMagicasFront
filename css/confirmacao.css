@@ -220,18 +220,33 @@ main {
 
       .btn-primary {
         background-color: var(--clr-status-success-light);
-        color: var(--clr-black);
+        color: var(--clr-white);
         padding: 12px 24px;
-        border-radius: 8px;
+        border-radius: 2em;
         text-decoration: none;
         font-weight: 500;
         transition: background-color 0.3s;
         width: 200px;
 text-align: center;
-        &:hover {
-          background-color: var(--clr-status-success);
-          color: var(--clr-white);
-        }
+            background: linear-gradient(135deg,
+                var(--clr-pet-blue) 0%,
+                var(--clr-pet-yellow) 50%,
+                var(--clr-pet-yellow-light) 100%);
+
+            background-size: 200% 200%;
+            transition: all 0.4s ease;
+            cursor: pointer;
+
+            a {
+              text-decoration: none;
+              color: var(--clr-black);
+            }
+
+            &:hover {
+              background-position: right center;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 15px rgba(199, 199, 199, 0.3);
+            }
       }
     }
 

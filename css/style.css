@@ -67,39 +67,62 @@ body::before {
   --clr-gray: #929292;
   --clr-gray-light: #b4b4b4;
   --clr-gray-lighter: #dddddd;
-  --clr-cloud-white: #f5f6fa;
+  --clr-cloud-white: #f5f5f5;
   --clr-white: #ffffff;
   --clr-silver: #e9e9e9;
   --clr-transparent: transparent;
 
   /* ===== azul pet ===== */
-  --clr-pet-blue: #52728d;
-  --clr-pet-blue-dark: #1a495c;
-  --clr-pet-blue-light: #a1c0cc;
-  --clr-pet-blue-soft: #e9f3f6;
-  --clr-pet-blue-gradient-top: #e8edf0;
-  --clr-pet-blue-gradient-bottom: #c9dbe0;
+  --clr-pet-blue: #ff7a00;
+  --clr-pet-blue-dark: #e66b00;
+  --clr-pet-blue-light: #ffa94d;
+  --clr-pet-blue-soft: #fff1e6;
+  --clr-pet-blue-gradient-top: #ffe0c2;
+  --clr-pet-blue-gradient-bottom: #ffffff;
 
-  --clr-pet-purple: #833aae;
-  --clr-pet-purple-dark: #280f36;
-  --clr-pet-purple-light: #9e5dc3;
-  --clr-pet-purple-soft: #f0e9f6;
-  --clr-pet-purple-gradient-top: #ebe8f0;
-  --clr-pet-purple-gradient-bottom: #d6c9e0;
+  --clr-pet-purple: #a1c0cc;
+  --clr-pet-purple-dark: #0da808;
+  --clr-pet-purple-light: #e9f3f6;
+  --clr-pet-purple-soft: #ebf6e9;
+  --clr-pet-purple-gradient-top: #e9f3f6;
+  --clr-pet-purple-gradient-bottom: #ebf6e9;
 
   /* ===== amarelo pet ===== */
-  --clr-pet-yellow: #F2C94C;
-  --clr-pet-yellow-dark: #886600;
-  --clr-pet-yellow-light: #F9E79F;
-  --clr-pet-yellow-soft: #FFF9E5;
-  --clr-pet-yellow-gradient-top: #FFF4CC;
-  --clr-pet-yellow-gradient-bottom: #FFEBA1;
+  --clr-pet-yellow: #ffaa29;
+  --clr-pet-yellow-dark: #ff7a00;
+  --clr-pet-yellow-light: #f28b82;
+  --clr-pet-yellow-soft: #fff1e6;
+  --clr-pet-yellow-gradient-top: #fff5eb;
+  --clr-pet-yellow-gradient-bottom: #fff8f2;
 
   /* ===== textos ===== */
-  --clr-text-main: #252525;
+  --clr-text-main: #333333;
   --clr-text-muted: #7a7a7a;
   --clr-text-light: #ffffff;
   --clr-pet-text: #333333;
+
+
+  /* ===== status ===== */
+  --clr-status-success: #4CAF50;
+  --clr-status-success-light: #C8E6C9;
+  --clr-status-success-soft: #E8F5E9;
+
+  --clr-status-warning: #F2C94C;
+  --clr-status-warning-light: #F9E79F;
+  --clr-status-warning-soft: #FFF9E5;
+
+  --clr-status-error: #E63946;
+  --clr-status-error-light: #F5B7B1;
+  --clr-status-error-soft: #FDECEC;
+
+  --clr-status-info: #52728D;
+  --clr-status-info-light: #A1C0CC;
+  --clr-status-info-soft: #E9F3F6;
+
+  --clr-status-neutral: #B4B4B4;
+  --clr-status-neutral-light: #DDDDDD;
+  --clr-status-neutral-soft: #F5F6FA;
+
 
   /* ===== tamanhos ===== */
   --fs-title: 2em;
@@ -122,7 +145,20 @@ main {
 
 #home {
   padding: 2em;
-  background: var(--clr-white);
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.75) 15%,
+      rgba(255, 255, 255, 0.25) 40%,
+      rgba(255, 255, 255, 0.0) 70%,
+      rgba(255, 255, 255, 0.8) 100%),
+    url("../img/bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -145,6 +181,15 @@ main {
         & p {
           font-size: var(--fs-title);
           font-weight: var(--fw-title);
+          background: linear-gradient(135deg,
+              var(--clr-pet-blue),
+              var(--clr-pet-yellow),
+              var(--clr-pet-yellow-light));
+
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
         }
 
         img {
@@ -288,16 +333,21 @@ main {
           flex: 1;
           padding: 0.5em 0.8em;
           border: none;
-          border-radius: 0.3em;
+          border-radius: 2em;
           cursor: pointer;
           font-weight: bold;
           font-size: 0.9em;
           transition: background 0.2s;
 
           &.btn-details {
+            background: linear-gradient(135deg,
+                var(--clr-pet-blue) 0%,
+                var(--clr-pet-yellow) 50%,
+                var(--clr-pet-yellow-light) 100%);
 
-            background: var(--clr-pet-blue-light);
-            transition: all .2s ease;
+            background-size: 200% 200%;
+            transition: all 0.4s ease;
+            cursor: pointer;
 
             a {
               text-decoration: none;
@@ -305,7 +355,9 @@ main {
             }
 
             &:hover {
-              background: var(--clr-gray-light);
+              background-position: right center;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 15px rgba(199, 199, 199, 0.3);
             }
           }
 
@@ -589,25 +641,29 @@ main {
           flex-direction: column;
           gap: 1em;
           border-radius: 1em;
-          border: 1px solid var(--clr-pet-blue-light);
-          background: var(--clr-white);
+          background: linear-gradient(135deg,
+              var(--clr-pet-blue) 0%,
+              var(--clr-pet-yellow) 100%);
           align-items: center;
+          color: var(--clr-white);
         }
       }
 
       .card-banho-tosa {
-        background: var(--clr-white);
+
         border-radius: 1em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 1em;
         align-items: center;
-        border: 1px solid var(--clr-pet-blue-light);
         flex: 1 1 400px;
+        transition: transform 0.15s ease, box-shadow 0.3s ease;
+        will-change: transform;
+        transform-style: preserve-3d;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 
         .title-banho-tosa {
-          background: var(--clr-pet-blue-light);
           display: flex;
           justify-content: center;
           width: 100%;
@@ -617,6 +673,7 @@ main {
           ul li p {
             font-size: var(--fs-sub-title);
             font-weight: var(--fw-title);
+            color: var(--clr-white);
           }
         }
 
@@ -638,8 +695,8 @@ main {
             .img-one,
             .img-two {
               & img {
-                width: 80px;
-                height: 80px;
+                width: 80px !important;
+                height: 80px !important;
                 border-radius: 50%;
                 object-fit: cover;
               }
@@ -667,12 +724,12 @@ main {
           margin: 2em 0 1em;
 
           ul li a {
-            background: var(--clr-pet-blue-light);
+            background: var(--clr-white);
             transition: all 0.3s ease;
             padding: 0.8em 1.5em;
-            border-radius: 0.4em;
+            border-radius: 2em;
             text-decoration: none;
-            color: var(--clr-black);
+            color: var(--clr-pet-blue);
 
             &:hover {
               background: var(--clr-pet-blue);
@@ -690,10 +747,15 @@ main {
         justify-content: space-between;
         gap: 1em;
         align-items: center;
-        border: 1px solid var(--clr-pet-blue-light);
+        transition: transform 0.15s ease, box-shadow 0.3s ease;
+        will-change: transform;
+
+        transform-style: preserve-3d;
+
+
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 
         .title-adestramento-comportamento {
-          background: var(--clr-pet-blue-light);
           padding: 1em 0;
           width: 100%;
           text-align: center;
@@ -702,6 +764,7 @@ main {
           ul li p {
             font-size: var(--fs-sub-title);
             font-weight: var(--fw-title);
+            color: var(--clr-white);
           }
         }
 
@@ -744,12 +807,12 @@ main {
           margin: 2em 0 1em;
 
           ul li a {
-            background: var(--clr-pet-blue-light);
+            background: var(--clr-white);
             transition: all 0.3s ease;
             padding: 0.8em 1.5em;
-            border-radius: 0.4em;
+            border-radius: 2em;
             text-decoration: none;
-            color: var(--clr-black);
+            color: var(--clr-pet-blue);
 
             &:hover {
               background: var(--clr-pet-blue);
@@ -770,13 +833,18 @@ main {
         gap: 1em;
         align-items: center;
         width: 400px;
-        border: 1px solid var(--clr-pet-blue-light);
+        transition: transform 0.15s ease, box-shadow 0.3s ease;
+        will-change: transform;
+
+        transform-style: preserve-3d;
+
+
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 
         .title-atendimento-vet,
         .title-hospedagem-creche,
         .title-transporte-pet {
           width: 100%;
-          background: var(--clr-pet-blue-light);
           border-radius: 1em 1em 0 0;
           padding: 1em 0;
           text-align: center;
@@ -784,6 +852,7 @@ main {
           ul li p {
             font-size: var(--fs-sub-title);
             font-weight: var(--fw-title);
+            color: var(--clr-white);
           }
         }
 
@@ -806,7 +875,7 @@ main {
             .img-one img,
             .img-two img,
             .img-three img {
-              width: 160px;
+              width: 200px;
               height: 110px;
               border-radius: 0.8em;
               object-fit: cover;
@@ -833,12 +902,12 @@ main {
           margin: 2em 0 1em;
 
           ul li a {
-            background: var(--clr-pet-blue-light);
+            background: var(--clr-white);
             transition: all 0.3s ease;
             padding: 0.8em 1.5em;
-            border-radius: 0.4em;
+            border-radius: 2em;
             text-decoration: none;
-            color: var(--clr-black);
+            color: var(--clr-pet-blue);
 
             &:hover {
               background: var(--clr-pet-blue);
@@ -883,7 +952,6 @@ main {
   }
 }
 
-
 /* #endregion */
 
 /* #region contact*/
@@ -892,6 +960,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 
   .title-text-contact {
     background: var(--clr-black);
@@ -934,6 +1003,8 @@ main {
     width: 100%;
     padding: 2em;
     margin: 0 auto;
+    align-items: center;
+    align-items: stretch;
 
     .container-contact {
       flex: 1 1 500px;
@@ -954,7 +1025,7 @@ main {
           max-width: 500px;
           background: var(--clr-pet-blue-soft);
           padding: 1.5em;
-          border-radius: 1em;
+          border-radius: 2em;
 
           .name,
           .email,
@@ -1018,6 +1089,12 @@ main {
       align-items: center;
       text-align: center;
       gap: 1.5em;
+      background: linear-gradient(135deg, var(--clr-pet-blue) 0%, var(--clr-pet-yellow) 100%);
+      width: auto;
+      color: var(--clr-white);
+      border-radius: 2em;
+      padding: 1em;
+      max-width: 500px;
 
       .clinica {
         li {
@@ -1042,6 +1119,11 @@ main {
             .title-endereco {
               font-weight: var(--fw-title);
               font-size: var(--fs-sub-title);
+
+              white-space: normal;
+              overflow-wrap: break-word;
+              word-break: break-word;
+
             }
           }
         }
@@ -1198,9 +1280,57 @@ main {
       }
     }
   }
+} */
+
+@media (max-width: 1024px) {
+  .grid-service {
+    flex-direction: column;
+    align-items: center;
+
+    /* 1. Garante que todos os cards tenham a mesma largura e não estourem a tela */
+    .card-banho-tosa,
+    .card-adestramento-comportamento,
+    .card-atendimento-vet,
+    .card-hospedagem-creche,
+    .card-transporte-pet {
+      width: 100% !important;
+      max-width: 400px !important;
+      flex: 1 1 auto !important;
+    }
+
+    /* 2. Quebra os blocos para 1 coluna empilhada */
+    .img-text-one,
+    .img-text-two,
+    .img-text-three {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+      gap: 1.5em;
+
+      /* 3. Força as imagens a respeitarem o limite do card */
+      .img-one img,
+      .img-two img,
+      .img-three img {
+        margin: 0 auto;
+        height: auto !important;
+      }
+    }
+
+    /* 4. Inverte a ordem no mobile para a imagem ficar acima do texto no 2º bloco */
+    .card-adestramento-comportamento .img-text-two {
+      display: flex !important;
+      flex-direction: column-reverse;
+    }
+  }
 }
 
 @media (max-width: 768px) {
+
+  .card-img {
+    width: 80px !important;
+    height: 100px !important;
+    object-fit: cover;
+  }
+
   #home {
     padding: 1em;
 
@@ -1248,7 +1378,13 @@ main {
   bottom: 20px;
   right: 20px;
   z-index: 5000;
-  background: var(--clr-pet-blue-light);
+
+  background: linear-gradient(135deg,
+      var(--clr-pet-blue) 0%,
+      var(--clr-pet-yellow) 50%,
+      var(--clr-pet-yellow-light) 100%);
+
+  background-size: 200% 200%;
   color: var(--clr-white);
   border: none;
   padding: 0.3em 0.6em;
@@ -1256,20 +1392,24 @@ main {
   font-size: 1.5em;
   cursor: pointer;
   display: none;
-  box-shadow: 0 3px 10px var(--clr-gray-light);
-  transition: all 0.3s ease;
+
   width: 60px;
   height: 60px;
+
+  box-shadow: 0 3px 10px var(--clr-gray-light);
+  transition: all 0.4s ease;
 
   img {
     width: 30px;
     height: 75%;
+    filter: brightness(0) invert(1);
   }
-}
 
-#pawTopBtn:hover {
-  background: var(--clr-pet-yellow);
-  transform: translateY(-3px);
+  &:hover {
+    background-position: right center;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+  }
 }
 
 /* Animação de patinhas */
@@ -1327,4 +1467,70 @@ main {
   visibility: visible;
   opacity: 1;
   bottom: 50px;
+}
+
+@media (max-width: 354px) {
+
+  main {
+    margin-top: 7em !important;
+
+    .title-img {
+      padding-top: 0 !important;
+    }
+  }
+
+  nav#menuDeslogado {
+    padding: 0 !important;
+  }
+
+  .logo {
+    img {
+      width: 100px !important;
+      height: 50px !important;
+    }
+  }
+
+  #home {
+    .title-home {
+      p {
+        font-size: 1.2em !important;
+
+      }
+
+      img {
+        width: 80px !important;
+      }
+    }
+
+    .highlight-sections {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.8em;
+
+      .product-name {
+        font-size: 1em !important;
+      }
+
+      img {
+        width: 100px !important;
+      }
+    }
+  }
+}
+
+#home,
+#contact,
+#service {
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.75) 15%,
+      rgba(255, 255, 255, 0.25) 40%,
+      rgba(255, 255, 255, 0.0) 70%,
+      rgba(255, 255, 255, 0.8) 100%),
+    url("../img/bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

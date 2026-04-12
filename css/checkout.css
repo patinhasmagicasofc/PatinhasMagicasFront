@@ -238,16 +238,18 @@ main {
 
     .btn-cancelar-confirmar {
       display: flex;
-      flex-direction:row;
+      flex-direction: row;
       justify-content: end;
       gap: 1em;
       margin-top: 1em;
+
       .cancelar {
         background-color: var(--clr-transparent);
         color: var(--clr-status-error);
         border: none;
         font-size: 14px;
         transition: color 0.3s;
+        border-radius: 2em;
 
         &:hover {
           color: var(--clr-status-error-dark);
@@ -260,13 +262,28 @@ main {
         background-color: var(--clr-status-success);
         color: var(--clr-white);
         border: none;
-        border-radius: 6px;
+        border-radius: 2em;
         font-size: 1rem;
         cursor: pointer;
         transition: background-color 0.3s;
+        background: linear-gradient(135deg,
+            var(--clr-pet-blue) 0%,
+            var(--clr-pet-yellow) 50%,
+            var(--clr-pet-yellow-light) 100%);
+
+        background-size: 200% 200%;
+        transition: all 0.4s ease;
+        cursor: pointer;
+
+        a {
+          text-decoration: none;
+          color: var(--clr-black);
+        }
 
         &:hover {
-          background: var(--clr-status-success-dark);
+          background-position: right center;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 15px rgba(199, 199, 199, 0.3);
         }
       }
     }
