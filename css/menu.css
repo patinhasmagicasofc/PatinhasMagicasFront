@@ -5,7 +5,7 @@
     --clr-gray: #929292;
     --clr-gray-light: #b4b4b4;
     --clr-gray-lighter: #dddddd;
-      --clr-cloud-white: #f5f5f56c;
+    --clr-cloud-white: #f5f5f56c;
     --clr-white: #ffffff;
     --clr-silver: #e9e9e9;
     --clr-transparent: transparent;
@@ -114,16 +114,20 @@ header {
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 1em;
-flex-direction: row-reverse;
+                flex-direction: row-reverse;
+
                 .category-search {
+
+
                     .category {
+
+
                         select {
                             border-radius: 0.4em;
                             padding: 0.2em;
                             border: 1px solid transparent;
                             outline: none;
                             transition: all 0.3s ease;
-
                             &:focus {
                                 border: 1px solid var(--clr-black-gray);
                                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -170,6 +174,10 @@ flex-direction: row-reverse;
                         align-items: center;
                         justify-content: center;
                         transition: background 0.3s, transform 0.2s;
+
+                        i {
+                            color: var(--clr-black) !important;
+                        }
 
                         &:hover {
                             transform: scale(1.03);
@@ -461,7 +469,7 @@ header {
             .logo {
                 img {
                     width: 140px;
-                    height: 50px;
+                    height: 60px;
                     filter: brightness(0) invert(1);
                 }
             }
@@ -475,7 +483,7 @@ header {
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 display: flex;
                 gap: 1em;
-
+flex-direction: row-reverse;
                 .category-search {
                     .category {
                         select {
@@ -531,6 +539,10 @@ header {
                         align-items: center;
                         justify-content: center;
                         transition: background 0.3s, transform 0.2s;
+
+                        i {
+                            color: var(--clr-black) !important;
+                        }
 
                         &:hover {
                             transform: scale(1.03);
@@ -937,12 +949,14 @@ i {
         width: 100%;
         flex-direction: column;
         background: var(--clr-pet-blue-dark);
+        flex-direction: row-reverse;
     }
 
     /* Quando ativo, mostra como menu vertical */
     header nav.mobile-active .container-menu-up .menu,
     header nav.mobile-active .container-menu-down {
         display: flex;
+
     }
 
     .container-menu-up {
@@ -1167,7 +1181,7 @@ i {
                     background: transparent;
                     box-shadow: none;
                     padding: 0;
-
+flex-direction: row-reverse;
                     .category-search,
                     .search-box,
                     .category select {
@@ -1245,6 +1259,32 @@ i {
                 }
             }
         }
+
+        nav#menuLogado{
+            .menu {
+                    order: 3;
+                    display: flex !important;
+                    width: 100% !important;
+                    flex-direction: column;
+                    margin-top: 1em;
+                    background: transparent;
+                    box-shadow: none;
+                    padding: 0;
+flex-direction: row-reverse;
+                    .category-search,
+                    .search-box,
+                    .category select {
+                        width: 100% !important;
+                        box-sizing: border-box;
+                    }
+
+                    .search-box {
+                        .material-icons {
+                            color: var(--clr-black) !important;
+                        }
+                    }
+                }
+        }
     }
 }
 
@@ -1258,7 +1298,6 @@ i {
 @media (max-width: 666px) {
     .menu {
         flex-direction: column !important;
-
         .category {
             display: flex;
             width: 100%;

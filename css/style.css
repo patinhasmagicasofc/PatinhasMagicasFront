@@ -1347,7 +1347,11 @@ main {
     }
   }
 }
-
+@media (max-width: 450px) {
+main{
+  padding-top: 4em !important;
+}
+}
 @media (max-width: 480px) {
   #home {
     padding: 0.8em;
@@ -1366,6 +1370,7 @@ main {
     }
   }
 }
+
 
 
 
