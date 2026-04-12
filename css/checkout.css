@@ -61,7 +61,7 @@ body::before {
 }
 
 :root {
-  /* ===== neutros ===== */
+   /* ===== neutros ===== */
   --clr-black: #000000;
   --clr-black-gray: #252525;
   --clr-gray: #929292;

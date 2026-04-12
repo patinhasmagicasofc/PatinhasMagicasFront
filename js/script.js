@@ -55,3 +55,43 @@ pawBtn.onclick = function() {
   setTimeout(() => pawTrail.remove(), 2000);
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
+
+
+//card
+const cards = document.querySelectorAll(
+  '.card-banho-tosa, .card-adestramento-comportamento, .card-atendimento-vet, .card-hospedagem-creche, .card-transporte-pet'
+);
+
+cards.forEach((card) => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // 🔽 movimento bem leve (como você pediu)
+    const rotateX = ((y - centerY) / centerY) * -4;
+    const rotateY = ((x - centerX) / centerX) * 4;
+
+    card.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      translateY(-3px)
+      scale(1.01)
+    `;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+      translateY(0)
+      scale(1)
+    `;
+  });
+});
